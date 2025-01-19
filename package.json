@@ -6,6 +6,7 @@
       "localhost": {
         "title": "本地",
         "env": {
+          "UNI_PLATFORM": "mp-weixin",
           "BASE_URL": "http://localhost:3000"
         }
       },

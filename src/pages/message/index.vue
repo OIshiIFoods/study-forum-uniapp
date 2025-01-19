@@ -1,5 +1,7 @@
 <template>
-  <up-navbar title="消息" :autoBack="true"></up-navbar>
+  <view>
+    <up-navbar title="消息" leftIcon="" :autoBack="false" placeholder />
+  </view>
 </template>
 
 <script setup lang="ts"></script>

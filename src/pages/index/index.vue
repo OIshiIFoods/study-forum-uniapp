@@ -1,15 +1,6 @@
 <template>
   <view>
-    <up-navbar title="研友坛" :autoBack="true" placeholder></up-navbar>
-    <up-button
-      type="primary"
-      text="跳转"
-      @click="
-        router.push({
-          name: 'my',
-        })
-      "
-    ></up-button>
+    <up-navbar title="研友坛" leftIcon="" :autoBack="false" placeholder />
   </view>
 </template>
 
