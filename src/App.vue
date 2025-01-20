@@ -12,4 +12,8 @@ onHide(() => {
 </script>
 <style lang="scss">
 @import 'uview-plus/index.scss';
+
+page {
+  --primary-color: #59a3f4;
+}
 </style>
