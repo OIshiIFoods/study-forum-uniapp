@@ -1,0 +1,11 @@
+import { request } from '@/api/http'
+import type { PostUserLogin } from '../types/api'
+
+/** 登录 */
+export const login = async (data: PostUserLogin.Request) => {
+  return request<PostUserLogin.Response>({
+    method: 'POST',
+    url: '/api/v1/user/login',
+    data,
+  })
+}
