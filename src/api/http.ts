@@ -16,7 +16,27 @@ const httpInterceptor: UniApp.InterceptorOptions = {
   success(res) {
     // 将 cookie 存储到本地
     if (res?.header['Set-Cookie']) {
-      uni.setStorageSync('cookie', res?.header['Set-Cookie'])
+      const cookies = res?.header['Set-Cookie']?.split(/,(?!\s)/)
+      // 响应头中的 cookie
+      const cookieObj = Object.fromEntries(
+        cookies?.map((item: string) => item.split(';')[0]?.split('=')) ?? [[]]
+      )
+      // 本地存储的 cookie
+      const curCookieObj = Object.fromEntries([
+        ...uni
+          .getStorageSync('cookie')
+          ?.split(';')
+          ?.map((item: string) => item.split('=')),
+      ])
+      // 更新本地 cookie
+      uni.setStorageSync(
+        'cookie',
+        Object.entries(
+          JSON.parse(JSON.stringify({ ...curCookieObj, ...cookieObj }))
+        )
+          .map((item) => item.join('='))
+          .join(';')
+      )
     }
   },
   fail() {},
