@@ -6,32 +6,50 @@ const httpInterceptor: UniApp.InterceptorOptions = {
     // 非http开头拼接地址
     if (!options.url.startsWith('http')) {
       options.url = baseURL + options.url
+      options.header = {
+        cookie: uni.getStorageSync('cookie'),
+        Authorization: `Bearer ${uni.getStorageSync('token')}`,
+      }
     }
   },
   // 处理响应数据
-  success(res) {},
+  success(res) {
+    // 将 cookie 存储到本地
+    if (res?.header['Set-Cookie']) {
+      uni.setStorageSync('cookie', res?.header['Set-Cookie'])
+    }
+  },
   fail() {},
   complete() {},
-  returnValue(res) {
-    return res
-  },
+  returnValue(res) {},
 }
 
 uni.addInterceptor('request', httpInterceptor)
 uni.addInterceptor('uploadFile', httpInterceptor)
 
-interface Data<T> {
-  data: T
-}
-
 export const request = <T>(options: UniApp.RequestOptions) => {
-  return new Promise<Data<T>>((resolve) => {
+  return new Promise<T>((resolve) => {
     uni.request({
       ...options,
       success(res) {
-        resolve(res.data as Data<T>)
+        const { data } = res as any
+        // 请求失败
+        if (data.failed) {
+          uni.showToast({
+            title: data.message,
+            icon: 'none',
+            duration: 2000,
+          })
+          return Promise.reject(data)
+        }
+        resolve(res.data as T)
       },
       fail(res) {
+        uni.showToast({
+          title: '网络异常，请稍后重试！' + res.errMsg,
+          icon: 'none',
+          duration: 2000,
+        })
         return Promise.reject(res)
       },
     })
