@@ -86,7 +86,8 @@
 
 <script setup lang="ts">
 import router from '@/router'
-import { getCaptcha, login } from '@/service'
+import { getCaptcha, getUserInfo, login } from '@/service'
+import { useUserStore } from '@/stores'
 import type { _FormRef } from 'uview-plus/types/comps/form'
 import { reactive, ref } from 'vue'
 const formRef = ref<_FormRef>()
@@ -146,6 +147,10 @@ const handleLoginClick = async () => {
     uni.showToast({
       title: '登录成功',
       icon: 'success',
+    })
+    getUserInfo().then((res) => {
+      const userStore = useUserStore()
+      userStore.$patch(res.data)
     })
     router.pushTab('/pages/index/index')
   } catch (err) {}

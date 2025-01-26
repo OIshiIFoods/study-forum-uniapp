@@ -1,3 +1,6 @@
+import router from '@/router'
+import { useUserStore } from '@/stores'
+
 const baseURL = process.env.BASE_URL
 
 const httpInterceptor: UniApp.InterceptorOptions = {
@@ -15,8 +18,8 @@ const httpInterceptor: UniApp.InterceptorOptions = {
   // 处理响应数据
   success(res) {
     // 将 cookie 存储到本地
-    if (res?.header['Set-Cookie']) {
-      const cookies = res?.header['Set-Cookie']?.split(/,(?!\s)/)
+    if (res.cookies) {
+      const cookies = res.cookies
       // 响应头中的 cookie
       const cookieObj = Object.fromEntries(
         cookies?.map((item: string) => item.split(';')[0]?.split('=')) ?? [[]]
@@ -37,6 +40,25 @@ const httpInterceptor: UniApp.InterceptorOptions = {
           .map((item) => item.join('='))
           .join(';')
       )
+    }
+    // token 过期时
+    if (res.data.status === 401) {
+      const userStore = useUserStore()
+      uni.removeStorageSync('token')
+      userStore.$reset()
+      uni.showModal({
+        title: '提示',
+        content: '登录凭证已过期，请重新登录！',
+        confirmText: '确认',
+        cancelText: '取消',
+        success: (success) => {
+          if (success.confirm) {
+            router.push({
+              path: '/pages/login/index',
+            })
+          }
+        },
+      })
     }
   },
   fail() {},

@@ -1,5 +1,5 @@
 import { request } from '@/api/http'
-import type { PostUserLogin } from '../types/api'
+import type { GetUserInfo, PostUserLogin } from '../types/api'
 
 /** 登录 */
 export const login = async (data: PostUserLogin.Request) => {
@@ -7,5 +7,12 @@ export const login = async (data: PostUserLogin.Request) => {
     method: 'POST',
     url: '/api/v1/user/login',
     data,
+  })
+}
+
+export const getUserInfo = async () => {
+  return request<GetUserInfo.Response>({
+    method: 'GET',
+    url: '/api/v1/user',
   })
 }
