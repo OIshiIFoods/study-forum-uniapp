@@ -152,7 +152,11 @@ const handleLoginClick = async () => {
       const userStore = useUserStore()
       userStore.$patch(res.data)
     })
-    router.pushTab('/pages/index/index')
+    router.back({
+      delta: 1,
+      animationType: 'slide-out-right',
+      animationDuration: 300,
+    })
   } catch (err) {}
 }
 </script>
