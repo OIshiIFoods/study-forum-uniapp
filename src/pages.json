@@ -35,6 +35,13 @@
 			"style": {
 				"navigationStyle": "custom"
 			}
+		},
+		{
+			"name": "setting",
+			"path": "pages/setting/index",
+			"style": {
+				"navigationStyle": "custom"
+			}
 		}
 	],
 	"tabBar": {
