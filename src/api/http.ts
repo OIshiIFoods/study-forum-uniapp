@@ -1,7 +1,8 @@
 import router from '@/router'
 import { useUserStore } from '@/stores'
 
-const baseURL = process.env.BASE_URL
+export const baseURL = process.env.BASE_URL
+export const staticBaseURL = process.env.STATIC_BASE_URL
 
 const httpInterceptor: UniApp.InterceptorOptions = {
   // 拦截前触发
@@ -54,7 +55,7 @@ const httpInterceptor: UniApp.InterceptorOptions = {
         success: (success) => {
           if (success.confirm) {
             router.push({
-              path: '/pages/login/index',
+              name: 'login',
             })
           }
         },
