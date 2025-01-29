@@ -14,7 +14,7 @@ onLaunch(() => {
       success: (success) => {
         if (success.confirm) {
           router.push({
-            path: '/pages/login/index',
+            name: 'login',
           })
         }
       },
@@ -36,8 +36,11 @@ onHide(() => {
 </script>
 <style lang="scss">
 @import 'uview-plus/index.scss';
+@import '@/static/css/iconfont.css';
 
 page {
   --primary-color: #59a3f4;
+  --page-side-unit-size: 5rpx;
+  --text-color-grey: #999;
 }
 </style>
