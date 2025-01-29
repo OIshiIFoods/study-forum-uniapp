@@ -1,6 +1,6 @@
 <template>
   <view>
-    <up-navbar title="" placeholder />
+    <up-navbar title="" placeholder autoBack />
     <view>
       <view class="mt-10 text-align-center text-[20px]">
         <h1>手机号登录</h1>
