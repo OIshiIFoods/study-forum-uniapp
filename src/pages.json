@@ -42,6 +42,20 @@
 			"style": {
 				"navigationStyle": "custom"
 			}
+		},
+		{
+			"name": "fileManagement",
+			"path": "pages/fileManagement/index",
+			"style": {
+				"navigationStyle": "custom"
+			}
+		},
+		{
+			"name": "postManagement",
+			"path": "pages/postManagement/index",
+			"style": {
+				"navigationStyle": "custom"
+			}
 		}
 	],
 	"tabBar": {

@@ -53,6 +53,24 @@
             />
           </view>
         </view>
+        <view
+          v-if="userStore.id"
+          class="flex justify-around items-end m-[20px_0_12px]"
+        >
+          <view
+            v-for="(item, index) in managementList"
+            :key="index"
+            @click="item.clickAction"
+            class="flex flex-col items-center"
+          >
+            <view
+              class="text-[var(--primary-color)] iconfont"
+              :class="'icon-' + item.icon"
+              :style="{ fontSize: item.iconSize }"
+            />
+            <text class="text-[12px] mt-[8px]">{{ item.title }}</text>
+          </view>
+        </view>
       </view>
     </view>
     <!-- 其他服务 -->
@@ -101,7 +119,22 @@ const accountStatusInfoList = computed(() => [
     value: userStore.fansCount,
   },
 ])
-console.log(router.routes)
+
+const managementList = [
+  {
+    title: '帖子管理',
+    icon: 'post-management',
+    iconSize: '27px',
+    clickAction: () => router.push({ name: 'postManagement' }),
+  },
+  {
+    title: '文件管理',
+    icon: 'file-management',
+    iconSize: '35px',
+    clickAction: () => router.push({ name: 'fileManagement' }),
+  },
+]
+
 const otherServiceList = [
   {
     title: '设置',
