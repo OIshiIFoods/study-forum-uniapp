@@ -67,26 +67,26 @@
 			{
 				"text": "首页",
 				"pagePath": "pages/index/index",
-				"iconPath": "static/images/index.png",
-				"selectedIconPath": "static/images/index-selected.png"
+				"iconPath": "static/images/tabbar/index.png",
+				"selectedIconPath": "static/images/tabbar/index-selected.png"
 			},
 			{
 				"text": "论坛",
 				"pagePath": "pages/forum/index",
-				"iconPath": "static/images/forum.png",
-				"selectedIconPath": "static/images/forum-selected.png"
+				"iconPath": "static/images/tabbar/forum.png",
+				"selectedIconPath": "static/images/tabbar/forum-selected.png"
 			},
 			{
 				"text": "消息",
 				"pagePath": "pages/message/index",
-				"iconPath": "static/images/message.png",
-				"selectedIconPath": "static/images/message-selected.png"
+				"iconPath": "static/images/tabbar/message.png",
+				"selectedIconPath": "static/images/tabbar/message-selected.png"
 			},
 			{
 				"text": "我的",
 				"pagePath": "pages/my/index",
-				"iconPath": "static/images/my.png",
-				"selectedIconPath": "static/images/my-selected.png"
+				"iconPath": "static/images/tabbar/my.png",
+				"selectedIconPath": "static/images/tabbar/my-selected.png"
 			}
 		]
 	},
