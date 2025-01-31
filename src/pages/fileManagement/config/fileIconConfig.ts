@@ -1,19 +1,19 @@
 export default {
   iconDefinitions: {
     _file: {
-      iconPath: '@/static/images/fileIcons/default_file.svg',
+      iconPath: 'default_file.svg',
     },
     _folder: {
-      iconPath: '@/static/images/fileIcons/default_folder.svg',
+      iconPath: 'default_folder.svg',
     },
     _folder_open: {
-      iconPath: '@/static/images/fileIcons/default_folder_opened.svg',
+      iconPath: 'default_folder_opened.svg',
     },
     _root_folder: {
-      iconPath: '@/static/images/fileIcons/default_root_folder.svg',
+      iconPath: 'default_root_folder.svg',
     },
     _root_folder_open: {
-      iconPath: '@/static/images/fileIcons/default_root_folder_opened.svg',
+      iconPath: 'default_root_folder_opened.svg',
     },
     _file_light: {
       iconPath: '',
@@ -31,3632 +31,3625 @@ export default {
       iconPath: '',
     },
     _fd_android: {
-      iconPath: '@/static/images/fileIcons/folder_type_android.svg',
+      iconPath: 'folder_type_android.svg',
     },
     _fd_android_open: {
-      iconPath: '@/static/images/fileIcons/folder_type_android_opened.svg',
+      iconPath: 'folder_type_android_opened.svg',
     },
     _fd_api: {
-      iconPath: '@/static/images/fileIcons/folder_type_api.svg',
+      iconPath: 'folder_type_api.svg',
     },
     _fd_api_open: {
-      iconPath: '@/static/images/fileIcons/folder_type_api_opened.svg',
+      iconPath: 'folder_type_api_opened.svg',
     },
     _fd_app: {
-      iconPath: '@/static/images/fileIcons/folder_type_app.svg',
+      iconPath: 'folder_type_app.svg',
     },
     _fd_app_open: {
-      iconPath: '@/static/images/fileIcons/folder_type_app_opened.svg',
+      iconPath: 'folder_type_app_opened.svg',
     },
     _fd_arangodb: {
-      iconPath: '@/static/images/fileIcons/folder_type_arangodb.svg',
+      iconPath: 'folder_type_arangodb.svg',
     },
     _fd_arangodb_open: {
-      iconPath: '@/static/images/fileIcons/folder_type_arangodb_opened.svg',
+      iconPath: 'folder_type_arangodb_opened.svg',
     },
     _fd_asset: {
-      iconPath: '@/static/images/fileIcons/folder_type_asset.svg',
+      iconPath: 'folder_type_asset.svg',
     },
     _fd_asset_open: {
-      iconPath: '@/static/images/fileIcons/folder_type_asset_opened.svg',
+      iconPath: 'folder_type_asset_opened.svg',
     },
     _fd_audio: {
-      iconPath: '@/static/images/fileIcons/folder_type_audio.svg',
+      iconPath: 'folder_type_audio.svg',
     },
     _fd_audio_open: {
-      iconPath: '@/static/images/fileIcons/folder_type_audio_opened.svg',
+      iconPath: 'folder_type_audio_opened.svg',
     },
     _fd_aurelia: {
-      iconPath: '@/static/images/fileIcons/folder_type_aurelia.svg',
+      iconPath: 'folder_type_aurelia.svg',
     },
     _fd_aurelia_open: {
-      iconPath: '@/static/images/fileIcons/folder_type_aurelia_opened.svg',
+      iconPath: 'folder_type_aurelia_opened.svg',
     },
     _fd_aws: {
-      iconPath: '@/static/images/fileIcons/folder_type_aws.svg',
+      iconPath: 'folder_type_aws.svg',
     },
     _fd_aws_open: {
-      iconPath: '@/static/images/fileIcons/folder_type_aws_opened.svg',
+      iconPath: 'folder_type_aws_opened.svg',
     },
     _fd_azure: {
-      iconPath: '@/static/images/fileIcons/folder_type_azure.svg',
+      iconPath: 'folder_type_azure.svg',
     },
     _fd_azure_open: {
-      iconPath: '@/static/images/fileIcons/folder_type_azure_opened.svg',
+      iconPath: 'folder_type_azure_opened.svg',
     },
     _fd_azurepipelines: {
-      iconPath: '@/static/images/fileIcons/folder_type_azurepipelines.svg',
+      iconPath: 'folder_type_azurepipelines.svg',
     },
     _fd_azurepipelines_open: {
-      iconPath:
-        '@/static/images/fileIcons/folder_type_azurepipelines_opened.svg',
+      iconPath: 'folder_type_azurepipelines_opened.svg',
     },
     _fd_binary: {
-      iconPath: '@/static/images/fileIcons/folder_type_binary.svg',
+      iconPath: 'folder_type_binary.svg',
     },
     _fd_binary_open: {
-      iconPath: '@/static/images/fileIcons/folder_type_binary_opened.svg',
+      iconPath: 'folder_type_binary_opened.svg',
     },
     _fd_bloc: {
-      iconPath: '@/static/images/fileIcons/folder_type_bloc.svg',
+      iconPath: 'folder_type_bloc.svg',
     },
     _fd_bloc_open: {
-      iconPath: '@/static/images/fileIcons/folder_type_bloc_opened.svg',
+      iconPath: 'folder_type_bloc_opened.svg',
     },
     _fd_blueprint: {
-      iconPath: '@/static/images/fileIcons/folder_type_blueprint.svg',
+      iconPath: 'folder_type_blueprint.svg',
     },
     _fd_blueprint_open: {
-      iconPath: '@/static/images/fileIcons/folder_type_blueprint_opened.svg',
+      iconPath: 'folder_type_blueprint_opened.svg',
     },
     _fd_bot: {
-      iconPath: '@/static/images/fileIcons/folder_type_bot.svg',
+      iconPath: 'folder_type_bot.svg',
     },
     _fd_bot_open: {
-      iconPath: '@/static/images/fileIcons/folder_type_bot_opened.svg',
+      iconPath: 'folder_type_bot_opened.svg',
     },
     _fd_bower: {
-      iconPath: '@/static/images/fileIcons/folder_type_bower.svg',
+      iconPath: 'folder_type_bower.svg',
     },
     _fd_bower_open: {
-      iconPath: '@/static/images/fileIcons/folder_type_bower_opened.svg',
+      iconPath: 'folder_type_bower_opened.svg',
     },
     _fd_buildkite: {
-      iconPath: '@/static/images/fileIcons/folder_type_buildkite.svg',
+      iconPath: 'folder_type_buildkite.svg',
     },
     _fd_buildkite_open: {
-      iconPath: '@/static/images/fileIcons/folder_type_buildkite_opened.svg',
+      iconPath: 'folder_type_buildkite_opened.svg',
     },
     _fd_cake: {
-      iconPath: '@/static/images/fileIcons/folder_type_cake.svg',
+      iconPath: 'folder_type_cake.svg',
     },
     _fd_cake_open: {
-      iconPath: '@/static/images/fileIcons/folder_type_cake_opened.svg',
+      iconPath: 'folder_type_cake_opened.svg',
     },
     _fd_certificate: {
-      iconPath: '@/static/images/fileIcons/folder_type_certificate.svg',
+      iconPath: 'folder_type_certificate.svg',
     },
     _fd_certificate_open: {
-      iconPath: '@/static/images/fileIcons/folder_type_certificate_opened.svg',
+      iconPath: 'folder_type_certificate_opened.svg',
     },
     _fd_changesets: {
-      iconPath: '@/static/images/fileIcons/folder_type_changesets.svg',
+      iconPath: 'folder_type_changesets.svg',
     },
     _fd_changesets_open: {
-      iconPath: '@/static/images/fileIcons/folder_type_changesets_opened.svg',
+      iconPath: 'folder_type_changesets_opened.svg',
     },
     _fd_chef: {
-      iconPath: '@/static/images/fileIcons/folder_type_chef.svg',
+      iconPath: 'folder_type_chef.svg',
     },
     _fd_chef_open: {
-      iconPath: '@/static/images/fileIcons/folder_type_chef_opened.svg',
+      iconPath: 'folder_type_chef_opened.svg',
     },
     _fd_circleci: {
-      iconPath: '@/static/images/fileIcons/folder_type_circleci.svg',
+      iconPath: 'folder_type_circleci.svg',
     },
     _fd_circleci_open: {
-      iconPath: '@/static/images/fileIcons/folder_type_circleci_opened.svg',
+      iconPath: 'folder_type_circleci_opened.svg',
     },
     _fd_cli: {
-      iconPath: '@/static/images/fileIcons/folder_type_cli.svg',
+      iconPath: 'folder_type_cli.svg',
     },
     _fd_cli_open: {
-      iconPath: '@/static/images/fileIcons/folder_type_cli_opened.svg',
+      iconPath: 'folder_type_cli_opened.svg',
     },
     _fd_client: {
-      iconPath: '@/static/images/fileIcons/folder_type_client.svg',
+      iconPath: 'folder_type_client.svg',
     },
     _fd_client_open: {
-      iconPath: '@/static/images/fileIcons/folder_type_client_opened.svg',
+      iconPath: 'folder_type_client_opened.svg',
     },
     _fd_cmake: {
-      iconPath: '@/static/images/fileIcons/folder_type_cmake.svg',
+      iconPath: 'folder_type_cmake.svg',
     },
     _fd_cmake_open: {
-      iconPath: '@/static/images/fileIcons/folder_type_cmake_opened.svg',
+      iconPath: 'folder_type_cmake_opened.svg',
     },
     _fd_common: {
-      iconPath: '@/static/images/fileIcons/folder_type_common.svg',
+      iconPath: 'folder_type_common.svg',
     },
     _fd_common_open: {
-      iconPath: '@/static/images/fileIcons/folder_type_common_opened.svg',
+      iconPath: 'folder_type_common_opened.svg',
     },
     _fd_component: {
-      iconPath: '@/static/images/fileIcons/folder_type_component.svg',
+      iconPath: 'folder_type_component.svg',
     },
     _fd_component_open: {
-      iconPath: '@/static/images/fileIcons/folder_type_component_opened.svg',
+      iconPath: 'folder_type_component_opened.svg',
     },
     _fd_composer: {
-      iconPath: '@/static/images/fileIcons/folder_type_composer.svg',
+      iconPath: 'folder_type_composer.svg',
     },
     _fd_composer_open: {
-      iconPath: '@/static/images/fileIcons/folder_type_composer_opened.svg',
+      iconPath: 'folder_type_composer_opened.svg',
     },
     _fd_config: {
-      iconPath: '@/static/images/fileIcons/folder_type_config.svg',
+      iconPath: 'folder_type_config.svg',
     },
     _fd_config_open: {
-      iconPath: '@/static/images/fileIcons/folder_type_config_opened.svg',
+      iconPath: 'folder_type_config_opened.svg',
     },
     _fd_controller: {
-      iconPath: '@/static/images/fileIcons/folder_type_controller.svg',
+      iconPath: 'folder_type_controller.svg',
     },
     _fd_controller_open: {
-      iconPath: '@/static/images/fileIcons/folder_type_controller_opened.svg',
+      iconPath: 'folder_type_controller_opened.svg',
     },
     _fd_coverage: {
-      iconPath: '@/static/images/fileIcons/folder_type_coverage.svg',
+      iconPath: 'folder_type_coverage.svg',
     },
     _fd_coverage_open: {
-      iconPath: '@/static/images/fileIcons/folder_type_coverage_opened.svg',
+      iconPath: 'folder_type_coverage_opened.svg',
     },
     _fd_css: {
-      iconPath: '@/static/images/fileIcons/folder_type_css.svg',
+      iconPath: 'folder_type_css.svg',
     },
     _fd_css_open: {
-      iconPath: '@/static/images/fileIcons/folder_type_css_opened.svg',
+      iconPath: 'folder_type_css_opened.svg',
     },
     _fd_cubit: {
-      iconPath: '@/static/images/fileIcons/folder_type_cubit.svg',
+      iconPath: 'folder_type_cubit.svg',
     },
     _fd_cubit_open: {
-      iconPath: '@/static/images/fileIcons/folder_type_cubit_opened.svg',
+      iconPath: 'folder_type_cubit_opened.svg',
     },
     _fd_cypress: {
-      iconPath: '@/static/images/fileIcons/folder_type_cypress.svg',
+      iconPath: 'folder_type_cypress.svg',
     },
     _fd_cypress_open: {
-      iconPath: '@/static/images/fileIcons/folder_type_cypress_opened.svg',
+      iconPath: 'folder_type_cypress_opened.svg',
     },
     _fd_light_cypress: {
-      iconPath: '@/static/images/fileIcons/folder_type_light_cypress.svg',
+      iconPath: 'folder_type_light_cypress.svg',
     },
     _fd_light_cypress_open: {
-      iconPath:
-        '@/static/images/fileIcons/folder_type_light_cypress_opened.svg',
+      iconPath: 'folder_type_light_cypress_opened.svg',
     },
     _fd_dapr: {
-      iconPath: '@/static/images/fileIcons/folder_type_dapr.svg',
+      iconPath: 'folder_type_dapr.svg',
     },
     _fd_dapr_open: {
-      iconPath: '@/static/images/fileIcons/folder_type_dapr_opened.svg',
+      iconPath: 'folder_type_dapr_opened.svg',
     },
     _fd_datadog: {
-      iconPath: '@/static/images/fileIcons/folder_type_datadog.svg',
+      iconPath: 'folder_type_datadog.svg',
     },
     _fd_datadog_open: {
-      iconPath: '@/static/images/fileIcons/folder_type_datadog_opened.svg',
+      iconPath: 'folder_type_datadog_opened.svg',
     },
     _fd_db: {
-      iconPath: '@/static/images/fileIcons/folder_type_db.svg',
+      iconPath: 'folder_type_db.svg',
     },
     _fd_db_open: {
-      iconPath: '@/static/images/fileIcons/folder_type_db_opened.svg',
+      iconPath: 'folder_type_db_opened.svg',
     },
     _fd_debian: {
-      iconPath: '@/static/images/fileIcons/folder_type_debian.svg',
+      iconPath: 'folder_type_debian.svg',
     },
     _fd_debian_open: {
-      iconPath: '@/static/images/fileIcons/folder_type_debian_opened.svg',
+      iconPath: 'folder_type_debian_opened.svg',
     },
     _fd_dependabot: {
-      iconPath: '@/static/images/fileIcons/folder_type_dependabot.svg',
+      iconPath: 'folder_type_dependabot.svg',
     },
     _fd_dependabot_open: {
-      iconPath: '@/static/images/fileIcons/folder_type_dependabot_opened.svg',
+      iconPath: 'folder_type_dependabot_opened.svg',
     },
     _fd_devcontainer: {
-      iconPath: '@/static/images/fileIcons/folder_type_devcontainer.svg',
+      iconPath: 'folder_type_devcontainer.svg',
     },
     _fd_devcontainer_open: {
-      iconPath: '@/static/images/fileIcons/folder_type_devcontainer_opened.svg',
+      iconPath: 'folder_type_devcontainer_opened.svg',
     },
     _fd_dist: {
-      iconPath: '@/static/images/fileIcons/folder_type_dist.svg',
+      iconPath: 'folder_type_dist.svg',
     },
     _fd_dist_open: {
-      iconPath: '@/static/images/fileIcons/folder_type_dist_opened.svg',
+      iconPath: 'folder_type_dist_opened.svg',
     },
     _fd_docker: {
-      iconPath: '@/static/images/fileIcons/folder_type_docker.svg',
+      iconPath: 'folder_type_docker.svg',
     },
     _fd_docker_open: {
-      iconPath: '@/static/images/fileIcons/folder_type_docker_opened.svg',
+      iconPath: 'folder_type_docker_opened.svg',
     },
     _fd_docs: {
-      iconPath: '@/static/images/fileIcons/folder_type_docs.svg',
+      iconPath: 'folder_type_docs.svg',
     },
     _fd_docs_open: {
-      iconPath: '@/static/images/fileIcons/folder_type_docs_opened.svg',
+      iconPath: 'folder_type_docs_opened.svg',
     },
     _fd_e2e: {
-      iconPath: '@/static/images/fileIcons/folder_type_e2e.svg',
+      iconPath: 'folder_type_e2e.svg',
     },
     _fd_e2e_open: {
-      iconPath: '@/static/images/fileIcons/folder_type_e2e_opened.svg',
+      iconPath: 'folder_type_e2e_opened.svg',
     },
     _fd_elasticbeanstalk: {
-      iconPath: '@/static/images/fileIcons/folder_type_elasticbeanstalk.svg',
+      iconPath: 'folder_type_elasticbeanstalk.svg',
     },
     _fd_elasticbeanstalk_open: {
-      iconPath:
-        '@/static/images/fileIcons/folder_type_elasticbeanstalk_opened.svg',
+      iconPath: 'folder_type_elasticbeanstalk_opened.svg',
     },
     _fd_electron: {
-      iconPath: '@/static/images/fileIcons/folder_type_electron.svg',
+      iconPath: 'folder_type_electron.svg',
     },
     _fd_electron_open: {
-      iconPath: '@/static/images/fileIcons/folder_type_electron_opened.svg',
+      iconPath: 'folder_type_electron_opened.svg',
     },
     _fd_light_electron: {
-      iconPath: '@/static/images/fileIcons/folder_type_light_electron.svg',
+      iconPath: 'folder_type_light_electron.svg',
     },
     _fd_light_electron_open: {
-      iconPath:
-        '@/static/images/fileIcons/folder_type_light_electron_opened.svg',
+      iconPath: 'folder_type_light_electron_opened.svg',
     },
     _fd_expo: {
-      iconPath: '@/static/images/fileIcons/folder_type_expo.svg',
+      iconPath: 'folder_type_expo.svg',
     },
     _fd_expo_open: {
-      iconPath: '@/static/images/fileIcons/folder_type_expo_opened.svg',
+      iconPath: 'folder_type_expo_opened.svg',
     },
     _fd_light_expo: {
-      iconPath: '@/static/images/fileIcons/folder_type_light_expo.svg',
+      iconPath: 'folder_type_light_expo.svg',
     },
     _fd_light_expo_open: {
-      iconPath: '@/static/images/fileIcons/folder_type_light_expo_opened.svg',
+      iconPath: 'folder_type_light_expo_opened.svg',
     },
     _fd_favicon: {
-      iconPath: '@/static/images/fileIcons/folder_type_favicon.svg',
+      iconPath: 'folder_type_favicon.svg',
     },
     _fd_favicon_open: {
-      iconPath: '@/static/images/fileIcons/folder_type_favicon_opened.svg',
+      iconPath: 'folder_type_favicon_opened.svg',
     },
     _fd_flow: {
-      iconPath: '@/static/images/fileIcons/folder_type_flow.svg',
+      iconPath: 'folder_type_flow.svg',
     },
     _fd_flow_open: {
-      iconPath: '@/static/images/fileIcons/folder_type_flow_opened.svg',
+      iconPath: 'folder_type_flow_opened.svg',
     },
     _fd_fonts: {
-      iconPath: '@/static/images/fileIcons/folder_type_fonts.svg',
+      iconPath: 'folder_type_fonts.svg',
     },
     _fd_fonts_open: {
-      iconPath: '@/static/images/fileIcons/folder_type_fonts_opened.svg',
+      iconPath: 'folder_type_fonts_opened.svg',
     },
     _fd_light_fonts: {
-      iconPath: '@/static/images/fileIcons/folder_type_light_fonts.svg',
+      iconPath: 'folder_type_light_fonts.svg',
     },
     _fd_light_fonts_open: {
-      iconPath: '@/static/images/fileIcons/folder_type_light_fonts_opened.svg',
+      iconPath: 'folder_type_light_fonts_opened.svg',
     },
     _fd_frontcommerce: {
-      iconPath: '@/static/images/fileIcons/folder_type_frontcommerce.svg',
+      iconPath: 'folder_type_frontcommerce.svg',
     },
     _fd_frontcommerce_open: {
-      iconPath:
-        '@/static/images/fileIcons/folder_type_frontcommerce_opened.svg',
+      iconPath: 'folder_type_frontcommerce_opened.svg',
     },
     _fd_gcp: {
-      iconPath: '@/static/images/fileIcons/folder_type_gcp.svg',
+      iconPath: 'folder_type_gcp.svg',
     },
     _fd_gcp_open: {
-      iconPath: '@/static/images/fileIcons/folder_type_gcp_opened.svg',
+      iconPath: 'folder_type_gcp_opened.svg',
     },
     _fd_git: {
-      iconPath: '@/static/images/fileIcons/folder_type_git.svg',
+      iconPath: 'folder_type_git.svg',
     },
     _fd_git_open: {
-      iconPath: '@/static/images/fileIcons/folder_type_git_opened.svg',
+      iconPath: 'folder_type_git_opened.svg',
     },
     _fd_github: {
-      iconPath: '@/static/images/fileIcons/folder_type_github.svg',
+      iconPath: 'folder_type_github.svg',
     },
     _fd_github_open: {
-      iconPath: '@/static/images/fileIcons/folder_type_github_opened.svg',
+      iconPath: 'folder_type_github_opened.svg',
     },
     _fd_gitlab: {
-      iconPath: '@/static/images/fileIcons/folder_type_gitlab.svg',
+      iconPath: 'folder_type_gitlab.svg',
     },
     _fd_gitlab_open: {
-      iconPath: '@/static/images/fileIcons/folder_type_gitlab_opened.svg',
+      iconPath: 'folder_type_gitlab_opened.svg',
     },
     _fd_gradle: {
-      iconPath: '@/static/images/fileIcons/folder_type_gradle.svg',
+      iconPath: 'folder_type_gradle.svg',
     },
     _fd_gradle_open: {
-      iconPath: '@/static/images/fileIcons/folder_type_gradle_opened.svg',
+      iconPath: 'folder_type_gradle_opened.svg',
     },
     _fd_light_gradle: {
-      iconPath: '@/static/images/fileIcons/folder_type_light_gradle.svg',
+      iconPath: 'folder_type_light_gradle.svg',
     },
     _fd_light_gradle_open: {
-      iconPath: '@/static/images/fileIcons/folder_type_light_gradle_opened.svg',
+      iconPath: 'folder_type_light_gradle_opened.svg',
     },
     _fd_graphql: {
-      iconPath: '@/static/images/fileIcons/folder_type_graphql.svg',
+      iconPath: 'folder_type_graphql.svg',
     },
     _fd_graphql_open: {
-      iconPath: '@/static/images/fileIcons/folder_type_graphql_opened.svg',
+      iconPath: 'folder_type_graphql_opened.svg',
     },
     _fd_grunt: {
-      iconPath: '@/static/images/fileIcons/folder_type_grunt.svg',
+      iconPath: 'folder_type_grunt.svg',
     },
     _fd_grunt_open: {
-      iconPath: '@/static/images/fileIcons/folder_type_grunt_opened.svg',
+      iconPath: 'folder_type_grunt_opened.svg',
     },
     _fd_gulp: {
-      iconPath: '@/static/images/fileIcons/folder_type_gulp.svg',
+      iconPath: 'folder_type_gulp.svg',
     },
     _fd_gulp_open: {
-      iconPath: '@/static/images/fileIcons/folder_type_gulp_opened.svg',
+      iconPath: 'folder_type_gulp_opened.svg',
     },
     _fd_haxelib: {
-      iconPath: '@/static/images/fileIcons/folder_type_haxelib.svg',
+      iconPath: 'folder_type_haxelib.svg',
     },
     _fd_haxelib_open: {
-      iconPath: '@/static/images/fileIcons/folder_type_haxelib_opened.svg',
+      iconPath: 'folder_type_haxelib_opened.svg',
     },
     _fd_helper: {
-      iconPath: '@/static/images/fileIcons/folder_type_helper.svg',
+      iconPath: 'folder_type_helper.svg',
     },
     _fd_helper_open: {
-      iconPath: '@/static/images/fileIcons/folder_type_helper_opened.svg',
+      iconPath: 'folder_type_helper_opened.svg',
     },
     _fd_hook: {
-      iconPath: '@/static/images/fileIcons/folder_type_hook.svg',
+      iconPath: 'folder_type_hook.svg',
     },
     _fd_hook_open: {
-      iconPath: '@/static/images/fileIcons/folder_type_hook_opened.svg',
+      iconPath: 'folder_type_hook_opened.svg',
     },
     _fd_husky: {
-      iconPath: '@/static/images/fileIcons/folder_type_husky.svg',
+      iconPath: 'folder_type_husky.svg',
     },
     _fd_husky_open: {
-      iconPath: '@/static/images/fileIcons/folder_type_husky_opened.svg',
+      iconPath: 'folder_type_husky_opened.svg',
     },
     _fd_idea: {
-      iconPath: '@/static/images/fileIcons/folder_type_idea.svg',
+      iconPath: 'folder_type_idea.svg',
     },
     _fd_idea_open: {
-      iconPath: '@/static/images/fileIcons/folder_type_idea_opened.svg',
+      iconPath: 'folder_type_idea_opened.svg',
     },
     _fd_images: {
-      iconPath: '@/static/images/fileIcons/folder_type_images.svg',
+      iconPath: 'folder_type_images.svg',
     },
     _fd_images_open: {
-      iconPath: '@/static/images/fileIcons/folder_type_images_opened.svg',
+      iconPath: 'folder_type_images_opened.svg',
     },
     _fd_include: {
-      iconPath: '@/static/images/fileIcons/folder_type_include.svg',
+      iconPath: 'folder_type_include.svg',
     },
     _fd_include_open: {
-      iconPath: '@/static/images/fileIcons/folder_type_include_opened.svg',
+      iconPath: 'folder_type_include_opened.svg',
     },
     _fd_interfaces: {
-      iconPath: '@/static/images/fileIcons/folder_type_interfaces.svg',
+      iconPath: 'folder_type_interfaces.svg',
     },
     _fd_interfaces_open: {
-      iconPath: '@/static/images/fileIcons/folder_type_interfaces_opened.svg',
+      iconPath: 'folder_type_interfaces_opened.svg',
     },
     _fd_ios: {
-      iconPath: '@/static/images/fileIcons/folder_type_ios.svg',
+      iconPath: 'folder_type_ios.svg',
     },
     _fd_ios_open: {
-      iconPath: '@/static/images/fileIcons/folder_type_ios_opened.svg',
+      iconPath: 'folder_type_ios_opened.svg',
     },
     _fd_js: {
-      iconPath: '@/static/images/fileIcons/folder_type_js.svg',
+      iconPath: 'folder_type_js.svg',
     },
     _fd_js_open: {
-      iconPath: '@/static/images/fileIcons/folder_type_js_opened.svg',
+      iconPath: 'folder_type_js_opened.svg',
     },
     _fd_json: {
-      iconPath: '@/static/images/fileIcons/folder_type_json.svg',
+      iconPath: 'folder_type_json.svg',
     },
     _fd_json_open: {
-      iconPath: '@/static/images/fileIcons/folder_type_json_opened.svg',
+      iconPath: 'folder_type_json_opened.svg',
     },
     _fd_kubernetes: {
-      iconPath: '@/static/images/fileIcons/folder_type_kubernetes.svg',
+      iconPath: 'folder_type_kubernetes.svg',
     },
     _fd_kubernetes_open: {
-      iconPath: '@/static/images/fileIcons/folder_type_kubernetes_opened.svg',
+      iconPath: 'folder_type_kubernetes_opened.svg',
     },
     _fd_less: {
-      iconPath: '@/static/images/fileIcons/folder_type_less.svg',
+      iconPath: 'folder_type_less.svg',
     },
     _fd_less_open: {
-      iconPath: '@/static/images/fileIcons/folder_type_less_opened.svg',
+      iconPath: 'folder_type_less_opened.svg',
     },
     _fd_library: {
-      iconPath: '@/static/images/fileIcons/folder_type_library.svg',
+      iconPath: 'folder_type_library.svg',
     },
     _fd_library_open: {
-      iconPath: '@/static/images/fileIcons/folder_type_library_opened.svg',
+      iconPath: 'folder_type_library_opened.svg',
     },
     _fd_linux: {
-      iconPath: '@/static/images/fileIcons/folder_type_linux.svg',
+      iconPath: 'folder_type_linux.svg',
     },
     _fd_linux_open: {
-      iconPath: '@/static/images/fileIcons/folder_type_linux_opened.svg',
+      iconPath: 'folder_type_linux_opened.svg',
     },
     _fd_locale: {
-      iconPath: '@/static/images/fileIcons/folder_type_locale.svg',
+      iconPath: 'folder_type_locale.svg',
     },
     _fd_locale_open: {
-      iconPath: '@/static/images/fileIcons/folder_type_locale_opened.svg',
+      iconPath: 'folder_type_locale_opened.svg',
     },
     _fd_log: {
-      iconPath: '@/static/images/fileIcons/folder_type_log.svg',
+      iconPath: 'folder_type_log.svg',
     },
     _fd_log_open: {
-      iconPath: '@/static/images/fileIcons/folder_type_log_opened.svg',
+      iconPath: 'folder_type_log_opened.svg',
     },
     _fd_macos: {
-      iconPath: '@/static/images/fileIcons/folder_type_macos.svg',
+      iconPath: 'folder_type_macos.svg',
     },
     _fd_macos_open: {
-      iconPath: '@/static/images/fileIcons/folder_type_macos_opened.svg',
+      iconPath: 'folder_type_macos_opened.svg',
     },
     _fd_mariadb: {
-      iconPath: '@/static/images/fileIcons/folder_type_mariadb.svg',
+      iconPath: 'folder_type_mariadb.svg',
     },
     _fd_mariadb_open: {
-      iconPath: '@/static/images/fileIcons/folder_type_mariadb_opened.svg',
+      iconPath: 'folder_type_mariadb_opened.svg',
     },
     _fd_maven: {
-      iconPath: '@/static/images/fileIcons/folder_type_maven.svg',
+      iconPath: 'folder_type_maven.svg',
     },
     _fd_maven_open: {
-      iconPath: '@/static/images/fileIcons/folder_type_maven_opened.svg',
+      iconPath: 'folder_type_maven_opened.svg',
     },
     _fd_mediawiki: {
-      iconPath: '@/static/images/fileIcons/folder_type_mediawiki.svg',
+      iconPath: 'folder_type_mediawiki.svg',
     },
     _fd_mediawiki_open: {
-      iconPath: '@/static/images/fileIcons/folder_type_mediawiki_opened.svg',
+      iconPath: 'folder_type_mediawiki_opened.svg',
     },
     _fd_memcached: {
-      iconPath: '@/static/images/fileIcons/folder_type_memcached.svg',
+      iconPath: 'folder_type_memcached.svg',
     },
     _fd_memcached_open: {
-      iconPath: '@/static/images/fileIcons/folder_type_memcached_opened.svg',
+      iconPath: 'folder_type_memcached_opened.svg',
     },
     _fd_meteor: {
-      iconPath: '@/static/images/fileIcons/folder_type_meteor.svg',
+      iconPath: 'folder_type_meteor.svg',
     },
     _fd_meteor_open: {
-      iconPath: '@/static/images/fileIcons/folder_type_meteor_opened.svg',
+      iconPath: 'folder_type_meteor_opened.svg',
     },
     _fd_light_meteor: {
-      iconPath: '@/static/images/fileIcons/folder_type_light_meteor.svg',
+      iconPath: 'folder_type_light_meteor.svg',
     },
     _fd_light_meteor_open: {
-      iconPath: '@/static/images/fileIcons/folder_type_light_meteor_opened.svg',
+      iconPath: 'folder_type_light_meteor_opened.svg',
     },
     _fd_middleware: {
-      iconPath: '@/static/images/fileIcons/folder_type_middleware.svg',
+      iconPath: 'folder_type_middleware.svg',
     },
     _fd_middleware_open: {
-      iconPath: '@/static/images/fileIcons/folder_type_middleware_opened.svg',
+      iconPath: 'folder_type_middleware_opened.svg',
     },
     _fd_minecraft: {
-      iconPath: '@/static/images/fileIcons/folder_type_minecraft.svg',
+      iconPath: 'folder_type_minecraft.svg',
     },
     _fd_minecraft_open: {
-      iconPath: '@/static/images/fileIcons/folder_type_minecraft_opened.svg',
+      iconPath: 'folder_type_minecraft_opened.svg',
     },
     _fd_minikube: {
-      iconPath: '@/static/images/fileIcons/folder_type_minikube.svg',
+      iconPath: 'folder_type_minikube.svg',
     },
     _fd_minikube_open: {
-      iconPath: '@/static/images/fileIcons/folder_type_minikube_opened.svg',
+      iconPath: 'folder_type_minikube_opened.svg',
     },
     _fd_mjml: {
-      iconPath: '@/static/images/fileIcons/folder_type_mjml.svg',
+      iconPath: 'folder_type_mjml.svg',
     },
     _fd_mjml_open: {
-      iconPath: '@/static/images/fileIcons/folder_type_mjml_opened.svg',
+      iconPath: 'folder_type_mjml_opened.svg',
     },
     _fd_mock: {
-      iconPath: '@/static/images/fileIcons/folder_type_mock.svg',
+      iconPath: 'folder_type_mock.svg',
     },
     _fd_mock_open: {
-      iconPath: '@/static/images/fileIcons/folder_type_mock_opened.svg',
+      iconPath: 'folder_type_mock_opened.svg',
     },
     _fd_model: {
-      iconPath: '@/static/images/fileIcons/folder_type_model.svg',
+      iconPath: 'folder_type_model.svg',
     },
     _fd_model_open: {
-      iconPath: '@/static/images/fileIcons/folder_type_model_opened.svg',
+      iconPath: 'folder_type_model_opened.svg',
     },
     _fd_module: {
-      iconPath: '@/static/images/fileIcons/folder_type_module.svg',
+      iconPath: 'folder_type_module.svg',
     },
     _fd_module_open: {
-      iconPath: '@/static/images/fileIcons/folder_type_module_opened.svg',
+      iconPath: 'folder_type_module_opened.svg',
     },
     _fd_mojo: {
-      iconPath: '@/static/images/fileIcons/folder_type_mojo.svg',
+      iconPath: 'folder_type_mojo.svg',
     },
     _fd_mojo_open: {
-      iconPath: '@/static/images/fileIcons/folder_type_mojo_opened.svg',
+      iconPath: 'folder_type_mojo_opened.svg',
     },
     _fd_mongodb: {
-      iconPath: '@/static/images/fileIcons/folder_type_mongodb.svg',
+      iconPath: 'folder_type_mongodb.svg',
     },
     _fd_mongodb_open: {
-      iconPath: '@/static/images/fileIcons/folder_type_mongodb_opened.svg',
+      iconPath: 'folder_type_mongodb_opened.svg',
     },
     _fd_mypy: {
-      iconPath: '@/static/images/fileIcons/folder_type_mypy.svg',
+      iconPath: 'folder_type_mypy.svg',
     },
     _fd_mypy_open: {
-      iconPath: '@/static/images/fileIcons/folder_type_mypy_opened.svg',
+      iconPath: 'folder_type_mypy_opened.svg',
     },
     _fd_light_mypy: {
-      iconPath: '@/static/images/fileIcons/folder_type_light_mypy.svg',
+      iconPath: 'folder_type_light_mypy.svg',
     },
     _fd_light_mypy_open: {
-      iconPath: '@/static/images/fileIcons/folder_type_light_mypy_opened.svg',
+      iconPath: 'folder_type_light_mypy_opened.svg',
     },
     _fd_mysql: {
-      iconPath: '@/static/images/fileIcons/folder_type_mysql.svg',
+      iconPath: 'folder_type_mysql.svg',
     },
     _fd_mysql_open: {
-      iconPath: '@/static/images/fileIcons/folder_type_mysql_opened.svg',
+      iconPath: 'folder_type_mysql_opened.svg',
     },
     _fd_light_mysql: {
-      iconPath: '@/static/images/fileIcons/folder_type_light_mysql.svg',
+      iconPath: 'folder_type_light_mysql.svg',
     },
     _fd_light_mysql_open: {
-      iconPath: '@/static/images/fileIcons/folder_type_light_mysql_opened.svg',
+      iconPath: 'folder_type_light_mysql_opened.svg',
     },
     _fd_netlify: {
-      iconPath: '@/static/images/fileIcons/folder_type_netlify.svg',
+      iconPath: 'folder_type_netlify.svg',
     },
     _fd_netlify_open: {
-      iconPath: '@/static/images/fileIcons/folder_type_netlify_opened.svg',
+      iconPath: 'folder_type_netlify_opened.svg',
     },
     _fd_next: {
-      iconPath: '@/static/images/fileIcons/folder_type_next.svg',
+      iconPath: 'folder_type_next.svg',
     },
     _fd_next_open: {
-      iconPath: '@/static/images/fileIcons/folder_type_next_opened.svg',
+      iconPath: 'folder_type_next_opened.svg',
     },
     _fd_nginx: {
-      iconPath: '@/static/images/fileIcons/folder_type_nginx.svg',
+      iconPath: 'folder_type_nginx.svg',
     },
     _fd_nginx_open: {
-      iconPath: '@/static/images/fileIcons/folder_type_nginx_opened.svg',
+      iconPath: 'folder_type_nginx_opened.svg',
     },
     _fd_nix: {
-      iconPath: '@/static/images/fileIcons/folder_type_nix.svg',
+      iconPath: 'folder_type_nix.svg',
     },
     _fd_nix_open: {
-      iconPath: '@/static/images/fileIcons/folder_type_nix_opened.svg',
+      iconPath: 'folder_type_nix_opened.svg',
     },
     _fd_node: {
-      iconPath: '@/static/images/fileIcons/folder_type_node.svg',
+      iconPath: 'folder_type_node.svg',
     },
     _fd_node_open: {
-      iconPath: '@/static/images/fileIcons/folder_type_node_opened.svg',
+      iconPath: 'folder_type_node_opened.svg',
     },
     _fd_light_node: {
-      iconPath: '@/static/images/fileIcons/folder_type_light_node.svg',
+      iconPath: 'folder_type_light_node.svg',
     },
     _fd_light_node_open: {
-      iconPath: '@/static/images/fileIcons/folder_type_light_node_opened.svg',
+      iconPath: 'folder_type_light_node_opened.svg',
     },
     _fd_notebooks: {
-      iconPath: '@/static/images/fileIcons/folder_type_notebooks.svg',
+      iconPath: 'folder_type_notebooks.svg',
     },
     _fd_notebooks_open: {
-      iconPath: '@/static/images/fileIcons/folder_type_notebooks_opened.svg',
+      iconPath: 'folder_type_notebooks_opened.svg',
     },
     _fd_notification: {
-      iconPath: '@/static/images/fileIcons/folder_type_notification.svg',
+      iconPath: 'folder_type_notification.svg',
     },
     _fd_notification_open: {
-      iconPath: '@/static/images/fileIcons/folder_type_notification_opened.svg',
+      iconPath: 'folder_type_notification_opened.svg',
     },
     _fd_nuget: {
-      iconPath: '@/static/images/fileIcons/folder_type_nuget.svg',
+      iconPath: 'folder_type_nuget.svg',
     },
     _fd_nuget_open: {
-      iconPath: '@/static/images/fileIcons/folder_type_nuget_opened.svg',
+      iconPath: 'folder_type_nuget_opened.svg',
     },
     _fd_nuxt: {
-      iconPath: '@/static/images/fileIcons/folder_type_nuxt.svg',
+      iconPath: 'folder_type_nuxt.svg',
     },
     _fd_nuxt_open: {
-      iconPath: '@/static/images/fileIcons/folder_type_nuxt_opened.svg',
+      iconPath: 'folder_type_nuxt_opened.svg',
     },
     _fd_package: {
-      iconPath: '@/static/images/fileIcons/folder_type_package.svg',
+      iconPath: 'folder_type_package.svg',
     },
     _fd_package_open: {
-      iconPath: '@/static/images/fileIcons/folder_type_package_opened.svg',
+      iconPath: 'folder_type_package_opened.svg',
     },
     _fd_paket: {
-      iconPath: '@/static/images/fileIcons/folder_type_paket.svg',
+      iconPath: 'folder_type_paket.svg',
     },
     _fd_paket_open: {
-      iconPath: '@/static/images/fileIcons/folder_type_paket_opened.svg',
+      iconPath: 'folder_type_paket_opened.svg',
     },
     _fd_php: {
-      iconPath: '@/static/images/fileIcons/folder_type_php.svg',
+      iconPath: 'folder_type_php.svg',
     },
     _fd_php_open: {
-      iconPath: '@/static/images/fileIcons/folder_type_php_opened.svg',
+      iconPath: 'folder_type_php_opened.svg',
     },
     _fd_platformio: {
-      iconPath: '@/static/images/fileIcons/folder_type_platformio.svg',
+      iconPath: 'folder_type_platformio.svg',
     },
     _fd_platformio_open: {
-      iconPath: '@/static/images/fileIcons/folder_type_platformio_opened.svg',
+      iconPath: 'folder_type_platformio_opened.svg',
     },
     _fd_plugin: {
-      iconPath: '@/static/images/fileIcons/folder_type_plugin.svg',
+      iconPath: 'folder_type_plugin.svg',
     },
     _fd_plugin_open: {
-      iconPath: '@/static/images/fileIcons/folder_type_plugin_opened.svg',
+      iconPath: 'folder_type_plugin_opened.svg',
     },
     _fd_prisma: {
-      iconPath: '@/static/images/fileIcons/folder_type_prisma.svg',
+      iconPath: 'folder_type_prisma.svg',
     },
     _fd_prisma_open: {
-      iconPath: '@/static/images/fileIcons/folder_type_prisma_opened.svg',
+      iconPath: 'folder_type_prisma_opened.svg',
     },
     _fd_private: {
-      iconPath: '@/static/images/fileIcons/folder_type_private.svg',
+      iconPath: 'folder_type_private.svg',
     },
     _fd_private_open: {
-      iconPath: '@/static/images/fileIcons/folder_type_private_opened.svg',
+      iconPath: 'folder_type_private_opened.svg',
     },
     _fd_public: {
-      iconPath: '@/static/images/fileIcons/folder_type_public.svg',
+      iconPath: 'folder_type_public.svg',
     },
     _fd_public_open: {
-      iconPath: '@/static/images/fileIcons/folder_type_public_opened.svg',
+      iconPath: 'folder_type_public_opened.svg',
     },
     _fd_pytest: {
-      iconPath: '@/static/images/fileIcons/folder_type_pytest.svg',
+      iconPath: 'folder_type_pytest.svg',
     },
     _fd_pytest_open: {
-      iconPath: '@/static/images/fileIcons/folder_type_pytest_opened.svg',
+      iconPath: 'folder_type_pytest_opened.svg',
     },
     _fd_python: {
-      iconPath: '@/static/images/fileIcons/folder_type_python.svg',
+      iconPath: 'folder_type_python.svg',
     },
     _fd_python_open: {
-      iconPath: '@/static/images/fileIcons/folder_type_python_opened.svg',
+      iconPath: 'folder_type_python_opened.svg',
     },
     _fd_ravendb: {
-      iconPath: '@/static/images/fileIcons/folder_type_ravendb.svg',
+      iconPath: 'folder_type_ravendb.svg',
     },
     _fd_ravendb_open: {
-      iconPath: '@/static/images/fileIcons/folder_type_ravendb_opened.svg',
+      iconPath: 'folder_type_ravendb_opened.svg',
     },
     _fd_redis: {
-      iconPath: '@/static/images/fileIcons/folder_type_redis.svg',
+      iconPath: 'folder_type_redis.svg',
     },
     _fd_redis_open: {
-      iconPath: '@/static/images/fileIcons/folder_type_redis_opened.svg',
+      iconPath: 'folder_type_redis_opened.svg',
     },
     _fd_redux: {
-      iconPath: '@/static/images/fileIcons/folder_type_redux.svg',
+      iconPath: 'folder_type_redux.svg',
     },
     _fd_redux_open: {
-      iconPath: '@/static/images/fileIcons/folder_type_redux_opened.svg',
+      iconPath: 'folder_type_redux_opened.svg',
     },
     _fd_light_redux: {
-      iconPath: '@/static/images/fileIcons/folder_type_light_redux.svg',
+      iconPath: 'folder_type_light_redux.svg',
     },
     _fd_light_redux_open: {
-      iconPath: '@/static/images/fileIcons/folder_type_light_redux_opened.svg',
+      iconPath: 'folder_type_light_redux_opened.svg',
     },
     _fd_route: {
-      iconPath: '@/static/images/fileIcons/folder_type_route.svg',
+      iconPath: 'folder_type_route.svg',
     },
     _fd_route_open: {
-      iconPath: '@/static/images/fileIcons/folder_type_route_opened.svg',
+      iconPath: 'folder_type_route_opened.svg',
     },
     _fd_sass: {
-      iconPath: '@/static/images/fileIcons/folder_type_sass.svg',
+      iconPath: 'folder_type_sass.svg',
     },
     _fd_sass_open: {
-      iconPath: '@/static/images/fileIcons/folder_type_sass_opened.svg',
+      iconPath: 'folder_type_sass_opened.svg',
     },
     _fd_light_sass: {
-      iconPath: '@/static/images/fileIcons/folder_type_light_sass.svg',
+      iconPath: 'folder_type_light_sass.svg',
     },
     _fd_light_sass_open: {
-      iconPath: '@/static/images/fileIcons/folder_type_light_sass_opened.svg',
+      iconPath: 'folder_type_light_sass_opened.svg',
     },
     _fd_script: {
-      iconPath: '@/static/images/fileIcons/folder_type_script.svg',
+      iconPath: 'folder_type_script.svg',
     },
     _fd_script_open: {
-      iconPath: '@/static/images/fileIcons/folder_type_script_opened.svg',
+      iconPath: 'folder_type_script_opened.svg',
     },
     _fd_seedkit: {
-      iconPath: '@/static/images/fileIcons/folder_type_seedkit.svg',
+      iconPath: 'folder_type_seedkit.svg',
     },
     _fd_seedkit_open: {
-      iconPath: '@/static/images/fileIcons/folder_type_seedkit_opened.svg',
+      iconPath: 'folder_type_seedkit_opened.svg',
     },
     _fd_server: {
-      iconPath: '@/static/images/fileIcons/folder_type_server.svg',
+      iconPath: 'folder_type_server.svg',
     },
     _fd_server_open: {
-      iconPath: '@/static/images/fileIcons/folder_type_server_opened.svg',
+      iconPath: 'folder_type_server_opened.svg',
     },
     _fd_services: {
-      iconPath: '@/static/images/fileIcons/folder_type_services.svg',
+      iconPath: 'folder_type_services.svg',
     },
     _fd_services_open: {
-      iconPath: '@/static/images/fileIcons/folder_type_services_opened.svg',
+      iconPath: 'folder_type_services_opened.svg',
     },
     _fd_shared: {
-      iconPath: '@/static/images/fileIcons/folder_type_shared.svg',
+      iconPath: 'folder_type_shared.svg',
     },
     _fd_shared_open: {
-      iconPath: '@/static/images/fileIcons/folder_type_shared_opened.svg',
+      iconPath: 'folder_type_shared_opened.svg',
     },
     _fd_snaplet: {
-      iconPath: '@/static/images/fileIcons/folder_type_snaplet.svg',
+      iconPath: 'folder_type_snaplet.svg',
     },
     _fd_snaplet_open: {
-      iconPath: '@/static/images/fileIcons/folder_type_snaplet_opened.svg',
+      iconPath: 'folder_type_snaplet_opened.svg',
     },
     _fd_spin: {
-      iconPath: '@/static/images/fileIcons/folder_type_spin.svg',
+      iconPath: 'folder_type_spin.svg',
     },
     _fd_spin_open: {
-      iconPath: '@/static/images/fileIcons/folder_type_spin_opened.svg',
+      iconPath: 'folder_type_spin_opened.svg',
     },
     _fd_src: {
-      iconPath: '@/static/images/fileIcons/folder_type_src.svg',
+      iconPath: 'folder_type_src.svg',
     },
     _fd_src_open: {
-      iconPath: '@/static/images/fileIcons/folder_type_src_opened.svg',
+      iconPath: 'folder_type_src_opened.svg',
     },
     _fd_sso: {
-      iconPath: '@/static/images/fileIcons/folder_type_sso.svg',
+      iconPath: 'folder_type_sso.svg',
     },
     _fd_sso_open: {
-      iconPath: '@/static/images/fileIcons/folder_type_sso_opened.svg',
+      iconPath: 'folder_type_sso_opened.svg',
     },
     _fd_story: {
-      iconPath: '@/static/images/fileIcons/folder_type_story.svg',
+      iconPath: 'folder_type_story.svg',
     },
     _fd_story_open: {
-      iconPath: '@/static/images/fileIcons/folder_type_story_opened.svg',
+      iconPath: 'folder_type_story_opened.svg',
     },
     _fd_style: {
-      iconPath: '@/static/images/fileIcons/folder_type_style.svg',
+      iconPath: 'folder_type_style.svg',
     },
     _fd_style_open: {
-      iconPath: '@/static/images/fileIcons/folder_type_style_opened.svg',
+      iconPath: 'folder_type_style_opened.svg',
     },
     _fd_supabase: {
-      iconPath: '@/static/images/fileIcons/folder_type_supabase.svg',
+      iconPath: 'folder_type_supabase.svg',
     },
     _fd_supabase_open: {
-      iconPath: '@/static/images/fileIcons/folder_type_supabase_opened.svg',
+      iconPath: 'folder_type_supabase_opened.svg',
     },
     _fd_svelte: {
-      iconPath: '@/static/images/fileIcons/folder_type_svelte.svg',
+      iconPath: 'folder_type_svelte.svg',
     },
     _fd_svelte_open: {
-      iconPath: '@/static/images/fileIcons/folder_type_svelte_opened.svg',
+      iconPath: 'folder_type_svelte_opened.svg',
     },
     _fd_tauri: {
-      iconPath: '@/static/images/fileIcons/folder_type_tauri.svg',
+      iconPath: 'folder_type_tauri.svg',
     },
     _fd_tauri_open: {
-      iconPath: '@/static/images/fileIcons/folder_type_tauri_opened.svg',
+      iconPath: 'folder_type_tauri_opened.svg',
     },
     _fd_temp: {
-      iconPath: '@/static/images/fileIcons/folder_type_temp.svg',
+      iconPath: 'folder_type_temp.svg',
     },
     _fd_temp_open: {
-      iconPath: '@/static/images/fileIcons/folder_type_temp_opened.svg',
+      iconPath: 'folder_type_temp_opened.svg',
     },
     _fd_template: {
-      iconPath: '@/static/images/fileIcons/folder_type_template.svg',
+      iconPath: 'folder_type_template.svg',
     },
     _fd_template_open: {
-      iconPath: '@/static/images/fileIcons/folder_type_template_opened.svg',
+      iconPath: 'folder_type_template_opened.svg',
     },
     _fd_test: {
-      iconPath: '@/static/images/fileIcons/folder_type_test.svg',
+      iconPath: 'folder_type_test.svg',
     },
     _fd_test_open: {
-      iconPath: '@/static/images/fileIcons/folder_type_test_opened.svg',
+      iconPath: 'folder_type_test_opened.svg',
     },
     _fd_theme: {
-      iconPath: '@/static/images/fileIcons/folder_type_theme.svg',
+      iconPath: 'folder_type_theme.svg',
     },
     _fd_theme_open: {
-      iconPath: '@/static/images/fileIcons/folder_type_theme_opened.svg',
+      iconPath: 'folder_type_theme_opened.svg',
     },
     _fd_tools: {
-      iconPath: '@/static/images/fileIcons/folder_type_tools.svg',
+      iconPath: 'folder_type_tools.svg',
     },
     _fd_tools_open: {
-      iconPath: '@/static/images/fileIcons/folder_type_tools_opened.svg',
+      iconPath: 'folder_type_tools_opened.svg',
     },
     _fd_travis: {
-      iconPath: '@/static/images/fileIcons/folder_type_travis.svg',
+      iconPath: 'folder_type_travis.svg',
     },
     _fd_travis_open: {
-      iconPath: '@/static/images/fileIcons/folder_type_travis_opened.svg',
+      iconPath: 'folder_type_travis_opened.svg',
     },
     _fd_trunk: {
-      iconPath: '@/static/images/fileIcons/folder_type_trunk.svg',
+      iconPath: 'folder_type_trunk.svg',
     },
     _fd_trunk_open: {
-      iconPath: '@/static/images/fileIcons/folder_type_trunk_opened.svg',
+      iconPath: 'folder_type_trunk_opened.svg',
     },
     _fd_turbo: {
-      iconPath: '@/static/images/fileIcons/folder_type_turbo.svg',
+      iconPath: 'folder_type_turbo.svg',
     },
     _fd_turbo_open: {
-      iconPath: '@/static/images/fileIcons/folder_type_turbo_opened.svg',
+      iconPath: 'folder_type_turbo_opened.svg',
     },
     _fd_typescript: {
-      iconPath: '@/static/images/fileIcons/folder_type_typescript.svg',
+      iconPath: 'folder_type_typescript.svg',
     },
     _fd_typescript_open: {
-      iconPath: '@/static/images/fileIcons/folder_type_typescript_opened.svg',
+      iconPath: 'folder_type_typescript_opened.svg',
     },
     _fd_typings: {
-      iconPath: '@/static/images/fileIcons/folder_type_typings.svg',
+      iconPath: 'folder_type_typings.svg',
     },
     _fd_typings_open: {
-      iconPath: '@/static/images/fileIcons/folder_type_typings_opened.svg',
+      iconPath: 'folder_type_typings_opened.svg',
     },
     _fd_vagrant: {
-      iconPath: '@/static/images/fileIcons/folder_type_vagrant.svg',
+      iconPath: 'folder_type_vagrant.svg',
     },
     _fd_vagrant_open: {
-      iconPath: '@/static/images/fileIcons/folder_type_vagrant_opened.svg',
+      iconPath: 'folder_type_vagrant_opened.svg',
     },
     _fd_vercel: {
-      iconPath: '@/static/images/fileIcons/folder_type_vercel.svg',
+      iconPath: 'folder_type_vercel.svg',
     },
     _fd_vercel_open: {
-      iconPath: '@/static/images/fileIcons/folder_type_vercel_opened.svg',
+      iconPath: 'folder_type_vercel_opened.svg',
     },
     _fd_video: {
-      iconPath: '@/static/images/fileIcons/folder_type_video.svg',
+      iconPath: 'folder_type_video.svg',
     },
     _fd_video_open: {
-      iconPath: '@/static/images/fileIcons/folder_type_video_opened.svg',
+      iconPath: 'folder_type_video_opened.svg',
     },
     _fd_view: {
-      iconPath: '@/static/images/fileIcons/folder_type_view.svg',
+      iconPath: 'folder_type_view.svg',
     },
     _fd_view_open: {
-      iconPath: '@/static/images/fileIcons/folder_type_view_opened.svg',
+      iconPath: 'folder_type_view_opened.svg',
     },
     _fd_vs: {
-      iconPath: '@/static/images/fileIcons/folder_type_vs.svg',
+      iconPath: 'folder_type_vs.svg',
     },
     _fd_vs_open: {
-      iconPath: '@/static/images/fileIcons/folder_type_vs_opened.svg',
+      iconPath: 'folder_type_vs_opened.svg',
     },
     _fd_vscode: {
-      iconPath: '@/static/images/fileIcons/folder_type_vscode.svg',
+      iconPath: 'folder_type_vscode.svg',
     },
     _fd_vscode_open: {
-      iconPath: '@/static/images/fileIcons/folder_type_vscode_opened.svg',
+      iconPath: 'folder_type_vscode_opened.svg',
     },
     _fd_vscode_test: {
-      iconPath: '@/static/images/fileIcons/folder_type_vscode_test.svg',
+      iconPath: 'folder_type_vscode_test.svg',
     },
     _fd_vscode_test_open: {
-      iconPath: '@/static/images/fileIcons/folder_type_vscode_test_opened.svg',
+      iconPath: 'folder_type_vscode_test_opened.svg',
     },
     _fd_webpack: {
-      iconPath: '@/static/images/fileIcons/folder_type_webpack.svg',
+      iconPath: 'folder_type_webpack.svg',
     },
     _fd_webpack_open: {
-      iconPath: '@/static/images/fileIcons/folder_type_webpack_opened.svg',
+      iconPath: 'folder_type_webpack_opened.svg',
     },
     _fd_windows: {
-      iconPath: '@/static/images/fileIcons/folder_type_windows.svg',
+      iconPath: 'folder_type_windows.svg',
     },
     _fd_windows_open: {
-      iconPath: '@/static/images/fileIcons/folder_type_windows_opened.svg',
+      iconPath: 'folder_type_windows_opened.svg',
     },
     _fd_wit: {
-      iconPath: '@/static/images/fileIcons/folder_type_wit.svg',
+      iconPath: 'folder_type_wit.svg',
     },
     _fd_wit_open: {
-      iconPath: '@/static/images/fileIcons/folder_type_wit_opened.svg',
+      iconPath: 'folder_type_wit_opened.svg',
     },
     _fd_www: {
-      iconPath: '@/static/images/fileIcons/folder_type_www.svg',
+      iconPath: 'folder_type_www.svg',
     },
     _fd_www_open: {
-      iconPath: '@/static/images/fileIcons/folder_type_www_opened.svg',
+      iconPath: 'folder_type_www_opened.svg',
     },
     _fd_yarn: {
-      iconPath: '@/static/images/fileIcons/folder_type_yarn.svg',
+      iconPath: 'folder_type_yarn.svg',
     },
     _fd_yarn_open: {
-      iconPath: '@/static/images/fileIcons/folder_type_yarn_opened.svg',
+      iconPath: 'folder_type_yarn_opened.svg',
     },
     _f_access: {
-      iconPath: '@/static/images/fileIcons/file_type_access.svg',
+      iconPath: 'file_type_access.svg',
     },
     _f_actionscript: {
-      iconPath: '@/static/images/fileIcons/file_type_actionscript.svg',
+      iconPath: 'file_type_actionscript.svg',
     },
     _f_ada: {
-      iconPath: '@/static/images/fileIcons/file_type_ada.svg',
+      iconPath: 'file_type_ada.svg',
     },
     _f_light_ada: {
-      iconPath: '@/static/images/fileIcons/file_type_light_ada.svg',
+      iconPath: 'file_type_light_ada.svg',
     },
     _f_advpl: {
-      iconPath: '@/static/images/fileIcons/file_type_advpl.svg',
+      iconPath: 'file_type_advpl.svg',
     },
     _f_affectscript: {
-      iconPath: '@/static/images/fileIcons/file_type_affectscript.svg',
+      iconPath: 'file_type_affectscript.svg',
     },
     _f_affinitydesigner: {
-      iconPath: '@/static/images/fileIcons/file_type_affinitydesigner.svg',
+      iconPath: 'file_type_affinitydesigner.svg',
     },
     _f_affinityphoto: {
-      iconPath: '@/static/images/fileIcons/file_type_affinityphoto.svg',
+      iconPath: 'file_type_affinityphoto.svg',
     },
     _f_affinitypublisher: {
-      iconPath: '@/static/images/fileIcons/file_type_affinitypublisher.svg',
+      iconPath: 'file_type_affinitypublisher.svg',
     },
     _f_agda: {
-      iconPath: '@/static/images/fileIcons/file_type_agda.svg',
+      iconPath: 'file_type_agda.svg',
     },
     _f_light_agda: {
-      iconPath: '@/static/images/fileIcons/file_type_light_agda.svg',
+      iconPath: 'file_type_light_agda.svg',
     },
     _f_ai: {
-      iconPath: '@/static/images/fileIcons/file_type_ai.svg',
+      iconPath: 'file_type_ai.svg',
     },
     _f_al: {
-      iconPath: '@/static/images/fileIcons/file_type_al.svg',
+      iconPath: 'file_type_al.svg',
     },
     _f_al_dal: {
-      iconPath: '@/static/images/fileIcons/file_type_al_dal.svg',
+      iconPath: 'file_type_al_dal.svg',
     },
     _f_allcontributors: {
-      iconPath: '@/static/images/fileIcons/file_type_allcontributors.svg',
+      iconPath: 'file_type_allcontributors.svg',
     },
     _f_angular: {
-      iconPath: '@/static/images/fileIcons/file_type_angular.svg',
+      iconPath: 'file_type_angular.svg',
     },
     _f_ansible: {
-      iconPath: '@/static/images/fileIcons/file_type_ansible.svg',
+      iconPath: 'file_type_ansible.svg',
     },
     _f_antlers_html: {
-      iconPath: '@/static/images/fileIcons/file_type_antlers_html.svg',
+      iconPath: 'file_type_antlers_html.svg',
     },
     _f_antlr: {
-      iconPath: '@/static/images/fileIcons/file_type_antlr.svg',
+      iconPath: 'file_type_antlr.svg',
     },
     _f_anyscript: {
-      iconPath: '@/static/images/fileIcons/file_type_anyscript.svg',
+      iconPath: 'file_type_anyscript.svg',
     },
     _f_apache: {
-      iconPath: '@/static/images/fileIcons/file_type_apache.svg',
+      iconPath: 'file_type_apache.svg',
     },
     _f_apex: {
-      iconPath: '@/static/images/fileIcons/file_type_apex.svg',
+      iconPath: 'file_type_apex.svg',
     },
     _f_api_extractor: {
-      iconPath: '@/static/images/fileIcons/file_type_api_extractor.svg',
+      iconPath: 'file_type_api_extractor.svg',
     },
     _f_apib: {
-      iconPath: '@/static/images/fileIcons/file_type_apib.svg',
+      iconPath: 'file_type_apib.svg',
     },
     _f_apl: {
-      iconPath: '@/static/images/fileIcons/file_type_apl.svg',
+      iconPath: 'file_type_apl.svg',
     },
     _f_light_apl: {
-      iconPath: '@/static/images/fileIcons/file_type_light_apl.svg',
+      iconPath: 'file_type_light_apl.svg',
     },
     _f_applescript: {
-      iconPath: '@/static/images/fileIcons/file_type_applescript.svg',
+      iconPath: 'file_type_applescript.svg',
     },
     _f_appscript: {
-      iconPath: '@/static/images/fileIcons/file_type_appscript.svg',
+      iconPath: 'file_type_appscript.svg',
     },
     _f_appsemble: {
-      iconPath: '@/static/images/fileIcons/file_type_appsemble.svg',
+      iconPath: 'file_type_appsemble.svg',
     },
     _f_appveyor: {
-      iconPath: '@/static/images/fileIcons/file_type_appveyor.svg',
+      iconPath: 'file_type_appveyor.svg',
     },
     _f_arduino: {
-      iconPath: '@/static/images/fileIcons/file_type_arduino.svg',
+      iconPath: 'file_type_arduino.svg',
     },
     _f_asciidoc: {
-      iconPath: '@/static/images/fileIcons/file_type_asciidoc.svg',
+      iconPath: 'file_type_asciidoc.svg',
     },
     _f_asp: {
-      iconPath: '@/static/images/fileIcons/file_type_asp.svg',
+      iconPath: 'file_type_asp.svg',
     },
     _f_aspx: {
-      iconPath: '@/static/images/fileIcons/file_type_aspx.svg',
+      iconPath: 'file_type_aspx.svg',
     },
     _f_assembly: {
-      iconPath: '@/static/images/fileIcons/file_type_assembly.svg',
+      iconPath: 'file_type_assembly.svg',
     },
     _f_astro: {
-      iconPath: '@/static/images/fileIcons/file_type_astro.svg',
+      iconPath: 'file_type_astro.svg',
     },
     _f_light_astro: {
-      iconPath: '@/static/images/fileIcons/file_type_light_astro.svg',
+      iconPath: 'file_type_light_astro.svg',
     },
     _f_astroconfig: {
-      iconPath: '@/static/images/fileIcons/file_type_astroconfig.svg',
+      iconPath: 'file_type_astroconfig.svg',
     },
     _f_light_astroconfig: {
-      iconPath: '@/static/images/fileIcons/file_type_light_astroconfig.svg',
+      iconPath: 'file_type_light_astroconfig.svg',
     },
     _f_atom: {
-      iconPath: '@/static/images/fileIcons/file_type_atom.svg',
+      iconPath: 'file_type_atom.svg',
     },
     _f_ats: {
-      iconPath: '@/static/images/fileIcons/file_type_ats.svg',
+      iconPath: 'file_type_ats.svg',
     },
     _f_attw: {
-      iconPath: '@/static/images/fileIcons/file_type_attw.svg',
+      iconPath: 'file_type_attw.svg',
     },
     _f_audio: {
-      iconPath: '@/static/images/fileIcons/file_type_audio.svg',
+      iconPath: 'file_type_audio.svg',
     },
     _f_aurelia: {
-      iconPath: '@/static/images/fileIcons/file_type_aurelia.svg',
+      iconPath: 'file_type_aurelia.svg',
     },
     _f_autohotkey: {
-      iconPath: '@/static/images/fileIcons/file_type_autohotkey.svg',
+      iconPath: 'file_type_autohotkey.svg',
     },
     _f_autoit: {
-      iconPath: '@/static/images/fileIcons/file_type_autoit.svg',
+      iconPath: 'file_type_autoit.svg',
     },
     _f_avif: {
-      iconPath: '@/static/images/fileIcons/file_type_avif.svg',
+      iconPath: 'file_type_avif.svg',
     },
     _f_avro: {
-      iconPath: '@/static/images/fileIcons/file_type_avro.svg',
+      iconPath: 'file_type_avro.svg',
     },
     _f_awk: {
-      iconPath: '@/static/images/fileIcons/file_type_awk.svg',
+      iconPath: 'file_type_awk.svg',
     },
     _f_aws: {
-      iconPath: '@/static/images/fileIcons/file_type_aws.svg',
+      iconPath: 'file_type_aws.svg',
     },
     _f_azure: {
-      iconPath: '@/static/images/fileIcons/file_type_azure.svg',
+      iconPath: 'file_type_azure.svg',
     },
     _f_azurepipelines: {
-      iconPath: '@/static/images/fileIcons/file_type_azurepipelines.svg',
+      iconPath: 'file_type_azurepipelines.svg',
     },
     _f_babel: {
-      iconPath: '@/static/images/fileIcons/file_type_babel.svg',
+      iconPath: 'file_type_babel.svg',
     },
     _f_light_babel: {
-      iconPath: '@/static/images/fileIcons/file_type_light_babel.svg',
+      iconPath: 'file_type_light_babel.svg',
     },
     _f_bak: {
-      iconPath: '@/static/images/fileIcons/file_type_bak.svg',
+      iconPath: 'file_type_bak.svg',
     },
     _f_ballerina: {
-      iconPath: '@/static/images/fileIcons/file_type_ballerina.svg',
+      iconPath: 'file_type_ballerina.svg',
     },
     _f_bat: {
-      iconPath: '@/static/images/fileIcons/file_type_bat.svg',
+      iconPath: 'file_type_bat.svg',
     },
     _f_bats: {
-      iconPath: '@/static/images/fileIcons/file_type_bats.svg',
+      iconPath: 'file_type_bats.svg',
     },
     _f_bazaar: {
-      iconPath: '@/static/images/fileIcons/file_type_bazaar.svg',
+      iconPath: 'file_type_bazaar.svg',
     },
     _f_bazel: {
-      iconPath: '@/static/images/fileIcons/file_type_bazel.svg',
+      iconPath: 'file_type_bazel.svg',
     },
     _f_bazel_ignore: {
-      iconPath: '@/static/images/fileIcons/file_type_bazel_ignore.svg',
+      iconPath: 'file_type_bazel_ignore.svg',
     },
     _f_bazel_version: {
-      iconPath: '@/static/images/fileIcons/file_type_bazel_version.svg',
+      iconPath: 'file_type_bazel_version.svg',
     },
     _f_befunge: {
-      iconPath: '@/static/images/fileIcons/file_type_befunge.svg',
+      iconPath: 'file_type_befunge.svg',
     },
     _f_bicep: {
-      iconPath: '@/static/images/fileIcons/file_type_bicep.svg',
+      iconPath: 'file_type_bicep.svg',
     },
     _f_biml: {
-      iconPath: '@/static/images/fileIcons/file_type_biml.svg',
+      iconPath: 'file_type_biml.svg',
     },
     _f_binary: {
-      iconPath: '@/static/images/fileIcons/file_type_binary.svg',
+      iconPath: 'file_type_binary.svg',
     },
     _f_biome: {
-      iconPath: '@/static/images/fileIcons/file_type_biome.svg',
+      iconPath: 'file_type_biome.svg',
     },
     _f_bitbucketpipeline: {
-      iconPath: '@/static/images/fileIcons/file_type_bitbucketpipeline.svg',
+      iconPath: 'file_type_bitbucketpipeline.svg',
     },
     _f_bithound: {
-      iconPath: '@/static/images/fileIcons/file_type_bithound.svg',
+      iconPath: 'file_type_bithound.svg',
     },
     _f_blade: {
-      iconPath: '@/static/images/fileIcons/file_type_blade.svg',
+      iconPath: 'file_type_blade.svg',
     },
     _f_blender: {
-      iconPath: '@/static/images/fileIcons/file_type_blender.svg',
+      iconPath: 'file_type_blender.svg',
     },
     _f_blitzbasic: {
-      iconPath: '@/static/images/fileIcons/file_type_blitzbasic.svg',
+      iconPath: 'file_type_blitzbasic.svg',
     },
     _f_bolt: {
-      iconPath: '@/static/images/fileIcons/file_type_bolt.svg',
+      iconPath: 'file_type_bolt.svg',
     },
     _f_bosque: {
-      iconPath: '@/static/images/fileIcons/file_type_bosque.svg',
+      iconPath: 'file_type_bosque.svg',
     },
     _f_bower: {
-      iconPath: '@/static/images/fileIcons/file_type_bower.svg',
+      iconPath: 'file_type_bower.svg',
     },
     _f_browserslist: {
-      iconPath: '@/static/images/fileIcons/file_type_browserslist.svg',
+      iconPath: 'file_type_browserslist.svg',
     },
     _f_bruno: {
-      iconPath: '@/static/images/fileIcons/file_type_bruno.svg',
+      iconPath: 'file_type_bruno.svg',
     },
     _f_buckbuild: {
-      iconPath: '@/static/images/fileIcons/file_type_buckbuild.svg',
+      iconPath: 'file_type_buckbuild.svg',
     },
     _f_buf: {
-      iconPath: '@/static/images/fileIcons/file_type_buf.svg',
+      iconPath: 'file_type_buf.svg',
     },
     _f_bun: {
-      iconPath: '@/static/images/fileIcons/file_type_bun.svg',
+      iconPath: 'file_type_bun.svg',
     },
     _f_bundlemon: {
-      iconPath: '@/static/images/fileIcons/file_type_bundlemon.svg',
+      iconPath: 'file_type_bundlemon.svg',
     },
     _f_bundler: {
-      iconPath: '@/static/images/fileIcons/file_type_bundler.svg',
+      iconPath: 'file_type_bundler.svg',
     },
     _f_bunfig: {
-      iconPath: '@/static/images/fileIcons/file_type_bunfig.svg',
+      iconPath: 'file_type_bunfig.svg',
     },
     _f_c: {
-      iconPath: '@/static/images/fileIcons/file_type_c.svg',
+      iconPath: 'file_type_c.svg',
     },
     _f_c_al: {
-      iconPath: '@/static/images/fileIcons/file_type_c_al.svg',
+      iconPath: 'file_type_c_al.svg',
     },
     _f_cabal: {
-      iconPath: '@/static/images/fileIcons/file_type_cabal.svg',
+      iconPath: 'file_type_cabal.svg',
     },
     _f_caddy: {
-      iconPath: '@/static/images/fileIcons/file_type_caddy.svg',
+      iconPath: 'file_type_caddy.svg',
     },
     _f_cake: {
-      iconPath: '@/static/images/fileIcons/file_type_cake.svg',
+      iconPath: 'file_type_cake.svg',
     },
     _f_cakephp: {
-      iconPath: '@/static/images/fileIcons/file_type_cakephp.svg',
+      iconPath: 'file_type_cakephp.svg',
     },
     _f_capacitor: {
-      iconPath: '@/static/images/fileIcons/file_type_capacitor.svg',
+      iconPath: 'file_type_capacitor.svg',
     },
     _f_capnp: {
-      iconPath: '@/static/images/fileIcons/file_type_capnp.svg',
+      iconPath: 'file_type_capnp.svg',
     },
     _f_cargo: {
-      iconPath: '@/static/images/fileIcons/file_type_cargo.svg',
+      iconPath: 'file_type_cargo.svg',
     },
     _f_casc: {
-      iconPath: '@/static/images/fileIcons/file_type_casc.svg',
+      iconPath: 'file_type_casc.svg',
     },
     _f_cddl: {
-      iconPath: '@/static/images/fileIcons/file_type_cddl.svg',
+      iconPath: 'file_type_cddl.svg',
     },
     _f_cert: {
-      iconPath: '@/static/images/fileIcons/file_type_cert.svg',
+      iconPath: 'file_type_cert.svg',
     },
     _f_ceylon: {
-      iconPath: '@/static/images/fileIcons/file_type_ceylon.svg',
+      iconPath: 'file_type_ceylon.svg',
     },
     _f_cf: {
-      iconPath: '@/static/images/fileIcons/file_type_cf.svg',
+      iconPath: 'file_type_cf.svg',
     },
     _f_cfc: {
-      iconPath: '@/static/images/fileIcons/file_type_cfc.svg',
+      iconPath: 'file_type_cfc.svg',
     },
     _f_cfm: {
-      iconPath: '@/static/images/fileIcons/file_type_cfm.svg',
+      iconPath: 'file_type_cfm.svg',
     },
     _f_cheader: {
-      iconPath: '@/static/images/fileIcons/file_type_cheader.svg',
+      iconPath: 'file_type_cheader.svg',
     },
     _f_chef: {
-      iconPath: '@/static/images/fileIcons/file_type_chef.svg',
+      iconPath: 'file_type_chef.svg',
     },
     _f_chef_cookbook: {
-      iconPath: '@/static/images/fileIcons/file_type_chef_cookbook.svg',
+      iconPath: 'file_type_chef_cookbook.svg',
     },
     _f_circleci: {
-      iconPath: '@/static/images/fileIcons/file_type_circleci.svg',
+      iconPath: 'file_type_circleci.svg',
     },
     _f_light_circleci: {
-      iconPath: '@/static/images/fileIcons/file_type_light_circleci.svg',
+      iconPath: 'file_type_light_circleci.svg',
     },
     _f_class: {
-      iconPath: '@/static/images/fileIcons/file_type_class.svg',
+      iconPath: 'file_type_class.svg',
     },
     _f_clojure: {
-      iconPath: '@/static/images/fileIcons/file_type_clojure.svg',
+      iconPath: 'file_type_clojure.svg',
     },
     _f_clojurescript: {
-      iconPath: '@/static/images/fileIcons/file_type_clojurescript.svg',
+      iconPath: 'file_type_clojurescript.svg',
     },
     _f_cloudfoundry: {
-      iconPath: '@/static/images/fileIcons/file_type_cloudfoundry.svg',
+      iconPath: 'file_type_cloudfoundry.svg',
     },
     _f_light_cloudfoundry: {
-      iconPath: '@/static/images/fileIcons/file_type_light_cloudfoundry.svg',
+      iconPath: 'file_type_light_cloudfoundry.svg',
     },
     _f_cmake: {
-      iconPath: '@/static/images/fileIcons/file_type_cmake.svg',
+      iconPath: 'file_type_cmake.svg',
     },
     _f_cobol: {
-      iconPath: '@/static/images/fileIcons/file_type_cobol.svg',
+      iconPath: 'file_type_cobol.svg',
     },
     _f_codacy: {
-      iconPath: '@/static/images/fileIcons/file_type_codacy.svg',
+      iconPath: 'file_type_codacy.svg',
     },
     _f_light_codacy: {
-      iconPath: '@/static/images/fileIcons/file_type_light_codacy.svg',
+      iconPath: 'file_type_light_codacy.svg',
     },
     _f_codeclimate: {
-      iconPath: '@/static/images/fileIcons/file_type_codeclimate.svg',
+      iconPath: 'file_type_codeclimate.svg',
     },
     _f_light_codeclimate: {
-      iconPath: '@/static/images/fileIcons/file_type_light_codeclimate.svg',
+      iconPath: 'file_type_light_codeclimate.svg',
     },
     _f_codecov: {
-      iconPath: '@/static/images/fileIcons/file_type_codecov.svg',
+      iconPath: 'file_type_codecov.svg',
     },
     _f_codekit: {
-      iconPath: '@/static/images/fileIcons/file_type_codekit.svg',
+      iconPath: 'file_type_codekit.svg',
     },
     _f_codemagic: {
-      iconPath: '@/static/images/fileIcons/file_type_codemagic.svg',
+      iconPath: 'file_type_codemagic.svg',
     },
     _f_codeowners: {
-      iconPath: '@/static/images/fileIcons/file_type_codeowners.svg',
+      iconPath: 'file_type_codeowners.svg',
     },
     _f_light_codeowners: {
-      iconPath: '@/static/images/fileIcons/file_type_light_codeowners.svg',
+      iconPath: 'file_type_light_codeowners.svg',
     },
     _f_codeql: {
-      iconPath: '@/static/images/fileIcons/file_type_codeql.svg',
+      iconPath: 'file_type_codeql.svg',
     },
     _f_coderabbit: {
-      iconPath: '@/static/images/fileIcons/file_type_coderabbit.svg',
+      iconPath: 'file_type_coderabbit.svg',
     },
     _f_coffeelint: {
-      iconPath: '@/static/images/fileIcons/file_type_coffeelint.svg',
+      iconPath: 'file_type_coffeelint.svg',
     },
     _f_coffeescript: {
-      iconPath: '@/static/images/fileIcons/file_type_coffeescript.svg',
+      iconPath: 'file_type_coffeescript.svg',
     },
     _f_commitizen: {
-      iconPath: '@/static/images/fileIcons/file_type_commitizen.svg',
+      iconPath: 'file_type_commitizen.svg',
     },
     _f_commitlint: {
-      iconPath: '@/static/images/fileIcons/file_type_commitlint.svg',
+      iconPath: 'file_type_commitlint.svg',
     },
     _f_compass: {
-      iconPath: '@/static/images/fileIcons/file_type_compass.svg',
+      iconPath: 'file_type_compass.svg',
     },
     _f_composer: {
-      iconPath: '@/static/images/fileIcons/file_type_composer.svg',
+      iconPath: 'file_type_composer.svg',
     },
     _f_conan: {
-      iconPath: '@/static/images/fileIcons/file_type_conan.svg',
+      iconPath: 'file_type_conan.svg',
     },
     _f_conda: {
-      iconPath: '@/static/images/fileIcons/file_type_conda.svg',
+      iconPath: 'file_type_conda.svg',
     },
     _f_config: {
-      iconPath: '@/static/images/fileIcons/file_type_config.svg',
+      iconPath: 'file_type_config.svg',
     },
     _f_light_config: {
-      iconPath: '@/static/images/fileIcons/file_type_light_config.svg',
+      iconPath: 'file_type_light_config.svg',
     },
     _f_confluence: {
-      iconPath: '@/static/images/fileIcons/file_type_confluence.svg',
+      iconPath: 'file_type_confluence.svg',
     },
     _f_copilot: {
-      iconPath: '@/static/images/fileIcons/file_type_copilot.svg',
+      iconPath: 'file_type_copilot.svg',
     },
     _f_light_copilot: {
-      iconPath: '@/static/images/fileIcons/file_type_light_copilot.svg',
+      iconPath: 'file_type_light_copilot.svg',
     },
     _f_coverage: {
-      iconPath: '@/static/images/fileIcons/file_type_coverage.svg',
+      iconPath: 'file_type_coverage.svg',
     },
     _f_coveralls: {
-      iconPath: '@/static/images/fileIcons/file_type_coveralls.svg',
+      iconPath: 'file_type_coveralls.svg',
     },
     _f_cpp: {
-      iconPath: '@/static/images/fileIcons/file_type_cpp.svg',
+      iconPath: 'file_type_cpp.svg',
     },
     _f_cppheader: {
-      iconPath: '@/static/images/fileIcons/file_type_cppheader.svg',
+      iconPath: 'file_type_cppheader.svg',
     },
     _f_craco: {
-      iconPath: '@/static/images/fileIcons/file_type_craco.svg',
+      iconPath: 'file_type_craco.svg',
     },
     _f_crowdin: {
-      iconPath: '@/static/images/fileIcons/file_type_crowdin.svg',
+      iconPath: 'file_type_crowdin.svg',
     },
     _f_crystal: {
-      iconPath: '@/static/images/fileIcons/file_type_crystal.svg',
+      iconPath: 'file_type_crystal.svg',
     },
     _f_light_crystal: {
-      iconPath: '@/static/images/fileIcons/file_type_light_crystal.svg',
+      iconPath: 'file_type_light_crystal.svg',
     },
     _f_csharp: {
-      iconPath: '@/static/images/fileIcons/file_type_csharp.svg',
+      iconPath: 'file_type_csharp.svg',
     },
     _f_cspell: {
-      iconPath: '@/static/images/fileIcons/file_type_cspell.svg',
+      iconPath: 'file_type_cspell.svg',
     },
     _f_csproj: {
-      iconPath: '@/static/images/fileIcons/file_type_csproj.svg',
+      iconPath: 'file_type_csproj.svg',
     },
     _f_css: {
-      iconPath: '@/static/images/fileIcons/file_type_css.svg',
+      iconPath: 'file_type_css.svg',
     },
     _f_csscomb: {
-      iconPath: '@/static/images/fileIcons/file_type_csscomb.svg',
+      iconPath: 'file_type_csscomb.svg',
     },
     _f_csslint: {
-      iconPath: '@/static/images/fileIcons/file_type_csslint.svg',
+      iconPath: 'file_type_csslint.svg',
     },
     _f_cssmap: {
-      iconPath: '@/static/images/fileIcons/file_type_cssmap.svg',
+      iconPath: 'file_type_cssmap.svg',
     },
     _f_cucumber: {
-      iconPath: '@/static/images/fileIcons/file_type_cucumber.svg',
+      iconPath: 'file_type_cucumber.svg',
     },
     _f_cuda: {
-      iconPath: '@/static/images/fileIcons/file_type_cuda.svg',
+      iconPath: 'file_type_cuda.svg',
     },
     _f_cursorrules: {
-      iconPath: '@/static/images/fileIcons/file_type_cursorrules.svg',
+      iconPath: 'file_type_cursorrules.svg',
     },
     _f_cvs: {
-      iconPath: '@/static/images/fileIcons/file_type_cvs.svg',
+      iconPath: 'file_type_cvs.svg',
     },
     _f_cypress: {
-      iconPath: '@/static/images/fileIcons/file_type_cypress.svg',
+      iconPath: 'file_type_cypress.svg',
     },
     _f_light_cypress: {
-      iconPath: '@/static/images/fileIcons/file_type_light_cypress.svg',
+      iconPath: 'file_type_light_cypress.svg',
     },
     _f_cypress_spec: {
-      iconPath: '@/static/images/fileIcons/file_type_cypress_spec.svg',
+      iconPath: 'file_type_cypress_spec.svg',
     },
     _f_light_cypress_spec: {
-      iconPath: '@/static/images/fileIcons/file_type_light_cypress_spec.svg',
+      iconPath: 'file_type_light_cypress_spec.svg',
     },
     _f_cython: {
-      iconPath: '@/static/images/fileIcons/file_type_cython.svg',
+      iconPath: 'file_type_cython.svg',
     },
     _f_dal: {
-      iconPath: '@/static/images/fileIcons/file_type_dal.svg',
+      iconPath: 'file_type_dal.svg',
     },
     _f_darcs: {
-      iconPath: '@/static/images/fileIcons/file_type_darcs.svg',
+      iconPath: 'file_type_darcs.svg',
     },
     _f_dartlang: {
-      iconPath: '@/static/images/fileIcons/file_type_dartlang.svg',
+      iconPath: 'file_type_dartlang.svg',
     },
     _f_dartlang_generated: {
-      iconPath: '@/static/images/fileIcons/file_type_dartlang_generated.svg',
+      iconPath: 'file_type_dartlang_generated.svg',
     },
     _f_dartlang_ignore: {
-      iconPath: '@/static/images/fileIcons/file_type_dartlang_ignore.svg',
+      iconPath: 'file_type_dartlang_ignore.svg',
     },
     _f_datadog: {
-      iconPath: '@/static/images/fileIcons/file_type_datadog.svg',
+      iconPath: 'file_type_datadog.svg',
     },
     _f_db: {
-      iconPath: '@/static/images/fileIcons/file_type_db.svg',
+      iconPath: 'file_type_db.svg',
     },
     _f_light_db: {
-      iconPath: '@/static/images/fileIcons/file_type_light_db.svg',
+      iconPath: 'file_type_light_db.svg',
     },
     _f_debian: {
-      iconPath: '@/static/images/fileIcons/file_type_debian.svg',
+      iconPath: 'file_type_debian.svg',
     },
     _f_delphi: {
-      iconPath: '@/static/images/fileIcons/file_type_delphi.svg',
+      iconPath: 'file_type_delphi.svg',
     },
     _f_deno: {
-      iconPath: '@/static/images/fileIcons/file_type_deno.svg',
+      iconPath: 'file_type_deno.svg',
     },
     _f_denoify: {
-      iconPath: '@/static/images/fileIcons/file_type_denoify.svg',
+      iconPath: 'file_type_denoify.svg',
     },
     _f_dependabot: {
-      iconPath: '@/static/images/fileIcons/file_type_dependabot.svg',
+      iconPath: 'file_type_dependabot.svg',
     },
     _f_dependencies: {
-      iconPath: '@/static/images/fileIcons/file_type_dependencies.svg',
+      iconPath: 'file_type_dependencies.svg',
     },
     _f_devcontainer: {
-      iconPath: '@/static/images/fileIcons/file_type_devcontainer.svg',
+      iconPath: 'file_type_devcontainer.svg',
     },
     _f_dhall: {
-      iconPath: '@/static/images/fileIcons/file_type_dhall.svg',
+      iconPath: 'file_type_dhall.svg',
     },
     _f_light_dhall: {
-      iconPath: '@/static/images/fileIcons/file_type_light_dhall.svg',
+      iconPath: 'file_type_light_dhall.svg',
     },
     _f_diff: {
-      iconPath: '@/static/images/fileIcons/file_type_diff.svg',
+      iconPath: 'file_type_diff.svg',
     },
     _f_django: {
-      iconPath: '@/static/images/fileIcons/file_type_django.svg',
+      iconPath: 'file_type_django.svg',
     },
     _f_dlang: {
-      iconPath: '@/static/images/fileIcons/file_type_dlang.svg',
+      iconPath: 'file_type_dlang.svg',
     },
     _f_docker: {
-      iconPath: '@/static/images/fileIcons/file_type_docker.svg',
+      iconPath: 'file_type_docker.svg',
     },
     _f_dockertest: {
-      iconPath: '@/static/images/fileIcons/file_type_dockertest.svg',
+      iconPath: 'file_type_dockertest.svg',
     },
     _f_docpad: {
-      iconPath: '@/static/images/fileIcons/file_type_docpad.svg',
+      iconPath: 'file_type_docpad.svg',
     },
     _f_light_docpad: {
-      iconPath: '@/static/images/fileIcons/file_type_light_docpad.svg',
+      iconPath: 'file_type_light_docpad.svg',
     },
     _f_docusaurus: {
-      iconPath: '@/static/images/fileIcons/file_type_docusaurus.svg',
+      iconPath: 'file_type_docusaurus.svg',
     },
     _f_docz: {
-      iconPath: '@/static/images/fileIcons/file_type_docz.svg',
+      iconPath: 'file_type_docz.svg',
     },
     _f_dojo: {
-      iconPath: '@/static/images/fileIcons/file_type_dojo.svg',
+      iconPath: 'file_type_dojo.svg',
     },
     _f_doppler: {
-      iconPath: '@/static/images/fileIcons/file_type_doppler.svg',
+      iconPath: 'file_type_doppler.svg',
     },
     _f_dotenv: {
-      iconPath: '@/static/images/fileIcons/file_type_dotenv.svg',
+      iconPath: 'file_type_dotenv.svg',
     },
     _f_dotjs: {
-      iconPath: '@/static/images/fileIcons/file_type_dotjs.svg',
+      iconPath: 'file_type_dotjs.svg',
     },
     _f_doxygen: {
-      iconPath: '@/static/images/fileIcons/file_type_doxygen.svg',
+      iconPath: 'file_type_doxygen.svg',
     },
     _f_drawio: {
-      iconPath: '@/static/images/fileIcons/file_type_drawio.svg',
+      iconPath: 'file_type_drawio.svg',
     },
     _f_drone: {
-      iconPath: '@/static/images/fileIcons/file_type_drone.svg',
+      iconPath: 'file_type_drone.svg',
     },
     _f_light_drone: {
-      iconPath: '@/static/images/fileIcons/file_type_light_drone.svg',
+      iconPath: 'file_type_light_drone.svg',
     },
     _f_drools: {
-      iconPath: '@/static/images/fileIcons/file_type_drools.svg',
+      iconPath: 'file_type_drools.svg',
     },
     _f_dtd: {
-      iconPath: '@/static/images/fileIcons/file_type_dtd.svg',
+      iconPath: 'file_type_dtd.svg',
     },
     _f_dustjs: {
-      iconPath: '@/static/images/fileIcons/file_type_dustjs.svg',
+      iconPath: 'file_type_dustjs.svg',
     },
     _f_dvc: {
-      iconPath: '@/static/images/fileIcons/file_type_dvc.svg',
+      iconPath: 'file_type_dvc.svg',
     },
     _f_dylan: {
-      iconPath: '@/static/images/fileIcons/file_type_dylan.svg',
+      iconPath: 'file_type_dylan.svg',
     },
     _f_earthly: {
-      iconPath: '@/static/images/fileIcons/file_type_earthly.svg',
+      iconPath: 'file_type_earthly.svg',
     },
     '_f_eas-metadata': {
-      iconPath: '@/static/images/fileIcons/file_type_eas-metadata.svg',
+      iconPath: 'file_type_eas-metadata.svg',
     },
     '_f_light_eas-metadata': {
-      iconPath: '@/static/images/fileIcons/file_type_light_eas-metadata.svg',
+      iconPath: 'file_type_light_eas-metadata.svg',
     },
     _f_edge: {
-      iconPath: '@/static/images/fileIcons/file_type_edge.svg',
+      iconPath: 'file_type_edge.svg',
     },
     _f_editorconfig: {
-      iconPath: '@/static/images/fileIcons/file_type_editorconfig.svg',
+      iconPath: 'file_type_editorconfig.svg',
     },
     _f_eex: {
-      iconPath: '@/static/images/fileIcons/file_type_eex.svg',
+      iconPath: 'file_type_eex.svg',
     },
     _f_ejs: {
-      iconPath: '@/static/images/fileIcons/file_type_ejs.svg',
+      iconPath: 'file_type_ejs.svg',
     },
     _f_elastic: {
-      iconPath: '@/static/images/fileIcons/file_type_elastic.svg',
+      iconPath: 'file_type_elastic.svg',
     },
     _f_elasticbeanstalk: {
-      iconPath: '@/static/images/fileIcons/file_type_elasticbeanstalk.svg',
+      iconPath: 'file_type_elasticbeanstalk.svg',
     },
     _f_eleventy: {
-      iconPath: '@/static/images/fileIcons/file_type_eleventy.svg',
+      iconPath: 'file_type_eleventy.svg',
     },
     _f_light_eleventy: {
-      iconPath: '@/static/images/fileIcons/file_type_light_eleventy.svg',
+      iconPath: 'file_type_light_eleventy.svg',
     },
     _f_elixir: {
-      iconPath: '@/static/images/fileIcons/file_type_elixir.svg',
+      iconPath: 'file_type_elixir.svg',
     },
     _f_elm: {
-      iconPath: '@/static/images/fileIcons/file_type_elm.svg',
+      iconPath: 'file_type_elm.svg',
     },
     _f_emacs: {
-      iconPath: '@/static/images/fileIcons/file_type_emacs.svg',
+      iconPath: 'file_type_emacs.svg',
     },
     _f_ember: {
-      iconPath: '@/static/images/fileIcons/file_type_ember.svg',
+      iconPath: 'file_type_ember.svg',
     },
     _f_ensime: {
-      iconPath: '@/static/images/fileIcons/file_type_ensime.svg',
+      iconPath: 'file_type_ensime.svg',
     },
     _f_eps: {
-      iconPath: '@/static/images/fileIcons/file_type_eps.svg',
+      iconPath: 'file_type_eps.svg',
     },
     _f_epub: {
-      iconPath: '@/static/images/fileIcons/file_type_epub.svg',
+      iconPath: 'file_type_epub.svg',
     },
     _f_erb: {
-      iconPath: '@/static/images/fileIcons/file_type_erb.svg',
+      iconPath: 'file_type_erb.svg',
     },
     _f_erlang: {
-      iconPath: '@/static/images/fileIcons/file_type_erlang.svg',
+      iconPath: 'file_type_erlang.svg',
     },
     _f_esbuild: {
-      iconPath: '@/static/images/fileIcons/file_type_esbuild.svg',
+      iconPath: 'file_type_esbuild.svg',
     },
     _f_eslint: {
-      iconPath: '@/static/images/fileIcons/file_type_eslint.svg',
+      iconPath: 'file_type_eslint.svg',
     },
     _f_esphome: {
-      iconPath: '@/static/images/fileIcons/file_type_esphome.svg',
+      iconPath: 'file_type_esphome.svg',
     },
     _f_light_esphome: {
-      iconPath: '@/static/images/fileIcons/file_type_light_esphome.svg',
+      iconPath: 'file_type_light_esphome.svg',
     },
     _f_excalidraw: {
-      iconPath: '@/static/images/fileIcons/file_type_excalidraw.svg',
+      iconPath: 'file_type_excalidraw.svg',
     },
     _f_excel: {
-      iconPath: '@/static/images/fileIcons/file_type_excel.svg',
+      iconPath: 'file_type_excel.svg',
     },
     _f_expo: {
-      iconPath: '@/static/images/fileIcons/file_type_expo.svg',
+      iconPath: 'file_type_expo.svg',
     },
     _f_light_expo: {
-      iconPath: '@/static/images/fileIcons/file_type_light_expo.svg',
+      iconPath: 'file_type_light_expo.svg',
     },
     _f_falcon: {
-      iconPath: '@/static/images/fileIcons/file_type_falcon.svg',
+      iconPath: 'file_type_falcon.svg',
     },
     _f_fantasticon: {
-      iconPath: '@/static/images/fileIcons/file_type_fantasticon.svg',
+      iconPath: 'file_type_fantasticon.svg',
     },
     _f_fastly: {
-      iconPath: '@/static/images/fileIcons/file_type_fastly.svg',
+      iconPath: 'file_type_fastly.svg',
     },
     _f_fauna: {
-      iconPath: '@/static/images/fileIcons/file_type_fauna.svg',
+      iconPath: 'file_type_fauna.svg',
     },
     _f_favicon: {
-      iconPath: '@/static/images/fileIcons/file_type_favicon.svg',
+      iconPath: 'file_type_favicon.svg',
     },
     _f_fbx: {
-      iconPath: '@/static/images/fileIcons/file_type_fbx.svg',
+      iconPath: 'file_type_fbx.svg',
     },
     _f_firebase: {
-      iconPath: '@/static/images/fileIcons/file_type_firebase.svg',
+      iconPath: 'file_type_firebase.svg',
     },
     _f_firebasehosting: {
-      iconPath: '@/static/images/fileIcons/file_type_firebasehosting.svg',
+      iconPath: 'file_type_firebasehosting.svg',
     },
     _f_light_firebasehosting: {
-      iconPath: '@/static/images/fileIcons/file_type_light_firebasehosting.svg',
+      iconPath: 'file_type_light_firebasehosting.svg',
     },
     _f_firestore: {
-      iconPath: '@/static/images/fileIcons/file_type_firestore.svg',
+      iconPath: 'file_type_firestore.svg',
     },
     _f_fitbit: {
-      iconPath: '@/static/images/fileIcons/file_type_fitbit.svg',
+      iconPath: 'file_type_fitbit.svg',
     },
     _f_fla: {
-      iconPath: '@/static/images/fileIcons/file_type_fla.svg',
+      iconPath: 'file_type_fla.svg',
     },
     _f_light_fla: {
-      iconPath: '@/static/images/fileIcons/file_type_light_fla.svg',
+      iconPath: 'file_type_light_fla.svg',
     },
     _f_flareact: {
-      iconPath: '@/static/images/fileIcons/file_type_flareact.svg',
+      iconPath: 'file_type_flareact.svg',
     },
     _f_flash: {
-      iconPath: '@/static/images/fileIcons/file_type_flash.svg',
+      iconPath: 'file_type_flash.svg',
     },
     _f_floobits: {
-      iconPath: '@/static/images/fileIcons/file_type_floobits.svg',
+      iconPath: 'file_type_floobits.svg',
     },
     _f_flow: {
-      iconPath: '@/static/images/fileIcons/file_type_flow.svg',
+      iconPath: 'file_type_flow.svg',
     },
     _f_flutter: {
-      iconPath: '@/static/images/fileIcons/file_type_flutter.svg',
+      iconPath: 'file_type_flutter.svg',
     },
     _f_flutter_package: {
-      iconPath: '@/static/images/fileIcons/file_type_flutter_package.svg',
+      iconPath: 'file_type_flutter_package.svg',
     },
     _f_flyio: {
-      iconPath: '@/static/images/fileIcons/file_type_flyio.svg',
+      iconPath: 'file_type_flyio.svg',
     },
     _f_font: {
-      iconPath: '@/static/images/fileIcons/file_type_font.svg',
+      iconPath: 'file_type_font.svg',
     },
     _f_light_font: {
-      iconPath: '@/static/images/fileIcons/file_type_light_font.svg',
+      iconPath: 'file_type_light_font.svg',
     },
     _f_formkit: {
-      iconPath: '@/static/images/fileIcons/file_type_formkit.svg',
+      iconPath: 'file_type_formkit.svg',
     },
     _f_fortran: {
-      iconPath: '@/static/images/fileIcons/file_type_fortran.svg',
+      iconPath: 'file_type_fortran.svg',
     },
     _f_fossa: {
-      iconPath: '@/static/images/fileIcons/file_type_fossa.svg',
+      iconPath: 'file_type_fossa.svg',
     },
     _f_fossil: {
-      iconPath: '@/static/images/fileIcons/file_type_fossil.svg',
+      iconPath: 'file_type_fossil.svg',
     },
     _f_freemarker: {
-      iconPath: '@/static/images/fileIcons/file_type_freemarker.svg',
+      iconPath: 'file_type_freemarker.svg',
     },
     _f_frontcommerce: {
-      iconPath: '@/static/images/fileIcons/file_type_frontcommerce.svg',
+      iconPath: 'file_type_frontcommerce.svg',
     },
     _f_fsharp: {
-      iconPath: '@/static/images/fileIcons/file_type_fsharp.svg',
+      iconPath: 'file_type_fsharp.svg',
     },
     _f_fsproj: {
-      iconPath: '@/static/images/fileIcons/file_type_fsproj.svg',
+      iconPath: 'file_type_fsproj.svg',
     },
     _f_fthtml: {
-      iconPath: '@/static/images/fileIcons/file_type_fthtml.svg',
+      iconPath: 'file_type_fthtml.svg',
     },
     _f_funding: {
-      iconPath: '@/static/images/fileIcons/file_type_funding.svg',
+      iconPath: 'file_type_funding.svg',
     },
     _f_fusebox: {
-      iconPath: '@/static/images/fileIcons/file_type_fusebox.svg',
+      iconPath: 'file_type_fusebox.svg',
     },
     _f_galen: {
-      iconPath: '@/static/images/fileIcons/file_type_galen.svg',
+      iconPath: 'file_type_galen.svg',
     },
     _f_gamemaker: {
-      iconPath: '@/static/images/fileIcons/file_type_gamemaker.svg',
+      iconPath: 'file_type_gamemaker.svg',
     },
     _f_gamemaker2: {
-      iconPath: '@/static/images/fileIcons/file_type_gamemaker2.svg',
+      iconPath: 'file_type_gamemaker2.svg',
     },
     _f_light_gamemaker2: {
-      iconPath: '@/static/images/fileIcons/file_type_light_gamemaker2.svg',
+      iconPath: 'file_type_light_gamemaker2.svg',
     },
     _f_gamemaker81: {
-      iconPath: '@/static/images/fileIcons/file_type_gamemaker81.svg',
+      iconPath: 'file_type_gamemaker81.svg',
     },
     _f_gatsby: {
-      iconPath: '@/static/images/fileIcons/file_type_gatsby.svg',
+      iconPath: 'file_type_gatsby.svg',
     },
     _f_gcloud: {
-      iconPath: '@/static/images/fileIcons/file_type_gcloud.svg',
+      iconPath: 'file_type_gcloud.svg',
     },
     _f_gcode: {
-      iconPath: '@/static/images/fileIcons/file_type_gcode.svg',
+      iconPath: 'file_type_gcode.svg',
     },
     _f_gdscript: {
-      iconPath: '@/static/images/fileIcons/file_type_gdscript.svg',
+      iconPath: 'file_type_gdscript.svg',
     },
     _f_genstat: {
-      iconPath: '@/static/images/fileIcons/file_type_genstat.svg',
+      iconPath: 'file_type_genstat.svg',
     },
     _f_git: {
-      iconPath: '@/static/images/fileIcons/file_type_git.svg',
+      iconPath: 'file_type_git.svg',
     },
     _f_gitlab: {
-      iconPath: '@/static/images/fileIcons/file_type_gitlab.svg',
+      iconPath: 'file_type_gitlab.svg',
     },
     _f_gitpod: {
-      iconPath: '@/static/images/fileIcons/file_type_gitpod.svg',
+      iconPath: 'file_type_gitpod.svg',
     },
     _f_gleam: {
-      iconPath: '@/static/images/fileIcons/file_type_gleam.svg',
+      iconPath: 'file_type_gleam.svg',
     },
     _f_gleamconfig: {
-      iconPath: '@/static/images/fileIcons/file_type_gleamconfig.svg',
+      iconPath: 'file_type_gleamconfig.svg',
     },
     _f_glide: {
-      iconPath: '@/static/images/fileIcons/file_type_glide.svg',
+      iconPath: 'file_type_glide.svg',
     },
     _f_glitter: {
-      iconPath: '@/static/images/fileIcons/file_type_glitter.svg',
+      iconPath: 'file_type_glitter.svg',
     },
     _f_glsl: {
-      iconPath: '@/static/images/fileIcons/file_type_glsl.svg',
+      iconPath: 'file_type_glsl.svg',
     },
     _f_gltf: {
-      iconPath: '@/static/images/fileIcons/file_type_gltf.svg',
+      iconPath: 'file_type_gltf.svg',
     },
     _f_glyphs: {
-      iconPath: '@/static/images/fileIcons/file_type_glyphs.svg',
+      iconPath: 'file_type_glyphs.svg',
     },
     _f_gnu: {
-      iconPath: '@/static/images/fileIcons/file_type_gnu.svg',
+      iconPath: 'file_type_gnu.svg',
     },
     _f_gnuplot: {
-      iconPath: '@/static/images/fileIcons/file_type_gnuplot.svg',
+      iconPath: 'file_type_gnuplot.svg',
     },
     _f_go: {
-      iconPath: '@/static/images/fileIcons/file_type_go.svg',
+      iconPath: 'file_type_go.svg',
     },
     _f_go_package: {
-      iconPath: '@/static/images/fileIcons/file_type_go_package.svg',
+      iconPath: 'file_type_go_package.svg',
     },
     _f_go_work: {
-      iconPath: '@/static/images/fileIcons/file_type_go_work.svg',
+      iconPath: 'file_type_go_work.svg',
     },
     _f_goctl: {
-      iconPath: '@/static/images/fileIcons/file_type_goctl.svg',
+      iconPath: 'file_type_goctl.svg',
     },
     _f_godot: {
-      iconPath: '@/static/images/fileIcons/file_type_godot.svg',
+      iconPath: 'file_type_godot.svg',
     },
     _f_gpg: {
-      iconPath: '@/static/images/fileIcons/file_type_gpg.svg',
+      iconPath: 'file_type_gpg.svg',
     },
     _f_gradle: {
-      iconPath: '@/static/images/fileIcons/file_type_gradle.svg',
+      iconPath: 'file_type_gradle.svg',
     },
     _f_light_gradle: {
-      iconPath: '@/static/images/fileIcons/file_type_light_gradle.svg',
+      iconPath: 'file_type_light_gradle.svg',
     },
     _f_grain: {
-      iconPath: '@/static/images/fileIcons/file_type_grain.svg',
+      iconPath: 'file_type_grain.svg',
     },
     _f_graphql: {
-      iconPath: '@/static/images/fileIcons/file_type_graphql.svg',
+      iconPath: 'file_type_graphql.svg',
     },
     _f_graphql_config: {
-      iconPath: '@/static/images/fileIcons/file_type_graphql_config.svg',
+      iconPath: 'file_type_graphql_config.svg',
     },
     _f_graphviz: {
-      iconPath: '@/static/images/fileIcons/file_type_graphviz.svg',
+      iconPath: 'file_type_graphviz.svg',
     },
     _f_greenkeeper: {
-      iconPath: '@/static/images/fileIcons/file_type_greenkeeper.svg',
+      iconPath: 'file_type_greenkeeper.svg',
     },
     _f_gridsome: {
-      iconPath: '@/static/images/fileIcons/file_type_gridsome.svg',
+      iconPath: 'file_type_gridsome.svg',
     },
     _f_groovy: {
-      iconPath: '@/static/images/fileIcons/file_type_groovy.svg',
+      iconPath: 'file_type_groovy.svg',
     },
     _f_grunt: {
-      iconPath: '@/static/images/fileIcons/file_type_grunt.svg',
+      iconPath: 'file_type_grunt.svg',
     },
     _f_gulp: {
-      iconPath: '@/static/images/fileIcons/file_type_gulp.svg',
+      iconPath: 'file_type_gulp.svg',
     },
     _f_haml: {
-      iconPath: '@/static/images/fileIcons/file_type_haml.svg',
+      iconPath: 'file_type_haml.svg',
     },
     _f_handlebars: {
-      iconPath: '@/static/images/fileIcons/file_type_handlebars.svg',
+      iconPath: 'file_type_handlebars.svg',
     },
     _f_harbour: {
-      iconPath: '@/static/images/fileIcons/file_type_harbour.svg',
+      iconPath: 'file_type_harbour.svg',
     },
     _f_hardhat: {
-      iconPath: '@/static/images/fileIcons/file_type_hardhat.svg',
+      iconPath: 'file_type_hardhat.svg',
     },
     _f_hashicorp: {
-      iconPath: '@/static/images/fileIcons/file_type_hashicorp.svg',
+      iconPath: 'file_type_hashicorp.svg',
     },
     _f_light_hashicorp: {
-      iconPath: '@/static/images/fileIcons/file_type_light_hashicorp.svg',
+      iconPath: 'file_type_light_hashicorp.svg',
     },
     _f_haskell: {
-      iconPath: '@/static/images/fileIcons/file_type_haskell.svg',
+      iconPath: 'file_type_haskell.svg',
     },
     _f_haxe: {
-      iconPath: '@/static/images/fileIcons/file_type_haxe.svg',
+      iconPath: 'file_type_haxe.svg',
     },
     _f_haxecheckstyle: {
-      iconPath: '@/static/images/fileIcons/file_type_haxecheckstyle.svg',
+      iconPath: 'file_type_haxecheckstyle.svg',
     },
     _f_haxedevelop: {
-      iconPath: '@/static/images/fileIcons/file_type_haxedevelop.svg',
+      iconPath: 'file_type_haxedevelop.svg',
     },
     _f_helix: {
-      iconPath: '@/static/images/fileIcons/file_type_helix.svg',
+      iconPath: 'file_type_helix.svg',
     },
     _f_helm: {
-      iconPath: '@/static/images/fileIcons/file_type_helm.svg',
+      iconPath: 'file_type_helm.svg',
     },
     _f_histoire: {
-      iconPath: '@/static/images/fileIcons/file_type_histoire.svg',
+      iconPath: 'file_type_histoire.svg',
     },
     _f_hjson: {
-      iconPath: '@/static/images/fileIcons/file_type_hjson.svg',
+      iconPath: 'file_type_hjson.svg',
     },
     _f_light_hjson: {
-      iconPath: '@/static/images/fileIcons/file_type_light_hjson.svg',
+      iconPath: 'file_type_light_hjson.svg',
     },
     _f_hlsl: {
-      iconPath: '@/static/images/fileIcons/file_type_hlsl.svg',
+      iconPath: 'file_type_hlsl.svg',
     },
     _f_homeassistant: {
-      iconPath: '@/static/images/fileIcons/file_type_homeassistant.svg',
+      iconPath: 'file_type_homeassistant.svg',
     },
     _f_horusec: {
-      iconPath: '@/static/images/fileIcons/file_type_horusec.svg',
+      iconPath: 'file_type_horusec.svg',
     },
     _f_host: {
-      iconPath: '@/static/images/fileIcons/file_type_host.svg',
+      iconPath: 'file_type_host.svg',
     },
     _f_html: {
-      iconPath: '@/static/images/fileIcons/file_type_html.svg',
+      iconPath: 'file_type_html.svg',
     },
     _f_htmlhint: {
-      iconPath: '@/static/images/fileIcons/file_type_htmlhint.svg',
+      iconPath: 'file_type_htmlhint.svg',
     },
     _f_htmlvalidate: {
-      iconPath: '@/static/images/fileIcons/file_type_htmlvalidate.svg',
+      iconPath: 'file_type_htmlvalidate.svg',
     },
     _f_http: {
-      iconPath: '@/static/images/fileIcons/file_type_http.svg',
+      iconPath: 'file_type_http.svg',
     },
     _f_hugo: {
-      iconPath: '@/static/images/fileIcons/file_type_hugo.svg',
+      iconPath: 'file_type_hugo.svg',
     },
     _f_humanstxt: {
-      iconPath: '@/static/images/fileIcons/file_type_humanstxt.svg',
+      iconPath: 'file_type_humanstxt.svg',
     },
     _f_hunspell: {
-      iconPath: '@/static/images/fileIcons/file_type_hunspell.svg',
+      iconPath: 'file_type_hunspell.svg',
     },
     _f_husky: {
-      iconPath: '@/static/images/fileIcons/file_type_husky.svg',
+      iconPath: 'file_type_husky.svg',
     },
     _f_hy: {
-      iconPath: '@/static/images/fileIcons/file_type_hy.svg',
+      iconPath: 'file_type_hy.svg',
     },
     _f_hygen: {
-      iconPath: '@/static/images/fileIcons/file_type_hygen.svg',
+      iconPath: 'file_type_hygen.svg',
     },
     _f_hypr: {
-      iconPath: '@/static/images/fileIcons/file_type_hypr.svg',
+      iconPath: 'file_type_hypr.svg',
     },
     _f_icl: {
-      iconPath: '@/static/images/fileIcons/file_type_icl.svg',
+      iconPath: 'file_type_icl.svg',
     },
     _f_idris: {
-      iconPath: '@/static/images/fileIcons/file_type_idris.svg',
+      iconPath: 'file_type_idris.svg',
     },
     _f_idrisbin: {
-      iconPath: '@/static/images/fileIcons/file_type_idrisbin.svg',
+      iconPath: 'file_type_idrisbin.svg',
     },
     _f_idrispkg: {
-      iconPath: '@/static/images/fileIcons/file_type_idrispkg.svg',
+      iconPath: 'file_type_idrispkg.svg',
     },
     _f_image: {
-      iconPath: '@/static/images/fileIcons/file_type_image.svg',
+      iconPath: 'file_type_image.svg',
     },
     _f_imba: {
-      iconPath: '@/static/images/fileIcons/file_type_imba.svg',
+      iconPath: 'file_type_imba.svg',
     },
     _f_inc: {
-      iconPath: '@/static/images/fileIcons/file_type_inc.svg',
+      iconPath: 'file_type_inc.svg',
     },
     _f_infopath: {
-      iconPath: '@/static/images/fileIcons/file_type_infopath.svg',
+      iconPath: 'file_type_infopath.svg',
     },
     _f_informix: {
-      iconPath: '@/static/images/fileIcons/file_type_informix.svg',
+      iconPath: 'file_type_informix.svg',
     },
     _f_ini: {
-      iconPath: '@/static/images/fileIcons/file_type_ini.svg',
+      iconPath: 'file_type_ini.svg',
     },
     _f_light_ini: {
-      iconPath: '@/static/images/fileIcons/file_type_light_ini.svg',
+      iconPath: 'file_type_light_ini.svg',
     },
     _f_ink: {
-      iconPath: '@/static/images/fileIcons/file_type_ink.svg',
+      iconPath: 'file_type_ink.svg',
     },
     _f_innosetup: {
-      iconPath: '@/static/images/fileIcons/file_type_innosetup.svg',
+      iconPath: 'file_type_innosetup.svg',
     },
     _f_io: {
-      iconPath: '@/static/images/fileIcons/file_type_io.svg',
+      iconPath: 'file_type_io.svg',
     },
     _f_light_io: {
-      iconPath: '@/static/images/fileIcons/file_type_light_io.svg',
+      iconPath: 'file_type_light_io.svg',
     },
     _f_iodine: {
-      iconPath: '@/static/images/fileIcons/file_type_iodine.svg',
+      iconPath: 'file_type_iodine.svg',
     },
     _f_ionic: {
-      iconPath: '@/static/images/fileIcons/file_type_ionic.svg',
+      iconPath: 'file_type_ionic.svg',
     },
     _f_jake: {
-      iconPath: '@/static/images/fileIcons/file_type_jake.svg',
+      iconPath: 'file_type_jake.svg',
     },
     _f_janet: {
-      iconPath: '@/static/images/fileIcons/file_type_janet.svg',
+      iconPath: 'file_type_janet.svg',
     },
     _f_jar: {
-      iconPath: '@/static/images/fileIcons/file_type_jar.svg',
+      iconPath: 'file_type_jar.svg',
     },
     _f_jasmine: {
-      iconPath: '@/static/images/fileIcons/file_type_jasmine.svg',
+      iconPath: 'file_type_jasmine.svg',
     },
     _f_java: {
-      iconPath: '@/static/images/fileIcons/file_type_java.svg',
+      iconPath: 'file_type_java.svg',
     },
     _f_jbuilder: {
-      iconPath: '@/static/images/fileIcons/file_type_jbuilder.svg',
+      iconPath: 'file_type_jbuilder.svg',
     },
     _f_jekyll: {
-      iconPath: '@/static/images/fileIcons/file_type_jekyll.svg',
+      iconPath: 'file_type_jekyll.svg',
     },
     _f_jenkins: {
-      iconPath: '@/static/images/fileIcons/file_type_jenkins.svg',
+      iconPath: 'file_type_jenkins.svg',
     },
     _f_jest: {
-      iconPath: '@/static/images/fileIcons/file_type_jest.svg',
+      iconPath: 'file_type_jest.svg',
     },
     _f_jest_snapshot: {
-      iconPath: '@/static/images/fileIcons/file_type_jest_snapshot.svg',
+      iconPath: 'file_type_jest_snapshot.svg',
     },
     _f_jinja: {
-      iconPath: '@/static/images/fileIcons/file_type_jinja.svg',
+      iconPath: 'file_type_jinja.svg',
     },
     _f_jpm: {
-      iconPath: '@/static/images/fileIcons/file_type_jpm.svg',
+      iconPath: 'file_type_jpm.svg',
     },
     _f_js: {
-      iconPath: '@/static/images/fileIcons/file_type_js.svg',
+      iconPath: 'file_type_js.svg',
     },
     _f_light_js: {
-      iconPath: '@/static/images/fileIcons/file_type_light_js.svg',
+      iconPath: 'file_type_light_js.svg',
     },
     _f_jsbeautify: {
-      iconPath: '@/static/images/fileIcons/file_type_jsbeautify.svg',
+      iconPath: 'file_type_jsbeautify.svg',
     },
     _f_jsconfig: {
-      iconPath: '@/static/images/fileIcons/file_type_jsconfig.svg',
+      iconPath: 'file_type_jsconfig.svg',
     },
     _f_light_jsconfig: {
-      iconPath: '@/static/images/fileIcons/file_type_light_jsconfig.svg',
+      iconPath: 'file_type_light_jsconfig.svg',
     },
     _f_jscpd: {
-      iconPath: '@/static/images/fileIcons/file_type_jscpd.svg',
+      iconPath: 'file_type_jscpd.svg',
     },
     _f_jshint: {
-      iconPath: '@/static/images/fileIcons/file_type_jshint.svg',
+      iconPath: 'file_type_jshint.svg',
     },
     _f_jsmap: {
-      iconPath: '@/static/images/fileIcons/file_type_jsmap.svg',
+      iconPath: 'file_type_jsmap.svg',
     },
     _f_light_jsmap: {
-      iconPath: '@/static/images/fileIcons/file_type_light_jsmap.svg',
+      iconPath: 'file_type_light_jsmap.svg',
     },
     _f_json: {
-      iconPath: '@/static/images/fileIcons/file_type_json.svg',
+      iconPath: 'file_type_json.svg',
     },
     _f_light_json: {
-      iconPath: '@/static/images/fileIcons/file_type_light_json.svg',
+      iconPath: 'file_type_light_json.svg',
     },
     _f_json5: {
-      iconPath: '@/static/images/fileIcons/file_type_json5.svg',
+      iconPath: 'file_type_json5.svg',
     },
     _f_light_json5: {
-      iconPath: '@/static/images/fileIcons/file_type_light_json5.svg',
+      iconPath: 'file_type_light_json5.svg',
     },
     _f_json_schema: {
-      iconPath: '@/static/images/fileIcons/file_type_json_schema.svg',
+      iconPath: 'file_type_json_schema.svg',
     },
     _f_light_json_schema: {
-      iconPath: '@/static/images/fileIcons/file_type_light_json_schema.svg',
+      iconPath: 'file_type_light_json_schema.svg',
     },
     _f_jsonld: {
-      iconPath: '@/static/images/fileIcons/file_type_jsonld.svg',
+      iconPath: 'file_type_jsonld.svg',
     },
     _f_light_jsonld: {
-      iconPath: '@/static/images/fileIcons/file_type_light_jsonld.svg',
+      iconPath: 'file_type_light_jsonld.svg',
     },
     _f_jsonnet: {
-      iconPath: '@/static/images/fileIcons/file_type_jsonnet.svg',
+      iconPath: 'file_type_jsonnet.svg',
     },
     _f_jsp: {
-      iconPath: '@/static/images/fileIcons/file_type_jsp.svg',
+      iconPath: 'file_type_jsp.svg',
     },
     _f_jsr: {
-      iconPath: '@/static/images/fileIcons/file_type_jsr.svg',
+      iconPath: 'file_type_jsr.svg',
     },
     _f_jss: {
-      iconPath: '@/static/images/fileIcons/file_type_jss.svg',
+      iconPath: 'file_type_jss.svg',
     },
     _f_juice: {
-      iconPath: '@/static/images/fileIcons/file_type_juice.svg',
+      iconPath: 'file_type_juice.svg',
     },
     _f_julia: {
-      iconPath: '@/static/images/fileIcons/file_type_julia.svg',
+      iconPath: 'file_type_julia.svg',
     },
     _f_jupyter: {
-      iconPath: '@/static/images/fileIcons/file_type_jupyter.svg',
+      iconPath: 'file_type_jupyter.svg',
     },
     _f_just: {
-      iconPath: '@/static/images/fileIcons/file_type_just.svg',
+      iconPath: 'file_type_just.svg',
     },
     _f_k: {
-      iconPath: '@/static/images/fileIcons/file_type_k.svg',
+      iconPath: 'file_type_k.svg',
     },
     _f_karma: {
-      iconPath: '@/static/images/fileIcons/file_type_karma.svg',
+      iconPath: 'file_type_karma.svg',
     },
     _f_key: {
-      iconPath: '@/static/images/fileIcons/file_type_key.svg',
+      iconPath: 'file_type_key.svg',
     },
     _f_kitchenci: {
-      iconPath: '@/static/images/fileIcons/file_type_kitchenci.svg',
+      iconPath: 'file_type_kitchenci.svg',
     },
     _f_kite: {
-      iconPath: '@/static/images/fileIcons/file_type_kite.svg',
+      iconPath: 'file_type_kite.svg',
     },
     _f_light_kite: {
-      iconPath: '@/static/images/fileIcons/file_type_light_kite.svg',
+      iconPath: 'file_type_light_kite.svg',
     },
     _f_kivy: {
-      iconPath: '@/static/images/fileIcons/file_type_kivy.svg',
+      iconPath: 'file_type_kivy.svg',
     },
     _f_knip: {
-      iconPath: '@/static/images/fileIcons/file_type_knip.svg',
+      iconPath: 'file_type_knip.svg',
     },
     _f_kos: {
-      iconPath: '@/static/images/fileIcons/file_type_kos.svg',
+      iconPath: 'file_type_kos.svg',
     },
     _f_kotlin: {
-      iconPath: '@/static/images/fileIcons/file_type_kotlin.svg',
+      iconPath: 'file_type_kotlin.svg',
     },
     _f_kusto: {
-      iconPath: '@/static/images/fileIcons/file_type_kusto.svg',
+      iconPath: 'file_type_kusto.svg',
     },
     _f_language_configuration: {
-      iconPath:
-        '@/static/images/fileIcons/file_type_language_configuration.svg',
+      iconPath: 'file_type_language_configuration.svg',
     },
     _f_lark: {
-      iconPath: '@/static/images/fileIcons/file_type_lark.svg',
+      iconPath: 'file_type_lark.svg',
     },
     _f_light_lark: {
-      iconPath: '@/static/images/fileIcons/file_type_light_lark.svg',
+      iconPath: 'file_type_light_lark.svg',
     },
     _f_latino: {
-      iconPath: '@/static/images/fileIcons/file_type_latino.svg',
+      iconPath: 'file_type_latino.svg',
     },
     _f_layout: {
-      iconPath: '@/static/images/fileIcons/file_type_layout.svg',
+      iconPath: 'file_type_layout.svg',
     },
     _f_lerna: {
-      iconPath: '@/static/images/fileIcons/file_type_lerna.svg',
+      iconPath: 'file_type_lerna.svg',
     },
     _f_light_lerna: {
-      iconPath: '@/static/images/fileIcons/file_type_light_lerna.svg',
+      iconPath: 'file_type_light_lerna.svg',
     },
     _f_less: {
-      iconPath: '@/static/images/fileIcons/file_type_less.svg',
+      iconPath: 'file_type_less.svg',
     },
     _f_lex: {
-      iconPath: '@/static/images/fileIcons/file_type_lex.svg',
+      iconPath: 'file_type_lex.svg',
     },
     _f_liara: {
-      iconPath: '@/static/images/fileIcons/file_type_liara.svg',
+      iconPath: 'file_type_liara.svg',
     },
     _f_libreoffice_base: {
-      iconPath: '@/static/images/fileIcons/file_type_libreoffice_base.svg',
+      iconPath: 'file_type_libreoffice_base.svg',
     },
     _f_libreoffice_calc: {
-      iconPath: '@/static/images/fileIcons/file_type_libreoffice_calc.svg',
+      iconPath: 'file_type_libreoffice_calc.svg',
     },
     _f_libreoffice_draw: {
-      iconPath: '@/static/images/fileIcons/file_type_libreoffice_draw.svg',
+      iconPath: 'file_type_libreoffice_draw.svg',
     },
     _f_libreoffice_impress: {
-      iconPath: '@/static/images/fileIcons/file_type_libreoffice_impress.svg',
+      iconPath: 'file_type_libreoffice_impress.svg',
     },
     _f_libreoffice_math: {
-      iconPath: '@/static/images/fileIcons/file_type_libreoffice_math.svg',
+      iconPath: 'file_type_libreoffice_math.svg',
     },
     _f_libreoffice_writer: {
-      iconPath: '@/static/images/fileIcons/file_type_libreoffice_writer.svg',
+      iconPath: 'file_type_libreoffice_writer.svg',
     },
     _f_license: {
-      iconPath: '@/static/images/fileIcons/file_type_license.svg',
+      iconPath: 'file_type_license.svg',
     },
     _f_licensebat: {
-      iconPath: '@/static/images/fileIcons/file_type_licensebat.svg',
+      iconPath: 'file_type_licensebat.svg',
     },
     _f_lighthouse: {
-      iconPath: '@/static/images/fileIcons/file_type_lighthouse.svg',
+      iconPath: 'file_type_lighthouse.svg',
     },
     _f_lilypond: {
-      iconPath: '@/static/images/fileIcons/file_type_lilypond.svg',
+      iconPath: 'file_type_lilypond.svg',
     },
     _f_lime: {
-      iconPath: '@/static/images/fileIcons/file_type_lime.svg',
+      iconPath: 'file_type_lime.svg',
     },
     _f_lintstagedrc: {
-      iconPath: '@/static/images/fileIcons/file_type_lintstagedrc.svg',
+      iconPath: 'file_type_lintstagedrc.svg',
     },
     _f_liquid: {
-      iconPath: '@/static/images/fileIcons/file_type_liquid.svg',
+      iconPath: 'file_type_liquid.svg',
     },
     _f_lisp: {
-      iconPath: '@/static/images/fileIcons/file_type_lisp.svg',
+      iconPath: 'file_type_lisp.svg',
     },
     _f_livescript: {
-      iconPath: '@/static/images/fileIcons/file_type_livescript.svg',
+      iconPath: 'file_type_livescript.svg',
     },
     _f_lnk: {
-      iconPath: '@/static/images/fileIcons/file_type_lnk.svg',
+      iconPath: 'file_type_lnk.svg',
     },
     _f_locale: {
-      iconPath: '@/static/images/fileIcons/file_type_locale.svg',
+      iconPath: 'file_type_locale.svg',
     },
     _f_log: {
-      iconPath: '@/static/images/fileIcons/file_type_log.svg',
+      iconPath: 'file_type_log.svg',
     },
     _f_lolcode: {
-      iconPath: '@/static/images/fileIcons/file_type_lolcode.svg',
+      iconPath: 'file_type_lolcode.svg',
     },
     _f_lsl: {
-      iconPath: '@/static/images/fileIcons/file_type_lsl.svg',
+      iconPath: 'file_type_lsl.svg',
     },
     _f_lua: {
-      iconPath: '@/static/images/fileIcons/file_type_lua.svg',
+      iconPath: 'file_type_lua.svg',
     },
     _f_luau: {
-      iconPath: '@/static/images/fileIcons/file_type_luau.svg',
+      iconPath: 'file_type_luau.svg',
     },
     _f_lync: {
-      iconPath: '@/static/images/fileIcons/file_type_lync.svg',
+      iconPath: 'file_type_lync.svg',
     },
     _f_mailing: {
-      iconPath: '@/static/images/fileIcons/file_type_mailing.svg',
+      iconPath: 'file_type_mailing.svg',
     },
     _f_light_mailing: {
-      iconPath: '@/static/images/fileIcons/file_type_light_mailing.svg',
+      iconPath: 'file_type_light_mailing.svg',
     },
     _f_manifest: {
-      iconPath: '@/static/images/fileIcons/file_type_manifest.svg',
+      iconPath: 'file_type_manifest.svg',
     },
     _f_manifest_bak: {
-      iconPath: '@/static/images/fileIcons/file_type_manifest_bak.svg',
+      iconPath: 'file_type_manifest_bak.svg',
     },
     _f_manifest_skip: {
-      iconPath: '@/static/images/fileIcons/file_type_manifest_skip.svg',
+      iconPath: 'file_type_manifest_skip.svg',
     },
     _f_map: {
-      iconPath: '@/static/images/fileIcons/file_type_map.svg',
+      iconPath: 'file_type_map.svg',
     },
     _f_markdown: {
-      iconPath: '@/static/images/fileIcons/file_type_markdown.svg',
+      iconPath: 'file_type_markdown.svg',
     },
     _f_markdownlint: {
-      iconPath: '@/static/images/fileIcons/file_type_markdownlint.svg',
+      iconPath: 'file_type_markdownlint.svg',
     },
     _f_markdownlint_ignore: {
-      iconPath: '@/static/images/fileIcons/file_type_markdownlint_ignore.svg',
+      iconPath: 'file_type_markdownlint_ignore.svg',
     },
     _f_marko: {
-      iconPath: '@/static/images/fileIcons/file_type_marko.svg',
+      iconPath: 'file_type_marko.svg',
     },
     _f_markojs: {
-      iconPath: '@/static/images/fileIcons/file_type_markojs.svg',
+      iconPath: 'file_type_markojs.svg',
     },
     '_f_master-co': {
-      iconPath: '@/static/images/fileIcons/file_type_master-co.svg',
+      iconPath: 'file_type_master-co.svg',
     },
     _f_matlab: {
-      iconPath: '@/static/images/fileIcons/file_type_matlab.svg',
+      iconPath: 'file_type_matlab.svg',
     },
     _f_maven: {
-      iconPath: '@/static/images/fileIcons/file_type_maven.svg',
+      iconPath: 'file_type_maven.svg',
     },
     _f_maxscript: {
-      iconPath: '@/static/images/fileIcons/file_type_maxscript.svg',
+      iconPath: 'file_type_maxscript.svg',
     },
     _f_maya: {
-      iconPath: '@/static/images/fileIcons/file_type_maya.svg',
+      iconPath: 'file_type_maya.svg',
     },
     _f_mdx: {
-      iconPath: '@/static/images/fileIcons/file_type_mdx.svg',
+      iconPath: 'file_type_mdx.svg',
     },
     _f_light_mdx: {
-      iconPath: '@/static/images/fileIcons/file_type_light_mdx.svg',
+      iconPath: 'file_type_light_mdx.svg',
     },
     '_f_mdx-components': {
-      iconPath: '@/static/images/fileIcons/file_type_mdx-components.svg',
+      iconPath: 'file_type_mdx-components.svg',
     },
     '_f_light_mdx-components': {
-      iconPath: '@/static/images/fileIcons/file_type_light_mdx-components.svg',
+      iconPath: 'file_type_light_mdx-components.svg',
     },
     _f_mediawiki: {
-      iconPath: '@/static/images/fileIcons/file_type_mediawiki.svg',
+      iconPath: 'file_type_mediawiki.svg',
     },
     _f_mercurial: {
-      iconPath: '@/static/images/fileIcons/file_type_mercurial.svg',
+      iconPath: 'file_type_mercurial.svg',
     },
     _f_mermaid: {
-      iconPath: '@/static/images/fileIcons/file_type_mermaid.svg',
+      iconPath: 'file_type_mermaid.svg',
     },
     _f_meson: {
-      iconPath: '@/static/images/fileIcons/file_type_meson.svg',
+      iconPath: 'file_type_meson.svg',
     },
     _f_meteor: {
-      iconPath: '@/static/images/fileIcons/file_type_meteor.svg',
+      iconPath: 'file_type_meteor.svg',
     },
     _f_minecraft: {
-      iconPath: '@/static/images/fileIcons/file_type_minecraft.svg',
+      iconPath: 'file_type_minecraft.svg',
     },
     _f_mivascript: {
-      iconPath: '@/static/images/fileIcons/file_type_mivascript.svg',
+      iconPath: 'file_type_mivascript.svg',
     },
     _f_mjml: {
-      iconPath: '@/static/images/fileIcons/file_type_mjml.svg',
+      iconPath: 'file_type_mjml.svg',
     },
     _f_mlang: {
-      iconPath: '@/static/images/fileIcons/file_type_mlang.svg',
+      iconPath: 'file_type_mlang.svg',
     },
     _f_light_mlang: {
-      iconPath: '@/static/images/fileIcons/file_type_light_mlang.svg',
+      iconPath: 'file_type_light_mlang.svg',
     },
     _f_mocha: {
-      iconPath: '@/static/images/fileIcons/file_type_mocha.svg',
+      iconPath: 'file_type_mocha.svg',
     },
     _f_modernizr: {
-      iconPath: '@/static/images/fileIcons/file_type_modernizr.svg',
+      iconPath: 'file_type_modernizr.svg',
     },
     _f_mojo: {
-      iconPath: '@/static/images/fileIcons/file_type_mojo.svg',
+      iconPath: 'file_type_mojo.svg',
     },
     _f_mojolicious: {
-      iconPath: '@/static/images/fileIcons/file_type_mojolicious.svg',
+      iconPath: 'file_type_mojolicious.svg',
     },
     _f_moleculer: {
-      iconPath: '@/static/images/fileIcons/file_type_moleculer.svg',
+      iconPath: 'file_type_moleculer.svg',
     },
     _f_mondoo: {
-      iconPath: '@/static/images/fileIcons/file_type_mondoo.svg',
+      iconPath: 'file_type_mondoo.svg',
     },
     _f_mongo: {
-      iconPath: '@/static/images/fileIcons/file_type_mongo.svg',
+      iconPath: 'file_type_mongo.svg',
     },
     _f_monotone: {
-      iconPath: '@/static/images/fileIcons/file_type_monotone.svg',
+      iconPath: 'file_type_monotone.svg',
     },
     _f_motif: {
-      iconPath: '@/static/images/fileIcons/file_type_motif.svg',
+      iconPath: 'file_type_motif.svg',
     },
     _f_mson: {
-      iconPath: '@/static/images/fileIcons/file_type_mson.svg',
+      iconPath: 'file_type_mson.svg',
     },
     _f_mustache: {
-      iconPath: '@/static/images/fileIcons/file_type_mustache.svg',
+      iconPath: 'file_type_mustache.svg',
     },
     _f_light_mustache: {
-      iconPath: '@/static/images/fileIcons/file_type_light_mustache.svg',
+      iconPath: 'file_type_light_mustache.svg',
     },
     _f_mvt: {
-      iconPath: '@/static/images/fileIcons/file_type_mvt.svg',
+      iconPath: 'file_type_mvt.svg',
     },
     _f_mvtcss: {
-      iconPath: '@/static/images/fileIcons/file_type_mvtcss.svg',
+      iconPath: 'file_type_mvtcss.svg',
     },
     _f_mvtjs: {
-      iconPath: '@/static/images/fileIcons/file_type_mvtjs.svg',
+      iconPath: 'file_type_mvtjs.svg',
     },
     _f_mypy: {
-      iconPath: '@/static/images/fileIcons/file_type_mypy.svg',
+      iconPath: 'file_type_mypy.svg',
     },
     _f_light_mypy: {
-      iconPath: '@/static/images/fileIcons/file_type_light_mypy.svg',
+      iconPath: 'file_type_light_mypy.svg',
     },
     _f_ndst: {
-      iconPath: '@/static/images/fileIcons/file_type_ndst.svg',
+      iconPath: 'file_type_ndst.svg',
     },
     _f_nearly: {
-      iconPath: '@/static/images/fileIcons/file_type_nearly.svg',
+      iconPath: 'file_type_nearly.svg',
     },
     _f_neo4j: {
-      iconPath: '@/static/images/fileIcons/file_type_neo4j.svg',
+      iconPath: 'file_type_neo4j.svg',
     },
     _f_light_neo4j: {
-      iconPath: '@/static/images/fileIcons/file_type_light_neo4j.svg',
+      iconPath: 'file_type_light_neo4j.svg',
     },
     _f_nestjs: {
-      iconPath: '@/static/images/fileIcons/file_type_nestjs.svg',
+      iconPath: 'file_type_nestjs.svg',
     },
     _f_netlify: {
-      iconPath: '@/static/images/fileIcons/file_type_netlify.svg',
+      iconPath: 'file_type_netlify.svg',
     },
     _f_light_netlify: {
-      iconPath: '@/static/images/fileIcons/file_type_light_netlify.svg',
+      iconPath: 'file_type_light_netlify.svg',
     },
     _f_next: {
-      iconPath: '@/static/images/fileIcons/file_type_next.svg',
+      iconPath: 'file_type_next.svg',
     },
     _f_light_next: {
-      iconPath: '@/static/images/fileIcons/file_type_light_next.svg',
+      iconPath: 'file_type_light_next.svg',
     },
     _f_nextflow: {
-      iconPath: '@/static/images/fileIcons/file_type_nextflow.svg',
+      iconPath: 'file_type_nextflow.svg',
     },
     _f_ng_tailwind: {
-      iconPath: '@/static/images/fileIcons/file_type_ng_tailwind.svg',
+      iconPath: 'file_type_ng_tailwind.svg',
     },
     _f_nginx: {
-      iconPath: '@/static/images/fileIcons/file_type_nginx.svg',
+      iconPath: 'file_type_nginx.svg',
     },
     _f_nim: {
-      iconPath: '@/static/images/fileIcons/file_type_nim.svg',
+      iconPath: 'file_type_nim.svg',
     },
     _f_nimble: {
-      iconPath: '@/static/images/fileIcons/file_type_nimble.svg',
+      iconPath: 'file_type_nimble.svg',
     },
     _f_ninja: {
-      iconPath: '@/static/images/fileIcons/file_type_ninja.svg',
+      iconPath: 'file_type_ninja.svg',
     },
     _f_nix: {
-      iconPath: '@/static/images/fileIcons/file_type_nix.svg',
+      iconPath: 'file_type_nix.svg',
     },
     _f_njsproj: {
-      iconPath: '@/static/images/fileIcons/file_type_njsproj.svg',
+      iconPath: 'file_type_njsproj.svg',
     },
     _f_noc: {
-      iconPath: '@/static/images/fileIcons/file_type_noc.svg',
+      iconPath: 'file_type_noc.svg',
     },
     _f_node: {
-      iconPath: '@/static/images/fileIcons/file_type_node.svg',
+      iconPath: 'file_type_node.svg',
     },
     _f_nodemon: {
-      iconPath: '@/static/images/fileIcons/file_type_nodemon.svg',
+      iconPath: 'file_type_nodemon.svg',
     },
     _f_npm: {
-      iconPath: '@/static/images/fileIcons/file_type_npm.svg',
+      iconPath: 'file_type_npm.svg',
     },
     _f_npmpackagejsonlint: {
-      iconPath: '@/static/images/fileIcons/file_type_npmpackagejsonlint.svg',
+      iconPath: 'file_type_npmpackagejsonlint.svg',
     },
     _f_nsi: {
-      iconPath: '@/static/images/fileIcons/file_type_nsi.svg',
+      iconPath: 'file_type_nsi.svg',
     },
     _f_nsri: {
-      iconPath: '@/static/images/fileIcons/file_type_nsri.svg',
+      iconPath: 'file_type_nsri.svg',
     },
     '_f_nsri-integrity': {
-      iconPath: '@/static/images/fileIcons/file_type_nsri-integrity.svg',
+      iconPath: 'file_type_nsri-integrity.svg',
     },
     _f_nuget: {
-      iconPath: '@/static/images/fileIcons/file_type_nuget.svg',
+      iconPath: 'file_type_nuget.svg',
     },
     _f_numpy: {
-      iconPath: '@/static/images/fileIcons/file_type_numpy.svg',
+      iconPath: 'file_type_numpy.svg',
     },
     _f_nunjucks: {
-      iconPath: '@/static/images/fileIcons/file_type_nunjucks.svg',
+      iconPath: 'file_type_nunjucks.svg',
     },
     _f_nuxt: {
-      iconPath: '@/static/images/fileIcons/file_type_nuxt.svg',
+      iconPath: 'file_type_nuxt.svg',
     },
     _f_nx: {
-      iconPath: '@/static/images/fileIcons/file_type_nx.svg',
+      iconPath: 'file_type_nx.svg',
     },
     _f_light_nx: {
-      iconPath: '@/static/images/fileIcons/file_type_light_nx.svg',
+      iconPath: 'file_type_light_nx.svg',
     },
     _f_nyc: {
-      iconPath: '@/static/images/fileIcons/file_type_nyc.svg',
+      iconPath: 'file_type_nyc.svg',
     },
     _f_objectivec: {
-      iconPath: '@/static/images/fileIcons/file_type_objectivec.svg',
+      iconPath: 'file_type_objectivec.svg',
     },
     _f_objectivecpp: {
-      iconPath: '@/static/images/fileIcons/file_type_objectivecpp.svg',
+      iconPath: 'file_type_objectivecpp.svg',
     },
     _f_objidconfig: {
-      iconPath: '@/static/images/fileIcons/file_type_objidconfig.svg',
+      iconPath: 'file_type_objidconfig.svg',
     },
     _f_light_objidconfig: {
-      iconPath: '@/static/images/fileIcons/file_type_light_objidconfig.svg',
+      iconPath: 'file_type_light_objidconfig.svg',
     },
     _f_ocaml: {
-      iconPath: '@/static/images/fileIcons/file_type_ocaml.svg',
+      iconPath: 'file_type_ocaml.svg',
     },
     _f_ocaml_intf: {
-      iconPath: '@/static/images/fileIcons/file_type_ocaml_intf.svg',
+      iconPath: 'file_type_ocaml_intf.svg',
     },
     _f_ogone: {
-      iconPath: '@/static/images/fileIcons/file_type_ogone.svg',
+      iconPath: 'file_type_ogone.svg',
     },
     _f_onenote: {
-      iconPath: '@/static/images/fileIcons/file_type_onenote.svg',
+      iconPath: 'file_type_onenote.svg',
     },
     _f_openHAB: {
-      iconPath: '@/static/images/fileIcons/file_type_openHAB.svg',
+      iconPath: 'file_type_openHAB.svg',
     },
     _f_light_openHAB: {
-      iconPath: '@/static/images/fileIcons/file_type_light_openHAB.svg',
+      iconPath: 'file_type_light_openHAB.svg',
     },
     _f_opencl: {
-      iconPath: '@/static/images/fileIcons/file_type_opencl.svg',
+      iconPath: 'file_type_opencl.svg',
     },
     _f_openscad: {
-      iconPath: '@/static/images/fileIcons/file_type_openscad.svg',
+      iconPath: 'file_type_openscad.svg',
     },
     _f_opentofu: {
-      iconPath: '@/static/images/fileIcons/file_type_opentofu.svg',
+      iconPath: 'file_type_opentofu.svg',
     },
     _f_org: {
-      iconPath: '@/static/images/fileIcons/file_type_org.svg',
+      iconPath: 'file_type_org.svg',
     },
     _f_outlook: {
-      iconPath: '@/static/images/fileIcons/file_type_outlook.svg',
+      iconPath: 'file_type_outlook.svg',
     },
     _f_ovpn: {
-      iconPath: '@/static/images/fileIcons/file_type_ovpn.svg',
+      iconPath: 'file_type_ovpn.svg',
     },
     _f_oxlint: {
-      iconPath: '@/static/images/fileIcons/file_type_oxlint.svg',
+      iconPath: 'file_type_oxlint.svg',
     },
     _f_package: {
-      iconPath: '@/static/images/fileIcons/file_type_package.svg',
+      iconPath: 'file_type_package.svg',
     },
     _f_paket: {
-      iconPath: '@/static/images/fileIcons/file_type_paket.svg',
+      iconPath: 'file_type_paket.svg',
     },
     _f_pandacss: {
-      iconPath: '@/static/images/fileIcons/file_type_pandacss.svg',
+      iconPath: 'file_type_pandacss.svg',
     },
     _f_patch: {
-      iconPath: '@/static/images/fileIcons/file_type_patch.svg',
+      iconPath: 'file_type_patch.svg',
     },
     _f_pcl: {
-      iconPath: '@/static/images/fileIcons/file_type_pcl.svg',
+      iconPath: 'file_type_pcl.svg',
     },
     _f_light_pcl: {
-      iconPath: '@/static/images/fileIcons/file_type_light_pcl.svg',
+      iconPath: 'file_type_light_pcl.svg',
     },
     _f_pddl: {
-      iconPath: '@/static/images/fileIcons/file_type_pddl.svg',
+      iconPath: 'file_type_pddl.svg',
     },
     _f_pddl_happenings: {
-      iconPath: '@/static/images/fileIcons/file_type_pddl_happenings.svg',
+      iconPath: 'file_type_pddl_happenings.svg',
     },
     _f_pddl_plan: {
-      iconPath: '@/static/images/fileIcons/file_type_pddl_plan.svg',
+      iconPath: 'file_type_pddl_plan.svg',
     },
     _f_pdf: {
-      iconPath: '@/static/images/fileIcons/file_type_pdf.svg',
+      iconPath: 'file_type_pdf.svg',
     },
     _f_pdm: {
-      iconPath: '@/static/images/fileIcons/file_type_pdm.svg',
+      iconPath: 'file_type_pdm.svg',
     },
     _f_peeky: {
-      iconPath: '@/static/images/fileIcons/file_type_peeky.svg',
+      iconPath: 'file_type_peeky.svg',
     },
     _f_perl: {
-      iconPath: '@/static/images/fileIcons/file_type_perl.svg',
+      iconPath: 'file_type_perl.svg',
     },
     _f_perl6: {
-      iconPath: '@/static/images/fileIcons/file_type_perl6.svg',
+      iconPath: 'file_type_perl6.svg',
     },
     _f_pgsql: {
-      iconPath: '@/static/images/fileIcons/file_type_pgsql.svg',
+      iconPath: 'file_type_pgsql.svg',
     },
     _f_photoshop: {
-      iconPath: '@/static/images/fileIcons/file_type_photoshop.svg',
+      iconPath: 'file_type_photoshop.svg',
     },
     _f_php: {
-      iconPath: '@/static/images/fileIcons/file_type_php.svg',
+      iconPath: 'file_type_php.svg',
     },
     _f_phpcsfixer: {
-      iconPath: '@/static/images/fileIcons/file_type_phpcsfixer.svg',
+      iconPath: 'file_type_phpcsfixer.svg',
     },
     _f_phpstan: {
-      iconPath: '@/static/images/fileIcons/file_type_phpstan.svg',
+      iconPath: 'file_type_phpstan.svg',
     },
     _f_phpunit: {
-      iconPath: '@/static/images/fileIcons/file_type_phpunit.svg',
+      iconPath: 'file_type_phpunit.svg',
     },
     _f_phraseapp: {
-      iconPath: '@/static/images/fileIcons/file_type_phraseapp.svg',
+      iconPath: 'file_type_phraseapp.svg',
     },
     _f_pine: {
-      iconPath: '@/static/images/fileIcons/file_type_pine.svg',
+      iconPath: 'file_type_pine.svg',
     },
     _f_pip: {
-      iconPath: '@/static/images/fileIcons/file_type_pip.svg',
+      iconPath: 'file_type_pip.svg',
     },
     _f_pipeline: {
-      iconPath: '@/static/images/fileIcons/file_type_pipeline.svg',
+      iconPath: 'file_type_pipeline.svg',
     },
     _f_plantuml: {
-      iconPath: '@/static/images/fileIcons/file_type_plantuml.svg',
+      iconPath: 'file_type_plantuml.svg',
     },
     _f_platformio: {
-      iconPath: '@/static/images/fileIcons/file_type_platformio.svg',
+      iconPath: 'file_type_platformio.svg',
     },
     _f_playwright: {
-      iconPath: '@/static/images/fileIcons/file_type_playwright.svg',
+      iconPath: 'file_type_playwright.svg',
     },
     _f_plsql: {
-      iconPath: '@/static/images/fileIcons/file_type_plsql.svg',
+      iconPath: 'file_type_plsql.svg',
     },
     _f_plsql_package: {
-      iconPath: '@/static/images/fileIcons/file_type_plsql_package.svg',
+      iconPath: 'file_type_plsql_package.svg',
     },
     _f_plsql_package_body: {
-      iconPath: '@/static/images/fileIcons/file_type_plsql_package_body.svg',
+      iconPath: 'file_type_plsql_package_body.svg',
     },
     _f_plsql_package_header: {
-      iconPath: '@/static/images/fileIcons/file_type_plsql_package_header.svg',
+      iconPath: 'file_type_plsql_package_header.svg',
     },
     _f_plsql_package_spec: {
-      iconPath: '@/static/images/fileIcons/file_type_plsql_package_spec.svg',
+      iconPath: 'file_type_plsql_package_spec.svg',
     },
     _f_pm2: {
-      iconPath: '@/static/images/fileIcons/file_type_pm2.svg',
+      iconPath: 'file_type_pm2.svg',
     },
     _f_pnpm: {
-      iconPath: '@/static/images/fileIcons/file_type_pnpm.svg',
+      iconPath: 'file_type_pnpm.svg',
     },
     _f_light_pnpm: {
-      iconPath: '@/static/images/fileIcons/file_type_light_pnpm.svg',
+      iconPath: 'file_type_light_pnpm.svg',
     },
     _f_poedit: {
-      iconPath: '@/static/images/fileIcons/file_type_poedit.svg',
+      iconPath: 'file_type_poedit.svg',
     },
     _f_poetry: {
-      iconPath: '@/static/images/fileIcons/file_type_poetry.svg',
+      iconPath: 'file_type_poetry.svg',
     },
     _f_polymer: {
-      iconPath: '@/static/images/fileIcons/file_type_polymer.svg',
+      iconPath: 'file_type_polymer.svg',
     },
     _f_pony: {
-      iconPath: '@/static/images/fileIcons/file_type_pony.svg',
+      iconPath: 'file_type_pony.svg',
     },
     _f_postcss: {
-      iconPath: '@/static/images/fileIcons/file_type_postcss.svg',
+      iconPath: 'file_type_postcss.svg',
     },
     _f_postcssconfig: {
-      iconPath: '@/static/images/fileIcons/file_type_postcssconfig.svg',
+      iconPath: 'file_type_postcssconfig.svg',
     },
     _f_postman: {
-      iconPath: '@/static/images/fileIcons/file_type_postman.svg',
+      iconPath: 'file_type_postman.svg',
     },
     _f_powerpoint: {
-      iconPath: '@/static/images/fileIcons/file_type_powerpoint.svg',
+      iconPath: 'file_type_powerpoint.svg',
     },
     _f_powershell: {
-      iconPath: '@/static/images/fileIcons/file_type_powershell.svg',
+      iconPath: 'file_type_powershell.svg',
     },
     _f_powershell_format: {
-      iconPath: '@/static/images/fileIcons/file_type_powershell_format.svg',
+      iconPath: 'file_type_powershell_format.svg',
     },
     _f_powershell_psd: {
-      iconPath: '@/static/images/fileIcons/file_type_powershell_psd.svg',
+      iconPath: 'file_type_powershell_psd.svg',
     },
     _f_powershell_psm: {
-      iconPath: '@/static/images/fileIcons/file_type_powershell_psm.svg',
+      iconPath: 'file_type_powershell_psm.svg',
     },
     _f_powershell_types: {
-      iconPath: '@/static/images/fileIcons/file_type_powershell_types.svg',
+      iconPath: 'file_type_powershell_types.svg',
     },
     _f_preact: {
-      iconPath: '@/static/images/fileIcons/file_type_preact.svg',
+      iconPath: 'file_type_preact.svg',
     },
     _f_precommit: {
-      iconPath: '@/static/images/fileIcons/file_type_precommit.svg',
+      iconPath: 'file_type_precommit.svg',
     },
     _f_prettier: {
-      iconPath: '@/static/images/fileIcons/file_type_prettier.svg',
+      iconPath: 'file_type_prettier.svg',
     },
     _f_light_prettier: {
-      iconPath: '@/static/images/fileIcons/file_type_light_prettier.svg',
+      iconPath: 'file_type_light_prettier.svg',
     },
     _f_prisma: {
-      iconPath: '@/static/images/fileIcons/file_type_prisma.svg',
+      iconPath: 'file_type_prisma.svg',
     },
     _f_light_prisma: {
-      iconPath: '@/static/images/fileIcons/file_type_light_prisma.svg',
+      iconPath: 'file_type_light_prisma.svg',
     },
     _f_processinglang: {
-      iconPath: '@/static/images/fileIcons/file_type_processinglang.svg',
+      iconPath: 'file_type_processinglang.svg',
     },
     _f_procfile: {
-      iconPath: '@/static/images/fileIcons/file_type_procfile.svg',
+      iconPath: 'file_type_procfile.svg',
     },
     _f_progress: {
-      iconPath: '@/static/images/fileIcons/file_type_progress.svg',
+      iconPath: 'file_type_progress.svg',
     },
     _f_prolog: {
-      iconPath: '@/static/images/fileIcons/file_type_prolog.svg',
+      iconPath: 'file_type_prolog.svg',
     },
     _f_prometheus: {
-      iconPath: '@/static/images/fileIcons/file_type_prometheus.svg',
+      iconPath: 'file_type_prometheus.svg',
     },
     _f_protobuf: {
-      iconPath: '@/static/images/fileIcons/file_type_protobuf.svg',
+      iconPath: 'file_type_protobuf.svg',
     },
     _f_protractor: {
-      iconPath: '@/static/images/fileIcons/file_type_protractor.svg',
+      iconPath: 'file_type_protractor.svg',
     },
     _f_publiccode: {
-      iconPath: '@/static/images/fileIcons/file_type_publiccode.svg',
+      iconPath: 'file_type_publiccode.svg',
     },
     _f_publisher: {
-      iconPath: '@/static/images/fileIcons/file_type_publisher.svg',
+      iconPath: 'file_type_publisher.svg',
     },
     _f_pug: {
-      iconPath: '@/static/images/fileIcons/file_type_pug.svg',
+      iconPath: 'file_type_pug.svg',
     },
     _f_pulumi: {
-      iconPath: '@/static/images/fileIcons/file_type_pulumi.svg',
+      iconPath: 'file_type_pulumi.svg',
     },
     _f_puppet: {
-      iconPath: '@/static/images/fileIcons/file_type_puppet.svg',
+      iconPath: 'file_type_puppet.svg',
     },
     _f_purescript: {
-      iconPath: '@/static/images/fileIcons/file_type_purescript.svg',
+      iconPath: 'file_type_purescript.svg',
     },
     _f_light_purescript: {
-      iconPath: '@/static/images/fileIcons/file_type_light_purescript.svg',
+      iconPath: 'file_type_light_purescript.svg',
     },
     _f_purgecss: {
-      iconPath: '@/static/images/fileIcons/file_type_purgecss.svg',
+      iconPath: 'file_type_purgecss.svg',
     },
     _f_pyenv: {
-      iconPath: '@/static/images/fileIcons/file_type_pyenv.svg',
+      iconPath: 'file_type_pyenv.svg',
     },
     _f_pyret: {
-      iconPath: '@/static/images/fileIcons/file_type_pyret.svg',
+      iconPath: 'file_type_pyret.svg',
     },
     _f_pyscript: {
-      iconPath: '@/static/images/fileIcons/file_type_pyscript.svg',
+      iconPath: 'file_type_pyscript.svg',
     },
     _f_pytest: {
-      iconPath: '@/static/images/fileIcons/file_type_pytest.svg',
+      iconPath: 'file_type_pytest.svg',
     },
     _f_python: {
-      iconPath: '@/static/images/fileIcons/file_type_python.svg',
+      iconPath: 'file_type_python.svg',
     },
     _f_pythowo: {
-      iconPath: '@/static/images/fileIcons/file_type_pythowo.svg',
+      iconPath: 'file_type_pythowo.svg',
     },
     _f_pytyped: {
-      iconPath: '@/static/images/fileIcons/file_type_pytyped.svg',
+      iconPath: 'file_type_pytyped.svg',
     },
     _f_pyup: {
-      iconPath: '@/static/images/fileIcons/file_type_pyup.svg',
+      iconPath: 'file_type_pyup.svg',
     },
     _f_q: {
-      iconPath: '@/static/images/fileIcons/file_type_q.svg',
+      iconPath: 'file_type_q.svg',
     },
     _f_qbs: {
-      iconPath: '@/static/images/fileIcons/file_type_qbs.svg',
+      iconPath: 'file_type_qbs.svg',
     },
     _f_qlikview: {
-      iconPath: '@/static/images/fileIcons/file_type_qlikview.svg',
+      iconPath: 'file_type_qlikview.svg',
     },
     _f_qml: {
-      iconPath: '@/static/images/fileIcons/file_type_qml.svg',
+      iconPath: 'file_type_qml.svg',
     },
     _f_qmldir: {
-      iconPath: '@/static/images/fileIcons/file_type_qmldir.svg',
+      iconPath: 'file_type_qmldir.svg',
     },
     _f_qsharp: {
-      iconPath: '@/static/images/fileIcons/file_type_qsharp.svg',
+      iconPath: 'file_type_qsharp.svg',
     },
     _f_quasar: {
-      iconPath: '@/static/images/fileIcons/file_type_quasar.svg',
+      iconPath: 'file_type_quasar.svg',
     },
     _f_light_quasar: {
-      iconPath: '@/static/images/fileIcons/file_type_light_quasar.svg',
+      iconPath: 'file_type_light_quasar.svg',
     },
     _f_r: {
-      iconPath: '@/static/images/fileIcons/file_type_r.svg',
+      iconPath: 'file_type_r.svg',
     },
     _f_ra_syntax_tree: {
-      iconPath: '@/static/images/fileIcons/file_type_ra_syntax_tree.svg',
+      iconPath: 'file_type_ra_syntax_tree.svg',
     },
     _f_racket: {
-      iconPath: '@/static/images/fileIcons/file_type_racket.svg',
+      iconPath: 'file_type_racket.svg',
     },
     _f_rails: {
-      iconPath: '@/static/images/fileIcons/file_type_rails.svg',
+      iconPath: 'file_type_rails.svg',
     },
     _f_rake: {
-      iconPath: '@/static/images/fileIcons/file_type_rake.svg',
+      iconPath: 'file_type_rake.svg',
     },
     _f_raku: {
-      iconPath: '@/static/images/fileIcons/file_type_raku.svg',
+      iconPath: 'file_type_raku.svg',
     },
     _f_light_raku: {
-      iconPath: '@/static/images/fileIcons/file_type_light_raku.svg',
+      iconPath: 'file_type_light_raku.svg',
     },
     _f_raml: {
-      iconPath: '@/static/images/fileIcons/file_type_raml.svg',
+      iconPath: 'file_type_raml.svg',
     },
     _f_razor: {
-      iconPath: '@/static/images/fileIcons/file_type_razor.svg',
+      iconPath: 'file_type_razor.svg',
     },
     _f_razzle: {
-      iconPath: '@/static/images/fileIcons/file_type_razzle.svg',
+      iconPath: 'file_type_razzle.svg',
     },
     _f_light_razzle: {
-      iconPath: '@/static/images/fileIcons/file_type_light_razzle.svg',
+      iconPath: 'file_type_light_razzle.svg',
     },
     _f_reactjs: {
-      iconPath: '@/static/images/fileIcons/file_type_reactjs.svg',
+      iconPath: 'file_type_reactjs.svg',
     },
     _f_reactrouter: {
-      iconPath: '@/static/images/fileIcons/file_type_reactrouter.svg',
+      iconPath: 'file_type_reactrouter.svg',
     },
     _f_light_reactrouter: {
-      iconPath: '@/static/images/fileIcons/file_type_light_reactrouter.svg',
+      iconPath: 'file_type_light_reactrouter.svg',
     },
     _f_reacttemplate: {
-      iconPath: '@/static/images/fileIcons/file_type_reacttemplate.svg',
+      iconPath: 'file_type_reacttemplate.svg',
     },
     _f_reactts: {
-      iconPath: '@/static/images/fileIcons/file_type_reactts.svg',
+      iconPath: 'file_type_reactts.svg',
     },
     _f_reason: {
-      iconPath: '@/static/images/fileIcons/file_type_reason.svg',
+      iconPath: 'file_type_reason.svg',
     },
     _f_red: {
-      iconPath: '@/static/images/fileIcons/file_type_red.svg',
+      iconPath: 'file_type_red.svg',
     },
     _f_registry: {
-      iconPath: '@/static/images/fileIcons/file_type_registry.svg',
+      iconPath: 'file_type_registry.svg',
     },
     _f_rego: {
-      iconPath: '@/static/images/fileIcons/file_type_rego.svg',
+      iconPath: 'file_type_rego.svg',
     },
     _f_rehype: {
-      iconPath: '@/static/images/fileIcons/file_type_rehype.svg',
+      iconPath: 'file_type_rehype.svg',
     },
     _f_light_rehype: {
-      iconPath: '@/static/images/fileIcons/file_type_light_rehype.svg',
+      iconPath: 'file_type_light_rehype.svg',
     },
     _f_remark: {
-      iconPath: '@/static/images/fileIcons/file_type_remark.svg',
+      iconPath: 'file_type_remark.svg',
     },
     _f_light_remark: {
-      iconPath: '@/static/images/fileIcons/file_type_light_remark.svg',
+      iconPath: 'file_type_light_remark.svg',
     },
     _f_renovate: {
-      iconPath: '@/static/images/fileIcons/file_type_renovate.svg',
+      iconPath: 'file_type_renovate.svg',
     },
     _f_replit: {
-      iconPath: '@/static/images/fileIcons/file_type_replit.svg',
+      iconPath: 'file_type_replit.svg',
     },
     _f_light_replit: {
-      iconPath: '@/static/images/fileIcons/file_type_light_replit.svg',
+      iconPath: 'file_type_light_replit.svg',
     },
     _f_rescript: {
-      iconPath: '@/static/images/fileIcons/file_type_rescript.svg',
+      iconPath: 'file_type_rescript.svg',
     },
     _f_rest: {
-      iconPath: '@/static/images/fileIcons/file_type_rest.svg',
+      iconPath: 'file_type_rest.svg',
     },
     _f_retext: {
-      iconPath: '@/static/images/fileIcons/file_type_retext.svg',
+      iconPath: 'file_type_retext.svg',
     },
     _f_light_retext: {
-      iconPath: '@/static/images/fileIcons/file_type_light_retext.svg',
+      iconPath: 'file_type_light_retext.svg',
     },
     _f_rexx: {
-      iconPath: '@/static/images/fileIcons/file_type_rexx.svg',
+      iconPath: 'file_type_rexx.svg',
     },
     _f_riot: {
-      iconPath: '@/static/images/fileIcons/file_type_riot.svg',
+      iconPath: 'file_type_riot.svg',
     },
     _f_rmd: {
-      iconPath: '@/static/images/fileIcons/file_type_rmd.svg',
+      iconPath: 'file_type_rmd.svg',
     },
     _f_rnc: {
-      iconPath: '@/static/images/fileIcons/file_type_rnc.svg',
+      iconPath: 'file_type_rnc.svg',
     },
     _f_robotframework: {
-      iconPath: '@/static/images/fileIcons/file_type_robotframework.svg',
+      iconPath: 'file_type_robotframework.svg',
     },
     _f_robots: {
-      iconPath: '@/static/images/fileIcons/file_type_robots.svg',
+      iconPath: 'file_type_robots.svg',
     },
     _f_rolldown: {
-      iconPath: '@/static/images/fileIcons/file_type_rolldown.svg',
+      iconPath: 'file_type_rolldown.svg',
     },
     _f_rollup: {
-      iconPath: '@/static/images/fileIcons/file_type_rollup.svg',
+      iconPath: 'file_type_rollup.svg',
     },
     _f_rome: {
-      iconPath: '@/static/images/fileIcons/file_type_rome.svg',
+      iconPath: 'file_type_rome.svg',
     },
     _f_light_rome: {
-      iconPath: '@/static/images/fileIcons/file_type_light_rome.svg',
+      iconPath: 'file_type_light_rome.svg',
     },
     _f_ron: {
-      iconPath: '@/static/images/fileIcons/file_type_ron.svg',
+      iconPath: 'file_type_ron.svg',
     },
     _f_rproj: {
-      iconPath: '@/static/images/fileIcons/file_type_rproj.svg',
+      iconPath: 'file_type_rproj.svg',
     },
     _f_rspec: {
-      iconPath: '@/static/images/fileIcons/file_type_rspec.svg',
+      iconPath: 'file_type_rspec.svg',
     },
     _f_rss: {
-      iconPath: '@/static/images/fileIcons/file_type_rss.svg',
+      iconPath: 'file_type_rss.svg',
     },
     _f_rubocop: {
-      iconPath: '@/static/images/fileIcons/file_type_rubocop.svg',
+      iconPath: 'file_type_rubocop.svg',
     },
     _f_light_rubocop: {
-      iconPath: '@/static/images/fileIcons/file_type_light_rubocop.svg',
+      iconPath: 'file_type_light_rubocop.svg',
     },
     _f_ruby: {
-      iconPath: '@/static/images/fileIcons/file_type_ruby.svg',
+      iconPath: 'file_type_ruby.svg',
     },
     _f_rust: {
-      iconPath: '@/static/images/fileIcons/file_type_rust.svg',
+      iconPath: 'file_type_rust.svg',
     },
     _f_light_rust: {
-      iconPath: '@/static/images/fileIcons/file_type_light_rust.svg',
+      iconPath: 'file_type_light_rust.svg',
     },
     _f_rust_toolchain: {
-      iconPath: '@/static/images/fileIcons/file_type_rust_toolchain.svg',
+      iconPath: 'file_type_rust_toolchain.svg',
     },
     _f_light_rust_toolchain: {
-      iconPath: '@/static/images/fileIcons/file_type_light_rust_toolchain.svg',
+      iconPath: 'file_type_light_rust_toolchain.svg',
     },
     '_f_s-lang': {
-      iconPath: '@/static/images/fileIcons/file_type_s-lang.svg',
+      iconPath: 'file_type_s-lang.svg',
     },
     _f_safetensors: {
-      iconPath: '@/static/images/fileIcons/file_type_safetensors.svg',
+      iconPath: 'file_type_safetensors.svg',
     },
     _f_light_safetensors: {
-      iconPath: '@/static/images/fileIcons/file_type_light_safetensors.svg',
+      iconPath: 'file_type_light_safetensors.svg',
     },
     _f_sails: {
-      iconPath: '@/static/images/fileIcons/file_type_sails.svg',
+      iconPath: 'file_type_sails.svg',
     },
     _f_saltstack: {
-      iconPath: '@/static/images/fileIcons/file_type_saltstack.svg',
+      iconPath: 'file_type_saltstack.svg',
     },
     _f_san: {
-      iconPath: '@/static/images/fileIcons/file_type_san.svg',
+      iconPath: 'file_type_san.svg',
     },
     _f_sapphire_framework_cli: {
-      iconPath:
-        '@/static/images/fileIcons/file_type_sapphire_framework_cli.svg',
+      iconPath: 'file_type_sapphire_framework_cli.svg',
     },
     _f_sas: {
-      iconPath: '@/static/images/fileIcons/file_type_sas.svg',
+      iconPath: 'file_type_sas.svg',
     },
     _f_sass: {
-      iconPath: '@/static/images/fileIcons/file_type_sass.svg',
+      iconPath: 'file_type_sass.svg',
     },
     _f_sbt: {
-      iconPath: '@/static/images/fileIcons/file_type_sbt.svg',
+      iconPath: 'file_type_sbt.svg',
     },
     _f_scala: {
-      iconPath: '@/static/images/fileIcons/file_type_scala.svg',
+      iconPath: 'file_type_scala.svg',
     },
     _f_scilab: {
-      iconPath: '@/static/images/fileIcons/file_type_scilab.svg',
+      iconPath: 'file_type_scilab.svg',
     },
     _f_script: {
-      iconPath: '@/static/images/fileIcons/file_type_script.svg',
+      iconPath: 'file_type_script.svg',
     },
     _f_scss: {
-      iconPath: '@/static/images/fileIcons/file_type_scss.svg',
+      iconPath: 'file_type_scss.svg',
     },
     _f_sdlang: {
-      iconPath: '@/static/images/fileIcons/file_type_sdlang.svg',
+      iconPath: 'file_type_sdlang.svg',
     },
     _f_search_result: {
-      iconPath: '@/static/images/fileIcons/file_type_search_result.svg',
+      iconPath: 'file_type_search_result.svg',
     },
     _f_seedkit: {
-      iconPath: '@/static/images/fileIcons/file_type_seedkit.svg',
+      iconPath: 'file_type_seedkit.svg',
     },
     _f_sentry: {
-      iconPath: '@/static/images/fileIcons/file_type_sentry.svg',
+      iconPath: 'file_type_sentry.svg',
     },
     _f_sequelize: {
-      iconPath: '@/static/images/fileIcons/file_type_sequelize.svg',
+      iconPath: 'file_type_sequelize.svg',
     },
     _f_serverless: {
-      iconPath: '@/static/images/fileIcons/file_type_serverless.svg',
+      iconPath: 'file_type_serverless.svg',
     },
     _f_shaderlab: {
-      iconPath: '@/static/images/fileIcons/file_type_shaderlab.svg',
+      iconPath: 'file_type_shaderlab.svg',
     },
     _f_light_shaderlab: {
-      iconPath: '@/static/images/fileIcons/file_type_light_shaderlab.svg',
+      iconPath: 'file_type_light_shaderlab.svg',
     },
     _f_shell: {
-      iconPath: '@/static/images/fileIcons/file_type_shell.svg',
+      iconPath: 'file_type_shell.svg',
     },
     _f_shellcheck: {
-      iconPath: '@/static/images/fileIcons/file_type_shellcheck.svg',
+      iconPath: 'file_type_shellcheck.svg',
     },
     _f_shuttle: {
-      iconPath: '@/static/images/fileIcons/file_type_shuttle.svg',
+      iconPath: 'file_type_shuttle.svg',
     },
     _f_silverstripe: {
-      iconPath: '@/static/images/fileIcons/file_type_silverstripe.svg',
+      iconPath: 'file_type_silverstripe.svg',
     },
     _f_sino: {
-      iconPath: '@/static/images/fileIcons/file_type_sino.svg',
+      iconPath: 'file_type_sino.svg',
     },
     _f_siyuan: {
-      iconPath: '@/static/images/fileIcons/file_type_siyuan.svg',
+      iconPath: 'file_type_siyuan.svg',
     },
     _f_sketch: {
-      iconPath: '@/static/images/fileIcons/file_type_sketch.svg',
+      iconPath: 'file_type_sketch.svg',
     },
     _f_skipper: {
-      iconPath: '@/static/images/fileIcons/file_type_skipper.svg',
+      iconPath: 'file_type_skipper.svg',
     },
     _f_slang: {
-      iconPath: '@/static/images/fileIcons/file_type_slang.svg',
+      iconPath: 'file_type_slang.svg',
     },
     _f_slashup: {
-      iconPath: '@/static/images/fileIcons/file_type_slashup.svg',
+      iconPath: 'file_type_slashup.svg',
     },
     _f_slice: {
-      iconPath: '@/static/images/fileIcons/file_type_slice.svg',
+      iconPath: 'file_type_slice.svg',
     },
     _f_slim: {
-      iconPath: '@/static/images/fileIcons/file_type_slim.svg',
+      iconPath: 'file_type_slim.svg',
     },
     _f_slint: {
-      iconPath: '@/static/images/fileIcons/file_type_slint.svg',
+      iconPath: 'file_type_slint.svg',
     },
     _f_sln: {
-      iconPath: '@/static/images/fileIcons/file_type_sln.svg',
+      iconPath: 'file_type_sln.svg',
     },
     _f_smarty: {
-      iconPath: '@/static/images/fileIcons/file_type_smarty.svg',
+      iconPath: 'file_type_smarty.svg',
     },
     _f_snakemake: {
-      iconPath: '@/static/images/fileIcons/file_type_snakemake.svg',
+      iconPath: 'file_type_snakemake.svg',
     },
     _f_snapcraft: {
-      iconPath: '@/static/images/fileIcons/file_type_snapcraft.svg',
+      iconPath: 'file_type_snapcraft.svg',
     },
     _f_snaplet: {
-      iconPath: '@/static/images/fileIcons/file_type_snaplet.svg',
+      iconPath: 'file_type_snaplet.svg',
     },
     _f_snort: {
-      iconPath: '@/static/images/fileIcons/file_type_snort.svg',
+      iconPath: 'file_type_snort.svg',
     },
     _f_snyk: {
-      iconPath: '@/static/images/fileIcons/file_type_snyk.svg',
+      iconPath: 'file_type_snyk.svg',
     },
     _f_solidarity: {
-      iconPath: '@/static/images/fileIcons/file_type_solidarity.svg',
+      iconPath: 'file_type_solidarity.svg',
     },
     _f_solidity: {
-      iconPath: '@/static/images/fileIcons/file_type_solidity.svg',
+      iconPath: 'file_type_solidity.svg',
     },
     _f_light_solidity: {
-      iconPath: '@/static/images/fileIcons/file_type_light_solidity.svg',
+      iconPath: 'file_type_light_solidity.svg',
     },
     _f_source: {
-      iconPath: '@/static/images/fileIcons/file_type_source.svg',
+      iconPath: 'file_type_source.svg',
     },
     _f_spacengine: {
-      iconPath: '@/static/images/fileIcons/file_type_spacengine.svg',
+      iconPath: 'file_type_spacengine.svg',
     },
     _f_sparql: {
-      iconPath: '@/static/images/fileIcons/file_type_sparql.svg',
+      iconPath: 'file_type_sparql.svg',
     },
     _f_spin: {
-      iconPath: '@/static/images/fileIcons/file_type_spin.svg',
+      iconPath: 'file_type_spin.svg',
     },
     _f_light_spin: {
-      iconPath: '@/static/images/fileIcons/file_type_light_spin.svg',
+      iconPath: 'file_type_light_spin.svg',
     },
     _f_sqf: {
-      iconPath: '@/static/images/fileIcons/file_type_sqf.svg',
+      iconPath: 'file_type_sqf.svg',
     },
     _f_sql: {
-      iconPath: '@/static/images/fileIcons/file_type_sql.svg',
+      iconPath: 'file_type_sql.svg',
     },
     _f_sqlite: {
-      iconPath: '@/static/images/fileIcons/file_type_sqlite.svg',
+      iconPath: 'file_type_sqlite.svg',
     },
     _f_squirrel: {
-      iconPath: '@/static/images/fileIcons/file_type_squirrel.svg',
+      iconPath: 'file_type_squirrel.svg',
     },
     _f_sss: {
-      iconPath: '@/static/images/fileIcons/file_type_sss.svg',
+      iconPath: 'file_type_sss.svg',
     },
     _f_sst: {
-      iconPath: '@/static/images/fileIcons/file_type_sst.svg',
+      iconPath: 'file_type_sst.svg',
     },
     _f_stan: {
-      iconPath: '@/static/images/fileIcons/file_type_stan.svg',
+      iconPath: 'file_type_stan.svg',
     },
     _f_stata: {
-      iconPath: '@/static/images/fileIcons/file_type_stata.svg',
+      iconPath: 'file_type_stata.svg',
     },
     _f_stencil: {
-      iconPath: '@/static/images/fileIcons/file_type_stencil.svg',
+      iconPath: 'file_type_stencil.svg',
     },
     _f_storyboard: {
-      iconPath: '@/static/images/fileIcons/file_type_storyboard.svg',
+      iconPath: 'file_type_storyboard.svg',
     },
     _f_storybook: {
-      iconPath: '@/static/images/fileIcons/file_type_storybook.svg',
+      iconPath: 'file_type_storybook.svg',
     },
     _f_stryker: {
-      iconPath: '@/static/images/fileIcons/file_type_stryker.svg',
+      iconPath: 'file_type_stryker.svg',
     },
     _f_stylable: {
-      iconPath: '@/static/images/fileIcons/file_type_stylable.svg',
+      iconPath: 'file_type_stylable.svg',
     },
     _f_style: {
-      iconPath: '@/static/images/fileIcons/file_type_style.svg',
+      iconPath: 'file_type_style.svg',
     },
     _f_styled: {
-      iconPath: '@/static/images/fileIcons/file_type_styled.svg',
+      iconPath: 'file_type_styled.svg',
     },
     _f_stylelint: {
-      iconPath: '@/static/images/fileIcons/file_type_stylelint.svg',
+      iconPath: 'file_type_stylelint.svg',
     },
     _f_light_stylelint: {
-      iconPath: '@/static/images/fileIcons/file_type_light_stylelint.svg',
+      iconPath: 'file_type_light_stylelint.svg',
     },
     _f_stylish_haskell: {
-      iconPath: '@/static/images/fileIcons/file_type_stylish_haskell.svg',
+      iconPath: 'file_type_stylish_haskell.svg',
     },
     _f_stylus: {
-      iconPath: '@/static/images/fileIcons/file_type_stylus.svg',
+      iconPath: 'file_type_stylus.svg',
     },
     _f_light_stylus: {
-      iconPath: '@/static/images/fileIcons/file_type_light_stylus.svg',
+      iconPath: 'file_type_light_stylus.svg',
     },
     _f_sublime: {
-      iconPath: '@/static/images/fileIcons/file_type_sublime.svg',
+      iconPath: 'file_type_sublime.svg',
     },
     _f_subversion: {
-      iconPath: '@/static/images/fileIcons/file_type_subversion.svg',
+      iconPath: 'file_type_subversion.svg',
     },
     _f_svelte: {
-      iconPath: '@/static/images/fileIcons/file_type_svelte.svg',
+      iconPath: 'file_type_svelte.svg',
     },
     _f_svelteconfig: {
-      iconPath: '@/static/images/fileIcons/file_type_svelteconfig.svg',
+      iconPath: 'file_type_svelteconfig.svg',
     },
     _f_svg: {
-      iconPath: '@/static/images/fileIcons/file_type_svg.svg',
+      iconPath: 'file_type_svg.svg',
     },
     _f_svgo: {
-      iconPath: '@/static/images/fileIcons/file_type_svgo.svg',
+      iconPath: 'file_type_svgo.svg',
     },
     _f_swagger: {
-      iconPath: '@/static/images/fileIcons/file_type_swagger.svg',
+      iconPath: 'file_type_swagger.svg',
     },
     _f_swc: {
-      iconPath: '@/static/images/fileIcons/file_type_swc.svg',
+      iconPath: 'file_type_swc.svg',
     },
     _f_swift: {
-      iconPath: '@/static/images/fileIcons/file_type_swift.svg',
+      iconPath: 'file_type_swift.svg',
     },
     _f_swig: {
-      iconPath: '@/static/images/fileIcons/file_type_swig.svg',
+      iconPath: 'file_type_swig.svg',
     },
     _f_symfony: {
-      iconPath: '@/static/images/fileIcons/file_type_symfony.svg',
+      iconPath: 'file_type_symfony.svg',
     },
     _f_light_symfony: {
-      iconPath: '@/static/images/fileIcons/file_type_light_symfony.svg',
+      iconPath: 'file_type_light_symfony.svg',
     },
     _f_systemd: {
-      iconPath: '@/static/images/fileIcons/file_type_systemd.svg',
+      iconPath: 'file_type_systemd.svg',
     },
     _f_light_systemd: {
-      iconPath: '@/static/images/fileIcons/file_type_light_systemd.svg',
+      iconPath: 'file_type_light_systemd.svg',
     },
     _f_systemverilog: {
-      iconPath: '@/static/images/fileIcons/file_type_systemverilog.svg',
+      iconPath: 'file_type_systemverilog.svg',
     },
     _f_light_systemverilog: {
-      iconPath: '@/static/images/fileIcons/file_type_light_systemverilog.svg',
+      iconPath: 'file_type_light_systemverilog.svg',
     },
     _f_t4tt: {
-      iconPath: '@/static/images/fileIcons/file_type_t4tt.svg',
+      iconPath: 'file_type_t4tt.svg',
     },
     _f_tailwind: {
-      iconPath: '@/static/images/fileIcons/file_type_tailwind.svg',
+      iconPath: 'file_type_tailwind.svg',
     },
     _f_tamagui: {
-      iconPath: '@/static/images/fileIcons/file_type_tamagui.svg',
+      iconPath: 'file_type_tamagui.svg',
     },
     _f_taplo: {
-      iconPath: '@/static/images/fileIcons/file_type_taplo.svg',
+      iconPath: 'file_type_taplo.svg',
     },
     _f_tauri: {
-      iconPath: '@/static/images/fileIcons/file_type_tauri.svg',
+      iconPath: 'file_type_tauri.svg',
     },
     _f_tcl: {
-      iconPath: '@/static/images/fileIcons/file_type_tcl.svg',
+      iconPath: 'file_type_tcl.svg',
     },
     _f_teal: {
-      iconPath: '@/static/images/fileIcons/file_type_teal.svg',
+      iconPath: 'file_type_teal.svg',
     },
     _f_templ: {
-      iconPath: '@/static/images/fileIcons/file_type_templ.svg',
+      iconPath: 'file_type_templ.svg',
     },
     _f_tera: {
-      iconPath: '@/static/images/fileIcons/file_type_tera.svg',
+      iconPath: 'file_type_tera.svg',
     },
     _f_terraform: {
-      iconPath: '@/static/images/fileIcons/file_type_terraform.svg',
+      iconPath: 'file_type_terraform.svg',
     },
     _f_test: {
-      iconPath: '@/static/images/fileIcons/file_type_test.svg',
+      iconPath: 'file_type_test.svg',
     },
     _f_testcafe: {
-      iconPath: '@/static/images/fileIcons/file_type_testcafe.svg',
+      iconPath: 'file_type_testcafe.svg',
     },
     _f_light_testcafe: {
-      iconPath: '@/static/images/fileIcons/file_type_light_testcafe.svg',
+      iconPath: 'file_type_light_testcafe.svg',
     },
     _f_testjs: {
-      iconPath: '@/static/images/fileIcons/file_type_testjs.svg',
+      iconPath: 'file_type_testjs.svg',
     },
     _f_light_testjs: {
-      iconPath: '@/static/images/fileIcons/file_type_light_testjs.svg',
+      iconPath: 'file_type_light_testjs.svg',
     },
     _f_testplane: {
-      iconPath: '@/static/images/fileIcons/file_type_testplane.svg',
+      iconPath: 'file_type_testplane.svg',
     },
     _f_testts: {
-      iconPath: '@/static/images/fileIcons/file_type_testts.svg',
+      iconPath: 'file_type_testts.svg',
     },
     _f_tex: {
-      iconPath: '@/static/images/fileIcons/file_type_tex.svg',
+      iconPath: 'file_type_tex.svg',
     },
     _f_light_tex: {
-      iconPath: '@/static/images/fileIcons/file_type_light_tex.svg',
+      iconPath: 'file_type_light_tex.svg',
     },
     _f_text: {
-      iconPath: '@/static/images/fileIcons/file_type_text.svg',
+      iconPath: 'file_type_text.svg',
     },
     _f_textile: {
-      iconPath: '@/static/images/fileIcons/file_type_textile.svg',
+      iconPath: 'file_type_textile.svg',
     },
     _f_tfs: {
-      iconPath: '@/static/images/fileIcons/file_type_tfs.svg',
+      iconPath: 'file_type_tfs.svg',
     },
     _f_tiltfile: {
-      iconPath: '@/static/images/fileIcons/file_type_tiltfile.svg',
+      iconPath: 'file_type_tiltfile.svg',
     },
     _f_tm: {
-      iconPath: '@/static/images/fileIcons/file_type_tm.svg',
+      iconPath: 'file_type_tm.svg',
     },
     _f_light_tm: {
-      iconPath: '@/static/images/fileIcons/file_type_light_tm.svg',
+      iconPath: 'file_type_light_tm.svg',
     },
     _f_tmux: {
-      iconPath: '@/static/images/fileIcons/file_type_tmux.svg',
+      iconPath: 'file_type_tmux.svg',
     },
     _f_light_tmux: {
-      iconPath: '@/static/images/fileIcons/file_type_light_tmux.svg',
+      iconPath: 'file_type_light_tmux.svg',
     },
     _f_todo: {
-      iconPath: '@/static/images/fileIcons/file_type_todo.svg',
+      iconPath: 'file_type_todo.svg',
     },
     _f_light_todo: {
-      iconPath: '@/static/images/fileIcons/file_type_light_todo.svg',
+      iconPath: 'file_type_light_todo.svg',
     },
     _f_toit: {
-      iconPath: '@/static/images/fileIcons/file_type_toit.svg',
+      iconPath: 'file_type_toit.svg',
     },
     _f_light_toit: {
-      iconPath: '@/static/images/fileIcons/file_type_light_toit.svg',
+      iconPath: 'file_type_light_toit.svg',
     },
     _f_toml: {
-      iconPath: '@/static/images/fileIcons/file_type_toml.svg',
+      iconPath: 'file_type_toml.svg',
     },
     _f_light_toml: {
-      iconPath: '@/static/images/fileIcons/file_type_light_toml.svg',
+      iconPath: 'file_type_light_toml.svg',
     },
     _f_tox: {
-      iconPath: '@/static/images/fileIcons/file_type_tox.svg',
+      iconPath: 'file_type_tox.svg',
     },
     _f_travis: {
-      iconPath: '@/static/images/fileIcons/file_type_travis.svg',
+      iconPath: 'file_type_travis.svg',
     },
     _f_tree: {
-      iconPath: '@/static/images/fileIcons/file_type_tree.svg',
+      iconPath: 'file_type_tree.svg',
     },
     _f_light_tree: {
-      iconPath: '@/static/images/fileIcons/file_type_light_tree.svg',
+      iconPath: 'file_type_light_tree.svg',
     },
     _f_tres: {
-      iconPath: '@/static/images/fileIcons/file_type_tres.svg',
+      iconPath: 'file_type_tres.svg',
     },
     _f_truffle: {
-      iconPath: '@/static/images/fileIcons/file_type_truffle.svg',
+      iconPath: 'file_type_truffle.svg',
     },
     _f_trunk: {
-      iconPath: '@/static/images/fileIcons/file_type_trunk.svg',
+      iconPath: 'file_type_trunk.svg',
     },
     _f_tsbuildinfo: {
-      iconPath: '@/static/images/fileIcons/file_type_tsbuildinfo.svg',
+      iconPath: 'file_type_tsbuildinfo.svg',
     },
     _f_tscn: {
-      iconPath: '@/static/images/fileIcons/file_type_tscn.svg',
+      iconPath: 'file_type_tscn.svg',
     },
     _f_tsconfig: {
-      iconPath: '@/static/images/fileIcons/file_type_tsconfig.svg',
+      iconPath: 'file_type_tsconfig.svg',
     },
     _f_tslint: {
-      iconPath: '@/static/images/fileIcons/file_type_tslint.svg',
+      iconPath: 'file_type_tslint.svg',
     },
     _f_tt: {
-      iconPath: '@/static/images/fileIcons/file_type_tt.svg',
+      iconPath: 'file_type_tt.svg',
     },
     _f_ttcn: {
-      iconPath: '@/static/images/fileIcons/file_type_ttcn.svg',
+      iconPath: 'file_type_ttcn.svg',
     },
     _f_tuc: {
-      iconPath: '@/static/images/fileIcons/file_type_tuc.svg',
+      iconPath: 'file_type_tuc.svg',
     },
     _f_turbo: {
-      iconPath: '@/static/images/fileIcons/file_type_turbo.svg',
+      iconPath: 'file_type_turbo.svg',
     },
     _f_light_turbo: {
-      iconPath: '@/static/images/fileIcons/file_type_light_turbo.svg',
+      iconPath: 'file_type_light_turbo.svg',
     },
     _f_twig: {
-      iconPath: '@/static/images/fileIcons/file_type_twig.svg',
+      iconPath: 'file_type_twig.svg',
     },
     _f_typedoc: {
-      iconPath: '@/static/images/fileIcons/file_type_typedoc.svg',
+      iconPath: 'file_type_typedoc.svg',
     },
     _f_typescript: {
-      iconPath: '@/static/images/fileIcons/file_type_typescript.svg',
+      iconPath: 'file_type_typescript.svg',
     },
     _f_typescriptdef: {
-      iconPath: '@/static/images/fileIcons/file_type_typescriptdef.svg',
+      iconPath: 'file_type_typescriptdef.svg',
     },
     _f_typo3: {
-      iconPath: '@/static/images/fileIcons/file_type_typo3.svg',
+      iconPath: 'file_type_typo3.svg',
     },
     _f_uiua: {
-      iconPath: '@/static/images/fileIcons/file_type_uiua.svg',
+      iconPath: 'file_type_uiua.svg',
     },
     _f_unibeautify: {
-      iconPath: '@/static/images/fileIcons/file_type_unibeautify.svg',
+      iconPath: 'file_type_unibeautify.svg',
     },
     _f_light_unibeautify: {
-      iconPath: '@/static/images/fileIcons/file_type_light_unibeautify.svg',
+      iconPath: 'file_type_light_unibeautify.svg',
     },
     _f_unison: {
-      iconPath: '@/static/images/fileIcons/file_type_unison.svg',
+      iconPath: 'file_type_unison.svg',
     },
     _f_unlicense: {
-      iconPath: '@/static/images/fileIcons/file_type_unlicense.svg',
+      iconPath: 'file_type_unlicense.svg',
     },
     _f_unocss: {
-      iconPath: '@/static/images/fileIcons/file_type_unocss.svg',
+      iconPath: 'file_type_unocss.svg',
     },
     _f_vagrant: {
-      iconPath: '@/static/images/fileIcons/file_type_vagrant.svg',
+      iconPath: 'file_type_vagrant.svg',
     },
     _f_vala: {
-      iconPath: '@/static/images/fileIcons/file_type_vala.svg',
+      iconPath: 'file_type_vala.svg',
     },
     _f_vanilla_extract: {
-      iconPath: '@/static/images/fileIcons/file_type_vanilla_extract.svg',
+      iconPath: 'file_type_vanilla_extract.svg',
     },
     _f_vapi: {
-      iconPath: '@/static/images/fileIcons/file_type_vapi.svg',
+      iconPath: 'file_type_vapi.svg',
     },
     _f_vapor: {
-      iconPath: '@/static/images/fileIcons/file_type_vapor.svg',
+      iconPath: 'file_type_vapor.svg',
     },
     _f_vash: {
-      iconPath: '@/static/images/fileIcons/file_type_vash.svg',
+      iconPath: 'file_type_vash.svg',
     },
     _f_light_vash: {
-      iconPath: '@/static/images/fileIcons/file_type_light_vash.svg',
+      iconPath: 'file_type_light_vash.svg',
     },
     _f_vb: {
-      iconPath: '@/static/images/fileIcons/file_type_vb.svg',
+      iconPath: 'file_type_vb.svg',
     },
     _f_vba: {
-      iconPath: '@/static/images/fileIcons/file_type_vba.svg',
+      iconPath: 'file_type_vba.svg',
     },
     _f_vbhtml: {
-      iconPath: '@/static/images/fileIcons/file_type_vbhtml.svg',
+      iconPath: 'file_type_vbhtml.svg',
     },
     _f_vbproj: {
-      iconPath: '@/static/images/fileIcons/file_type_vbproj.svg',
+      iconPath: 'file_type_vbproj.svg',
     },
     _f_vcxproj: {
-      iconPath: '@/static/images/fileIcons/file_type_vcxproj.svg',
+      iconPath: 'file_type_vcxproj.svg',
     },
     _f_velocity: {
-      iconPath: '@/static/images/fileIcons/file_type_velocity.svg',
+      iconPath: 'file_type_velocity.svg',
     },
     _f_vento: {
-      iconPath: '@/static/images/fileIcons/file_type_vento.svg',
+      iconPath: 'file_type_vento.svg',
     },
     _f_vercel: {
-      iconPath: '@/static/images/fileIcons/file_type_vercel.svg',
+      iconPath: 'file_type_vercel.svg',
     },
     _f_light_vercel: {
-      iconPath: '@/static/images/fileIcons/file_type_light_vercel.svg',
+      iconPath: 'file_type_light_vercel.svg',
     },
     _f_verilog: {
-      iconPath: '@/static/images/fileIcons/file_type_verilog.svg',
+      iconPath: 'file_type_verilog.svg',
     },
     _f_vhdl: {
-      iconPath: '@/static/images/fileIcons/file_type_vhdl.svg',
+      iconPath: 'file_type_vhdl.svg',
     },
     _f_video: {
-      iconPath: '@/static/images/fileIcons/file_type_video.svg',
+      iconPath: 'file_type_video.svg',
     },
     _f_view: {
-      iconPath: '@/static/images/fileIcons/file_type_view.svg',
+      iconPath: 'file_type_view.svg',
     },
     _f_vim: {
-      iconPath: '@/static/images/fileIcons/file_type_vim.svg',
+      iconPath: 'file_type_vim.svg',
     },
     _f_vite: {
-      iconPath: '@/static/images/fileIcons/file_type_vite.svg',
+      iconPath: 'file_type_vite.svg',
     },
     _f_vitest: {
-      iconPath: '@/static/images/fileIcons/file_type_vitest.svg',
+      iconPath: 'file_type_vitest.svg',
     },
     _f_vlang: {
-      iconPath: '@/static/images/fileIcons/file_type_vlang.svg',
+      iconPath: 'file_type_vlang.svg',
     },
     _f_volt: {
-      iconPath: '@/static/images/fileIcons/file_type_volt.svg',
+      iconPath: 'file_type_volt.svg',
     },
     _f_vscode: {
-      iconPath: '@/static/images/fileIcons/file_type_vscode.svg',
+      iconPath: 'file_type_vscode.svg',
     },
     _f_vscode_test: {
-      iconPath: '@/static/images/fileIcons/file_type_vscode_test.svg',
+      iconPath: 'file_type_vscode_test.svg',
     },
     _f_vsix: {
-      iconPath: '@/static/images/fileIcons/file_type_vsix.svg',
+      iconPath: 'file_type_vsix.svg',
     },
     _f_light_vsix: {
-      iconPath: '@/static/images/fileIcons/file_type_light_vsix.svg',
+      iconPath: 'file_type_light_vsix.svg',
     },
     _f_vsixmanifest: {
-      iconPath: '@/static/images/fileIcons/file_type_vsixmanifest.svg',
+      iconPath: 'file_type_vsixmanifest.svg',
     },
     _f_light_vsixmanifest: {
-      iconPath: '@/static/images/fileIcons/file_type_light_vsixmanifest.svg',
+      iconPath: 'file_type_light_vsixmanifest.svg',
     },
     _f_vue: {
-      iconPath: '@/static/images/fileIcons/file_type_vue.svg',
+      iconPath: 'file_type_vue.svg',
     },
     _f_vueconfig: {
-      iconPath: '@/static/images/fileIcons/file_type_vueconfig.svg',
+      iconPath: 'file_type_vueconfig.svg',
     },
     _f_vyper: {
-      iconPath: '@/static/images/fileIcons/file_type_vyper.svg',
+      iconPath: 'file_type_vyper.svg',
     },
     _f_wallaby: {
-      iconPath: '@/static/images/fileIcons/file_type_wallaby.svg',
+      iconPath: 'file_type_wallaby.svg',
     },
     _f_wally: {
-      iconPath: '@/static/images/fileIcons/file_type_wally.svg',
+      iconPath: 'file_type_wally.svg',
     },
     _f_wasm: {
-      iconPath: '@/static/images/fileIcons/file_type_wasm.svg',
+      iconPath: 'file_type_wasm.svg',
     },
     _f_watchmanconfig: {
-      iconPath: '@/static/images/fileIcons/file_type_watchmanconfig.svg',
+      iconPath: 'file_type_watchmanconfig.svg',
     },
     _f_wdio: {
-      iconPath: '@/static/images/fileIcons/file_type_wdio.svg',
+      iconPath: 'file_type_wdio.svg',
     },
     _f_weblate: {
-      iconPath: '@/static/images/fileIcons/file_type_weblate.svg',
+      iconPath: 'file_type_weblate.svg',
     },
     _f_webpack: {
-      iconPath: '@/static/images/fileIcons/file_type_webpack.svg',
+      iconPath: 'file_type_webpack.svg',
     },
     _f_wenyan: {
-      iconPath: '@/static/images/fileIcons/file_type_wenyan.svg',
+      iconPath: 'file_type_wenyan.svg',
     },
     _f_wercker: {
-      iconPath: '@/static/images/fileIcons/file_type_wercker.svg',
+      iconPath: 'file_type_wercker.svg',
     },
     _f_wgsl: {
-      iconPath: '@/static/images/fileIcons/file_type_wgsl.svg',
+      iconPath: 'file_type_wgsl.svg',
     },
     _f_wikitext: {
-      iconPath: '@/static/images/fileIcons/file_type_wikitext.svg',
+      iconPath: 'file_type_wikitext.svg',
     },
     _f_windi: {
-      iconPath: '@/static/images/fileIcons/file_type_windi.svg',
+      iconPath: 'file_type_windi.svg',
     },
     _f_wit: {
-      iconPath: '@/static/images/fileIcons/file_type_wit.svg',
+      iconPath: 'file_type_wit.svg',
     },
     _f_wolfram: {
-      iconPath: '@/static/images/fileIcons/file_type_wolfram.svg',
+      iconPath: 'file_type_wolfram.svg',
     },
     _f_word: {
-      iconPath: '@/static/images/fileIcons/file_type_word.svg',
+      iconPath: 'file_type_word.svg',
     },
     _f_wpml: {
-      iconPath: '@/static/images/fileIcons/file_type_wpml.svg',
+      iconPath: 'file_type_wpml.svg',
     },
     _f_wurst: {
-      iconPath: '@/static/images/fileIcons/file_type_wurst.svg',
+      iconPath: 'file_type_wurst.svg',
     },
     _f_wxml: {
-      iconPath: '@/static/images/fileIcons/file_type_wxml.svg',
+      iconPath: 'file_type_wxml.svg',
     },
     _f_wxss: {
-      iconPath: '@/static/images/fileIcons/file_type_wxss.svg',
+      iconPath: 'file_type_wxss.svg',
     },
     _f_wxt: {
-      iconPath: '@/static/images/fileIcons/file_type_wxt.svg',
+      iconPath: 'file_type_wxt.svg',
     },
     _f_xcode: {
-      iconPath: '@/static/images/fileIcons/file_type_xcode.svg',
+      iconPath: 'file_type_xcode.svg',
     },
     _f_xfl: {
-      iconPath: '@/static/images/fileIcons/file_type_xfl.svg',
+      iconPath: 'file_type_xfl.svg',
     },
     _f_light_xfl: {
-      iconPath: '@/static/images/fileIcons/file_type_light_xfl.svg',
+      iconPath: 'file_type_light_xfl.svg',
     },
     _f_xib: {
-      iconPath: '@/static/images/fileIcons/file_type_xib.svg',
+      iconPath: 'file_type_xib.svg',
     },
     _f_xliff: {
-      iconPath: '@/static/images/fileIcons/file_type_xliff.svg',
+      iconPath: 'file_type_xliff.svg',
     },
     _f_xmake: {
-      iconPath: '@/static/images/fileIcons/file_type_xmake.svg',
+      iconPath: 'file_type_xmake.svg',
     },
     _f_xml: {
-      iconPath: '@/static/images/fileIcons/file_type_xml.svg',
+      iconPath: 'file_type_xml.svg',
     },
     _f_xo: {
-      iconPath: '@/static/images/fileIcons/file_type_xo.svg',
+      iconPath: 'file_type_xo.svg',
     },
     _f_xorg: {
-      iconPath: '@/static/images/fileIcons/file_type_xorg.svg',
+      iconPath: 'file_type_xorg.svg',
     },
     _f_light_xorg: {
-      iconPath: '@/static/images/fileIcons/file_type_light_xorg.svg',
+      iconPath: 'file_type_light_xorg.svg',
     },
     _f_xquery: {
-      iconPath: '@/static/images/fileIcons/file_type_xquery.svg',
+      iconPath: 'file_type_xquery.svg',
     },
     _f_xsl: {
-      iconPath: '@/static/images/fileIcons/file_type_xsl.svg',
+      iconPath: 'file_type_xsl.svg',
     },
     _f_yacc: {
-      iconPath: '@/static/images/fileIcons/file_type_yacc.svg',
+      iconPath: 'file_type_yacc.svg',
     },
     _f_yaml: {
-      iconPath: '@/static/images/fileIcons/file_type_yaml.svg',
+      iconPath: 'file_type_yaml.svg',
     },
     _f_light_yaml: {
-      iconPath: '@/static/images/fileIcons/file_type_light_yaml.svg',
+      iconPath: 'file_type_light_yaml.svg',
     },
     _f_yamllint: {
-      iconPath: '@/static/images/fileIcons/file_type_yamllint.svg',
+      iconPath: 'file_type_yamllint.svg',
     },
     _f_yandex: {
-      iconPath: '@/static/images/fileIcons/file_type_yandex.svg',
+      iconPath: 'file_type_yandex.svg',
     },
     _f_yang: {
-      iconPath: '@/static/images/fileIcons/file_type_yang.svg',
+      iconPath: 'file_type_yang.svg',
     },
     _f_yarn: {
-      iconPath: '@/static/images/fileIcons/file_type_yarn.svg',
+      iconPath: 'file_type_yarn.svg',
     },
     _f_yeoman: {
-      iconPath: '@/static/images/fileIcons/file_type_yeoman.svg',
+      iconPath: 'file_type_yeoman.svg',
     },
     _f_zig: {
-      iconPath: '@/static/images/fileIcons/file_type_zig.svg',
+      iconPath: 'file_type_zig.svg',
     },
     _f_zip: {
-      iconPath: '@/static/images/fileIcons/file_type_zip.svg',
+      iconPath: 'file_type_zip.svg',
     },
   },
   file: '_file',
