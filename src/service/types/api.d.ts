@@ -158,22 +158,35 @@ export namespace PostOauthCaptcha {
 
 /** 添加用户文件 */
 export namespace PostAddUserFile {
-  type Request = {
+  type DirBaseInfo = {
     /** 父级路径 */
     parentPath: string
     /** 文件名称 */
     filename: string
+    /** 访问权限[0:私有, 1公共]  */
+    accessPermissions: 0 | 1
+    /** 是否为目录 */
+    isDir: 1
+  }
+
+  type FileBaseInfo = {
+    /** 父级路径 */
+    parentPath: string
+    /** 文件名称 */
+    filename: string
+    /** 访问权限[0:私有, 1公共]  */
+    accessPermissions: 0 | 1
+    /** 是否为目录 */
+    isDir: 0
     /** 原始文件名称 */
     originalname: string
     /** 文件类型 */
     mimetype: string
-    /** 是否为目录 */
-    isDir: boolean
     /** 文件大小 */
     size: number
-    /** 访问权限[0:私有, 1公共]  */
-    accessPermissions: 0 | 1
-  }[]
+  }
+
+  type Request = (DirBaseInfo | FileBaseInfo)[]
 
   type Response = {
     /** 状态码 */
