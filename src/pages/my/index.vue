@@ -7,7 +7,7 @@
       <view v-if="userStore.id" class="flex position-relative p-[5px_0]">
         <image
           class="w-[65px] h-[65px] rounded-full"
-          :src="staticBaseURL + '' + userStore.avatarLink"
+          :src="baseURL + '' + userStore.avatarLink"
           mode="aspectFill"
         />
         <view class="ml-[20px] flex flex-col justify-center">
@@ -95,7 +95,7 @@
 </template>
 
 <script setup lang="ts">
-import { staticBaseURL } from '@/api/http'
+import { baseURL } from '@/api/http'
 import router from '@/router'
 import { useUserStore } from '@/stores'
 import { computed } from 'vue'

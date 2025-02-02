@@ -3,7 +3,6 @@ import type { PostUploadFile } from '@/service/types/api'
 import { useUserStore } from '@/stores'
 
 export const baseURL = process.env.BASE_URL
-export const staticBaseURL = process.env.STATIC_BASE_URL
 
 const httpInterceptor: UniApp.InterceptorOptions = {
   // 拦截前触发

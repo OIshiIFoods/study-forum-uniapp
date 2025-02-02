@@ -46,7 +46,7 @@
             <view
               class="w-[40px] p-t-[100%] m-r-10px bg-center bg-contain bg-no-repeat"
               :style="{
-                backgroundImage: `url(../../static/images/fileIcons/${getFileIconName(item.fullname, !!item.isDir)})`,
+                backgroundImage: `url(${baseURL + '/api/v1/public/images/fileIcons'}/${getFileIconName(item.fullname, !!item.isDir)})`,
               }"
             />
           </template>
@@ -67,7 +67,7 @@
         <view
           class="w-[70%] p-t-[100%] bg-center bg-contain bg-no-repeat"
           :style="{
-            backgroundImage: `url(../../static/images/fileIcons/${getFileIconName(item.fullname, !!item.isDir)})`,
+            backgroundImage: `url(${baseURL + '/api/v1/public/images/fileIcons'}/${getFileIconName(item.fullname, !!item.isDir)})`,
           }"
         />
         <text class="text-[12px]">{{ item.fullname }}</text>
