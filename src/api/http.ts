@@ -1,4 +1,5 @@
 import router from '@/router'
+import type { PostUploadFile } from '@/service/types/api'
 import { useUserStore } from '@/stores'
 
 export const baseURL = process.env.BASE_URL
@@ -41,6 +42,10 @@ const httpInterceptor: UniApp.InterceptorOptions = {
           .map((item) => item.join('='))
           .join(';')
       )
+    }
+    // 处理 uploadFile 上传文件后，响应内容为 string 的情况
+    if (typeof res.data === 'string') {
+      res.data = JSON.parse(res.data)
     }
     // token 过期时
     if (res.data.status === 401) {
@@ -87,6 +92,7 @@ export const request = <T>(options: UniApp.RequestOptions) => {
         }
         resolve(res.data as T)
       },
+
       fail(res) {
         uni.showToast({
           title: '网络异常，请稍后重试！' + res.errMsg,
@@ -97,4 +103,50 @@ export const request = <T>(options: UniApp.RequestOptions) => {
       },
     })
   })
+}
+
+export const uploadFile = async (
+  fileType: 'avatar' | 'file' | 'archiver' | 'articleImg',
+  fileInfoList: Pick<
+    UniNamespace.UploadFileOption,
+    'name' | 'filePath' | 'file' | 'formData'
+  >[] = []
+) => {
+  return (
+    await Promise.allSettled(
+      fileInfoList.map((fileInfo) => {
+        return new Promise((resolve, reject) => {
+          uni.uploadFile({
+            url: '/api/v1/upload/' + fileType,
+            ...fileInfo,
+            success: (res) => {
+              const uploadRes = res.data as unknown as PostUploadFile.Response
+              resolve(uploadRes.data.uploadFileInfoList[0])
+            },
+            fail(res) {
+              uni.showToast({
+                title: '网络异常，请稍后重试！' + res.errMsg,
+                icon: 'none',
+                duration: 2000,
+              })
+              return Promise.reject(res)
+            },
+          })
+        })
+      })
+    )
+  ).reduce(
+    (acc, cur) => {
+      if (cur.status === 'fulfilled') {
+        acc.success.push(cur.value)
+      } else {
+        acc.fail.push(cur.reason)
+      }
+      return acc
+    },
+    {
+      success: [] as any[],
+      fail: [] as any[],
+    }
+  )
 }
