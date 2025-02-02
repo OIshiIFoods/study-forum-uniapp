@@ -13,7 +13,11 @@
       },
       "dev": {
         "title": "测试环境",
-        "env": {}
+        "env": {
+          "UNI_PLATFORM": "mp-weixin",
+          "BASE_URL": "http://192.168.0.102:3000",
+          "STATIC_BASE_URL": "http://192.168.0.102:3000"
+        }
       }
     }
   },
