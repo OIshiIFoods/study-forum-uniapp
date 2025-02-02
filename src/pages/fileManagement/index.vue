@@ -171,11 +171,10 @@
 
 <script setup lang="ts">
 import router from '@/router'
-import { createFile, getUserFiles } from '@/service'
+import { createFile, getFileIconConfig, getUserFiles } from '@/service'
 import type { UserFileProps } from '@/service/types/db'
 import dayjs from 'dayjs'
-import { reactive, ref, watch } from 'vue'
-import fileIconConfig from './config/fileIconConfig'
+import { onMounted, reactive, ref, watch } from 'vue'
 import type { _FormRef } from 'uview-plus/types/comps/form'
 import { baseURL, uploadFile } from '@/api/http'
 import mime from 'mime-types'
@@ -299,6 +298,13 @@ const createFolderPopupConfig = reactive({
     },
   },
 })
+const fileIconConfig = ref<any>({})
+
+onMounted(() => {
+  getFileIconConfig().then((res) => {
+    fileIconConfig.value = res
+  })
+})
 
 watch(
   [
@@ -348,15 +354,19 @@ const createFolder = async () => {
   } catch (err) {}
 }
 const getFileIconName = (filename: string, isDir: boolean = false) => {
-  const { iconDefinitions } = fileIconConfig as any
+  if (!Object.entries(fileIconConfig.value).length) {
+    return 'default_file.svg'
+  }
+  const { iconDefinitions } = fileIconConfig.value as any
   if (isDir) {
-    const { folder, folderNames, folderNamesExpanded } = fileIconConfig as any
+    const { folder, folderNames, folderNamesExpanded } =
+      fileIconConfig.value as any
     return iconDefinitions[
       folderNamesExpanded[filename] ?? folderNames[filename] ?? folder
     ].iconPath
   } else {
     const { file, fileNames, fileExtensions, languageIds } =
-      fileIconConfig as any
+      fileIconConfig.value as any
     return iconDefinitions[
       fileNames[filename] ??
         fileExtensions[filename.split('.').pop() ?? ''] ??
