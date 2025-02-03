@@ -1,7 +1,7 @@
 <template>
   <view class="box-border p-[0_calc(var(--page-side-unit-size)*5)]">
     <!-- 搜索栏 -->
-    <up-navbar title="文件管理" auto-back placeholder />
+    <up-navbar :title="navbarConfig.title" auto-back placeholder />
     <up-search
       placeholder="搜索文件"
       :height="35"
@@ -303,10 +303,26 @@ const createFolderPopupConfig = reactive({
     },
   },
 })
+// 文件图标配置
 const fileIconConfig = ref<any>({})
+// 页面标题
+const navbarConfig = reactive({
+  title: '',
+})
 
 onLoad((option: any) => {
-  curAccessDirInfo.path = option.curDirPath ?? '/'
+  // 更新当前访问目录信息
+  if (option.curDirParentPath) {
+    curAccessDirInfo.path =
+      (option.curDirParentPath === '/' ? '' : option.curDirParentPath) +
+      '/' +
+      option.curDirName
+  } else {
+    curAccessDirInfo.path = '/'
+  }
+  // 更新页面标题
+  navbarConfig.title = option.curDirName ?? '文件管理'
+  // 获取文件图标配置
   getFileIconConfig().then((res) => {
     fileIconConfig.value = res
   })
@@ -371,10 +387,8 @@ const handleFileClick = (fileInfo: UserFileProps & { fullname: string }) => {
     router.push({
       name: 'fileManagement',
       params: {
-        curDirPath:
-          (fileInfo.parentPath === '/' ? '' : fileInfo.parentPath) +
-          '/' +
-          fileInfo.name,
+        curDirParentPath: curAccessDirInfo.path,
+        curDirName: fileInfo.name,
       },
     })
   }
