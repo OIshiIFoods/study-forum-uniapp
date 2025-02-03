@@ -41,6 +41,7 @@
           :titleStyle="{ color: '#000', fontSize: '14px' }"
           :label="dayjs(item.updateTime).format('YYYY-MM-DD HH:mm:ss')"
           :border="false"
+          @click="handleFileClick(item)"
         >
           <template #icon>
             <view
@@ -60,9 +61,10 @@
     </up-list>
     <view v-else class="flex flex-wrap">
       <view
+        class="pos-relative flex flex-col items-center justify-center w-[25%] box-border p-[10px] overflow-hidden"
         v-for="item in curAccessDirInfo.fileInfoList"
         :key="item.id"
-        class="pos-relative flex flex-col items-center justify-center w-[25%] box-border p-[10px] overflow-hidden"
+        @click="handleFileClick(item)"
       >
         <view
           class="w-[70%] p-t-[100%] bg-center bg-contain bg-no-repeat"
@@ -178,6 +180,7 @@ import { onMounted, reactive, ref, watch } from 'vue'
 import type { _FormRef } from 'uview-plus/types/comps/form'
 import { baseURL, uploadFile } from '@/api/http'
 import mime from 'mime-types'
+import { onLoad } from '@dcloudio/uni-app'
 
 type OrderByOptions = {
   /** 字段名称 */
@@ -187,7 +190,7 @@ type OrderByOptions = {
 }
 
 const curAccessDirInfo = reactive({
-  path: '/',
+  path: '',
   updateLeap: 1,
   orderBy: [] as OrderByOptions[],
   status: 1,
@@ -300,7 +303,8 @@ const createFolderPopupConfig = reactive({
 })
 const fileIconConfig = ref<any>({})
 
-onMounted(() => {
+onLoad((option: any) => {
+  curAccessDirInfo.path = option.curDirPath ?? '/'
   getFileIconConfig().then((res) => {
     fileIconConfig.value = res
   })
@@ -337,6 +341,13 @@ const createFolder = async () => {
     await createFolderFormRef?.value?.validate()
     const { formInfo } = createFolderPopupConfig
     const { filename } = formInfo.model
+    if (curAccessDirInfo.fileInfoList.some((item) => item.name === filename)) {
+      uni.showToast({
+        title: '文件夹已存在',
+        icon: 'none',
+      })
+      return
+    }
     await createFile([
       {
         filename,
@@ -352,6 +363,19 @@ const createFolder = async () => {
       icon: 'none',
     })
   } catch (err) {}
+}
+const handleFileClick = (fileInfo: UserFileProps & { fullname: string }) => {
+  if (fileInfo.isDir) {
+    router.push({
+      name: 'fileManagement',
+      params: {
+        curDirPath:
+          (fileInfo.parentPath === '/' ? '' : fileInfo.parentPath) +
+          '/' +
+          fileInfo.name,
+      },
+    })
+  }
 }
 const getFileIconName = (filename: string, isDir: boolean = false) => {
   if (!Object.entries(fileIconConfig.value).length) {
