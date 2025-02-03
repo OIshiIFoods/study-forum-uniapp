@@ -54,6 +54,7 @@
           <template #right-icon>
             <view
               class="w-10px h-10px b-1px b-style-solid b-[#ccc] rounded-full"
+              @click.stop="handleFileLongPress(item)"
             />
           </template>
         </up-cell>
@@ -75,6 +76,7 @@
         <text class="text-[12px]">{{ item.fullname }}</text>
         <view
           class="pos-absolute pos-top-3px pos-right-3px w-10px h-10px b-1px b-style-solid b-[#ccc] rounded-full"
+          @click.stop="handleFileLongPress(item)"
         />
       </view>
     </view>
@@ -377,6 +379,9 @@ const handleFileClick = (fileInfo: UserFileProps & { fullname: string }) => {
     })
   }
 }
+const handleFileLongPress = (
+  fileInfo: UserFileProps & { fullname: string }
+) => {}
 const getFileIconName = (filename: string, isDir: boolean = false) => {
   if (!Object.entries(fileIconConfig.value).length) {
     return 'default_file.svg'
