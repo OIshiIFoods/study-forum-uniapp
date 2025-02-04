@@ -1,83 +1,122 @@
 <template>
-  <view class="box-border p-[0_calc(var(--page-side-unit-size)*5)]">
-    <!-- 搜索栏 -->
-    <up-navbar :title="navbarConfig.title" auto-back placeholder />
-    <up-search
-      placeholder="搜索文件"
-      :height="35"
-      :placeholderColor="'var(--text-color-grey)'"
-      :showAction="false"
-    />
-    <!-- 条件区域 -->
-    <view class="flex justify-between m-[10px_0]">
-      <view class="flex items-center gap-col-8px">
-        <view
-          class="iconfont icon-refresh"
-          @click="curAccessDirInfo.updateLeap = !curAccessDirInfo.updateLeap"
-        />
+  <view class="h-100vh grid grid-rows-[1fr_auto]">
+    <view
+      class="box-border p-[0_calc(var(--page-side-unit-size)*5)] overflow-auto"
+    >
+      <!-- 搜索栏 -->
+      <up-navbar :title="navbarConfig.title" auto-back placeholder />
+      <up-search
+        placeholder="搜索文件"
+        :height="35"
+        :placeholderColor="'var(--text-color-grey)'"
+        :showAction="false"
+      />
+      <!-- 条件区域 -->
+      <view class="flex justify-between m-[10px_0]">
+        <view class="flex items-center gap-col-8px">
+          <view
+            class="iconfont icon-refresh"
+            @click="curAccessDirInfo.updateLeap = !curAccessDirInfo.updateLeap"
+          />
+        </view>
+        <view class="flex items-center gap-col-8px">
+          <view
+            class="iconfont icon-filter"
+            @click="sortPopupConfig.show = true"
+          />
+          <up-icon
+            :name="viewMode"
+            :size="20"
+            color="var(--text-color-grey)"
+            @click="viewMode = viewMode === 'list' ? 'grid' : 'list'"
+          />
+        </view>
       </view>
-      <view class="flex items-center gap-col-8px">
-        <view
-          class="iconfont icon-filter"
-          @click="sortPopupConfig.show = true"
-        />
-        <up-icon
-          :name="viewMode"
-          :size="20"
-          color="var(--text-color-grey)"
-          @click="viewMode = viewMode === 'list' ? 'grid' : 'list'"
-        />
-      </view>
-    </view>
-    <!-- 文件列表区域 -->
-    <up-list v-if="viewMode === 'grid'">
-      <up-list-item
-        v-for="item in curAccessDirInfo.fileInfoList"
-        :key="item.id"
-        class="overflow-hidden"
-      >
-        <up-cell
-          :title="item.name"
-          :titleStyle="{ color: '#000', fontSize: '14px' }"
-          :label="dayjs(item.updateTime).format('YYYY-MM-DD HH:mm:ss')"
-          :border="false"
-          @click="handleFileClick(item)"
+      <!-- 文件列表区域 -->
+      <up-list v-if="viewMode === 'grid'">
+        <up-list-item
+          class="overflow-hidden"
+          v-for="item in curAccessDirInfo.fileInfoList"
+          :key="item.id"
         >
-          <template #icon>
+          <up-cell
+            :title="item.name"
+            :titleStyle="{ color: '#000', fontSize: '14px' }"
+            :label="dayjs(item.updateTime).format('YYYY-MM-DD HH:mm:ss')"
+            :border="false"
+            @click="handleFileClick(item)"
+            @longpress="handleFileLongPress(item)"
+          >
+            <template #icon>
+              <view
+                class="w-[40px] p-t-[100%] m-r-10px bg-center bg-contain bg-no-repeat"
+                :style="{
+                  backgroundImage: `url(${baseURL + '/api/v1/public/images/fileIcons'}/${getFileIconName(item.fullname, !!item.isDir)})`,
+                }"
+              />
+            </template>
+            <template #right-icon>
+              <view @click.stop="() => {}">
+                <view
+                  v-if="!curAccessDirInfo.selectedFiles.includes(item.id)"
+                  class="w-10px h-10px b-1px b-style-solid b-[#ccc] rounded-full"
+                  @click="curAccessDirInfo.selectedFiles.push(item.id)"
+                />
+                <up-icon
+                  v-else
+                  name="checkmark-circle-fill"
+                  color="#59a3f4"
+                  size="20"
+                  @click="
+                    curAccessDirInfo.selectedFiles =
+                      curAccessDirInfo.selectedFiles.filter(
+                        (slectItemId) => slectItemId !== item.id
+                      )
+                  "
+                />
+              </view>
+            </template>
+          </up-cell>
+        </up-list-item>
+      </up-list>
+      <view v-else class="flex flex-wrap">
+        <view
+          class="pos-relative flex flex-col items-center justify-center w-[25%] box-border p-[10px] overflow-hidden"
+          v-for="item in curAccessDirInfo.fileInfoList"
+          :key="item.id"
+          @click="handleFileClick(item)"
+          @longpress="handleFileLongPress(item)"
+        >
+          <view
+            class="w-[70%] p-t-[100%] bg-center bg-contain bg-no-repeat"
+            :style="{
+              backgroundImage: `url(${baseURL + '/api/v1/public/images/fileIcons'}/${getFileIconName(item.fullname, !!item.isDir)})`,
+            }"
+          />
+          <text class="text-[12px]">{{ item.fullname }}</text>
+          <view
+            class="pos-absolute pos-top-3px pos-right-3px"
+            @click.stop="() => {}"
+          >
             <view
-              class="w-[40px] p-t-[100%] m-r-10px bg-center bg-contain bg-no-repeat"
-              :style="{
-                backgroundImage: `url(${baseURL + '/api/v1/public/images/fileIcons'}/${getFileIconName(item.fullname, !!item.isDir)})`,
-              }"
-            />
-          </template>
-          <template #right-icon>
-            <view
+              v-if="!curAccessDirInfo.selectedFiles.includes(item.id)"
               class="w-10px h-10px b-1px b-style-solid b-[#ccc] rounded-full"
-              @click.stop="handleFileLongPress(item)"
+              @click="curAccessDirInfo.selectedFiles.push(item.id)"
             />
-          </template>
-        </up-cell>
-      </up-list-item>
-    </up-list>
-    <view v-else class="flex flex-wrap">
-      <view
-        class="pos-relative flex flex-col items-center justify-center w-[25%] box-border p-[10px] overflow-hidden"
-        v-for="item in curAccessDirInfo.fileInfoList"
-        :key="item.id"
-        @click="handleFileClick(item)"
-      >
-        <view
-          class="w-[70%] p-t-[100%] bg-center bg-contain bg-no-repeat"
-          :style="{
-            backgroundImage: `url(${baseURL + '/api/v1/public/images/fileIcons'}/${getFileIconName(item.fullname, !!item.isDir)})`,
-          }"
-        />
-        <text class="text-[12px]">{{ item.fullname }}</text>
-        <view
-          class="pos-absolute pos-top-3px pos-right-3px w-10px h-10px b-1px b-style-solid b-[#ccc] rounded-full"
-          @click.stop="handleFileLongPress(item)"
-        />
+            <up-icon
+              v-else
+              name="checkmark-circle-fill"
+              color="#59a3f4"
+              size="20"
+              @click="
+                curAccessDirInfo.selectedFiles =
+                  curAccessDirInfo.selectedFiles.filter(
+                    (slectItemId) => slectItemId !== item.id
+                  )
+              "
+            />
+          </view>
+        </view>
       </view>
     </view>
     <!-- 文件弹出框 -->
@@ -91,7 +130,9 @@
         class="p-[18px] bg-[linear-gradient(to_bottom,#f6eeca,#f9f8f8_60%)]"
       >
         <view v-for="column in filePopupConfig.content" :key="column.title">
-          <view class="text-15px font-700 m-[20px_0]">{{ column.title }}</view>
+          <view class="text-15px font-700 m-[20px_0]">
+            {{ column.title }}
+          </view>
           <view class="flex flex-wrap">
             <view
               class="box-border p-[5px] w-25%"
@@ -163,13 +204,39 @@
         </view>
       </view>
     </up-popup>
+    <!-- 操作文件弹出窗 -->
+    <view
+      v-show="operateFilePopupConfig.show"
+      class="pos-relative flex flex-wrap p-[25px_10px_10px] b-0 b-t b-solid b-[#ccc] animate-duration-150 animate-keyframes-slide-in-up"
+    >
+      <up-icon
+        name="close"
+        class="pos-absolute pos-top-10px pos-right-10px"
+        @click="curAccessDirInfo.selectedFiles = []"
+      />
+      <view
+        class="flex flex-col justify-end items-center p-[10px_0] w-20%"
+        v-for="item in operateFilePopupConfig.list"
+        :key="item.title"
+        @click="item.clickAction"
+      >
+        <view
+          class="iconfont text-[18px] mb-[6px]"
+          :class="'icon-' + item.iconName"
+          :style="item.style"
+        />
+        <text class="text-[10px] font-700">{{ item.title }}</text>
+      </view>
+    </view>
     <!-- 悬浮按钮 -->
-    <up-float-button
-      class="flex"
-      bottom="100px"
-      right="10px"
-      @click="filePopupConfig.show = true"
-    />
+    <view v-show="!operateFilePopupConfig.show">
+      <up-float-button
+        class="flex"
+        bottom="100px"
+        right="10px"
+        @click="filePopupConfig.show = true"
+      />
+    </view>
   </view>
 </template>
 
@@ -197,6 +264,7 @@ const curAccessDirInfo = reactive({
   orderBy: [] as OrderByOptions[],
   status: 1,
   fileInfoList: [] as (UserFileProps & { fullname: string })[],
+  selectedFiles: [] as number[],
 })
 // 文件列表视图切换
 const viewMode = ref('list')
@@ -303,6 +371,68 @@ const createFolderPopupConfig = reactive({
     },
   },
 })
+// 操作文件弹出窗配置
+const operateFilePopupConfig = reactive({
+  show: false,
+  list: [
+    {
+      title: '下载',
+      iconName: 'download',
+      style: {},
+      clickAction: () => {
+        operateFilePopupConfig.show = false
+      },
+    },
+    {
+      title: '分享',
+      iconName: 'share',
+      style: {},
+      clickAction: () => {
+        operateFilePopupConfig.show = false
+      },
+    },
+    {
+      title: '删除',
+      iconName: 'delete',
+      style: {},
+      clickAction: () => {
+        operateFilePopupConfig.show = false
+      },
+    },
+    {
+      title: '复制',
+      iconName: 'copy',
+      style: { fontSize: '23px' },
+      clickAction: () => {
+        operateFilePopupConfig.show = false
+      },
+    },
+    {
+      title: '移动',
+      iconName: 'move',
+      style: {},
+      clickAction: () => {
+        operateFilePopupConfig.show = false
+      },
+    },
+    {
+      title: '重命名',
+      iconName: 'rename',
+      style: { fontSize: '18px' },
+      clickAction: () => {
+        operateFilePopupConfig.show = false
+      },
+    },
+    {
+      title: '更改访问权限',
+      iconName: 'locked',
+      style: { fontSize: '25px' },
+      clickAction: () => {
+        operateFilePopupConfig.show = false
+      },
+    },
+  ],
+})
 // 文件图标配置
 const fileIconConfig = ref<any>({})
 // 页面标题
@@ -328,6 +458,7 @@ onLoad((option: any) => {
   })
 })
 
+// 通过监听变化更新文件列表
 watch(
   [
     () => curAccessDirInfo.path,
@@ -347,6 +478,18 @@ watch(
         ...item,
       }))
     }
+  },
+  {
+    immediate: true,
+    deep: true,
+  }
+)
+
+// 通过监听选中文件列表变化更新操作文件弹出框显示状态
+watch(
+  [() => curAccessDirInfo.selectedFiles],
+  () => {
+    operateFilePopupConfig.show = !!curAccessDirInfo.selectedFiles.length
   },
   {
     immediate: true,
@@ -383,6 +526,17 @@ const createFolder = async () => {
   } catch (err) {}
 }
 const handleFileClick = (fileInfo: UserFileProps & { fullname: string }) => {
+  // 当处于多选状态时，点击文件选中或取消选中
+  if (curAccessDirInfo.selectedFiles.length > 0) {
+    if (curAccessDirInfo.selectedFiles.includes(fileInfo.id)) {
+      curAccessDirInfo.selectedFiles = curAccessDirInfo.selectedFiles.filter(
+        (item) => item !== fileInfo.id
+      )
+    } else {
+      curAccessDirInfo.selectedFiles.push(fileInfo.id)
+    }
+    return
+  }
   if (fileInfo.isDir) {
     router.push({
       name: 'fileManagement',
@@ -395,7 +549,9 @@ const handleFileClick = (fileInfo: UserFileProps & { fullname: string }) => {
 }
 const handleFileLongPress = (
   fileInfo: UserFileProps & { fullname: string }
-) => {}
+) => {
+  curAccessDirInfo.selectedFiles.push(fileInfo.id)
+}
 const getFileIconName = (filename: string, isDir: boolean = false) => {
   if (!Object.entries(fileIconConfig.value).length) {
     return 'default_file.svg'
