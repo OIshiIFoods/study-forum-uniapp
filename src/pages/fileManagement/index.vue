@@ -410,9 +410,13 @@ const operateFilePopupConfig = reactive({
       iconName: 'download',
       style: {},
       clickAction: async () => {
+        uni.showLoading({
+          title: '下载中',
+        })
         const { data } = await getFileDownloadUrl({
           fileIdList: curAccessDirInfo.selectedFiles,
         })
+        uni.hideLoading()
         Object.assign(fileDownloadPopupConfig, {
           show: true,
           ...data,
@@ -433,9 +437,13 @@ const operateFilePopupConfig = reactive({
       iconName: 'delete',
       style: {},
       clickAction: async () => {
+        uni.showLoading({
+          title: '下载中',
+        })
         await deleteFile({
           fileIdList: curAccessDirInfo.selectedFiles,
         })
+        uni.hideLoading()
         uni.showToast({ title: '删除成功', icon: 'none' })
         curAccessDirInfo.selectedFiles = []
         curAccessDirInfo.updateLeap = +!curAccessDirInfo.updateLeap
