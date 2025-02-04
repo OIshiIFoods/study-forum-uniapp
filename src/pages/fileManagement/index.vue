@@ -279,6 +279,7 @@ import type { _FormRef } from 'uview-plus/types/comps/form'
 import { baseURL, uploadFile } from '@/api/http'
 import mime from 'mime-types'
 import { onLoad } from '@dcloudio/uni-app'
+import { deleteFile } from '@/service/modules/userFile'
 
 type OrderByOptions = {
   /** 字段名称 */
@@ -424,15 +425,20 @@ const operateFilePopupConfig = reactive({
       iconName: 'share',
       style: {},
       clickAction: () => {
-        operateFilePopupConfig.show = false
+        curAccessDirInfo.selectedFiles = []
       },
     },
     {
       title: '删除',
       iconName: 'delete',
       style: {},
-      clickAction: () => {
-        operateFilePopupConfig.show = false
+      clickAction: async () => {
+        await deleteFile({
+          fileIdList: curAccessDirInfo.selectedFiles,
+        })
+        uni.showToast({ title: '删除成功', icon: 'none' })
+        curAccessDirInfo.selectedFiles = []
+        curAccessDirInfo.updateLeap = +!curAccessDirInfo.updateLeap
       },
     },
     {
@@ -440,7 +446,7 @@ const operateFilePopupConfig = reactive({
       iconName: 'copy',
       style: { fontSize: '23px' },
       clickAction: () => {
-        operateFilePopupConfig.show = false
+        curAccessDirInfo.selectedFiles = []
       },
     },
     {
@@ -448,7 +454,7 @@ const operateFilePopupConfig = reactive({
       iconName: 'move',
       style: {},
       clickAction: () => {
-        operateFilePopupConfig.show = false
+        curAccessDirInfo.selectedFiles = []
       },
     },
     {
@@ -456,7 +462,7 @@ const operateFilePopupConfig = reactive({
       iconName: 'rename',
       style: { fontSize: '18px' },
       clickAction: () => {
-        operateFilePopupConfig.show = false
+        curAccessDirInfo.selectedFiles = []
       },
     },
     {
@@ -464,7 +470,7 @@ const operateFilePopupConfig = reactive({
       iconName: 'locked',
       style: { fontSize: '25px' },
       clickAction: () => {
-        operateFilePopupConfig.show = false
+        curAccessDirInfo.selectedFiles = []
       },
     },
   ],

@@ -1,5 +1,6 @@
 import { request } from '@/api/http'
 import type {
+  DeleteUserFile,
   GetFileList,
   PostAddUserFile,
   PostFileDownloadLink,
@@ -30,6 +31,15 @@ export const getFileDownloadUrl = async (
   return request<PostFileDownloadLink.Response>({
     method: 'POST',
     url: '/api/v1/file/downloadLink',
+    data,
+  })
+}
+
+/** 删除文件 */
+export const deleteFile = async (data: DeleteUserFile.Request) => {
+  return request<DeleteUserFile.Response>({
+    method: 'DELETE',
+    url: '/api/v1/file',
     data,
   })
 }
