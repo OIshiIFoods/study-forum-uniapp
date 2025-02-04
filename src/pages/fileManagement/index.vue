@@ -228,6 +228,30 @@
         <text class="text-[10px] font-700">{{ item.title }}</text>
       </view>
     </view>
+    <!-- 文件下载弹出框 -->
+    <up-popup
+      :show="fileDownloadPopupConfig.show"
+      mode="center"
+      closeable
+      @close="fileDownloadPopupConfig.show = false"
+    >
+      <view class="flex flex-col p-[40px_18px] w-650 gap-row-2">
+        <view class="text-15px">
+          以下为下载链接，有效时间为
+          <text class="text-[red]">
+            {{ fileDownloadPopupConfig.effectiveDuration }}
+          </text>
+          秒
+        </view>
+        <text class="text-15px text-[red]">请长按复制后再退出！！！</text>
+        <text
+          class="text-[12px] break-all text-[#59a3f4]"
+          @longpress="copyText(fileDownloadPopupConfig.downloadLink)"
+        >
+          {{ fileDownloadPopupConfig.downloadLink }}
+        </text>
+      </view>
+    </up-popup>
     <!-- 悬浮按钮 -->
     <view v-show="!operateFilePopupConfig.show">
       <up-float-button
@@ -242,7 +266,12 @@
 
 <script setup lang="ts">
 import router from '@/router'
-import { createFile, getFileIconConfig, getUserFiles } from '@/service'
+import {
+  createFile,
+  getFileDownloadUrl,
+  getFileIconConfig,
+  getUserFiles,
+} from '@/service'
 import type { UserFileProps } from '@/service/types/db'
 import dayjs from 'dayjs'
 import { onMounted, reactive, ref, watch } from 'vue'
@@ -379,8 +408,15 @@ const operateFilePopupConfig = reactive({
       title: '下载',
       iconName: 'download',
       style: {},
-      clickAction: () => {
-        operateFilePopupConfig.show = false
+      clickAction: async () => {
+        const { data } = await getFileDownloadUrl({
+          fileIdList: curAccessDirInfo.selectedFiles,
+        })
+        Object.assign(fileDownloadPopupConfig, {
+          show: true,
+          ...data,
+        })
+        curAccessDirInfo.selectedFiles = []
       },
     },
     {
@@ -432,6 +468,12 @@ const operateFilePopupConfig = reactive({
       },
     },
   ],
+})
+// 文件下载弹出框
+const fileDownloadPopupConfig = reactive({
+  show: false,
+  downloadLink: '',
+  effectiveDuration: 0,
 })
 // 文件图标配置
 const fileIconConfig = ref<any>({})
@@ -573,5 +615,17 @@ const getFileIconName = (filename: string, isDir: boolean = false) => {
         file
     ].iconPath
   }
+}
+const copyText = (data: string = '') => {
+  uni.setClipboardData({
+    data: data,
+    success() {
+      uni.showToast({
+        title: '已复制到剪贴板',
+        icon: 'none',
+        position: 'top',
+      })
+    },
+  })
 }
 </script>
