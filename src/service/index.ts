@@ -3,8 +3,10 @@ import { getCaptcha } from './modules/ouath'
 import { getUserInfo, login } from './modules/user'
 import {
   createFile,
+  deleteFile,
   getFileDownloadUrl,
   getUserFiles,
+  updateFileInfo,
 } from './modules/userFile'
 
 export {
@@ -15,4 +17,6 @@ export {
   getUserFiles,
   getFileIconConfig,
   getFileDownloadUrl,
+  deleteFile,
+  updateFileInfo,
 }

@@ -200,7 +200,37 @@
           </up-form-item>
         </up-form>
         <view class="mt-[20px]">
-          <up-button type="primary" text="确定" @click="createFolder" />
+          <up-button
+            type="primary"
+            text="确定"
+            @click="createFolderPopupConfig.formInfo.onOk"
+          />
+        </view>
+      </view>
+    </up-popup>
+    <!-- 修改文件名称弹出窗 -->
+    <up-popup
+      :show="modifyFilenamePopupConfig.show"
+      mode="center"
+      closeable
+      @close="modifyFilenamePopupConfig.show = false"
+    >
+      <view class="p-[40px_16px_12px]">
+        <up-form
+          ref="modifyFilenameFormRef"
+          :model="modifyFilenamePopupConfig.formInfo.model"
+          :rules="modifyFilenamePopupConfig.formInfo.rules"
+        >
+          <up-form-item prop="name" label="文件名称：" :labelWidth="100">
+            <up-input v-model="modifyFilenamePopupConfig.formInfo.model.name" />
+          </up-form-item>
+        </up-form>
+        <view class="mt-[20px]">
+          <up-button
+            type="primary"
+            text="确定"
+            @click="modifyFilenamePopupConfig.formInfo.onOk"
+          />
         </view>
       </view>
     </up-popup>
@@ -218,14 +248,24 @@
         class="flex flex-col justify-end items-center p-[10px_0] w-20%"
         v-for="item in operateFilePopupConfig.list"
         :key="item.title"
-        @click="item.clickAction"
+        @click="!item.disabled() && item.clickAction()"
       >
         <view
           class="iconfont text-[18px] mb-[6px]"
           :class="'icon-' + item.iconName"
-          :style="item.style"
+          :style="{
+            ...item.style,
+            ...(item.disabled() ? { color: '#ccc' } : {}),
+          }"
         />
-        <text class="text-[10px] font-700">{{ item.title }}</text>
+        <text
+          class="text-[10px] font-700"
+          :style="{
+            ...(item.disabled() ? { color: '#ccc' } : {}),
+          }"
+        >
+          {{ item.title }}
+        </text>
       </view>
     </view>
     <!-- 文件下载弹出框 -->
@@ -271,6 +311,8 @@ import {
   getFileDownloadUrl,
   getFileIconConfig,
   getUserFiles,
+  deleteFile,
+  updateFileInfo,
 } from '@/service'
 import type { UserFileProps } from '@/service/types/db'
 import dayjs from 'dayjs'
@@ -279,7 +321,6 @@ import type { _FormRef } from 'uview-plus/types/comps/form'
 import { baseURL, uploadFile } from '@/api/http'
 import mime from 'mime-types'
 import { onLoad } from '@dcloudio/uni-app'
-import { deleteFile } from '@/service/modules/userFile'
 
 type OrderByOptions = {
   /** 字段名称 */
@@ -399,6 +440,127 @@ const createFolderPopupConfig = reactive({
         trigger: ['blur'],
       },
     },
+    onOk: async () => {
+      try {
+        await createFolderFormRef?.value?.validate()
+        const { formInfo } = createFolderPopupConfig
+        const { filename } = formInfo.model
+        if (
+          curAccessDirInfo.fileInfoList.some((item) => item.name === filename)
+        ) {
+          uni.showToast({
+            title: '文件夹已存在',
+            icon: 'none',
+          })
+          return
+        }
+        await createFile([
+          {
+            filename,
+            isDir: 1,
+            parentPath: curAccessDirInfo.path,
+            accessPermissions: 1,
+          },
+        ])
+        curAccessDirInfo.updateLeap = +!curAccessDirInfo.updateLeap
+        createFolderPopupConfig.show = false
+        uni.showToast({
+          title: '新建文件夹成功',
+          icon: 'none',
+        })
+      } catch (err) {}
+    },
+  },
+})
+// 修改文件名称弹出窗配置
+const modifyFilenameFormRef = ref<_FormRef>()
+const modifyFilenamePopupConfig = reactive({
+  show: false,
+  formInfo: {
+    model: {
+      name: '',
+    },
+    rules: {
+      name: {
+        type: 'string',
+        required: true,
+        message: '请输入文件名称',
+        trigger: ['blur'],
+      },
+    },
+    onOk: async () => {
+      const inputName = modifyFilenamePopupConfig.formInfo.model.name
+
+      const selectFileInfo = curAccessDirInfo.fileInfoList.filter((item) =>
+        curAccessDirInfo.selectedFiles.includes(item.id)
+      )[0]
+      const { filename: inputFilename, fileType: inputFileType } =
+        parseFilename(inputName)
+      const {
+        id: selectFileId,
+        type: selectFileType,
+        isDir: selectFileIsDir,
+      } = selectFileInfo
+      if (selectFileIsDir) {
+        // 同名文件校验
+        const sameFile = curAccessDirInfo.fileInfoList.find(
+          (item) => item.id !== selectFileId && item.name === inputName
+        )
+        if (sameFile) {
+          uni.showToast({
+            title: '修改失败，文件夹已存在',
+            icon: 'none',
+          })
+          return
+        }
+      } else {
+        // 同名同类型文件校验
+        const sameFile = curAccessDirInfo.fileInfoList.find(
+          (item) =>
+            item.id !== selectFileId &&
+            item.name === inputFilename &&
+            item.type === inputFileType
+        )
+        if (sameFile) {
+          uni.showToast({
+            title: '修改失败，文件已存在',
+            icon: 'none',
+          })
+          return
+        }
+        // 文件类型修改时的提示
+        if (selectFileType !== inputFileType) {
+          const shouldUpdate = await new Promise((resolve, reject) => {
+            uni.showModal({
+              title: '提示',
+              content: '更改文件类型可能导致文件无法打开，是否更改?',
+              cancelText: '取消',
+              confirmText: '确认',
+              success: async ({ errMsg, confirm, cancel }) => {
+                resolve(confirm)
+              },
+            })
+          })
+          if (!shouldUpdate) {
+            return
+          }
+        }
+      }
+      await updateFileInfo([
+        {
+          id: selectFileId,
+          name: inputFilename,
+          type: inputFileType,
+        },
+      ])
+      uni.showToast({
+        title: '修改成功',
+        icon: 'none',
+      })
+      modifyFilenamePopupConfig.show = false
+      curAccessDirInfo.selectedFiles = []
+      curAccessDirInfo.updateLeap = +!curAccessDirInfo.updateLeap
+    },
   },
 })
 // 操作文件弹出窗配置
@@ -469,8 +631,17 @@ const operateFilePopupConfig = reactive({
       title: '重命名',
       iconName: 'rename',
       style: { fontSize: '18px' },
+      disabled: () => curAccessDirInfo.selectedFiles.length !== 1,
       clickAction: () => {
-        curAccessDirInfo.selectedFiles = []
+        const selectFileInfo = curAccessDirInfo.fileInfoList.filter((item) =>
+          curAccessDirInfo.selectedFiles.includes(item.id)
+        )[0]
+        modifyFilenamePopupConfig.formInfo.model.name =
+          selectFileInfo.name +
+          (selectFileInfo.isDir
+            ? ''
+            : '.' + mime.extension(selectFileInfo?.type ?? ''))
+        modifyFilenamePopupConfig.show = true
       },
     },
     {
@@ -481,7 +652,10 @@ const operateFilePopupConfig = reactive({
         curAccessDirInfo.selectedFiles = []
       },
     },
-  ],
+  ].map((item) => ({
+    disabled: (): boolean => false,
+    ...item,
+  })),
 })
 // 文件下载弹出框
 const fileDownloadPopupConfig = reactive({
@@ -553,34 +727,6 @@ watch(
   }
 )
 
-const createFolder = async () => {
-  try {
-    await createFolderFormRef?.value?.validate()
-    const { formInfo } = createFolderPopupConfig
-    const { filename } = formInfo.model
-    if (curAccessDirInfo.fileInfoList.some((item) => item.name === filename)) {
-      uni.showToast({
-        title: '文件夹已存在',
-        icon: 'none',
-      })
-      return
-    }
-    await createFile([
-      {
-        filename,
-        isDir: 1,
-        parentPath: curAccessDirInfo.path,
-        accessPermissions: 1,
-      },
-    ])
-    curAccessDirInfo.updateLeap = +!curAccessDirInfo.updateLeap
-    createFolderPopupConfig.show = false
-    uni.showToast({
-      title: '新建文件夹成功',
-      icon: 'none',
-    })
-  } catch (err) {}
-}
 const handleFileClick = (fileInfo: UserFileProps & { fullname: string }) => {
   // 当处于多选状态时，点击文件选中或取消选中
   if (curAccessDirInfo.selectedFiles.length > 0) {
@@ -641,5 +787,16 @@ const copyText = (data: string = '') => {
       })
     },
   })
+}
+const parseFilename = (filename: string) => {
+  const dotIndex = filename.lastIndexOf('.')
+  if (dotIndex === -1) {
+    return { filename, fileType: undefined }
+  } else {
+    return {
+      filename: filename.slice(0, dotIndex),
+      fileType: mime.types[filename.slice(dotIndex + 1)],
+    }
+  }
 }
 </script>

@@ -4,6 +4,7 @@ import type {
   GetFileList,
   PostAddUserFile,
   PostFileDownloadLink,
+  PutUserFileInfo,
 } from '../types/api'
 
 /** 创建文件 */
@@ -39,6 +40,15 @@ export const getFileDownloadUrl = async (
 export const deleteFile = async (data: DeleteUserFile.Request) => {
   return request<DeleteUserFile.Response>({
     method: 'DELETE',
+    url: '/api/v1/file',
+    data,
+  })
+}
+
+/** 修改文件信息 */
+export const updateFileInfo = async (data: PutUserFileInfo.Request) => {
+  return request<PutUserFileInfo.Response>({
+    method: 'PUT',
     url: '/api/v1/file',
     data,
   })
