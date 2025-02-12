@@ -14,6 +14,7 @@ const httpInterceptor: UniApp.InterceptorOptions = {
         cookie: uni.getStorageSync('cookie'),
         Authorization: `Bearer ${uni.getStorageSync('token')}`,
       }
+      options.data =JSON.parse(JSON.stringify(options.data))
     }
   },
   // 处理响应数据
