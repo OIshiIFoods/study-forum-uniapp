@@ -6,6 +6,7 @@ const httpInterceptor: UniApp.InterceptorOptions = {
     // 非http开头拼接地址
     if (!options.url.startsWith('http')) {
       options.url = baseURL + options.url
+      options.data = JSON.parse(JSON.stringify(options.data ?? {}))
     }
   },
   // 处理响应数据
