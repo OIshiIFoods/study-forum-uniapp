@@ -16,7 +16,10 @@
     >
       <view
         class="iconfont text-[18px] mb-[6px]"
-        :class="'icon-' + item.iconName"
+        :class="
+          'icon-' +
+          (typeof item.iconName === 'string' ? item.iconName : item.iconName())
+        "
         :style="{
           ...item.style,
           ...(item.disabled() ? { color: '#ccc' } : {}),
@@ -85,7 +88,7 @@
 </template>
 
 <script setup lang="ts">
-import { reactive, watch } from 'vue'
+import { reactive, ref, watch } from 'vue'
 import { getFileDownloadUrl, deleteFile, updateFileInfo } from '@/service'
 import mime from 'mime-types'
 import type { CurDirInfoType, GetFileListProps } from '../index.vue'
@@ -103,6 +106,7 @@ const operateFilePopupConfig = reactive({
   show: false,
   list: [
     {
+      code: 'download',
       title: '下载',
       iconName: 'download',
       style: {},
@@ -122,6 +126,7 @@ const operateFilePopupConfig = reactive({
       },
     },
     {
+      code: 'share',
       title: '分享',
       iconName: 'share',
       style: {},
@@ -130,6 +135,7 @@ const operateFilePopupConfig = reactive({
       },
     },
     {
+      code: 'delete',
       title: '删除',
       iconName: 'delete',
       style: {},
@@ -150,6 +156,7 @@ const operateFilePopupConfig = reactive({
       },
     },
     {
+      code: 'copy',
       title: '复制',
       iconName: 'copy',
       style: { fontSize: '23px' },
@@ -158,6 +165,7 @@ const operateFilePopupConfig = reactive({
       },
     },
     {
+      code: 'move',
       title: '移动',
       iconName: 'move',
       style: {},
@@ -166,6 +174,7 @@ const operateFilePopupConfig = reactive({
       },
     },
     {
+      code: 'rename',
       title: '重命名',
       iconName: 'rename',
       style: { fontSize: '18px' },
@@ -181,11 +190,31 @@ const operateFilePopupConfig = reactive({
       },
     },
     {
+      code: 'accessPermission',
       title: '更改访问权限',
-      iconName: 'locked',
+      iconName: () =>
+        curDirInfo.value.selectedFiles[0]?.accessPermissions
+          ? 'unlocked'
+          : 'locked',
       style: { fontSize: '25px' },
-      clickAction: () => {
+      disabled: () => curDirInfo.value.selectedFiles.length !== 1,
+      clickAction: async () => {
+        const selectFile = curDirInfo.value.selectedFiles[0]
+        await updateFileInfo([
+          {
+            id: selectFile.id,
+            accessPermissions: selectFile.accessPermissions ? 0 : 1,
+          },
+        ])
+        curDirInfo.value.fileList = await props.getFileList({
+          dirPath: curDirInfo.value.path,
+          fileStatus: curDirInfo.value.fileStatus,
+        })
         curDirInfo.value.selectedFiles = []
+        uni.showToast({
+          title: '修改访问权限成功',
+          icon: 'none',
+        })
       },
     },
   ].map((item) => ({
@@ -302,6 +331,7 @@ watch(
     deep: true,
   }
 )
+
 const copyText = (data: string = '') => {
   uni.setClipboardData({
     data: data,

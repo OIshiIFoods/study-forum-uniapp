@@ -14,12 +14,18 @@
         @longpress="handleFileLongPress(item)"
       >
         <template #icon>
-          <view
-            class="w-[40px] p-t-[100%] m-r-10px bg-center bg-contain bg-no-repeat"
-            :style="{
-              backgroundImage: `url(${baseURL + '/api/v1/public/images/fileIcons'}/${getFileIconName(item.fullname, !!item.isDir)})`,
-            }"
-          />
+          <view class="pos-relative">
+            <view
+              class="w-[40px] p-t-[100%] m-r-10px bg-center bg-contain bg-no-repeat"
+              :style="{
+                backgroundImage: `url(${baseURL + '/api/v1/public/images/fileIcons'}/${getFileIconName(item.fullname, !!item.isDir)})`,
+              }"
+            />
+            <view
+              class="pos-absolute pos-left-[-10%] pos-bottom-0 text-[20px] iconfont"
+              :class="[item.accessPermissions ? '' : 'icon-locked']"
+            />
+          </view>
         </template>
         <template #right-icon>
           <view @click.stop="() => {}">
@@ -88,6 +94,10 @@
           "
         />
       </view>
+      <view
+        class="pos-absolute pos-right-15% pos-bottom-30% text-[20px] iconfont"
+        :class="[item.accessPermissions ? '' : 'icon-locked']"
+      />
     </view>
   </view>
 </template>
