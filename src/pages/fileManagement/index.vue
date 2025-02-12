@@ -1,17 +1,13 @@
 <template>
   <view class="h-100vh grid grid-rows-[1fr_auto]">
-    <view>
+    <view
+      class="box-border p-[0_calc(var(--page-side-unit-size)*5)] overflow-auto"
+    >
       <up-navbar :title="curDirInfo.title" auto-back placeholder />
-      <view
-        class="box-border p-[0_calc(var(--page-side-unit-size)*5)] overflow-auto"
-      >
-        <SearchColumn />
-        <ToolBar v-model:cur-dir-info="curDirInfo" :getFileList="getFileList" />
-        <FileArea
-          v-model:cur-dir-info="curDirInfo"
-          :getFileList="getFileList"
-        />
-      </view>
+
+      <SearchColumn />
+      <ToolBar v-model:cur-dir-info="curDirInfo" :getFileList="getFileList" />
+      <FileArea v-model:cur-dir-info="curDirInfo" :getFileList="getFileList" />
     </view>
     <view>
       <FileOperationPopup
