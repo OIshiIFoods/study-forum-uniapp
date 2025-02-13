@@ -85,6 +85,11 @@
       </view>
     </view>
   </up-popup>
+  <!-- 选择文件夹弹出窗 -->
+  <SelectFolderPopup
+    v-model:isShow="selectDirPopupConfig.isShow"
+    @onOk="selectDirPopupConfig.onOk"
+  />
 </template>
 
 <script setup lang="ts">
@@ -97,6 +102,7 @@ import {
 } from '@/service'
 import mime from 'mime-types'
 import type { CurDirInfoType } from '../index.vue'
+import SelectFolderPopup from './SelectFolderPopup.vue'
 
 const curDirInfo = defineModel<CurDirInfoType>('curDirInfo', {
   required: true,
@@ -172,7 +178,12 @@ const operateFilePopupConfig = reactive({
       iconName: 'move',
       style: {},
       clickAction: () => {
-        curDirInfo.value.selectedFiles = []
+        selectDirPopupConfig.isShow = true
+        selectDirPopupConfig.onOk = async (dirPath) => {
+          uni.showLoading({
+            title: '移动中',
+          })
+        }
       },
     },
     {
@@ -323,6 +334,14 @@ const fileDownloadPopupConfig = reactive({
   show: false,
   downloadLink: '',
   effectiveDuration: 0,
+})
+
+/** 文件夹选择弹出框 */
+const selectDirPopupConfig = reactive({
+  isShow: false,
+  onOk: async (dirname: string) => {
+    console.log(dirname)
+  },
 })
 
 // 通过监听选中文件列表变化更新操作文件弹出框显示状态
