@@ -6,23 +6,18 @@
       <up-navbar :title="curDirInfo.title" auto-back placeholder />
 
       <SearchColumn />
-      <ToolBar v-model:cur-dir-info="curDirInfo" :getFileList="getFileList" />
-      <FileArea v-model:cur-dir-info="curDirInfo" :getFileList="getFileList" />
+      <ToolBar v-model:cur-dir-info="curDirInfo" />
+      <FileArea v-model:cur-dir-info="curDirInfo" />
     </view>
     <view>
-      <FileOperationPopup
-        v-model:cur-dir-info="curDirInfo"
-        :getFileList="getFileList"
-      />
+      <FileOperationPopup v-model:cur-dir-info="curDirInfo" />
     </view>
   </view>
 </template>
 
 <script setup lang="ts">
-import { reactive, ref } from 'vue'
-import mime from 'mime-types'
+import { ref } from 'vue'
 import type { FileStatusEnum } from '@/service/types/db'
-import type { GetFileList } from '@/service/types/api'
 import { getUserFiles } from '@/service'
 import { onLoad } from '@dcloudio/uni-app'
 import SearchColumn from './components/SearchColumn.vue'
@@ -52,46 +47,15 @@ onLoad((option: any) => {
   // 更新页面标题
   curDirInfo.value.title = option.curDirName ?? '文件管理'
 })
-const getFileList = async (
-  params: GetFileListProps
-): Promise<CurDirInfoType['fileList']> => {
-  const { data } = await getUserFiles({
-    parentPath: params.dirPath,
-    status: params.fileStatus,
-    orderBy: params.orderBy ? JSON.stringify(params.orderBy) : undefined,
-  })
-  return data?.fileInfoList && Array.isArray(data?.fileInfoList)
-    ? data.fileInfoList.map((item) => ({
-        fullname:
-          item.name + (item.type ? '.' + mime.extension(item.type) : ''),
-        ...item,
-      }))
-    : []
-}
-
-export type OrderByOptions = {
-  /** 字段名称 */
-  field: string
-  /** 排序方向 */
-  direction: 'ASC' | 'DESC'
-}
 
 export type CurDirInfoType = {
   title: string
   path: string
   fileStatus: FileStatusEnum
-  fileList: (GetFileList.Response['data']['fileInfoList'][0] & {
-    fullname: string
-  })[]
-  selectedFiles: (GetFileList.Response['data']['fileInfoList'][0] & {
-    fullname: string
-  })[]
+  fileList: Awaited<ReturnType<typeof getUserFiles>>['data']['fileInfoList']
+  selectedFiles: Awaited<
+    ReturnType<typeof getUserFiles>
+  >['data']['fileInfoList']
   viewMode: 'grid' | 'list'
-}
-
-export type GetFileListProps = {
-  dirPath: string
-  fileStatus: FileStatusEnum
-  orderBy?: OrderByOptions[]
 }
 </script>

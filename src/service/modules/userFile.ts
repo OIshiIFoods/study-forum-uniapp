@@ -1,4 +1,5 @@
 import { request } from '@/api/http'
+import mime from 'mime-types'
 import type {
   DeleteUserFile,
   GetFileList,
@@ -17,12 +18,40 @@ export const createFile = async (data: PostAddUserFile.Request) => {
 }
 
 /** 获取用户文件列表 */
-export const getUserFiles = async (data: GetFileList.Request) => {
-  return request<GetFileList.Response>({
+export const getUserFiles = async ({
+  orderBy,
+  ...otherParams
+}: Omit<GetFileList.Request, 'orderBy'> & {
+  orderBy?: {
+    /** 字段名称 */
+    field: string
+    /** 排序方向 */
+    direction: 'ASC' | 'DESC'
+  }[]
+}) => {
+  const res = await request<GetFileList.Response>({
     method: 'GET',
     url: '/api/v1/file',
-    data,
+    data: {
+      orderBy: JSON.stringify(orderBy),
+      ...otherParams,
+    },
   })
+  const newFileInfoList =
+    res.data?.fileInfoList && Array.isArray(res.data?.fileInfoList)
+      ? res.data?.fileInfoList.map((item) => ({
+          fullname:
+            item.name + (item.type ? '.' + mime.extension(item.type) : ''),
+          ...item,
+        }))
+      : []
+  return {
+    ...res,
+    data: {
+      ...res.data,
+      fileInfoList: newFileInfoList,
+    },
+  }
 }
 
 /** 获取文件下载链接 */

@@ -89,13 +89,14 @@
 
 <script setup lang="ts">
 import { reactive, ref, watch } from 'vue'
-import { getFileDownloadUrl, deleteFile, updateFileInfo } from '@/service'
+import {
+  getFileDownloadUrl,
+  deleteFile,
+  updateFileInfo,
+  getUserFiles,
+} from '@/service'
 import mime from 'mime-types'
-import type { CurDirInfoType, GetFileListProps } from '../index.vue'
-
-const props = defineProps<{
-  getFileList: (params: GetFileListProps) => Promise<CurDirInfoType['fileList']>
-}>()
+import type { CurDirInfoType } from '../index.vue'
 
 const curDirInfo = defineModel<CurDirInfoType>('curDirInfo', {
   required: true,
@@ -148,11 +149,12 @@ const operateFilePopupConfig = reactive({
         })
         uni.hideLoading()
         uni.showToast({ title: '删除成功', icon: 'none' })
-        curDirInfo.value.selectedFiles = []
-        await props.getFileList({
-          dirPath: curDirInfo.value.path,
-          fileStatus: curDirInfo.value.fileStatus,
+        const { data } = await getUserFiles({
+          parentPath: curDirInfo.value.path,
+          status: curDirInfo.value.fileStatus,
         })
+        curDirInfo.value.fileList = data.fileInfoList
+        curDirInfo.value.selectedFiles = []
       },
     },
     {
@@ -206,10 +208,11 @@ const operateFilePopupConfig = reactive({
             accessPermissions: selectFile.accessPermissions ? 0 : 1,
           },
         ])
-        curDirInfo.value.fileList = await props.getFileList({
-          dirPath: curDirInfo.value.path,
-          fileStatus: curDirInfo.value.fileStatus,
+        const { data } = await getUserFiles({
+          parentPath: curDirInfo.value.path,
+          status: curDirInfo.value.fileStatus,
         })
+        curDirInfo.value.fileList = data.fileInfoList
         curDirInfo.value.selectedFiles = []
         uni.showToast({
           title: '修改访问权限成功',
@@ -304,12 +307,13 @@ const modifyFilenamePopupConfig = reactive({
         title: '修改成功',
         icon: 'none',
       })
-      modifyFilenamePopupConfig.show = false
-      curDirInfo.value.selectedFiles = []
-      await props.getFileList({
-        dirPath: curDirInfo.value.path,
-        fileStatus: curDirInfo.value.fileStatus,
+      const { data } = await getUserFiles({
+        parentPath: curDirInfo.value.path,
+        status: curDirInfo.value.fileStatus,
       })
+      modifyFilenamePopupConfig.show = false
+      curDirInfo.value.fileList = data.fileInfoList
+      curDirInfo.value.selectedFiles = []
     },
   },
 })

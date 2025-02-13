@@ -103,17 +103,14 @@
 </template>
 
 <script setup lang="ts">
-import type { CurDirInfoType, GetFileListProps } from '../index.vue'
+import type { CurDirInfoType } from '../index.vue'
 import dayjs from 'dayjs'
 import router from '@/router'
 import { baseURL } from '@/api/http'
 import { ref } from 'vue'
 import { onLoad } from '@dcloudio/uni-app'
-import { getFileIconConfig } from '@/service'
+import { getFileIconConfig, getUserFiles } from '@/service'
 
-const props = defineProps<{
-  getFileList: (params: GetFileListProps) => Promise<CurDirInfoType['fileList']>
-}>()
 const curDirInfo = defineModel<CurDirInfoType>('curDirInfo', {
   required: true,
 })
@@ -124,10 +121,11 @@ onLoad(async (option: any) => {
   getFileIconConfig().then((res) => {
     fileIconConfig.value = res
   })
-  curDirInfo.value.fileList = await props.getFileList({
-    dirPath: curDirInfo.value.path,
-    fileStatus: curDirInfo.value.fileStatus,
+  const { data } = await getUserFiles({
+    parentPath: curDirInfo.value.path,
+    status: curDirInfo.value.fileStatus,
   })
+  curDirInfo.value.fileList = data.fileInfoList
 })
 
 const handleFileClick = (fileInfo: CurDirInfoType['fileList'][0]) => {

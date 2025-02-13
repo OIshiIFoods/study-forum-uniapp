@@ -5,10 +5,11 @@
         class="iconfont icon-refresh"
         @click="
           async () => {
-            curDirInfo.fileList = await getFileList({
-              dirPath: curDirInfo.path,
-              fileStatus: curDirInfo.fileStatus,
+            const { data } = await getUserFiles({
+              parentPath: curDirInfo.path,
+              status: curDirInfo.fileStatus,
             })
+            curDirInfo.fileList = data.fileInfoList
           }
         "
       />
@@ -37,9 +38,9 @@
         class="flex items-center p-[10px_0]"
         @click="
           async () => {
-            curDirInfo.fileList = await getFileList({
-              dirPath: curDirInfo.path,
-              fileStatus: curDirInfo.fileStatus,
+            const { data } = await getUserFiles({
+              parentPath: curDirInfo.path,
+              status: curDirInfo.fileStatus,
               orderBy: [
                 {
                   field: 'updateTime',
@@ -47,6 +48,7 @@
                 },
               ],
             })
+            curDirInfo.fileList = data.fileInfoList
             sortPopupConfig.show = false
           }
         "
@@ -60,11 +62,8 @@
 
 <script setup lang="ts">
 import { reactive } from 'vue'
-import type { CurDirInfoType, GetFileListProps } from '../index.vue'
-
-const props = defineProps<{
-  getFileList: (params: GetFileListProps) => Promise<CurDirInfoType['fileList']>
-}>()
+import type { CurDirInfoType } from '../index.vue'
+import { getUserFiles } from '@/service'
 
 const curDirInfo = defineModel<CurDirInfoType>('curDirInfo', {
   required: true,
