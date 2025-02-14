@@ -2,8 +2,11 @@
   <!-- 选择文件夹弹出窗 -->
   <up-popup :show="isShow">
     <view class="grid grid-rows-[auto_1fr_auto] h-80vh p-[0_10px_20px]">
-      <view class="flex justify-between items-center box-border p-[20px_0px]">
+      <view
+        class="pos-relative flex justify-center items-center box-border p-[20px_0px]"
+      >
         <view
+          class="pos-absolute pos-left-0 pos-top-50% transform-translate-y-[-50%]"
           @click="
             async () => {
               // 更新当前目录的路径
@@ -18,17 +21,28 @@
             }
           "
         >
-          <view v-if="selectFolderPopupConfig.curDirPath.split('/').at(-1)">
-            <up-icon name="arrow-left" />
-            <view class="text-[15px] font-700 ml-[10px]">
-              {{ selectFolderPopupConfig.curDirPath.split('/').at(-2) }}
+          <view
+            class="flex items-center"
+            v-if="selectFolderPopupConfig.curDirPath.split('/').at(-1)"
+          >
+            <up-icon name="arrow-left" class="mr-[10px]" />
+            <view class="text-[15px] font-700">
+              {{
+                selectFolderPopupConfig.curDirPath.split('/').at(-2) ||
+                (selectFolderPopupConfig.curDirPath.split('/').at(-1) &&
+                  '目录列表')
+              }}
             </view>
           </view>
         </view>
         <view class="text-[15px] font-700">
-          {{ selectFolderPopupConfig.curDirPath.split('/').at(-1) }}
+          {{
+            selectFolderPopupConfig.curDirPath.split('/').at(-1) || '目录列表'
+          }}
         </view>
-        <view>
+        <view
+          class="pos-absolute pos-right-0 pos-top-50% transform-translate-y-[-50%]"
+        >
           <up-icon name="close" @click="isShow = false" />
         </view>
       </view>
