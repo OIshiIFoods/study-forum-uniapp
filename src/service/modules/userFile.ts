@@ -1,5 +1,5 @@
 import { request } from '@/api/http'
-import mime from 'mime-types'
+import mime from 'mime'
 import type {
   DeleteUserFile,
   GetFileList,
@@ -42,7 +42,7 @@ export const getUserFiles = async ({
     res.data?.fileInfoList && Array.isArray(res.data?.fileInfoList)
       ? res.data?.fileInfoList.map((item) => ({
           fullname:
-            item.name + (item.type ? '.' + mime.extension(item.type) : ''),
+            item.name + (item.type ? '.' + mime.getExtension(item.type) : ''),
           ...item,
         }))
       : []

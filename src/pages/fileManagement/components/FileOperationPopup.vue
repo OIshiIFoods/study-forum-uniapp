@@ -103,7 +103,7 @@ import {
   getUserFiles,
   copyUserFile,
 } from '@/service'
-import mime from 'mime-types'
+import mime from 'mime'
 import type { CurDirInfoType } from '../index.vue'
 import SelectFolderPopup from './SelectFolderPopup.vue'
 
@@ -260,7 +260,7 @@ const operateFilePopupConfig = reactive({
           selectFileInfo.name +
           (selectFileInfo.isDir
             ? ''
-            : '.' + mime.extension(selectFileInfo?.type ?? ''))
+            : '.' + mime.getExtension(selectFileInfo?.type ?? ''))
         modifyFilenamePopupConfig.show = true
       },
     },
@@ -439,7 +439,7 @@ const parseFilename = (filename: string) => {
   } else {
     return {
       filename: filename.slice(0, dotIndex),
-      fileType: mime.types[filename.slice(dotIndex + 1)],
+      fileType: mime.getType(filename.slice(dotIndex + 1))!,
     }
   }
 }

@@ -110,6 +110,7 @@ import { baseURL } from '@/api/http'
 import { onBeforeMount, onMounted, ref } from 'vue'
 import { onLoad, onShow } from '@dcloudio/uni-app'
 import { getFileIconConfig, getUserFiles } from '@/service'
+import mime from 'mime'
 
 const curDirInfo = defineModel<CurDirInfoType>('curDirInfo', {
   required: true,
@@ -177,7 +178,7 @@ const getFileIconName = (filename: string, isDir: boolean = false) => {
     return iconDefinitions[
       fileNames[filename] ??
         fileExtensions[filename.split('.').pop() ?? ''] ??
-        languageIds[filename.split('.').pop() ?? ''] ??
+        languageIds[mime.getType(filename)?.split('/').pop() ?? ''] ??
         file
     ].iconPath
   }
