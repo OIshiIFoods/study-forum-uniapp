@@ -107,8 +107,8 @@ import type { CurDirInfoType } from '../index.vue'
 import dayjs from 'dayjs'
 import router from '@/router'
 import { baseURL } from '@/api/http'
-import { ref } from 'vue'
-import { onLoad } from '@dcloudio/uni-app'
+import { onBeforeMount, onMounted, ref } from 'vue'
+import { onLoad, onShow } from '@dcloudio/uni-app'
 import { getFileIconConfig, getUserFiles } from '@/service'
 
 const curDirInfo = defineModel<CurDirInfoType>('curDirInfo', {
@@ -121,6 +121,10 @@ onLoad(async (option: any) => {
   getFileIconConfig().then((res) => {
     fileIconConfig.value = res
   })
+})
+
+// 为了兼容回退到当前页面时更新数据
+onShow(async () => {
   const { data } = await getUserFiles({
     parentPath: curDirInfo.value.path,
     status: curDirInfo.value.fileStatus,
