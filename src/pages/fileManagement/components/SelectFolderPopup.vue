@@ -90,17 +90,13 @@ const isShow = defineModel<boolean>('isShow', {
 
 const emit = defineEmits(['onOk'])
 
-watch(
-  [() => props.initialDirPath],
-  async () => {
+watch([isShow], async () => {
+  if (isShow.value) {
     selectFolderPopupConfig.folderList = await getFolderList(
       props.initialDirPath
     )
-  },
-  {
-    immediate: true,
   }
-)
+})
 
 /** 选择文件夹弹出框配置 */
 const selectFolderPopupConfig = reactive({
