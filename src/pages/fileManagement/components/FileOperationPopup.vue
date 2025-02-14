@@ -88,6 +88,9 @@
   <!-- 选择文件夹弹出窗 -->
   <SelectFolderPopup
     v-model:isShow="selectDirPopupConfig.isShow"
+    :exclude-dir="
+      curDirInfo.selectedFiles.filter(({ isDir }) => isDir).map(({ id }) => id)
+    "
     @onOk="selectDirPopupConfig.onOk"
   />
 </template>
@@ -182,6 +185,18 @@ const operateFilePopupConfig = reactive({
         selectDirPopupConfig.onOk = async (dirPath) => {
           uni.showLoading({
             title: '移动中',
+          })
+          await updateFileInfo(
+            curDirInfo.value.selectedFiles.map(({ id }) => ({
+              id,
+              parentPath: dirPath,
+            }))
+          )
+          selectDirPopupConfig.isShow = false
+          curDirInfo.value.selectedFiles = []
+          uni.hideLoading()
+          uni.showToast({
+            title: '移动成功',
           })
         }
       },
