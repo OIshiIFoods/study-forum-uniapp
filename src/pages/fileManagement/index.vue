@@ -11,6 +11,7 @@
     </view>
     <view>
       <FileOperationPopup v-model:cur-dir-info="curDirInfo" />
+      <FloadButton v-model:cur-dir-info="curDirInfo" />
     </view>
   </view>
 </template>
@@ -24,6 +25,7 @@ import SearchColumn from './components/SearchColumn.vue'
 import ToolBar from './components/ToolBar.vue'
 import FileArea from './components/FileArea.vue'
 import FileOperationPopup from './components/FileOperationPopup.vue'
+import FloadButton from './components/FloadButton.vue'
 
 const curDirInfo = ref<CurDirInfoType>({
   title: '文件管理',
