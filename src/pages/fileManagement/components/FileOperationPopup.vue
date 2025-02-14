@@ -193,6 +193,11 @@ const operateFilePopupConfig = reactive({
               parentPath: dirPath,
             }))
           )
+          const { data } = await getUserFiles({
+            parentPath: curDirInfo.value.path,
+            status: curDirInfo.value.fileStatus,
+          })
+          curDirInfo.value.fileList = data.fileInfoList
           selectDirPopupConfig.isShow = false
           curDirInfo.value.selectedFiles = []
           uni.hideLoading()
