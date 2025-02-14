@@ -180,6 +180,7 @@ const operateFilePopupConfig = reactive({
       title: '移动',
       iconName: 'move',
       style: {},
+      disabled: () => curDirInfo.value.selectedFiles.find(({ isDir }) => isDir),
       clickAction: () => {
         selectDirPopupConfig.isShow = true
         selectDirPopupConfig.onOk = async (dirPath) => {
