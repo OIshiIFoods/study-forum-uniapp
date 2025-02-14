@@ -1,38 +1,44 @@
 <template>
   <view
-    v-show="operateFilePopupConfig.show"
-    class="pos-relative flex flex-wrap p-[25px_10px_10px] b-0 b-t b-solid b-[#ccc] animate-duration-150 animate-keyframes-slide-in-up"
+    class="transition-all duration-500 overflow-hidden"
+    :class="[operateFilePopupConfig.show ? 'h-164px' : 'h-0']"
   >
-    <up-icon
-      name="close"
-      class="pos-absolute pos-top-10px pos-right-10px"
-      @click="curDirInfo.selectedFiles = []"
-    />
     <view
-      class="flex flex-col justify-end items-center p-[10px_0] w-20%"
-      v-for="item in operateFilePopupConfig.list"
-      :key="item.title"
-      @click="!item.disabled() && item.clickAction()"
+      class="pos-relative flex flex-wrap p-[25px_10px_10px] b-0 b-t b-solid b-[#ccc]"
     >
-      <view
-        class="iconfont text-[18px] mb-[6px]"
-        :class="
-          'icon-' +
-          (typeof item.iconName === 'string' ? item.iconName : item.iconName())
-        "
-        :style="{
-          ...item.style,
-          ...(item.disabled() ? { color: '#ccc' } : {}),
-        }"
+      <up-icon
+        name="close"
+        class="pos-absolute pos-top-10px pos-right-10px"
+        @click="curDirInfo.selectedFiles = []"
       />
-      <text
-        class="text-[10px] font-700"
-        :style="{
-          ...(item.disabled() ? { color: '#ccc' } : {}),
-        }"
+      <view
+        class="flex flex-col justify-end items-center p-[10px_0] w-20%"
+        v-for="item in operateFilePopupConfig.list"
+        :key="item.title"
+        @click="!item.disabled() && item.clickAction()"
       >
-        {{ item.title }}
-      </text>
+        <view
+          class="iconfont text-[18px] mb-[6px]"
+          :class="
+            'icon-' +
+            (typeof item.iconName === 'string'
+              ? item.iconName
+              : item.iconName())
+          "
+          :style="{
+            ...item.style,
+            ...(item.disabled() ? { color: '#ccc' } : {}),
+          }"
+        />
+        <text
+          class="text-[10px] font-700"
+          :style="{
+            ...(item.disabled() ? { color: '#ccc' } : {}),
+          }"
+        >
+          {{ item.title }}
+        </text>
+      </view>
     </view>
   </view>
   <!-- 文件下载弹出框 -->
