@@ -109,18 +109,21 @@ const isShow = defineModel<boolean>('isShow', {
 
 const emit = defineEmits(['onOk'])
 
-watch([isShow], async () => {
-  if (isShow.value) {
-    selectFolderPopupConfig.folderList = await getFolderList(
-      props.initialDirPath
-    )
-  }
-})
-
 /** 选择文件夹弹出框配置 */
 const selectFolderPopupConfig = reactive({
   curDirPath: props.initialDirPath,
   folderList: [] as CurDirInfoType['fileList'],
+})
+
+watch([isShow], async () => {
+  if (isShow.value) {
+    selectFolderPopupConfig.curDirPath = props.initialDirPath
+    selectFolderPopupConfig.folderList = await getFolderList(
+      props.initialDirPath
+    )
+  } else {
+    selectFolderPopupConfig.folderList = []
+  }
 })
 
 /** 获取文件夹列表 */
