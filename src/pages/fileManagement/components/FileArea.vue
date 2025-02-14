@@ -1,5 +1,5 @@
 <template>
-  <up-list v-if="curDirInfo.viewMode === 'grid'">
+  <up-list v-if="curDirInfo.viewMode === 'grid'" height="auto">
     <up-list-item
       class="overflow-hidden"
       v-for="item in curDirInfo.fileList"
