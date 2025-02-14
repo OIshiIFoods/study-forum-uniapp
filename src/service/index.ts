@@ -2,6 +2,7 @@ import { getFileIconConfig } from './modules/common'
 import { getCaptcha } from './modules/ouath'
 import { getUserInfo, login } from './modules/user'
 import {
+  copyUserFile,
   createFile,
   deleteFile,
   getFileDownloadUrl,
@@ -19,4 +20,5 @@ export {
   getFileDownloadUrl,
   deleteFile,
   updateFileInfo,
+  copyUserFile,
 }

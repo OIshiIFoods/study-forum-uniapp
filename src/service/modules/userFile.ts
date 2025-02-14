@@ -4,6 +4,7 @@ import type {
   DeleteUserFile,
   GetFileList,
   PostAddUserFile,
+  PostCopyUserFile,
   PostFileDownloadLink,
   PutUserFileInfo,
 } from '../types/api'
@@ -79,6 +80,15 @@ export const updateFileInfo = async (data: PutUserFileInfo.Request) => {
   return request<PutUserFileInfo.Response>({
     method: 'PUT',
     url: '/api/v1/file',
+    data,
+  })
+}
+
+/** 复制文件 */
+export const copyUserFile = async (data: PostCopyUserFile.Request) => {
+  return request<PostCopyUserFile.Response>({
+    method: 'POST',
+    url: '/api/v1/file/copy',
     data,
   })
 }

@@ -88,9 +88,8 @@
   <!-- 选择文件夹弹出窗 -->
   <SelectFolderPopup
     v-model:isShow="selectDirPopupConfig.isShow"
-    :exclude-dir="
-      curDirInfo.selectedFiles.filter(({ isDir }) => isDir).map(({ id }) => id)
-    "
+    :exclude-dir="selectDirPopupConfig.excludeDir"
+    :ok-text="selectDirPopupConfig.okText"
     @onOk="selectDirPopupConfig.onOk"
   />
 </template>
@@ -102,6 +101,7 @@ import {
   deleteFile,
   updateFileInfo,
   getUserFiles,
+  copyUserFile,
 } from '@/service'
 import mime from 'mime-types'
 import type { CurDirInfoType } from '../index.vue'
@@ -172,7 +172,44 @@ const operateFilePopupConfig = reactive({
       iconName: 'copy',
       style: { fontSize: '23px' },
       clickAction: () => {
-        curDirInfo.value.selectedFiles = []
+        selectDirPopupConfig.isShow = true
+        selectDirPopupConfig.okText = '复制到此'
+        selectDirPopupConfig.excludeDir = curDirInfo.value.selectedFiles
+          .filter(({ isDir }) => isDir)
+          .map(({ id }) => id)
+        selectDirPopupConfig.onOk = async (dirPath) => {
+          const { data } = await getUserFiles({
+            parentPath: dirPath,
+            status: curDirInfo.value.fileStatus,
+          })
+          // 校验选中的文件是否在目标目录下存在
+          if (
+            curDirInfo.value.selectedFiles.some(({ fullname }) =>
+              data.fileInfoList.find((item) => item.fullname === fullname)
+            )
+          ) {
+            uni.showToast({
+              title: '目标目录下已存在同名文件',
+              icon: 'none',
+            })
+            return
+          }
+          uni.showLoading({
+            title: '复制中',
+          })
+          await copyUserFile({
+            copiedFileIdList: curDirInfo.value.selectedFiles.map(
+              ({ id }) => id
+            ),
+            savePath: dirPath,
+          })
+          selectDirPopupConfig.isShow = false
+          curDirInfo.value.selectedFiles = []
+          uni.hideLoading()
+          uni.showToast({
+            title: '复制成功',
+          })
+        }
       },
     },
     {
@@ -183,6 +220,10 @@ const operateFilePopupConfig = reactive({
       disabled: () => curDirInfo.value.selectedFiles.find(({ isDir }) => isDir),
       clickAction: () => {
         selectDirPopupConfig.isShow = true
+        selectDirPopupConfig.okText = '移动到此'
+        selectDirPopupConfig.excludeDir = curDirInfo.value.selectedFiles
+          .filter(({ isDir }) => isDir)
+          .map(({ id }) => id)
         selectDirPopupConfig.onOk = async (dirPath) => {
           uni.showLoading({
             title: '移动中',
@@ -360,6 +401,8 @@ const fileDownloadPopupConfig = reactive({
 /** 文件夹选择弹出框 */
 const selectDirPopupConfig = reactive({
   isShow: false,
+  excludeDir: [] as number[],
+  okText: '确定',
   onOk: async (dirname: string) => {
     console.log(dirname)
   },
