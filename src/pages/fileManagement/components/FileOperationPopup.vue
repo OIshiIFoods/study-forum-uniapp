@@ -1,6 +1,6 @@
 <template>
   <view
-    class="transition-all duration-500 overflow-hidden"
+    class="transition-all duration-300 overflow-hidden"
     :class="[operateFilePopupConfig.show ? 'h-164px' : 'h-0']"
   >
     <view
