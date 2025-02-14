@@ -90,12 +90,17 @@ import { getUserFiles } from '@/service'
 
 const props = withDefaults(
   defineProps<{
+    /** 初始目录路径 */
     initialDirPath?: string
+    /** 确定按钮文字 */
     okText?: string
+    /** 不可选择的目录id列表 */
+    excludeDir?: number[]
   }>(),
   {
     initialDirPath: '/',
     okText: '确定',
+    excludeDir: () => [],
   }
 )
 const isShow = defineModel<boolean>('isShow', {
@@ -125,6 +130,8 @@ async function getFolderList(dirPath: string) {
       parentPath: dirPath,
       status: 1,
     })
-  ).data.fileInfoList.filter(({ isDir }) => isDir)
+  ).data.fileInfoList
+    .filter(({ isDir }) => isDir)
+    .filter(({ id }) => !props.excludeDir.includes(id))
 }
 </script>
