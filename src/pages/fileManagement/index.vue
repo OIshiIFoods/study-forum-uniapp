@@ -20,12 +20,15 @@
 import { ref } from 'vue'
 import type { FileStatusEnum } from '@/service/types/db'
 import { getUserFiles } from '@/service'
-import { onLoad } from '@dcloudio/uni-app'
+import { onLoad, onShareAppMessage } from '@dcloudio/uni-app'
 import SearchColumn from './components/SearchColumn.vue'
 import ToolBar from './components/ToolBar.vue'
 import FileArea from './components/FileArea.vue'
 import FileOperationPopup from './components/FileOperationPopup.vue'
 import FloadButton from './components/FloadButton.vue'
+import { useUserStore } from '@/stores'
+
+const userStore = useUserStore()
 
 const curDirInfo = ref<CurDirInfoType>({
   title: '文件管理',
@@ -45,6 +48,28 @@ onLoad((option: any) => {
   }
   // 更新页面标题
   curDirInfo.value.title = option.dirPath?.split('/').pop() || '文件管理'
+})
+
+onShareAppMessage(({ from, target }) => {
+  if (from === 'button') {
+    return {
+      title: '文件分享',
+      path: `/pages/fileShare/index?${Object.entries({
+        sharedUserId: userStore.id,
+        sharedFileIds: curDirInfo.value.selectedFiles.map((item) => item.id),
+      })
+        .map(([field, value]) => field + '=' + value)
+        .join('&')}`,
+      success(...arg) {
+        console.log('arg', arg)
+      },
+      fail(...arg) {
+        console.log('arg', arg)
+      },
+    }
+  } else {
+    return {}
+  }
 })
 
 export type CurDirInfoType = {

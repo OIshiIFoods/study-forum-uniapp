@@ -12,7 +12,7 @@
         @click="curDirInfo.selectedFiles = []"
       />
       <view
-        class="flex flex-col justify-end items-center p-[10px_0] w-20%"
+        class="relative flex flex-col justify-end items-center p-[10px_0] w-20%"
         v-for="item in operateFilePopupConfig.list"
         :key="item.title"
         @click="!item.disabled() && item.clickAction()"
@@ -38,6 +38,11 @@
         >
           {{ item.title }}
         </text>
+        <button
+          class="absolute w-[100%] h-[100%] bg-[rgba(0,0,0,0)] after:b-0"
+          v-if="item.code === 'share'"
+          open-type="share"
+        />
       </view>
     </view>
   </view>
@@ -146,9 +151,7 @@ const operateFilePopupConfig = reactive({
       title: '分享',
       iconName: 'share',
       style: {},
-      clickAction: () => {
-        curDirInfo.value.selectedFiles = []
-      },
+      clickAction: () => {},
     },
     {
       code: 'delete',
