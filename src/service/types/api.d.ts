@@ -218,6 +218,8 @@ export namespace PostCopyUserFile {
 /** 获取文件列表 */
 export namespace GetFileList {
   type Request = Pick<UserFileProps, 'parentPath' | 'status'> & {
+    /** 文件全名 */
+    fullname?: string
     /** 排序字段 */
     orderBy?: string
   }
