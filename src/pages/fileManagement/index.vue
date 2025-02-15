@@ -44,7 +44,7 @@ onLoad((option: any) => {
     curDirInfo.value.path = '/'
   }
   // 更新页面标题
-  curDirInfo.value.title = option.dirPath.split('/').pop() || '文件管理'
+  curDirInfo.value.title = option.dirPath?.split('/').pop() || '文件管理'
 })
 
 export type CurDirInfoType = {
