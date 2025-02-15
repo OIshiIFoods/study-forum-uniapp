@@ -6,7 +6,7 @@
       :key="item.id"
     >
       <up-cell
-        :title="item.name"
+        :title="item.fullname"
         :titleStyle="{ color: '#000', fontSize: '14px' }"
         :label="dayjs(item.updateTime).format('YYYY-MM-DD HH:mm:ss')"
         :border="false"
