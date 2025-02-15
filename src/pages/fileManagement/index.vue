@@ -62,9 +62,17 @@ onShareAppMessage(({ from, target }) => {
         .join('&')}`,
       success(...arg) {
         console.log('arg', arg)
+        uni.showToast({
+          title: '分享成功',
+          icon: 'none',
+        })
       },
       fail(...arg) {
         console.log('arg', arg)
+        uni.showToast({
+          title: '分享失败',
+          icon: 'none',
+        })
       },
     }
   } else {

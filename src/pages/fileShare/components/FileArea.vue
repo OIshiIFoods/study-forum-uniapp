@@ -6,7 +6,7 @@
       :key="item.id"
     >
       <up-cell
-        :title="item.name"
+        :title="item.fullname"
         :titleStyle="{ color: '#000', fontSize: '14px' }"
         :label="dayjs(item.updateTime).format('YYYY-MM-DD HH:mm:ss')"
         :border="false"
@@ -116,19 +116,19 @@ const curDirInfo = defineModel<CurDirInfoType>('curDirInfo', {
   required: true,
 })
 const fileIconConfig = ref<any>({})
+const isFirstPage = getCurrentPages().length === 1
 
 onLoad(async (option: any) => {
-  console.log(
-    option,
-    option.sharedFileIds.split(',').map((id: string) => +id)
-  )
   const options = option as OnLoadOptionsType
   // 获取文件图标配置
   getFileIconConfig().then((res) => {
     fileIconConfig.value = res
   })
   const { data: shareFileData } = await getUserFiles({
-    fileIds: options.sharedFileIds.split(',').map((id: string) => +id),
+    fileIds: options.sharedFileIds
+      ? options.sharedFileIds.split(',').map((id: string) => +id)
+      : undefined,
+    parentPath: options.parentPath,
   })
   curDirInfo.value.sharedFiles = shareFileData.fileInfoList
 })
@@ -148,9 +148,10 @@ const handleFileClick = (fileInfo: CurDirInfoType['sharedFiles'][0]) => {
   }
   if (fileInfo.isDir) {
     router.push({
-      name: 'fileManagement',
+      name: 'fileShare',
       params: {
-        dirPath:
+        sharedUserId: '' + curDirInfo.value.sharedUserInfo!.id,
+        parentPath:
           fileInfo.parentPath === '/'
             ? '/' + fileInfo.name
             : fileInfo.parentPath + '/' + fileInfo.name,
