@@ -10,7 +10,7 @@ export const login = async (data: PostUserLogin.Request) => {
   })
 }
 
-export const getUserInfo = async () => {
+export const getUserInfo = async (params: GetUserInfo.Request) => {
   return request<GetUserInfo.Response>({
     method: 'GET',
     url: '/api/v1/user',

@@ -30,7 +30,9 @@ export namespace PostUserLogin {
 
 /** 获取用户信息 */
 export namespace GetUserInfo {
-  type Request = {}
+  type Request = {
+    userId?: number
+  }
   type Response = {
     /** 状态码 */
     status: number
@@ -217,11 +219,13 @@ export namespace PostCopyUserFile {
 
 /** 获取文件列表 */
 export namespace GetFileList {
-  type Request = Pick<UserFileProps, 'parentPath' | 'status'> & {
+  type Request = Pick<Partial<UserFileProps>, 'parentPath' | 'status'> & {
     /** 文件全名 */
     fullname?: string
     /** 排序字段 */
     orderBy?: string
+    /** 文件id列表 */
+    fileIds?: number[]
   }
 
   type Response = {
