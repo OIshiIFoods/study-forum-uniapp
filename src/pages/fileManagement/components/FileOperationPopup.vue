@@ -261,7 +261,7 @@ const operateFilePopupConfig = reactive({
       style: { fontSize: '18px' },
       disabled: () => curDirInfo.value.selectedFiles.length !== 1,
       clickAction: () => {
-        const selectFileInfo = curDirInfo.value.fileList[0]
+        const selectFileInfo = curDirInfo.value.selectedFiles[0]
         modifyFilenamePopupConfig.formInfo.model.name =
           selectFileInfo.name +
           (selectFileInfo.isDir
@@ -322,7 +322,7 @@ const modifyFilenamePopupConfig = reactive({
     onOk: async () => {
       const inputName = modifyFilenamePopupConfig.formInfo.model.name
 
-      const selectFileInfo = curDirInfo.value.fileList[0]
+      const selectFileInfo = curDirInfo.value.selectedFiles[0]
       const { filename: inputFilename, fileType: inputFileType } =
         parseFilename(inputName)
       const {
