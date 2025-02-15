@@ -150,8 +150,10 @@ const handleFileClick = (fileInfo: CurDirInfoType['fileList'][0]) => {
     router.push({
       name: 'fileManagement',
       params: {
-        curDirParentPath: curDirInfo.value.path,
-        curDirName: fileInfo.name,
+        dirPath:
+          fileInfo.parentPath === '/'
+            ? '/' + fileInfo.name
+            : fileInfo.parentPath + '/' + fileInfo.name,
       },
     })
   }

@@ -5,7 +5,7 @@
     >
       <up-navbar :title="curDirInfo.title" auto-back placeholder />
 
-      <SearchColumn />
+      <SearchColumn v-model:cur-dir-info="curDirInfo" />
       <ToolBar v-model:cur-dir-info="curDirInfo" />
       <FileArea v-model:cur-dir-info="curDirInfo" />
     </view>
@@ -38,16 +38,13 @@ const curDirInfo = ref<CurDirInfoType>({
 
 onLoad((option: any) => {
   // 更新当前访问目录信息
-  if (option.curDirParentPath) {
-    curDirInfo.value.path =
-      (option.curDirParentPath === '/' ? '' : option.curDirParentPath) +
-      '/' +
-      option.curDirName
+  if (option.dirPath) {
+    curDirInfo.value.path = option.dirPath
   } else {
     curDirInfo.value.path = '/'
   }
   // 更新页面标题
-  curDirInfo.value.title = option.curDirName ?? '文件管理'
+  curDirInfo.value.title = option.dirPath.split('/').pop() || '文件管理'
 })
 
 export type CurDirInfoType = {
