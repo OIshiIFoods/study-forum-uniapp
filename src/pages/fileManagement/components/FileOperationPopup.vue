@@ -150,6 +150,8 @@ const operateFilePopupConfig = reactive({
       code: 'share',
       title: '分享',
       iconName: 'share',
+      disabled: () =>
+        curDirInfo.value.selectedFiles.find((item) => !item.accessPermissions),
       style: {},
       clickAction: () => {},
     },
