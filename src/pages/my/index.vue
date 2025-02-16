@@ -1,8 +1,8 @@
 <template>
-  <view>
+  <view class="p-[0_calc(var(--page-side-unit-size)*8)]">
     <up-navbar title="" leftIcon="" placeholder />
     <!-- 信息概要 -->
-    <view class="p-[0_calc(var(--page-side-unit-size)*8)]">
+    <view>
       <!-- 主要信息 -->
       <view v-if="userStore.id" class="flex position-relative p-[5px_0]">
         <image
@@ -32,65 +32,97 @@
         <up-icon name="account-fill" size="50" color="var(--text-color-grey)" />
         <view class="text-[15px] font-700 ml-[10px]">请点击登录</view>
       </view>
-      <!-- 其他信息 -->
+      <!-- 账户状态信息列表 -->
+      <view class="flex m-[35rpx_0] p-0">
+        <view
+          class="pos-relative flex-1 flex flex-col items-center"
+          v-for="(item, index) in accountStatusInfoList"
+          :key="item.title"
+        >
+          <view class="text-[14px] mb-[3px]">{{ item.value }}</view>
+          <view class="text-[10px] text-[var(--text-color-grey)]">
+            {{ item.title }}
+          </view>
+          <up-line
+            v-if="index !== accountStatusInfoList.length - 1"
+            class="pos-absolute pos-right-0 pos-top-15%"
+            direction="col"
+            length="70%"
+          />
+        </view>
+      </view>
+    </view>
+    <!-- 文章管理 -->
+    <view class="m-[15px_0]">
+      <view class="text-14px font-600 p-[5px_0]">文章管理</view>
+    </view>
+    <!-- 文件管理 -->
+    <view class="m-[15px_0]">
+      <view class="text-14px font-600 p-[5px_0]">文件管理</view>
       <view>
-        <!-- 账户状态信息列表 -->
-        <view class="flex m-[35rpx_0] p-0">
+        <view class="flex justify-between items-center">
+          <view class="text-14px p-[8px_0]">
+            {{
+              ~~((userStore.usedSpaceSize || 0) / 1024 ** 2) +
+              'M/' +
+              ~~((userStore.availableSpaceSize || 1) / 1024 ** 2) +
+              'M'
+            }}
+          </view>
           <view
-            class="pos-relative flex-1 flex flex-col items-center"
-            v-for="(item, index) in accountStatusInfoList"
-            :key="item.title"
+            class="text-12px text-[#ccc]"
+            @click="router.push({ name: 'fileManagement' })"
           >
-            <view class="text-[14px] mb-[3px]">{{ item.value }}</view>
-            <view class="text-[10px] text-[var(--text-color-grey)]">
-              {{ item.title }}
-            </view>
-            <up-line
-              v-if="index !== accountStatusInfoList.length - 1"
-              class="pos-absolute pos-right-0 pos-top-15%"
-              direction="col"
-              length="70%"
-            />
+            管理文件 >
           </view>
         </view>
-        <view
-          v-if="userStore.id"
-          class="flex justify-around items-end m-[20px_0_12px]"
-        >
+        <up-line-progress
+          height="8"
+          activeColor="#59a3f4"
+          :percentage="
+            ((userStore.usedSpaceSize ?? 0) /
+              (userStore.availableSpaceSize ?? 1)) *
+            100
+          "
+        />
+        <view class="flex flex-wrap m-t-10px">
           <view
-            v-for="(item, index) in managementList"
-            :key="index"
-            @click="item.clickAction"
-            class="flex flex-col items-center"
+            class="flex flex-col items-center justify-center w-[25%] box-border p-[10px] overflow-hidden"
+            v-for="item in fileManageFuncList"
           >
             <view
-              class="text-[var(--primary-color)] iconfont"
+              class="iconfont text-[18px] mb-[6px] text-[var(--primary-color)]"
               :class="'icon-' + item.icon"
-              :style="{ fontSize: item.iconSize }"
             />
-            <text class="text-[12px] mt-[8px]">{{ item.title }}</text>
+            <text class="text-[12px]">{{ item.title }}</text>
           </view>
         </view>
       </view>
     </view>
-    <!-- 其他服务 -->
-    <up-cell-group class="other-service">
-      <up-cell
-        v-for="item in otherServiceList"
-        :title="item.title"
-        @click="item.clickAction"
-        :key="item.title"
-        is-link
-        clickable
-      >
-        <template #icon>
-          <view
-            class="text-[var(--primary-color)] text-22px iconfont"
-            :class="'icon-' + item.icon"
-          />
-        </template>
-      </up-cell>
-    </up-cell-group>
+
+    <!-- 更多服务 -->
+    <view class="m-[15px_0]">
+      <view class="text-14px font-600 p-[5px_0]">更多服务</view>
+      <up-cell-group :border="false">
+        <up-cell
+          v-for="item in otherServiceList"
+          :title="item.title"
+          :title-style="{ fontSize: '14px' }"
+          @click="item.clickAction"
+          :key="item.title"
+          :border="false"
+          is-link
+          clickable
+        >
+          <template #icon>
+            <view
+              class="text-[var(--primary-color)] text-22px iconfont"
+              :class="'icon-' + item.icon"
+            />
+          </template>
+        </up-cell>
+      </up-cell-group>
+    </view>
   </view>
 </template>
 
@@ -120,18 +152,12 @@ const accountStatusInfoList = computed(() => [
   },
 ])
 
-const managementList = [
+const fileManageFuncList = [
   {
-    title: '帖子管理',
-    icon: 'post-management',
+    title: '回收站',
+    icon: 'delete',
     iconSize: '27px',
     clickAction: () => router.push({ name: 'postManagement' }),
-  },
-  {
-    title: '文件管理',
-    icon: 'file-management',
-    iconSize: '35px',
-    clickAction: () => router.push({ name: 'fileManagement' }),
   },
 ]
 
