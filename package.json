@@ -14,12 +14,13 @@
         "title": "测试环境",
         "env": {
           "UNI_PLATFORM": "mp-weixin",
-          "BASE_URL": "http://192.168.0.103:3000"
+          "BASE_URL": "http://192.168.3.183:3000"
         }
       }
     }
   },
   "scripts": {
+    "gpd": "git pull origin develop & git pull gitee-origin develop & git push origin develop & git push gitee-origin develop",
     "dev:custom": "uni -p",
     "dev:h5": "uni",
     "dev:h5:ssr": "uni --ssr",
