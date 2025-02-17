@@ -164,9 +164,9 @@ const operateFilePopupConfig = reactive({
         uni.showLoading({
           title: '删除中',
         })
-        await deleteFile({
-          fileIdList: curDirInfo.value.selectedFiles.map(({ id }) => id),
-        })
+        await updateFileInfo(
+          curDirInfo.value.selectedFiles.map(({ id }) => ({ id, status: 0 }))
+        )
         uni.hideLoading()
         uni.showToast({ title: '删除成功', icon: 'none' })
         const { data } = await getUserFiles({
