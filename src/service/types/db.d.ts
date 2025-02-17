@@ -1,17 +1,17 @@
 /** 空间开放状态枚举 */
-export const enum SpaceOpenStatusEnum {
+export enum SpaceOpenStatusEnum {
   Open = 0,
   Close = 1,
 }
 
 /** 文件状态枚举 */
-export const enum FileStatusEnum {
+export enum FileStatusEnum {
   RecycleBin = 0,
   Normal = 1,
 }
 
 /** 文件访问权限枚举 */
-export const enum FileAccessPermissionsEnum {
+export enum FileAccessPermissionsEnum {
   Private = 0,
   Public = 1,
 }

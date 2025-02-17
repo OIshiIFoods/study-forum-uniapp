@@ -111,6 +111,7 @@
             class="flex flex-col items-center justify-center w-[25%] box-border p-[10px] overflow-hidden"
             v-for="item in fileManageFuncList"
             :key="item.title"
+            @click="item.clickAction"
           >
             <view
               class="iconfont text-[22px] mb-[6px] text-[var(--primary-color)]"
@@ -179,7 +180,7 @@ const fileManageFuncList = [
     title: '回收站',
     icon: 'delete',
     iconSize: '27px',
-    clickAction: () => router.push({ name: 'postManagement' }),
+    clickAction: () => router.push({ name: 'fileRecycleBin' }),
   },
 ]
 

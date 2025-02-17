@@ -58,6 +58,13 @@
 			}
 		},
 		{
+			"name": "fileRecycleBin",
+			"path": "pages/fileRecycleBin/index",
+			"style": {
+				"navigationStyle": "custom"
+			}
+		},
+		{
 			"name": "postManagement",
 			"path": "pages/postManagement/index",
 			"style": {
