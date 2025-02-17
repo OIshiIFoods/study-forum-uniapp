@@ -1,6 +1,6 @@
 <template>
   <up-navbar :title="curDirInfo.title" auto-back placeholder />
-  <view class="p-[0_15px]">
+  <view class="p-[0_15px]" v-if="curDirInfo.fileList.length">
     <view class="flex justify-between">
       <view
         class="iconfont icon-refresh"
@@ -101,6 +101,10 @@
         </view>
       </view>
     </up-popup>
+  </view>
+  <view v-else class="flex flex-col justify-center items-center h-80vh">
+    <view class="text-[50px] iconfont icon-no-file"></view>
+    <view class="text-15px p-[10px_0]">回收站为空</view>
   </view>
 </template>
 

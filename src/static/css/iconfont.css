@@ -1,9 +1,9 @@
 @font-face {
   font-family: 'iconfont'; /* Project id 4755028 */
   src:
-    url('../font/iconfont.woff2?t=1739800233372') format('woff2'),
-    url('../font/iconfont.woff?t=1739800233372') format('woff'),
-    url('../font/iconfont.ttf?t=1739800233372') format('truetype');
+    url('../font/iconfont.woff2?t=1739806436710') format('woff2'),
+    url('../font/iconfont.woff?t=1739806436710') format('woff'),
+    url('../font/iconfont.ttf?t=1739806436710') format('truetype');
 }
 
 .iconfont {
@@ -12,6 +12,10 @@
   font-style: normal;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-no-file:before {
+  content: '\e62d';
 }
 
 .icon-upload:before {
