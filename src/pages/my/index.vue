@@ -71,8 +71,9 @@
         </view>
       </view>
       <view
-        class="p-[5px] rounded-full bg-[var(--primary-color)] text-white text-12px"
+        class="flex items-center p-[5px_12px] rounded-full bg-[var(--primary-color)] text-white text-12px"
       >
+        <view class="iconfont icon-upload text-16px" />
         发布文章
       </view>
     </view>
