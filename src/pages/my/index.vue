@@ -52,9 +52,29 @@
         </view>
       </view>
     </view>
-    <!-- 文章管理 -->
-    <view class="m-[15px_0]">
-      <view class="text-14px font-600 p-[5px_0]">文章管理</view>
+    <!-- 发布文章 -->
+    <view
+      class="flex justify-between items-center m-[15px_0] box-border p-[10px_15px] bg-[linear-gradient(to_right,#fff,var(--shallow-primary-color))] b b-solid b-[var(--shallow-primary-color)] rounded-6px"
+      v-if="userStore.id"
+    >
+      <view>
+        <view class="flex p-[5px_0] items-center">
+          <view
+            class="text-[#fff] text-10px bg-[var(--primary-color)] p-[1px_1.5px] rounded-[2px]"
+          >
+            UP
+          </view>
+          <view class="text-14px">&nbsp; 发表你的文章</view>
+        </view>
+        <view class="text-10px text-[#bac0cb]">
+          撰写文章，让更多人了解你的想法。
+        </view>
+      </view>
+      <view
+        class="p-[5px] rounded-full bg-[var(--primary-color)] text-white text-12px"
+      >
+        发布文章
+      </view>
     </view>
     <!-- 文件管理 -->
     <view class="m-[15px_0]">
@@ -89,9 +109,10 @@
           <view
             class="flex flex-col items-center justify-center w-[25%] box-border p-[10px] overflow-hidden"
             v-for="item in fileManageFuncList"
+            :key="item.title"
           >
             <view
-              class="iconfont text-[18px] mb-[6px] text-[var(--primary-color)]"
+              class="iconfont text-[22px] mb-[6px] text-[var(--primary-color)]"
               :class="'icon-' + item.icon"
             />
             <text class="text-[12px]">{{ item.title }}</text>

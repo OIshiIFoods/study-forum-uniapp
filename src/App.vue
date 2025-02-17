@@ -40,6 +40,7 @@ onHide(() => {
 
 page {
   --primary-color: #59a3f4;
+  --shallow-primary-color: #dff0ff;
   --page-side-unit-size: 5rpx;
   --text-color-grey: #999;
   --bg-color-grey: #f1f2f4;
