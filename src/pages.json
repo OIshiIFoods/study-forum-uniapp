@@ -70,6 +70,13 @@
 			"style": {
 				"navigationStyle": "custom"
 			}
+		},
+		{
+			"name": "publishArticle",
+			"path": "pages/publishArticle/index",
+			"style": {
+				"navigationStyle": "custom"
+			}
 		}
 	],
 	"tabBar": {
