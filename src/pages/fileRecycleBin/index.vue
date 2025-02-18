@@ -1,110 +1,136 @@
 <template>
-  <up-navbar :title="curDirInfo.title" auto-back placeholder />
-  <view class="p-[0_15px]" v-if="curDirInfo.fileList.length">
-    <view class="flex justify-between">
-      <view
-        class="iconfont icon-refresh"
-        @click="
-          async () => {
-            const { data } = await getUserFiles({
-              status: curDirInfo.fileStatus,
-            })
-            curDirInfo.fileList = data.fileInfoList
-          }
-        "
-      />
-      <view
-        class="text-15px text-[var(--primary-color)]"
-        @click="
-          async () => {
-            await deleteFile({
-              fileIdList: curDirInfo.fileList.map((item) => item.id),
-            })
-            const { data } = await getUserFiles({
-              status: curDirInfo.fileStatus,
-            })
-            curDirInfo.fileList = data.fileInfoList
-          }
-        "
-      >
-        清空
-      </view>
-    </view>
-    <up-list height="auto">
-      <up-list-item
-        class="overflow-hidden"
-        v-for="item in curDirInfo.fileList"
-        :key="item.id"
-      >
-        <up-cell
-          :title="item.fullname"
-          :titleStyle="{ color: '#000', fontSize: '14px' }"
-          :label="dayjs(item.deleteTime).format('YYYY-MM-DD HH:mm:ss')"
-          :border="false"
-          @click="handleFileClick(item)"
-          @longpress="handleFileLongPress(item)"
-        >
-          <template #icon>
-            <view class="pos-relative">
-              <view
-                class="w-[40px] p-t-[100%] m-r-10px bg-center bg-contain bg-no-repeat"
-                :style="{
-                  backgroundImage: `url(${baseURL + '/api/v1/public/images/fileIcons'}/${getFileIconName(item.fullname, !!item.isDir)})`,
-                }"
-              />
-              <view
-                class="pos-absolute pos-left-[-10%] pos-bottom-0 text-[20px] iconfont"
-                :class="[item.accessPermissions ? '' : 'icon-locked']"
-              />
-            </view>
-          </template>
-          <template #right-icon>
-            <view @click.stop="() => {}">
-              <view
-                v-if="
-                  !curDirInfo.selectedFiles.find(
-                    (selectFile) => selectFile.id === item.id
-                  )
-                "
-                class="w-10px h-10px b-1px b-style-solid b-[#ccc] rounded-full"
-                @click="curDirInfo.selectedFiles.push(item)"
-              />
-              <up-icon
-                v-else
-                name="checkmark-circle-fill"
-                color="#59a3f4"
-                size="20"
-                @click="
-                  curDirInfo.selectedFiles = curDirInfo.selectedFiles.filter(
-                    (selectFile) => selectFile.id !== item.id
-                  )
-                "
-              />
-            </view>
-          </template>
-        </up-cell>
-      </up-list-item>
-    </up-list>
-    <up-popup :show="!!curDirInfo.selectedFiles.length" :overlay="false">
-      <view class="flex bg-[#228df2] p-[10px]">
+  <view class="grid grid-rows-[auto_1fr] h-100vh">
+    <up-navbar :title="curDirInfo.title" auto-back placeholder />
+    <view
+      class="grid grid-rows-[auto_1fr_auto] p-[0_15px]"
+      v-if="curDirInfo.fileList.length"
+    >
+      <!-- 工具栏 -->
+      <view class="flex justify-between items-center">
         <view
-          class="flex-1 flex flex-col justify-center items-center justify-end"
-          v-for="item in fileOperationList"
-          @click="item.clickAction"
+          class="iconfont icon-refresh"
+          @click="
+            async () => {
+              const { data } = await getUserFiles({
+                status: curDirInfo.fileStatus,
+              })
+              curDirInfo.fileList = data.fileInfoList
+              showToast({
+                title: '刷新成功',
+                icon: 'none',
+              })
+            }
+          "
+        />
+        <up-button
+          :customStyle="{
+            fontSize: '15px',
+            width: 'auto',
+            border: 'none',
+            margin: 0,
+            color: '#106aff',
+          }"
+          @click="
+            async () => {
+              await deleteFile({
+                fileIdList: curDirInfo.fileList.map((item) => item.id),
+              })
+              const { data } = await getUserFiles({
+                status: curDirInfo.fileStatus,
+              })
+              curDirInfo.fileList = data.fileInfoList
+              showToast({
+                title: '回收站已清空',
+                icon: 'none',
+              })
+            }
+          "
         >
+          清空
+        </up-button>
+      </view>
+      <!-- 文件列表 -->
+      <up-list height="auto">
+        <up-list-item
+          class="overflow-hidden"
+          v-for="item in curDirInfo.fileList"
+          :key="item.id"
+        >
+          <up-cell
+            :title="item.fullname"
+            :titleStyle="{ color: '#000', fontSize: '14px' }"
+            :label="dayjs(item.deleteTime).format('YYYY-MM-DD HH:mm:ss')"
+            :border="false"
+            @click="handleFileClick(item)"
+            @longpress="handleFileLongPress(item)"
+          >
+            <template #icon>
+              <view class="pos-relative">
+                <view
+                  class="w-[40px] p-t-[100%] m-r-10px bg-center bg-contain bg-no-repeat"
+                  :style="{
+                    backgroundImage: `url(${baseURL + '/api/v1/public/images/fileIcons'}/${getFileIconName(item.fullname, !!item.isDir)})`,
+                  }"
+                />
+                <view
+                  class="pos-absolute pos-left-[-10%] pos-bottom-0 text-[20px] iconfont"
+                  :class="[item.accessPermissions ? '' : 'icon-locked']"
+                />
+              </view>
+            </template>
+            <template #right-icon>
+              <view @click.stop="() => {}">
+                <view
+                  v-if="
+                    !curDirInfo.selectedFiles.find(
+                      (selectFile) => selectFile.id === item.id
+                    )
+                  "
+                  class="w-10px h-10px b-1px b-style-solid b-[#ccc] rounded-full"
+                  @click="curDirInfo.selectedFiles.push(item)"
+                />
+                <up-icon
+                  v-else
+                  name="checkmark-circle-fill"
+                  color="#59a3f4"
+                  size="20"
+                  @click="
+                    curDirInfo.selectedFiles = curDirInfo.selectedFiles.filter(
+                      (selectFile) => selectFile.id !== item.id
+                    )
+                  "
+                />
+              </view>
+            </template>
+          </up-cell>
+        </up-list-item>
+      </up-list>
+      <!-- 操作栏弹窗 -->
+      <view
+        class="transition-all duration-300 overflow-hidden box-border m-[0_-15px] bg-[#228df2]"
+        :class="[curDirInfo.selectedFiles.length ? 'h-66px' : 'h-0']"
+      >
+        <view class="flex p-[10px]">
           <view
-            class="iconfont text-[#fff] p-[5px_0]"
-            :class="'icon-' + item.icon"
-            :style="{ fontSize: item.iconSize }"
-          />
-          <view class="text-[#fff] text-[13px]">{{ item.title }}</view>
+            class="flex-1 flex flex-col justify-center items-center justify-end"
+            v-for="item in fileOperationList"
+            @click="item.clickAction"
+          >
+            <view
+              class="iconfont text-[#fff] p-[5px_0]"
+              :class="'icon-' + item.icon"
+              :style="{ fontSize: item.iconSize }"
+            />
+            <view class="text-[#fff] text-[13px]">{{ item.title }}</view>
+          </view>
         </view>
       </view>
-    </up-popup>
-  </view>
-  <view v-else class="flex flex-col justify-center items-center h-80vh">
-    <view class="text-[50px] iconfont icon-no-file"></view>
-    <view class="text-15px p-[10px_0]">回收站为空</view>
+    </view>
+    <!-- 回收站为空界面 -->
+    <view v-else class="flex flex-col justify-center items-center">
+      <view class="text-[50px] iconfont icon-no-file"></view>
+      <view class="text-15px p-[10px_0]">回收站为空</view>
+    </view>
   </view>
 </template>
 
@@ -225,6 +251,10 @@ const getFileIconName = (filename: string, isDir: boolean = false) => {
         file
     ].iconPath
   }
+}
+
+const showToast = (options: UniNamespace.ShowToastOptions) => {
+  uni.showToast(options)
 }
 
 export type CurDirInfoType = {
