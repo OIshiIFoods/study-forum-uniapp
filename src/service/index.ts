@@ -1,4 +1,8 @@
-import { publishArticle } from './modules/article'
+import {
+  addArticleComment,
+  getArticleDetailInfo,
+  publishArticle,
+} from './modules/article'
 import { getFileIconConfig } from './modules/common'
 import { getCaptcha } from './modules/ouath'
 import { getUserInfo, login } from './modules/user'
@@ -23,4 +27,6 @@ export {
   updateFileInfo,
   copyUserFile,
   publishArticle,
+  getArticleDetailInfo,
+  addArticleComment,
 }

@@ -1,5 +1,6 @@
 import { OrderByOption } from '@/utils/buildDBQuery'
 import {
+  ArticleCommentProps,
   ArticleProps,
   FileStatusEnum,
   FollowProps,
@@ -379,7 +380,7 @@ export namespace GetArticleDetailInfo {
       userInfo: Pick<ArticleProps, 'userId'> &
         Pick<UserProps, 'nickname' | 'avatarLink'>
       /** 评论列表 */
-      commenList: (ArticleCommentProps &
+      commentList: (ArticleCommentProps &
         Pick<UserProps, 'nickname' | 'avatarLink'>)[]
     }
   }
