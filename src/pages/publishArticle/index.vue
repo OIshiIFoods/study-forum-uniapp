@@ -18,22 +18,23 @@
         @input="(content: string) => (articleInfo.content = content)"
       />
     </view>
-    <sv-editor-toolbar
+    <SvEditorToolbar
       ref="toolbarRef"
-      :style-tools="[
-        'header',
-        'divider',
-        'bold',
-        'italic',
-        'underline',
-        'strike',
-        'align',
-        'color',
-        'backgroundColor',
-        'removeformat',
-      ]"
+      :tools="['style', 'emoji', 'more']"
+      :moreTools="['image', 'link']"
+      :toolbarStyle="{flex:'none', width:'auto'}"
+      :toolbarItemStyle="{flex:'none', width:'80rpx' }"
+      :activeToolStyle="{color:'var(--primary-color)'}"
       @moreItemConfirm="moreItemConfirm"
-    ></sv-editor-toolbar>
+    >
+    <template #toolbarRight>
+      <view class="mr-10px">
+        <up-button :size="'small'" type="primary">
+          发布
+        </up-button>
+      </view>
+    </template>
+  </SvEditorToolbar>
   </view>
 </template>
 
