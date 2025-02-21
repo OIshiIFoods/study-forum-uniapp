@@ -63,6 +63,7 @@ import {
   addVideo,
 } from '@/plugins/sv-editor/components/common/utils'
 import { publishArticle } from '@/service'
+import { uploadFile } from '@/api/http'
 
 const editorCtx = ref<any>(null)
 const toolbarRef = ref<any>(null)
@@ -81,21 +82,21 @@ const showToast = (options: UniNamespace.ShowToastOptions) => {
 }
 
 const moreItemConfirm = async (e: any) => {
-  console.log('moreItemConfirm ==>', e)
+  const file = e.file
   // 添加图片
   if (e.name == 'image') {
     const imageRes = await addImage(
       async () => {
-        return new Promise((resolve) => {
-          uni.showLoading({ title: '上传中' })
-          setTimeout(() => {
-            uni.hideLoading()
-            let images: any[] = []
-            if (e.link) images.push({ path: e.link })
-            if (e.file?.length) images = images.concat(e.file)
-            resolve(images)
-          }, 3000)
-        })
+        uni.showLoading({ title: '上传中' })
+        const { success } = await uploadFile(
+          'articleImg',
+          file.map((item: any) => ({
+            name: 'file',
+            filePath: item.tempFilePath,
+          }))
+        )
+        uni.hideLoading()
+        return success.map((item) => ({ path: item.url }))
       },
       { srcFiled: 'path' }
     )
@@ -106,73 +107,12 @@ const moreItemConfirm = async (e: any) => {
     }
   }
 
-  // 添加视频
-  if (e.name == 'video') {
-    const videoRes = await addVideo(
-      async (editorCtx: any) => {
-        return new Promise((resolve) => {
-          uni.showLoading({ title: '上传中' })
-          setTimeout(async () => {
-            uni.hideLoading()
-            let videos: any[] = []
-            if (e.link) {
-              const linkThumbnail = await editorCtx.createVideoThumbnail(e.link)
-              videos.push({
-                imagePath: linkThumbnail,
-                tempFilePath: e.link,
-              })
-            }
-            if (e.file.tempFilePath) {
-              const fileThumbnail = await editorCtx.createVideoThumbnail(
-                e.file.tempFilePath
-              )
-              e.file.imagePath = fileThumbnail
-              videos.push(e.file)
-            }
-            resolve(videos)
-          }, 3000)
-        })
-      },
-      { imageFiled: 'imagePath', videoFiled: 'tempFilePath', width: '100%' }
-    )
-    if (videoRes) {
-      uni.showToast({ title: '添加视频成功', icon: 'success' })
-    } else {
-      uni.showToast({ title: '添加视频失败', icon: 'error' })
-    }
-  }
-
   // 添加链接
   if (e.name == 'link') {
     addLink({ link: e.link, text: e.text }, () => {
       uni.showToast({ title: '添加链接成功' })
     })
   }
-
-  // 添加附件
-  if (e.name == 'attachment') {
-    const attachmentRes = await addAttachment(async () => {
-      return new Promise((resolve) => {
-        uni.showLoading({ title: '上传中' })
-        setTimeout(() => {
-          uni.hideLoading()
-          let attachmentObj = e
-          if (e.file.path) {
-            attachmentObj.path = e.file.path
-          } else if (e.link) {
-            attachmentObj.path = e.link
-          }
-          resolve(attachmentObj)
-        }, 3000)
-      })
-    })
-    if (attachmentRes) {
-      uni.showToast({ title: '添加附件成功', icon: 'success' })
-    } else {
-      uni.showToast({ title: '添加附件失败', icon: 'error' })
-    }
-  }
-
   // 关闭弹窗
   toolbarRef.value.closeMorePop()
 }
