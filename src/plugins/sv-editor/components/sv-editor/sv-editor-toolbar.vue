@@ -1,78 +1,82 @@
 <template>
   <view class="sv-editor-toolbar">
-    <view class="editor-tools" @tap="onTool">
-      <text
-        v-for="item in allTools"
-        :key="item.title"
-        class="iconfont"
-        :class="item.icon"
-        :data-name="item.name"
-      ></text>
-      <!-- [展开/折叠] 为固定工具 -->
-      <text v-if="isShowPanel" class="iconfont icon-xiajiantou" data-name="fold" data-value="0"></text>
-      <text v-else class="iconfont icon-shangjiantou" data-name="fold" data-value="1"></text>
-    </view>
-    <!-- 样式面板 不建议使用 :key="item.name" 因为 name 可能重复 -->
-    <view class="tool-panel" v-if="curTool == 'style' && isShowPanel">
-      <view class="panel-grid panel-style">
-        <view
-          class="panel-style-item"
-          :class="[(item.value ? formats[item.name] === item.value : formats[item.name]) ? 'ql-active' : '']"
-          :style="{ color: item.name == 'color' ? curTextColor : item.name == 'backgroundColor' ? curBgColor : '' }"
-          v-for="item in allStyleTools"
+    <view :style="{display:'flex', alignItems:'center', justifyContent:'space-between', borderTop:'1rpx solid var(--editor-toolbar-bordercolor)', borderTop:'1rpx solid var(--editor-toolbar-bordercolor)'}">
+      <view class="editor-tools" :style="{flex:1, ...toolbarStyle}" @tap="onTool">
+        <text
+          v-for="item in allTools"
           :key="item.title"
-          :title="item.title"
+          class="iconfont"
+          :class="item.icon"
+          :style="[toolbarItemStyle, curTool === item.name && activeToolStyle]"
           :data-name="item.name"
-          :data-value="item.value"
-          @tap="onToolStyleItem"
-        >
-          <text class="iconfont pointer-events-none" :class="item.icon"></text>
-          <text class="tool-item-title pointer-events-none">{{ item.title }}</text>
-        </view>
+        />
+      </view>
+      <view :style="{overflow:'hidden'}">
+        <slot name="toolbarRight"></slot>
       </view>
     </view>
-    <!-- 表情面板 -->
-    <view class="tool-panel" v-if="curTool == 'emoji' && isShowPanel">
-      <view class="panel-grid panel-emoji">
-        <view
-          class="panel-emoji-item"
-          v-for="item in allEmojiTools"
-          :key="item"
-          :data-name="item"
-          @tap="onToolEmojiItem"
-        >
-          {{ item }}
+    <view :style="{height:isShowPanel?'var(--tool-panel-max-height)':0, flex:1, overflow:'auto',transition:'all .3s', ...toolPanelsWrapperStyle}">
+      <!-- 样式面板 不建议使用 :key="item.name" 因为 name 可能重复 -->
+      <view class="tool-panel" v-if="curTool == 'style' && isShowPanel" :style="activeToolPanelStyle">
+        <view class="panel-grid panel-style">
+          <view
+            class="panel-style-item"
+            :class="[(item.value ? formats[item.name] === item.value : formats[item.name]) ? 'ql-active' : '']"
+            :style="{ color: item.name == 'color' ? curTextColor : item.name == 'backgroundColor' ? curBgColor : '' }"
+            v-for="item in allStyleTools"
+            :key="item.title"
+            :title="item.title"
+            :data-name="item.name"
+            :data-value="item.value"
+            @tap="onToolStyleItem"
+          >
+            <text class="iconfont pointer-events-none" :class="item.icon"></text>
+            <text class="tool-item-title pointer-events-none">{{ item.title }}</text>
+          </view>
         </view>
       </view>
-      <!-- #ifdef H5 -->
-      <view class="editor-backspace iconfont icon-tuige" @click="onBackSpace"></view>
-      <!-- #endif -->
-      <!-- #ifdef APP -->
-      <view v-if="!isIOS" class="editor-backspace iconfont icon-tuige" @click="onBackSpace"></view>
-      <!-- #endif -->
-    </view>
-    <!-- 更多功能面板 -->
-    <view class="tool-panel" v-if="curTool == 'more' && isShowPanel">
-      <view class="panel-grid panel-more">
-        <view
-          class="panel-more-item"
-          v-for="item in allMoreTools"
-          :key="item.title"
-          :title="item.title"
-          :data-name="item.name"
-          :data-value="item.value"
-          @tap="onToolMoreItem"
-        >
-          <view class="iconfont pointer-events-none" :class="item.icon"></view>
-          <view class="panel-more-item-title pointer-events-none">{{ item.title }}</view>
+      <!-- 表情面板 -->
+      <view class="tool-panel" v-if="curTool == 'emoji' && isShowPanel" :style="activeToolPanelStyle">
+        <view class="panel-grid panel-emoji">
+          <view
+            class="panel-emoji-item"
+            v-for="item in allEmojiTools"
+            :key="item"
+            :data-name="item"
+            @tap="onToolEmojiItem"
+          >
+            {{ item }}
+          </view>
+        </view>
+        <!-- #ifdef H5 -->
+        <view class="editor-backspace iconfont icon-tuige" @click="onBackSpace"></view>
+        <!-- #endif -->
+        <!-- #ifdef APP -->
+        <view v-if="!isIOS" class="editor-backspace iconfont icon-tuige" @click="onBackSpace"></view>
+        <!-- #endif -->
+      </view>
+      <!-- 更多功能面板 -->
+      <view class="tool-panel" v-if="curTool == 'more' && isShowPanel" :style="activeToolPanelStyle">
+        <view class="panel-grid panel-more">
+          <view
+            class="panel-more-item"
+            v-for="item in allMoreTools"
+            :key="item.title"
+            :title="item.title"
+            :data-name="item.name"
+            :data-value="item.value"
+            @tap="onToolMoreItem"
+          >
+            <view class="iconfont pointer-events-none" :class="item.icon"></view>
+            <view class="panel-more-item-title pointer-events-none">{{ item.title }}</view>
+          </view>
         </view>
       </view>
+      <!-- 扩展面板 -->
+      <view class="tool-panel" v-if="curTool == 'setting' && isShowPanel" :style="activeToolPanelStyle">
+        <slot name="setting"></slot>
+      </view>
     </view>
-    <!-- 扩展面板 -->
-    <view class="tool-panel" v-if="curTool == 'setting' && isShowPanel">
-      <slot name="setting"></slot>
-    </view>
-
     <!-- 弹窗 因vue2/3的v-model写法有区别，故需要条件编译，我也是醉了 -->
     <!-- #ifdef VUE3 -->
     <sv-editor-popup-more v-model:show="showMorePop" :tool-name="curMoreTool" @confirm="moreItemConfirm">
@@ -149,6 +153,26 @@ export default {
     SvEditorColorpicker
   },
   props: {
+    toolbarStyle:{
+      type: Object,
+      default: {}
+    },
+    toolbarItemStyle:{
+      type: Object,
+      default: {}
+    },
+    activeToolStyle:{
+      type: Object,
+      default: {}
+    },
+    toolPanelsWrapperStyle:{
+      type: Object,
+      default: {}
+    },
+    activeToolPanelStyle: {
+      type: Object,
+      default: {}
+    },
     // 工具栏列表
     tools: {
       type: Array,
@@ -270,7 +294,7 @@ export default {
     }
   },
   mounted() {
-    this.curTool = this.allTools[0].name // 当前工具（头部工具栏）默认第一个
+    this.curTool = ''
 
     uni.$on('E_EDITOR_STATUSCHANGE', (e) => {
       this.curTextColor = e.detail.color || ''
@@ -305,28 +329,34 @@ export default {
 
       this.$emit('tapTool', { name, value })
 
-      switch (name) {
-        case 'style':
-        case 'emoji':
-        case 'more':
-        case 'setting':
-          this.curTool = name
-          this.showPanel = true
-          break
-        case 'undo':
-          noKeyboardEffect(() => {
-            this.editorCtx.undo()
-          })
-          break
-        case 'redo':
-          noKeyboardEffect(() => {
-            this.editorCtx.redo()
-          })
-          break
-        case 'fold':
-          this.showPanel = value == '1' ? true : false
-          break
+      if(this.curTool === name){
+        this.showPanel = false
+        this.curTool = ''
+      }else{
+        switch (name) {
+          case 'style':
+          case 'emoji':
+          case 'more':
+          case 'setting':
+            this.curTool = name
+            this.showPanel = true
+            break
+          case 'undo':
+            noKeyboardEffect(() => {
+              this.editorCtx.undo()
+            })
+            break
+          case 'redo':
+            noKeyboardEffect(() => {
+              this.editorCtx.redo()
+            })
+            break
+          case 'fold':
+            this.showPanel = value == '1' ? true : false
+            break
+        }
       }
+
       // 点击toolbar需要主动聚焦
       // #ifdef H5
       noKeyboardEffect(() => {
@@ -521,8 +551,6 @@ export default {
     width: 100%;
     height: var(--editor-toolbar-height);
     background-color: var(--editor-toolbar-bgcolor);
-    border-top: 1rpx solid var(--editor-toolbar-bordercolor);
-    border-bottom: 1rpx solid var(--editor-toolbar-bordercolor);
     display: flex;
     align-items: center;
     justify-content: space-around;
@@ -540,8 +568,6 @@ export default {
   }
 
   .tool-panel {
-    height: var(--tool-panel-height);
-    max-height: var(--tool-panel-max-height);
     overflow: auto;
     padding: 30rpx;
     box-sizing: border-box;
