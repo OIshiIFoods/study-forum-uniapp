@@ -1,3 +1,4 @@
+import { publishArticle } from './modules/article'
 import { getFileIconConfig } from './modules/common'
 import { getCaptcha } from './modules/ouath'
 import { getUserInfo, login } from './modules/user'
@@ -21,4 +22,5 @@ export {
   deleteFile,
   updateFileInfo,
   copyUserFile,
+  publishArticle,
 }

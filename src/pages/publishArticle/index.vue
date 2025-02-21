@@ -15,26 +15,38 @@
         pasteMode="origin"
         placeholder="请输入正文"
         @ready="ready"
-        @input="(content: string) => (articleInfo.content = content)"
+        @input="({ text = '', html = '' }) => (articleInfo.content = html)"
       />
     </view>
     <SvEditorToolbar
       ref="toolbarRef"
       :tools="['style', 'emoji', 'more']"
       :moreTools="['image', 'link']"
-      :toolbarStyle="{flex:'none', width:'auto'}"
-      :toolbarItemStyle="{flex:'none', width:'80rpx' }"
-      :activeToolStyle="{color:'var(--primary-color)'}"
+      :toolbarStyle="{ flex: 'none', width: 'auto' }"
+      :toolbarItemStyle="{ flex: 'none', width: '80rpx' }"
+      :activeToolStyle="{ color: 'var(--primary-color)' }"
       @moreItemConfirm="moreItemConfirm"
     >
-    <template #toolbarRight>
-      <view class="mr-10px">
-        <up-button :size="'small'" type="primary">
-          发布
-        </up-button>
-      </view>
-    </template>
-  </SvEditorToolbar>
+      <template #toolbarRight>
+        <view class="mr-10px">
+          <up-button
+            :size="'small'"
+            type="primary"
+            @click="
+              async () => {
+                await publishArticle(articleInfo)
+                showToast({
+                  title: '发布成功',
+                  icon: 'none',
+                })
+              }
+            "
+          >
+            发布
+          </up-button>
+        </view>
+      </template>
+    </SvEditorToolbar>
   </view>
 </template>
 
@@ -50,6 +62,7 @@ import {
   addLink,
   addVideo,
 } from '@/plugins/sv-editor/components/common/utils'
+import { publishArticle } from '@/service'
 
 const editorCtx = ref<any>(null)
 const toolbarRef = ref<any>(null)
@@ -61,6 +74,10 @@ const articleInfo = reactive({
 
 const ready = (e: any) => {
   editorCtx.value = e
+}
+
+const showToast = (options: UniNamespace.ShowToastOptions) => {
+  uni.showToast(options)
 }
 
 const moreItemConfirm = async (e: any) => {
