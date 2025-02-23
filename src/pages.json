@@ -37,6 +37,13 @@
 			}
 		},
 		{
+			"name": "accountInfo",
+			"path": "pages/accountInfo/index",
+			"style": {
+				"navigationStyle": "custom"
+			}
+		},
+		{
 			"name": "login",
 			"path": "pages/login/index",
 			"style": {
