@@ -30,6 +30,13 @@
 			}
 		},
 		{
+			"name": "userSpace",
+			"path": "pages/userSpace/index",
+			"style": {
+				"navigationStyle": "custom"
+			}
+		},
+		{
 			"name": "login",
 			"path": "pages/login/index",
 			"style": {

@@ -19,7 +19,7 @@
         <!-- 空间控件 -->
         <view
           class="pos-absolute pos-top-[50%] pos-right-none transform-translate-y-[-50%] text-[var(--text-color-grey)] text-[12px]"
-          @click=""
+          @click="router.push({ name: 'userSpace' })"
         >
           空间 >
         </view>
