@@ -2,7 +2,7 @@
   <view class="h-100vh bg-#f1f2f4 overflow-auto">
     <up-navbar title="账号资料" placeholder auto-back />
     <up-cell-group class="mt-20px bg-#fff">
-      <up-cell is-link title="头像">
+      <up-cell is-link title="头像" :onClick="() => changeAvatar()">
         <template #value>
           <up-avatar
             :src="baseURL + '' + userStore.avatarLink"
@@ -144,7 +144,7 @@
 </template>
 
 <script setup lang="ts">
-import { baseURL } from '@/api/http'
+import { baseURL, uploadFile } from '@/api/http'
 import { sexMap } from '@/config/constant'
 import router from '@/router'
 import { putUserInfo } from '@/service'
@@ -208,6 +208,30 @@ const showModifyInfoPopup = (formType: string) => {
     },
   }
   Object.assign(popupConfig, { show: true, ...(formMap[formType] ?? {}) })
+}
+
+const changeAvatar = () => {
+  uni.chooseImage({
+    count: 1,
+    sourceType: ['album', 'camera'],
+    success: async (res) => {
+      const filePath = res.tempFilePaths[0]
+      const { success } = await uploadFile('avatar', [
+        {
+          name: 'avatar',
+          filePath,
+        },
+      ])
+      await putUserInfo({
+        avatarLink: success[0].url,
+      })
+      await userStore.syncUserInfo()
+      uni.showToast({
+        title: '修改成功',
+        icon: 'none',
+      })
+    },
+  })
 }
 
 const handleSave = async () => {
