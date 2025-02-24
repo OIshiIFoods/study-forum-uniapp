@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import { onLaunch, onShow, onHide } from '@dcloudio/uni-app'
 import router from '@/router'
-import { getUserInfo } from '@/service'
 import { useUserStore } from './stores'
 onLaunch(() => {
   // 判断用户是否已登录
@@ -20,10 +19,8 @@ onLaunch(() => {
       },
     })
   } else {
-    getUserInfo().then((res) => {
-      const userStore = useUserStore()
-      userStore.$patch(res.data)
-    })
+    const userStore = useUserStore()
+    userStore.syncUserInfo()
   }
   console.log('App Launch')
 })

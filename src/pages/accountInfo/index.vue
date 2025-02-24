@@ -68,7 +68,7 @@
 import { baseURL } from '@/api/http'
 import { sexMap } from '@/config/constant'
 import router from '@/router'
-import { getUserInfo, putUserInfo } from '@/service'
+import { putUserInfo } from '@/service'
 import { useUserStore } from '@/stores'
 import { filterObjectByKeys } from '@/utils'
 import type { _FormRef } from 'uview-plus/types/comps/form'

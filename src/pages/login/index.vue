@@ -86,7 +86,7 @@
 
 <script setup lang="ts">
 import router from '@/router'
-import { getCaptcha, getUserInfo, login } from '@/service'
+import { getCaptcha, login } from '@/service'
 import { useUserStore } from '@/stores'
 import type { _FormRef } from 'uview-plus/types/comps/form'
 import { reactive, ref } from 'vue'
@@ -148,10 +148,8 @@ const handleLoginClick = async () => {
       title: '登录成功',
       icon: 'success',
     })
-    getUserInfo().then((res) => {
-      const userStore = useUserStore()
-      userStore.$patch(res.data)
-    })
+    const userStore = useUserStore()
+    userStore.syncUserInfo()
     router.back({
       delta: 1,
       animationType: 'slide-out-right',
