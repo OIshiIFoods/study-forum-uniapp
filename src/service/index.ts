@@ -5,7 +5,7 @@ import {
 } from './modules/article'
 import { getFileIconConfig } from './modules/common'
 import { getCaptcha } from './modules/ouath'
-import { getUserInfo, login } from './modules/user'
+import { getUserInfo, login, putUserInfo } from './modules/user'
 import {
   copyUserFile,
   createFile,
@@ -29,4 +29,5 @@ export {
   publishArticle,
   getArticleDetailInfo,
   addArticleComment,
+  putUserInfo,
 }
