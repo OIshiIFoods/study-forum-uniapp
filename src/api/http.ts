@@ -1,6 +1,4 @@
-import router from '@/router'
 import type { PostUploadFile } from '@/service/types/api'
-import { useUserStore } from '@/stores'
 
 export const baseURL = process.env.BASE_URL
 
@@ -49,22 +47,7 @@ const httpInterceptor: UniApp.InterceptorOptions = {
     }
     // token 过期时
     if (res.data.status === 401) {
-      const userStore = useUserStore()
       uni.removeStorageSync('token')
-      userStore.$reset()
-      uni.showModal({
-        title: '提示',
-        content: '登录凭证已过期，请重新登录！',
-        confirmText: '确认',
-        cancelText: '取消',
-        success: (success) => {
-          if (success.confirm) {
-            router.push({
-              name: 'login',
-            })
-          }
-        },
-      })
     }
   },
   fail() {},
