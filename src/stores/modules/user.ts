@@ -1,3 +1,4 @@
+import { getUserInfo } from '@/service'
 import type { UserProps } from '@/service/types/db'
 import { defineStore } from 'pinia'
 
@@ -23,6 +24,13 @@ export const useUserStore = defineStore('user', {
     } as Partial<UserProps>
   },
   getters: {},
+  actions: {
+    async syncUserInfo() {
+      await getUserInfo().then((res) => {
+        this.$patch(res.data)
+      })
+    },
+  },
   // 配置持久化
   persist: {
     storage: {
