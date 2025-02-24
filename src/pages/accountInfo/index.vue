@@ -22,7 +22,12 @@
         :value="sexMap[userStore.sex ?? 0]"
         @click="showModifyInfoPopup('modifySex')"
       />
-      <up-cell is-link title="出生年月" :value="'生日当天会收到祝福'" />
+      <up-cell
+        is-link
+        title="出生年月"
+        :value="'生日当天会收到祝福'"
+        @click="showModifyInfoPopup('modifyBirthday')"
+      />
       <up-cell
         is-link
         title="个性签名"
@@ -99,9 +104,35 @@
             count
           />
         </up-form-item>
+        <!-- 生日表单项 -->
+        <view v-if="popupConfig.showFields.includes('birthday')">
+          <up-cell-group class="mt-20px bg-#fff">
+            <up-cell
+              is-link
+              title="生日信息"
+              :value="
+                popupConfig.formInfo.model.birthday
+                  ? dayjs(popupConfig.formInfo.model.birthday).format(
+                      'YYYY-MM-DD'
+                    )
+                  : '选择你的生日'
+              "
+              @click="popupConfig.tempVar.isShowDatePicker = true"
+            />
+          </up-cell-group>
+          <up-datetime-picker
+            :show="popupConfig.tempVar.isShowDatePicker"
+            v-model="popupConfig.formInfo.model.birthday"
+            mode="date"
+            @confirm="popupConfig.tempVar.isShowDatePicker = false"
+            @cancel="popupConfig.tempVar.isShowDatePicker = false"
+            @close="popupConfig.tempVar.isShowDatePicker = false"
+            closeOnClickOverlay
+          />
+        </view>
       </up-form>
       <up-button
-        :custom-style="{ width: '150px' }"
+        :custom-style="{ width: '150px', margin: '20px auto' }"
         :color="'var(--primary-color)'"
         :shape="'circle'"
         @click="handleSave"
@@ -119,6 +150,7 @@ import router from '@/router'
 import { putUserInfo } from '@/service'
 import { useUserStore } from '@/stores'
 import { filterObjectByKeys } from '@/utils'
+import dayjs from 'dayjs'
 import type { _FormRef } from 'uview-plus/types/comps/form'
 import { reactive, ref } from 'vue'
 
@@ -135,6 +167,7 @@ const popupConfig = reactive({
       nickname: userStore.nickname,
       sex: userStore.sex,
       signature: userStore.signature,
+      birthday: userStore.birthday,
     },
     rules: {
       nickname: [
@@ -145,6 +178,9 @@ const popupConfig = reactive({
         },
       ],
     },
+  },
+  tempVar: {
+    isShowDatePicker: false,
   },
 })
 
@@ -164,6 +200,11 @@ const showModifyInfoPopup = (formType: string) => {
       title: '编辑签名',
       formType: 'modifySignature',
       showFields: ['signature'],
+    },
+    modifyBirthday: {
+      title: '编辑生日',
+      formType: 'modifyBirthday',
+      showFields: ['birthday'],
     },
   }
   Object.assign(popupConfig, { show: true, ...(formMap[formType] ?? {}) })
