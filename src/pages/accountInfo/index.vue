@@ -23,7 +23,12 @@
         @click="showModifyInfoPopup('modifySex')"
       />
       <up-cell is-link title="出生年月" :value="'生日当天会收到祝福'" />
-      <up-cell is-link title="个性签名" :value="userStore.signature" />
+      <up-cell
+        is-link
+        title="个性签名"
+        :value="userStore.signature"
+        @click="showModifyInfoPopup('modifySignature')"
+      />
     </up-cell-group>
   </view>
   <up-popup :show="popupConfig.show" mode="right">
@@ -81,6 +86,19 @@
             </view>
           </up-radio-group>
         </up-form-item>
+        <!-- 签名表单项 -->
+        <up-form-item
+          v-if="popupConfig.showFields.includes('signature')"
+          prop="signature"
+        >
+          <up-textarea
+            v-model="popupConfig.formInfo.model.signature"
+            :maxlength="200"
+            :height="'200px'"
+            placeholder="点击输入个性签名"
+            count
+          />
+        </up-form-item>
       </up-form>
       <up-button
         :custom-style="{ width: '150px' }"
@@ -116,6 +134,7 @@ const popupConfig = reactive({
     model: {
       nickname: userStore.nickname,
       sex: userStore.sex,
+      signature: userStore.signature,
     },
     rules: {
       nickname: [
@@ -140,6 +159,11 @@ const showModifyInfoPopup = (formType: string) => {
       title: '编辑性别',
       formType: 'modifySex',
       showFields: ['sex'],
+    },
+    modifySignature: {
+      title: '编辑签名',
+      formType: 'modifySignature',
+      showFields: ['signature'],
     },
   }
   Object.assign(popupConfig, { show: true, ...(formMap[formType] ?? {}) })
