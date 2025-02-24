@@ -16,7 +16,12 @@
         :value="userStore.nickname"
         :onClick="() => showModifyInfoPopup('modifyNickname')"
       />
-      <up-cell is-link title="性别" :value="sexMap[userStore.sex ?? 0]" />
+      <up-cell
+        is-link
+        title="性别"
+        :value="sexMap[userStore.sex ?? 0]"
+        @click="showModifyInfoPopup('modifySex')"
+      />
       <up-cell is-link title="出生年月" :value="'生日当天会收到祝福'" />
       <up-cell is-link title="个性签名" :value="userStore.signature" />
     </up-cell-group>
@@ -50,6 +55,31 @@
           <view class="text-right text-13px text-#999 py-10px">
             请设置2-24个字符
           </view>
+        </up-form-item>
+        <!-- sex 表单项  -->
+        <up-form-item v-if="popupConfig.showFields.includes('sex')" prop="sex">
+          <up-radio-group
+            :customStyle="{
+              padding: '10px',
+              borderRadius: '5px',
+              backgroundColor: '#fff',
+            }"
+            :activeColor="'var(--primary-color)'"
+            v-model="popupConfig.formInfo.model.sex"
+            placement="column"
+            iconPlacement="right"
+          >
+            <view
+              v-for="(item, index) in Object.entries(sexMap)"
+              :key="item[0]"
+            >
+              <up-radio :name="+item[0]" :label="item[1]" />
+              <up-line
+                v-if="index !== Object.entries(sexMap).length - 1"
+                color="#eaebec"
+              />
+            </view>
+          </up-radio-group>
         </up-form-item>
       </up-form>
       <up-button
@@ -85,6 +115,7 @@ const popupConfig = reactive({
   formInfo: {
     model: {
       nickname: userStore.nickname,
+      sex: userStore.sex,
     },
     rules: {
       nickname: [
@@ -104,6 +135,11 @@ const showModifyInfoPopup = (formType: string) => {
       title: '编辑昵称',
       formType: 'modifyNickname',
       showFields: ['nickname'],
+    },
+    modifySex: {
+      title: '编辑性别',
+      formType: 'modifySex',
+      showFields: ['sex'],
     },
   }
   Object.assign(popupConfig, { show: true, ...(formMap[formType] ?? {}) })
