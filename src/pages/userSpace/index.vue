@@ -88,56 +88,16 @@
             transform: 'scale(1.05)',
           }"
           itemStyle="flex:1; fontSize:14px; padding:10px 15px; borderBottom:1px solid #e4e4e4; borderTop:1px solid #e4e4e4"
-          :onChange="(item) => (activeTab = item.code)"
+          :onChange="(item: any) => (activeTab = item.code)"
         />
       </up-sticky>
-      <view class="flex-1 overflow-auto px-15px">
+      <view class="flex-1 overflow-auto px-15px bg-[#f1f2f4]">
         <view v-if="activeTab === 'dynamics'">
-          文章elit. Nostrum error, laboriosam facilis repudiandae molestiae
-          delectus modi, esse soluta corporis inventore numquam, porro ipsam
-          illo in culpa doloribus quisquam illum voluptas! Lorem ipsum dolor sit
-          amet, consectetur adipisicing elit. Nostrum error, laboriosam facilis
-          repudiandae molestiae delectus modi, esse soluta corporis inventore
-          numquam, porro ipsam illo in culpa doloribus quisquam illum voluptas!
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nostrum
-          error, laboriosam facilis repudiandae molestiae delectus modi, esse
-          soluta corporis inventore numquam, porro ipsam illo in culpa doloribus
-          quisquam illum voluptas! Lorem ipsum dolor sit amet, consectetur
-          adipisicing elit. Nostrum error, laboriosam facilis repudiandae
-          molestiae delectus modi, esse soluta corporis inventore numquam, porro
-          ipsam illo in culpa doloribus quisquam illum voluptas! Lorem ipsum
-          dolor sit amet, consectetur adipisicing elit. Nostrum error,
-          laboriosam facilis repudiandae molestiae delectus modi, esse soluta
-          corporis inventore numquam, porro ipsam illo in culpa doloribus
-          quisquam illum voluptas! Lorem ipsum dolor sit amet, consectetur
-          adipisicing elit. Nostrum error, laboriosam facilis repudiandae
-          molestiae delectus modi, esse soluta corporis inventore numquam, porro
-          ipsam illo in culpa doloribus quisquam illum voluptas! Lorem ipsum
-          dolor sit amet, consectetur adipisicing elit. Nostrum error,
-          laboriosam facilis repudiandae molestiae delectus modi, esse soluta
-          corporis inventore numquam, porro ipsam illo in culpa doloribus
-          quisquam illum voluptas! Lorem ipsum dolor sit amet, consectetur
-          adipisicing elit. Nostrum error, laboriosam facilis repudiandae
-          molestiae delectus modi, esse soluta corporis inventore numquam, porro
-          ipsam illo in culpa doloribus quisquam illum voluptas! Lorem ipsum
-          dolor sit amet, consectetur adipisicing elit. Nostrum error,
-          laboriosam facilis repudiandae molestiae delectus modi, esse soluta
-          corporis inventore numquam, porro ipsam illo in culpa doloribus
-          quisquam illum voluptas! Lorem ipsum dolor sit amet, consectetur
-          adipisicing elit. Nostrum error, laboriosam facilis repudiandae
-          molestiae delectus modi, esse soluta corporis inventore numquam, porro
-          ipsam illo in culpa doloribus quisquam illum voluptas! Lorem ipsum
-          dolor sit amet, consectetur adipisicing elit. Nostrum error,
-          laboriosam facilis repudiandae molestiae delectus modi, esse soluta
-          corporis inventore numquam, porro ipsam illo in culpa doloribus
-          quisquam illum voluptas! Lorem ipsum dolor sit amet, consectetur
-          adipisicing elit. Nostrum error, laboriosam facilis repudiandae
-          molestiae delectus modi, esse soluta corporis inventore numquam, porro
-          ipsam illo in culpa doloribus quisquam illum voluptas! Lorem ipsum
-          dolor sit amet, consectetur adipisicing elit. Nostrum error,
-          laboriosam facilis repudiandae molestiae delectus modi, esse soluta
-          corporis inventore numquam, porro ipsam illo in culpa doloribus
-          quisquam illum voluptas!
+          <ArticleItem
+            v-for="item in articleList"
+            :articleItem="item"
+            :key="item.id"
+          />
         </view>
         <view v-if="activeTab === 'file'">文件</view>
       </view>
@@ -147,9 +107,12 @@
 
 <script setup lang="ts">
 import { baseURL } from '@/api/http'
+import ArticleItem from '@/components/ArticleItem.vue'
 import router from '@/router'
+import { getArticleList } from '@/service'
+import type { GetArticleList } from '@/service/types/api'
 import { useUserStore } from '@/stores'
-import { computed, ref } from 'vue'
+import { computed, onMounted, reactive, ref } from 'vue'
 
 const userStore = useUserStore()
 
@@ -184,4 +147,11 @@ const tabbarItemList = [
 
 const activeTab = ref('dynamics')
 const navbarMode = ref<'light' | 'dark'>('dark')
+
+const articleList = ref<GetArticleList.Response['data']['articleList']>([])
+
+onMounted(async () => {
+  const { data } = await getArticleList({ userId: userStore.id })
+  articleList.value = data.articleList
+})
 </script>

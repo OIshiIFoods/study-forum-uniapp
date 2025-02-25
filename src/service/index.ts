@@ -1,6 +1,7 @@
 import {
   addArticleComment,
   getArticleDetailInfo,
+  getArticleList,
   publishArticle,
 } from './modules/article'
 import { getFileIconConfig } from './modules/common'
@@ -30,4 +31,5 @@ export {
   getArticleDetailInfo,
   addArticleComment,
   putUserInfo,
+  getArticleList,
 }

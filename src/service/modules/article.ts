@@ -1,6 +1,7 @@
 import { request } from '@/api/http'
 import type {
   GetArticleDetailInfo,
+  GetArticleList,
   PostCommentArticle,
   PostPublishArticle,
 } from '../types/api'
@@ -10,6 +11,15 @@ export const publishArticle = async (data: PostPublishArticle.Request) => {
   return request<PostPublishArticle.Response>({
     method: 'POST',
     url: '/api/v1/article',
+    data,
+  })
+}
+
+/** 获取文章列表 */
+export const getArticleList = async (data: GetArticleList.Request) => {
+  return request<GetArticleList.Response>({
+    method: 'GET',
+    url: '/api/v1/article/list',
     data,
   })
 }

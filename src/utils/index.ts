@@ -12,3 +12,8 @@ export const filterObjectByKeys = (
     {} as Record<string, any>
   )
 }
+
+export const parseHtmlString = (htmlString: string) => {
+  // 使用正则表达式去除 HTML 标签
+  return htmlString.replace(/<[^>]+>/g, '')
+}
