@@ -74,7 +74,7 @@
         </view>
       </view>
     </view>
-    <view class="flex flex-col max-h-[calc(100vh-44px)]">
+    <view class="flex flex-col h-[calc(100vh-44px)]">
       <up-sticky offsetTop="44px">
         <up-tabs
           class="mt-15px"
@@ -99,7 +99,15 @@
             :key="item.id"
           />
         </view>
-        <view v-if="activeTab === 'file'">文件</view>
+        <view class="h-full" v-if="activeTab === 'file'">
+          <view
+            class="flex flex-col justify-center items-center h-full"
+            @click="router.push({ name: 'fileManagement' })"
+          >
+            <view class="text-[50px] iconfont icon-no-file" />
+            <view class="text-15px p-[10px_0]">文件仓库 ></view>
+          </view>
+        </view>
       </view>
     </view>
   </scroll-view>
