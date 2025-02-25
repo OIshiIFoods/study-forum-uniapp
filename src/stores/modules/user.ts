@@ -13,7 +13,7 @@ export const useUserStore = defineStore('user', {
       avatarLink: '',
       sex: undefined,
       birthday: '',
-      space_open_status: undefined,
+      spaceOpenStatus: undefined,
       availableSpaceSize: undefined,
       usedSpaceSize: undefined,
       articleCount: 0,

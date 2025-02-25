@@ -1,7 +1,7 @@
 /** 空间开放状态枚举 */
 export enum SpaceOpenStatusEnum {
-  Open = 0,
-  Close = 1,
+  Open = 1,
+  Close = 0,
 }
 
 /** 文件状态枚举 */
@@ -71,7 +71,7 @@ export interface UserProps {
   /** 生日 */
   birthday?: string
   /** 空间开放状态 */
-  space_open_status: SpaceOpenStatusEnum
+  spaceOpenStatus: SpaceOpenStatusEnum
   /** 可使用空间大小 字节*/
   availableSpaceSize: number
   /** 已使用空间大小 字节*/

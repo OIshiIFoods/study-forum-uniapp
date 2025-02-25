@@ -34,6 +34,11 @@
         :value="userStore.signature"
         @click="showModifyInfoPopup('modifySignature')"
       />
+      <up-cell
+        is-link
+        title="空间设置"
+        @click="showModifyInfoPopup('modifySpaceOpenStatus')"
+      />
     </up-cell-group>
   </view>
   <up-popup :show="popupConfig.show" mode="right">
@@ -130,6 +135,19 @@
             closeOnClickOverlay
           />
         </view>
+        <!-- 空间开放状态项 -->
+        <up-cell-group class="bg-#fff m-[10px_-10px]">
+          <up-cell :title="'公开我的空间'">
+            <template #value>
+              <up-switch
+                v-model="popupConfig.formInfo.model.spaceOpenStatus"
+                :activeValue="spaceOpenStatusMap.open"
+                :inactiveValue="spaceOpenStatusMap.close"
+                :size="16"
+              />
+            </template>
+          </up-cell>
+        </up-cell-group>
       </up-form>
       <up-button
         :custom-style="{ width: '150px', margin: '20px auto' }"
@@ -145,7 +163,7 @@
 
 <script setup lang="ts">
 import { baseURL, uploadFile } from '@/api/http'
-import { sexMap } from '@/config/constant'
+import { sexMap, spaceOpenStatusMap } from '@/config/constant'
 import router from '@/router'
 import { putUserInfo } from '@/service'
 import { useUserStore } from '@/stores'
@@ -168,6 +186,7 @@ const popupConfig = reactive({
       sex: userStore.sex,
       signature: userStore.signature,
       birthday: userStore.birthday,
+      spaceOpenStatus: userStore.spaceOpenStatus,
     },
     rules: {
       nickname: [
@@ -205,6 +224,11 @@ const showModifyInfoPopup = (formType: string) => {
       title: '编辑生日',
       formType: 'modifyBirthday',
       showFields: ['birthday'],
+    },
+    modifySpaceOpenStatus: {
+      title: '空间设置',
+      formType: 'modifySpaceOpenStatus',
+      showFields: ['spaceOpenStatus'],
     },
   }
   Object.assign(popupConfig, { show: true, ...(formMap[formType] ?? {}) })
