@@ -36,7 +36,7 @@
 <script setup lang="ts">
 import { baseURL } from '@/api/http'
 import { getArticleDetailInfo } from '@/service'
-import { GetArticleDetailInfo } from '@/service/types/api'
+import type { GetArticleDetailInfo } from '@/service/types/api'
 import { onLoad } from '@dcloudio/uni-app'
 import dayjs from 'dayjs'
 import { ref } from 'vue'

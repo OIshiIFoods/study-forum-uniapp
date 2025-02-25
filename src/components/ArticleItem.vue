@@ -19,7 +19,7 @@
       :size="13"
     />
     <view class="flex justify-between mt-10px text-#949494">
-      <view class="flex" v-for="item in statusList">
+      <view class="flex" v-for="item in statusList" :key="item.title">
         <up-icon :name="item.iconname" />
         <view class="ml-3px text-13px">{{ item.value }}</view>
       </view>

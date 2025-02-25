@@ -91,6 +91,13 @@
 			"style": {
 				"navigationStyle": "custom"
 			}
+		},
+		{
+			"name": "articleDetail",
+			"path": "pages/articleDetail/index",
+			"style": {
+				"navigationStyle": "custom"
+			}
 		}
 	],
 	"tabBar": {
