@@ -105,7 +105,7 @@
             @click="router.push({ name: 'fileManagement' })"
           >
             <view class="text-[50px] iconfont icon-no-file" />
-            <view class="text-15px p-[10px_0]">文件仓库 ></view>
+            <view class="text-15px p-[10px_0]">前往文件仓库 ></view>
           </view>
         </view>
       </view>

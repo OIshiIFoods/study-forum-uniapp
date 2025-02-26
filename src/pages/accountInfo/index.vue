@@ -136,7 +136,10 @@
           />
         </view>
         <!-- 空间开放状态项 -->
-        <up-cell-group class="bg-#fff m-[10px_-10px]">
+        <up-cell-group
+          v-if="popupConfig.showFields.includes('spaceOpenStatus')"
+          class="bg-#fff m-[10px_-10px]"
+        >
           <up-cell :title="'公开我的空间'">
             <template #value>
               <up-switch
