@@ -1,45 +1,43 @@
 <template>
-  <view class="hb-comment">
+  <view class="p-10rpx">
     <!-- 评论主体-start -->
-    <view class="comment-list" v-if="commentData.comment.length !== 0">
+    <view v-if="commentData.comment.length !== 0">
       <!-- 评论主体-顶部数量及发表评论按钮-start -->
-      <view class="comment-num">
+      <view class="flex justify-between items-center py-20rpx">
         <view>共 {{ commentData.comment.length }} 条评论</view>
-        <view class="add-btn">
-          <button type="primary" size="mini" @click="commentInput">
-            发表评论
-          </button>
-        </view>
+        <button class="m-0" type="primary" size="mini" @click="commentInput">
+          发表评论
+        </button>
       </view>
       <!-- 评论主体-顶部数量及发表评论按钮-end -->
       <!-- 评论列表-start -->
-      <view
-        class="comment-box"
-        v-for="(rootCom, index) in commentData.comment"
-        :key="rootCom.id"
-      >
-        <view class="comment-box-item">
-          <view>
-            <image
-              :src="rootCom.avatarLink || emptyAvatar"
-              mode="aspectFill"
-              class="avatar"
-            ></image>
-          </view>
-          <view class="comment-main">
+      <view v-for="(rootCom, index) in commentData.comment" :key="rootCom.id">
+        <view class="flex">
+          <image
+            :src="rootCom.avatarLink || emptyAvatar"
+            mode="aspectFill"
+            class="w-70rpx h-70rpx rounded-50%"
+          />
+          <view class="flex-1 pl-20rpx">
             <!-- 父评论体-start -->
-            <view class="comment-main-top">
-              <view class="nick-name-box">
-                <view class="comLogo com1" v-if="index == 0">沙发</view>
-                <view class="comLogo com2" v-if="index == 1">板凳</view>
-                <view class="comLogo com3" v-if="index == 2">地板</view>
-                <view class="comLogo com4" v-if="index > 2">
-                  {{ index + 1 }}楼
+            <view class="flex justify-between pt-6rpx">
+              <view class="flex items-center">
+                <view
+                  class="mr-18rpx text-22rpx rounded-10rpx p-[5rpx_15rpx] text-white"
+                  :style="{
+                    backgroundColor:
+                      ['#d218b1', '#f19c0b', '#c8da85'][index] ?? '#bfd0da',
+                  }"
+                >
+                  {{ ['沙发', '板凳', '地板'][index] ?? index + 1 + '楼' }}
                 </view>
-                <view class="nick-name">{{ rootCom.nickname }}</view>
+                <view class="text-#2d8cf0">{{ rootCom.nickname }}</view>
               </view>
-              <view class="zan-box" @click="like(rootCom.id)">
-                <span :class="rootCom.hasLike ? 'isLike' : 'notLike'">
+              <view @click="like(rootCom.id)">
+                <span
+                  class="text-28rpx pr-10rpx"
+                  :class="rootCom.hasLike ? 'text-#2d8cf0' : 'text-#999'"
+                >
                   {{ rootCom.likeCount == 0 ? '抢首赞' : rootCom.likeCount }}
                 </span>
                 <image
@@ -54,7 +52,7 @@
                 />
               </view>
             </view>
-            <view class="comment-main-content">
+            <view class="p-[10rpx] pl-0">
               {{
                 rootCom.content?.length > 60
                   ? rootCom.content.slice(0, 59)
@@ -62,21 +60,21 @@
               }}
               <span v-if="rootCom.content?.length > 60">
                 {{ rootCom.hasShowMore ? rootCom.content.slice(59) : '...' }}
-                <span class="foot-btn" @click="showMore(rootCom.id)">
+                <span class="pl-10rpx" @click="showMore(rootCom.id)">
                   {{ rootCom.hasShowMore ? '收起' : '展开' }}
                 </span>
               </span>
             </view>
-            <view class="comment-main-foot">
-              <view class="foot-time">{{ rootCom.createTime }}</view>
+            <view class="flex text-22rpx">
+              <view>{{ rootCom.createTime }}</view>
               <view
-                class="foot-btn"
+                class="pl-10rpx text-#007aff"
                 @click="reply(rootCom.nickname, rootCom.nickname, rootCom.id)"
               >
                 回复
               </view>
               <view
-                class="foot-btn"
+                class="pl-10rpx text-#007aff"
                 v-if="rootCom.owner"
                 @click="confirmDelete(rootCom.id)"
               >
@@ -85,24 +83,25 @@
             </view>
             <!-- 父评论体-end -->
             <!-- 子评论列表-start -->
-            <view class="comment-sub-box">
+            <view class="p-[20rpx_0]">
               <view
-                class="comment-sub-item"
+                class="flex"
                 v-for="sCom in rootCom.children"
                 :key="sCom.id"
               >
-                <view>
-                  <image
-                    :src="sCom.avatarLink || emptyAvatar"
-                    mode="aspectFill"
-                    class="avatar"
-                  ></image>
-                </view>
-                <view class="comment-main">
-                  <view class="sub-comment-main-top">
-                    <view class="nick-name">{{ sCom.nickname }}</view>
-                    <view class="zan-box" @click="like(sCom.id)">
-                      <span :class="sCom.hasLike ? 'isLike' : 'notLike'">
+                <image
+                  :src="sCom.avatarLink || emptyAvatar"
+                  mode="aspectFill"
+                  class="w-50rpx h-50rpx rounded-50%"
+                />
+                <view class="flex-1 pl-20rpx">
+                  <view class="flex justify-between pt-6rpx">
+                    <view class="text-#2d8cf0">{{ sCom.nickname }}</view>
+                    <view @click="like(sCom.id)">
+                      <span
+                        class="text-28rpx pr-10rpx"
+                        :class="rootCom.hasLike ? 'text-#2d8cf0' : 'text-#999'"
+                      >
                         {{ sCom.likeCount == 0 ? '抢首赞' : sCom.likeCount }}
                       </span>
                       <image
@@ -117,7 +116,7 @@
                       />
                     </view>
                   </view>
-                  <view class="comment-main-content">
+                  <view class="p-10rpx pl-0">
                     {{
                       sCom.content?.length > 60
                         ? sCom.content.slice(0, 59)
@@ -125,15 +124,18 @@
                     }}
                     <span v-if="sCom.content?.length > 60">
                       {{ sCom.hasShowMore ? sCom.content.slice(59) : '...' }}
-                      <span class="foot-btn" @click="showMore(sCom.id)">
+                      <span
+                        class="pl-10rpx text-#007aff"
+                        @click="showMore(sCom.id)"
+                      >
                         {{ sCom.hasShowMore ? '收起' : '展开' }}
                       </span>
                     </span>
                   </view>
-                  <view class="comment-main-foot">
+                  <view class="flex text-22rpx">
                     <view class="foot-time">{{ sCom.createTime }}</view>
                     <view
-                      class="foot-btn"
+                      class="pl-10rpx text-#007aff"
                       @click="
                         reply(
                           rootCom.nickname,
@@ -146,7 +148,7 @@
                       回复
                     </view>
                     <view
-                      class="foot-btn"
+                      class="pl-10rpx text-#007aff"
                       v-if="sCom.owner"
                       @click="confirmDelete(sCom.id)"
                     >
@@ -164,33 +166,51 @@
     </view>
     <!-- 评论主体-end -->
     <!-- 无评论-start -->
-    <view class="comment-none" v-else>
+    <view class="p-20rpx w-full text-center text-#999" v-else>
       暂无评论，
       <span @click="commentInput" style="color: #007aff">抢沙发</span>
     </view>
     <!-- 无评论-end -->
     <!-- 新增评论-start -->
-    <view class="comment-submit-box" v-if="submit" @click="closeInput">
+    <view
+      class="fixed flex items-center w-full z-9900 pos-left-0 pos-top-[var(--window-top)] pos-bottom-0 bg-[rgba(0,0,0,.5)]"
+      v-if="submit"
+      @click="closeInput"
+    >
       <!-- 下边的click.stop.prevent用于让上边的click不传下去，以防点到下边的空白处触发closeInput方法 -->
       <view
-        class="comment-add"
+        class="fixed bg-#fff w-full p-5rpx b b-solid b-#ddd transition-duration-300"
         @click.stop.prevent="stopPrevent"
         :style="'bottom:' + KeyboardHeight + 'px'"
       >
-        <view class="comment-submit">
-          <view class="btn-click cancel" @click="closeInput">取消</view>
+        <view
+          class="flex justify-between items-center p-[5rpx_20rpx_0] b-b b-b-dashed b-b-#ddd w-[calc(100%-40rpx)]"
+        >
+          <view class="text-#606266 text-28rpx p-10rpx" @click="closeInput">
+            取消
+          </view>
           <view>
-            <view class="replayTag" v-if="showTag">
+            <view
+              class="flex justify-between items-center text-16rpx p-[5px_10px] text-#909399 mb-5px b b-solid b-#c8c9cc bg-#f4f4f5 rounded-3px"
+              v-if="showTag"
+            >
               <view>回复在 {{ pUser }} 的评论下</view>
-              <view @click="tagClose" class="replyTagClose">×</view>
+              <view
+                @click="tagClose"
+                class="text-20px line-height-12px p-[0_0_2px_5px]"
+              >
+                ×
+              </view>
             </view>
           </view>
           <view>
-            <view class="btn-click" @click="add">发布</view>
+            <view class="text-#007aff text-28rpx p-10rpx" @click="add">
+              发布
+            </view>
           </view>
         </view>
         <textarea
-          class="textarea"
+          class="h-100px p-16rpx w-full"
           v-model="commentReq.content"
           :placeholder="placeholder"
           :adjust-position="false"
@@ -399,211 +419,3 @@ export default {
   },
 }
 </script>
-
-<style lang="scss" scoped>
-.hb-comment {
-  padding: 10rpx;
-}
-
-.top-read {
-  font-size: 28rpx;
-  padding-left: 10rpx;
-  color: #999999;
-}
-
-.seg_line_box {
-  display: flex;
-  height: 5rpx;
-  justify-content: space-between;
-  margin: 5rpx 0;
-}
-
-.seg_line {
-  width: 45%;
-  border-bottom: 1rpx solid #e1e1e1;
-}
-
-.seg_dot {
-  width: 8%;
-  border-bottom: 5rpx dotted #dbdbdb;
-}
-
-.comment-num {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 20rpx 0;
-}
-
-.comment-box {
-  padding: 10rpx 0;
-}
-
-.comment-box-item {
-  display: flex;
-}
-
-.comment-main {
-  padding-left: 20rpx;
-}
-
-.comment-main-top {
-  width: 600rpx;
-  padding-top: 6rpx;
-  display: flex;
-  justify-content: space-between;
-}
-
-.sub-comment-main-top {
-  width: 510rpx;
-  padding-top: 6rpx;
-  display: flex;
-  justify-content: space-between;
-}
-
-.avatar {
-  width: 70rpx;
-  height: 70rpx;
-  border-radius: 50%;
-}
-
-.nick-name-box {
-  display: flex;
-  align-items: center;
-}
-
-.comLogo {
-  margin-right: 18rpx;
-  font-size: 22rpx;
-  border-radius: 10rpx;
-  padding: 5rpx 15rpx;
-  color: #ffffff;
-}
-
-.com1 {
-  background-color: #d218b1;
-}
-
-.com2 {
-  background-color: #f19c0b;
-}
-
-.com3 {
-  background-color: #c8da85;
-}
-
-.com4 {
-  background-color: #bfd0da;
-}
-
-.nick-name {
-  color: #2d8cf0;
-}
-
-.isLike {
-  font-size: 28rpx;
-  padding-right: 10rpx;
-  color: #2d8cf0;
-}
-
-.notLike {
-  font-size: 28rpx;
-  padding-right: 10rpx;
-  color: #999999;
-}
-
-.comment-main-content {
-  padding: 10rpx 10rpx 10rpx 0;
-}
-
-.comment-main-foot {
-  display: flex;
-  font-size: 22rpx;
-}
-
-.replayTag {
-  color: #909399;
-  margin-bottom: 5px;
-  border: 1px solid #c8c9cc;
-  background-color: #f4f4f5;
-  border-radius: 3px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  font-size: 16rpx;
-  padding: 5px 10px;
-}
-
-.replyTagClose {
-  font-size: 20px;
-  line-height: 12px;
-  padding: 0 0 2px 5px;
-}
-
-.foot-btn {
-  padding-left: 10rpx;
-  color: #007aff;
-}
-
-.comment-sub-box {
-  padding: 20rpx 0;
-}
-
-.comment-sub-item {
-  display: flex;
-}
-
-.comment-none {
-  padding: 20rpx;
-  width: 100%;
-  text-align: center;
-  color: #999999;
-}
-
-.comment-submit-box {
-  position: fixed;
-  display: flex;
-  align-items: flex-end;
-  z-index: 9900;
-  left: 0;
-  top: var(--window-top);
-  bottom: 0;
-  background-color: rgba($color: #000000, $alpha: 0.5);
-  width: 100%;
-}
-
-.comment-add {
-  position: fixed;
-  background-color: #ffffff;
-  width: 100%;
-  padding: 5rpx;
-  border: 1px solid #ddd;
-  transition: 0.3s;
-  -webkit-transition: 0.3s;
-}
-
-.btn-click {
-  color: #007aff;
-  font-size: 28rpx;
-  padding: 10rpx;
-}
-
-.cancel {
-  color: #606266;
-}
-
-.textarea {
-  height: 100px;
-  padding: 16rpx;
-  width: 100%;
-}
-
-.comment-submit {
-  padding: 5rpx 20rpx 0 20rpx;
-  border-bottom: 1px dashed #ddd;
-  width: calc(100% - 40rpx);
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-</style>
