@@ -34,6 +34,13 @@
             type="primary"
             @click="
               async () => {
+                if (!articleInfo.title || !articleInfo.content) {
+                  showToast({
+                    title: '请填写标题和内容',
+                    icon: 'none',
+                  })
+                  return
+                }
                 await publishArticle(articleInfo)
                 showToast({
                   title: '发布成功',
