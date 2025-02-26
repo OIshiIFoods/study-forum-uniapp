@@ -1,8 +1,11 @@
 import { request } from '@/api/http'
 import type {
+  DeleteArticleComment,
+  GetArticleCommentList,
   GetArticleDetailInfo,
   GetArticleList,
   PostCommentArticle,
+  PostLikeArticleComment,
   PostPublishArticle,
 } from '../types/api'
 
@@ -41,5 +44,38 @@ export const addArticleComment = (params: PostCommentArticle.Request) => {
     method: 'POST',
     url: '/api/v1/article/comment',
     data: params,
+  })
+}
+
+/** 获取评论列表 */
+export const getArticleCommentList = async (
+  data: GetArticleCommentList.Request
+) => {
+  return request<GetArticleCommentList.Response>({
+    method: 'GET',
+    url: '/api/v1/article/comment',
+    data,
+  })
+}
+
+/** 删除评论 */
+export const deleteArticleComment = async (
+  data: DeleteArticleComment.Request
+) => {
+  return request<DeleteArticleComment.Response>({
+    method: 'DELETE',
+    url: '/api/v1/article/comment',
+    data,
+  })
+}
+
+/** 点赞评论 */
+export const likeArticleComment = async (
+  data: PostLikeArticleComment.Request
+) => {
+  return request<PostLikeArticleComment.Response>({
+    method: 'POST',
+    url: '/api/v1/article/comment/like',
+    data,
   })
 }

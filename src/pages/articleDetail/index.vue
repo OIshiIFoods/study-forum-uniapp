@@ -1,45 +1,68 @@
 <template>
-  <view class="grid grid-rows-[auto_1fr_auto] h-100vh">
-    <up-navbar :fixed="false" auto-back>
-      <template #center>
-        <view class="flex items-center justify-between">
-          <view>
-            <up-avatar
-              class="mx-[10px]"
-              :src="baseURL + '' + userInfo?.avatarLink"
-              :size="40"
-            />
-            <view class="text-[#333] text-[16px]">
-              {{ userInfo?.nickname }}
-            </view>
-          </view>
-          <up-button type="error" size="small" :shape="'circle'">
-            关注
-          </up-button>
+  <view class="px-10px">
+    <up-navbar placeholder auto-back :title="'坛友动态'" />
+    <view class="flex items-center justify-between">
+      <view class="flex items-center">
+        <up-avatar
+          class="mx-[10px]"
+          :src="baseURL + '' + userInfo?.avatarLink"
+          :size="40"
+        />
+        <view class="text-[#333] text-[16px]">
+          {{ userInfo?.nickname }}
         </view>
-      </template>
-    </up-navbar>
-    <view class="px-10px">
-      <view class="text-[#333] text-[20px] font-700 b-b b-b-solid b-b-#eee">
+      </view>
+      <up-button
+        :custom-style="{
+          borderColor: 'var(--primary-color)',
+          width: 'auto',
+          margin: '0',
+        }"
+        :color="'var(--primary-color)'"
+        :size="'small'"
+        :shape="'circle'"
+        :text="'关注'"
+      />
+    </view>
+    <view class="my-15px">
+      <view class="text-[#333] text-[20px] font-700">
         {{ articleInfo?.title }}
       </view>
-      <view class="py-10px b-b b-b-solid b-b-#eee">
+      <up-line />
+      <view class="my-10px">
         <up-parse :content="articleInfo?.content" />
-        <view class="text-[#999] text-[14px] my-8px">
-          {{ dayjs(articleInfo?.updateTime).format('YYYY-MM-DD HH:mm:ss') }}
-        </view>
       </view>
+      <view class="py-5px text-[#999] text-[12px]">
+        {{ dayjs(articleInfo?.updateTime).format('YYYY-MM-DD HH:mm:ss') }}
+      </view>
+      <up-line />
     </view>
+    <Comment
+      ref="commentArea"
+      @add="addComment"
+      @del="delComment"
+      @like="likeComment"
+      :deleteTip="'确认删除？'"
+      :cmData="treeCommentList"
+    />
   </view>
 </template>
 
 <script setup lang="ts">
 import { baseURL } from '@/api/http'
-import { getArticleDetailInfo } from '@/service'
+import Comment from '@/components/Comment.vue'
+import {
+  addArticleComment,
+  deleteArticleComment,
+  getArticleCommentList,
+  getArticleDetailInfo,
+  likeArticleComment,
+} from '@/service'
 import type { GetArticleDetailInfo } from '@/service/types/api'
+import { transformListToTree } from '@/utils'
 import { onLoad } from '@dcloudio/uni-app'
 import dayjs from 'dayjs'
-import { ref } from 'vue'
+import { computed, ref } from 'vue'
 
 type OnloadParamType =
   | {
@@ -66,7 +89,62 @@ onLoad(async (param) => {
 
 const userInfo = ref<GetArticleDetailInfo.Response['data']['userInfo']>()
 const articleInfo = ref<GetArticleDetailInfo.Response['data']['articleInfo']>()
-const commentList = ref<GetArticleDetailInfo.Response['data']['commentList']>()
-</script>
+const commentList = ref<GetArticleDetailInfo.Response['data']['commentList']>(
+  []
+)
+const commentArea = ref()
 
-<style scoped></style>
+const treeCommentList = computed(() => {
+  const newList = commentList?.value.map((item) => ({
+    ...item,
+    createTime: dayjs(item.createTime).format('YYYY-MM-DD HH:mm:ss'),
+    avatarLink: baseURL + item.avatarLink,
+    owner: item.userId === userInfo.value?.userId,
+    hasLike: JSON.parse(item.likedUserList)?.includes(userInfo.value?.userId),
+    likeCount: JSON.parse(item.likedUserList)?.length,
+  }))
+  return {
+    comment: transformListToTree(newList ?? [], 'id', 'parentCommentId'),
+  }
+})
+
+const addComment = async ({
+  content,
+  pId,
+  toId,
+}: {
+  content: string
+  pId: number
+  toId: number
+}) => {
+  await addArticleComment({
+    articleId: articleInfo.value!.id,
+    content,
+    parentCommentId: pId,
+    toCommentId: toId,
+  })
+  await updateCommentList()
+  commentArea.value?.addComplete()
+}
+
+const delComment = async (commentId: number) => {
+  await deleteArticleComment({
+    commentIdList: [commentId],
+  })
+  commentArea.value?.deleteComplete(commentId)
+}
+
+const likeComment = async (commentId: number) => {
+  await likeArticleComment({
+    commentId,
+  })
+  commentArea.value?.likeComplete(commentId)
+}
+
+const updateCommentList = async () => {
+  const { data } = await getArticleCommentList({
+    articleId: articleInfo.value?.id,
+  })
+  commentList.value = data.commentList
+}
+</script>
