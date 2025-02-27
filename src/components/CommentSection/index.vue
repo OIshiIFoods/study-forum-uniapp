@@ -1,8 +1,8 @@
 <template>
   <view class="p-10rpx">
-    <view class="text-14px">共{{ commentCount }}条评论</view>
+    <view class="text-14px">共{{ commentData.commentCount }}条评论</view>
     <view class="flex items-center my-20px gap-col-12px">
-      <up-avatar :src="userAvatarLink" :size="35" />
+      <up-avatar :src="commentData.userAvatarLink" :size="35" />
       <up-input
         :customStyle="{
           backgroundColor: 'rgba(224, 224, 224, .5)',
@@ -16,7 +16,7 @@
       />
     </view>
     <CommentItem
-      v-for="(pCom, pComIndex) in commentList"
+      v-for="(pCom, pComIndex) in treeCommentList"
       :key="pCom.id"
       v-bind="pCom"
       @delete="deleteComment"
@@ -35,17 +35,16 @@
 </template>
 
 <script setup lang="ts">
-import { getEleFromTree } from '@/utils'
+import { transformListToTree } from '@/utils'
 import type { CommentItemProps } from './components/CommentItem.vue'
 import CommentItem from './components/CommentItem.vue'
+import { computed } from 'vue'
 
-type CmSevProps = {
-  /** 评论总数 */
-  commentCount: number
-  /** 用户头像链接 */
-  userAvatarLink?: string
-  /** 评论列表 */
-  commentList: (CommentItemProps & { children?: CommentItemProps[] })[]
+export type CmSecProps = {
+  /** 评论唯一标识字段 */
+  commentIdKey?: string
+  /** 评论父级标识字段 */
+  commentParentIdKey?: string
   /** 点击头像事件回调, 返回true则继续执行后续逻辑 */
   onAvatarClick?: (
     userId: number
@@ -63,41 +62,47 @@ type CmSevProps = {
   ) => boolean | undefined | void | Promise<boolean | undefined | void>
 }
 
-const props = withDefaults(defineProps<CmSevProps>(), {
-  userAvatarLink: '',
-  commentCount: 0,
-  commentList: () => [
-    {
-      id: 1, // 唯一主键
-      userId: 1,
-      parentId: undefined, // 所属评论的唯一主键
-      owner: false, // 是否是拥有者，为true则可以删除，管理员全部为true
-      hasLike: false, // 是否点赞
-      likeCount: 2, // 点赞数量
-      avatarLink: 'https://inews.gtimg.com/newsapp_ls/0/13797755537/0', // 评论者头像地址
-      nickname: '超长昵称超长...', // 评论者昵称，昵称过长请在后端截断
-      content: '啦啦啦啦', // 评论内容
-      createTime: '2021-07-02 16:32:07', // 创建时间
-      isAuthor: true,
-      children: [
-        {
-          id: 2, // 唯一主键
-          userId: 1,
-          parentId: undefined, // 所属评论的唯一主键
-          owner: false, // 是否是拥有者，为true则可以删除，管理员全部为true
-          hasLike: false, // 是否点赞
-          likeCount: 2, // 点赞数量
-          avatarLink: 'https://inews.gtimg.com/newsapp_ls/0/13797755537/0', // 评论者头像地址
-          nickname: '超长昵称超长...', // 评论者昵称，昵称过长请在后端截断
-          content: '啦啦啦啦', // 评论内容
-          createTime: '2021-07-02 16:32:07', // 创建时间
-        },
-      ],
-    },
-  ],
+export type CommentDataModelProps = {
+  /** 评论总数 */
+  commentCount: number
+  /** 用户头像链接 */
+  userAvatarLink?: string
+  /** 评论列表 */
+  commentList: CommentItemProps[]
+}
+
+const props = withDefaults(defineProps<CmSecProps>(), {
+  commentIdKey: 'id',
+  commentParentIdKey: 'parentId',
+})
+
+const commentData = defineModel<CommentDataModelProps>('commentData', {
+  default: () => ({
+    commentCount: 0,
+    userAvatarLink: '',
+    commentList: [],
+  }),
+})
+
+const treeCommentList = computed(() => {
+  console.log(
+    transformListToTree(
+      commentData.value.commentList,
+      props.commentIdKey,
+      props.commentParentIdKey
+    ),
+    props.commentIdKey,
+    props.commentParentIdKey
+  )
+  return transformListToTree(
+    commentData.value.commentList,
+    props.commentIdKey,
+    props.commentParentIdKey
+  )
 })
 
 const deleteComment = async (commentId: number, parentCommentId?: number) => {}
+
 const likeComment = async (
   value: boolean,
   commentId: number,

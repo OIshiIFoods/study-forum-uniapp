@@ -37,20 +37,15 @@
       </view>
       <up-line />
     </view>
-    <Comment
-      ref="commentArea"
-      @add="addComment"
-      @del="delComment"
-      @like="likeComment"
-      :deleteTip="'确认删除？'"
-      :cmData="treeCommentList"
+    <CommentSection
+      v-model:comment-data="commentData"
+      :commentParentIdKey="'parentCommentId'"
     />
   </view>
 </template>
 
 <script setup lang="ts">
 import { baseURL } from '@/api/http'
-import Comment from '@/components/Comment.vue'
 import {
   addArticleComment,
   deleteArticleComment,
@@ -58,11 +53,16 @@ import {
   getArticleDetailInfo,
   likeArticleComment,
 } from '@/service'
-import type { GetArticleDetailInfo } from '@/service/types/api'
-import { transformListToTree } from '@/utils'
+import type {
+  GetArticleCommentList,
+  GetArticleDetailInfo,
+} from '@/service/types/api'
 import { onLoad } from '@dcloudio/uni-app'
 import dayjs from 'dayjs'
-import { computed, ref } from 'vue'
+import { ref } from 'vue'
+import CommentSection from '@/components/CommentSection/index.vue'
+import type { CommentDataModelProps } from '@/components/CommentSection/index.vue'
+import { useUserStore } from '@/stores'
 
 type OnloadParamType =
   | {
@@ -84,30 +84,17 @@ onLoad(async (param) => {
   })
   userInfo.value = articleData.userInfo
   articleInfo.value = articleData.articleInfo
-  commentList.value = articleData.commentList
+  commentData.value = formatCommentData(articleData.commentList)
 })
 
+const userStore = useUserStore()
 const userInfo = ref<GetArticleDetailInfo.Response['data']['userInfo']>()
 const articleInfo = ref<GetArticleDetailInfo.Response['data']['articleInfo']>()
-const commentList = ref<GetArticleDetailInfo.Response['data']['commentList']>(
-  []
-)
-const commentArea = ref()
-
-const treeCommentList = computed(() => {
-  const newList = commentList?.value.map((item) => ({
-    ...item,
-    createTime: dayjs(item.createTime).format('YYYY-MM-DD HH:mm:ss'),
-    avatarLink: baseURL + item.avatarLink,
-    owner: item.userId === userInfo.value?.userId,
-    hasLike: JSON.parse(item.likedUserList)?.includes(userInfo.value?.userId),
-    likeCount: JSON.parse(item.likedUserList)?.length,
-  }))
-  return {
-    comment: transformListToTree(newList ?? [], 'id', 'parentCommentId'),
-  }
+const commentData = ref<CommentDataModelProps>({
+  userAvatarLink: '',
+  commentCount: 0,
+  commentList: [],
 })
-
 const addComment = async ({
   content,
   pId,
@@ -124,27 +111,41 @@ const addComment = async ({
     toCommentId: toId,
   })
   await updateCommentList()
-  commentArea.value?.addComplete()
 }
 
 const delComment = async (commentId: number) => {
   await deleteArticleComment({
     commentIdList: [commentId],
   })
-  commentArea.value?.deleteComplete(commentId)
 }
 
 const likeComment = async (commentId: number) => {
   await likeArticleComment({
     commentId,
   })
-  commentArea.value?.likeComplete(commentId)
 }
 
 const updateCommentList = async () => {
   const { data } = await getArticleCommentList({
     articleId: articleInfo.value?.id,
   })
-  commentList.value = data.commentList
+  commentData.value = formatCommentData(data.commentList)
+}
+
+const formatCommentData = (
+  commentList: GetArticleCommentList.Response['data']['commentList']
+) => {
+  return {
+    userAvatarLink: baseURL + '' + userStore.avatarLink,
+    commentCount: commentList.length,
+    commentList: commentList.map((item) => ({
+      ...item,
+      createTime: dayjs(item.createTime).format('YYYY-MM-DD HH:mm:ss'),
+      avatarLink: baseURL + item.avatarLink,
+      owner: item.userId === userStore.id,
+      hasLike: JSON.parse(item.likedUserList)?.includes(userStore.id),
+      likeCount: JSON.parse(item.likedUserList)?.length,
+    })),
+  }
 }
 </script>
