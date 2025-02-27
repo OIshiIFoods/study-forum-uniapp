@@ -35,3 +35,32 @@ export const transformListToTree = <T extends Array<Record<string, any>>>(
   })
   return roots
 }
+
+export const getEleFromTree = <T extends Array<Record<string, any>>>(
+  tree: T,
+  keyFieldValue: any,
+  keyField: string = 'id',
+  childField: string = 'children'
+) => {
+  const stack: { node: any; path: string }[] = tree.map((node, index) => ({
+    node,
+    path: `${index}`,
+  }))
+
+  while (stack.length) {
+    const { node, path } = stack.pop()!
+    if (node[keyField] === keyFieldValue) {
+      return { path, value: node as T[0] }
+    }
+    if (node[childField]) {
+      stack.push(
+        ...node[childField].map((child: any, childIndex: number) => ({
+          node: child,
+          index: childIndex,
+          path: `${path}.${childIndex}`,
+        }))
+      )
+    }
+  }
+  return false
+}
