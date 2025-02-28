@@ -16,6 +16,7 @@
       />
     </view>
     <CommentItem
+      v-if="commentData.commentList.length > 0"
       v-for="(pCom, pComIndex) in treeCommentList"
       :key="pCom.id"
       v-bind="pCom"
@@ -31,6 +32,14 @@
         @like="likeComment"
       />
     </CommentItem>
+    <view v-else>
+      <slot name="empty">
+        <view class="flex flex-col justify-center items-center h-100px">
+          <up-icon name="chat" :size="30" />
+          <view class="text-[#A9A9A9] text-10px py-8px">还没有评论哦</view>
+        </view>
+      </slot>
+    </view>
   </view>
 </template>
 
