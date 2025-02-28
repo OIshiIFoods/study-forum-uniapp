@@ -1,5 +1,5 @@
 <template>
-  <view class="px-10px">
+  <view class="px-10px min-h-100vh">
     <up-navbar placeholder auto-back :title="'坛友动态'" />
     <view class="flex items-center justify-between">
       <view class="flex items-center">
@@ -38,11 +38,78 @@
       <up-line />
     </view>
     <CommentSection
+      ref="commentSecRef"
       v-model:comment-data="commentData"
       :onLike="likeComment"
       :onDelete="delComment"
       :onAdd="addComment"
     />
+  </view>
+  <view class="flex sticky bottom-0 bg-white p-10px b-t b-t-solid b-t-#ebeced">
+    <input
+      class="flex-1 bg-[rgba(224,224,224,.5)] p-[6px_12px] text-14px text-[rgb(216,216,216)] rounded-full"
+      placeholder="说点什么"
+      disabled
+      @click="commentSecRef?.showCommentInputSection"
+    />
+    <view class="flex items-center gap-10px ml-20px">
+      <up-icon
+        :name="articleInfo?.isCollected ? 'star-fill' : 'star'"
+        :color="articleInfo?.isCollected ? '#FFA500' : ''"
+        :size="30"
+        :label="articleInfo?.collectionCount"
+        @click="
+          async () => {
+            if (!articleInfo?.id) {
+              showToast({
+                title: '文章不存在',
+                icon: 'none',
+              })
+              return
+            }
+            await collectArticle({
+              articleId: articleInfo?.id,
+              isCollected: articleInfo.isCollected ? 0 : 1,
+            })
+            if (articleInfo?.isCollected) {
+              articleInfo.isCollected = 0
+              articleInfo.collectionCount--
+            } else {
+              articleInfo.isCollected = 1
+              articleInfo.collectionCount++
+            }
+          }
+        "
+      />
+      <up-icon
+        :name="articleInfo?.isLiked ? 'thumb-up-fill' : 'thumb-up'"
+        :color="articleInfo?.isLiked ? '#59a3f4' : ''"
+        :size="30"
+        :label="articleInfo?.likeCount"
+        @click="
+          async () => {
+            if (!articleInfo?.id) {
+              showToast({
+                title: '文章不存在',
+                icon: 'none',
+              })
+              return
+            }
+            await likeArticle({
+              articleId: articleInfo?.id,
+              isLiked: articleInfo.isLiked ? 0 : 1,
+            })
+            if (articleInfo?.isLiked) {
+              articleInfo.isLiked = 0
+              articleInfo.likeCount--
+            } else {
+              articleInfo.isLiked = 1
+              articleInfo.likeCount++
+            }
+          }
+        "
+      />
+    </view>
   </view>
 </template>
 
@@ -54,9 +121,11 @@ import { baseURL } from '@/api/http'
 import { useUserStore } from '@/stores'
 import {
   addArticleComment,
+  collectArticle,
   deleteArticleComment,
   getArticleCommentList,
   getArticleDetailInfo,
+  likeArticle,
   likeArticleComment,
 } from '@/service'
 import type {
@@ -65,8 +134,8 @@ import type {
 } from '@/service/types/api'
 import CommentSection from '@/components/CommentSection/index.vue'
 import type {
-  CmSecProps,
   CommentDataModelProps,
+  CommentSectionRefType,
   OnAddCommentProps,
   OnDeleteProps,
   OnLikeProps,
@@ -98,11 +167,13 @@ onLoad(async (param) => {
 const userStore = useUserStore()
 const userInfo = ref<GetArticleDetailInfo.Response['data']['userInfo']>()
 const articleInfo = ref<GetArticleDetailInfo.Response['data']['articleInfo']>()
+const commentSecRef = ref<CommentSectionRefType>()
 const commentData = ref<CommentDataModelProps>({
   userAvatarLink: '',
   commentCount: 0,
   commentList: [],
 })
+
 const addComment = async ({
   conmentContent,
   toCommentId,
@@ -155,5 +226,9 @@ const formatCommentData = (
       isAuthor: item.userId === userInfo.value?.userId,
     })),
   }
+}
+
+const showToast = (options: UniNamespace.ShowToastOptions) => {
+  uni.showToast(options)
 }
 </script>

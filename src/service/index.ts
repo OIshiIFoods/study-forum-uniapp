@@ -1,9 +1,11 @@
 import {
   addArticleComment,
+  collectArticle,
   deleteArticleComment,
   getArticleCommentList,
   getArticleDetailInfo,
   getArticleList,
+  likeArticle,
   likeArticleComment,
   publishArticle,
 } from './modules/article'
@@ -38,4 +40,6 @@ export {
   getArticleCommentList,
   deleteArticleComment,
   likeArticleComment,
+  likeArticle,
+  collectArticle,
 }

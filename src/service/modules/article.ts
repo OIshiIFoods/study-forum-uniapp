@@ -4,7 +4,9 @@ import type {
   GetArticleCommentList,
   GetArticleDetailInfo,
   GetArticleList,
+  PostCollectArticle,
   PostCommentArticle,
+  PostLikeArticle,
   PostLikeArticleComment,
   PostPublishArticle,
 } from '../types/api'
@@ -34,6 +36,24 @@ export const getArticleDetailInfo = async (
   return request<GetArticleDetailInfo.Response>({
     method: 'GET',
     url: '/api/v1/article/detail',
+    data,
+  })
+}
+
+/** 点赞文章 */
+export const likeArticle = async (data: PostLikeArticle.Request) => {
+  return request<PostLikeArticle.Response>({
+    method: 'POST',
+    url: '/api/v1/article/like',
+    data,
+  })
+}
+
+/** 收藏文章 */
+export const collectArticle = async (data: PostCollectArticle.Request) => {
+  return request<PostCollectArticle.Response>({
+    method: 'POST',
+    url: '/api/v1/article/collect',
     data,
   })
 }
