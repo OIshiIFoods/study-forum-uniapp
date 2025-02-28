@@ -40,12 +40,19 @@
     <CommentSection
       v-model:comment-data="commentData"
       :commentParentIdKey="'parentCommentId'"
+      :onLike="likeComment"
+      :onDelete="delComment"
+      :onAdd="addComment"
     />
   </view>
 </template>
 
 <script setup lang="ts">
+import { onLoad } from '@dcloudio/uni-app'
+import dayjs from 'dayjs'
+import { ref } from 'vue'
 import { baseURL } from '@/api/http'
+import { useUserStore } from '@/stores'
 import {
   addArticleComment,
   deleteArticleComment,
@@ -57,12 +64,14 @@ import type {
   GetArticleCommentList,
   GetArticleDetailInfo,
 } from '@/service/types/api'
-import { onLoad } from '@dcloudio/uni-app'
-import dayjs from 'dayjs'
-import { ref } from 'vue'
 import CommentSection from '@/components/CommentSection/index.vue'
-import type { CommentDataModelProps } from '@/components/CommentSection/index.vue'
-import { useUserStore } from '@/stores'
+import type {
+  CmSecProps,
+  CommentDataModelProps,
+  OnAddCommentProps,
+  OnDeleteProps,
+  OnLikeProps,
+} from '@/components/CommentSection/index.vue'
 
 type OnloadParamType =
   | {
@@ -96,30 +105,27 @@ const commentData = ref<CommentDataModelProps>({
   commentList: [],
 })
 const addComment = async ({
-  content,
-  pId,
-  toId,
-}: {
-  content: string
-  pId: number
-  toId: number
-}) => {
+  conmentContent,
+  toCommentId,
+  toParentCommentId,
+}: OnAddCommentProps) => {
   await addArticleComment({
     articleId: articleInfo.value!.id,
-    content,
-    parentCommentId: pId,
-    toCommentId: toId,
+    content: conmentContent,
+    // 若回复一级评论，则parentCommentId为该评论id
+    parentCommentId: toParentCommentId ?? toCommentId,
+    toCommentId: toCommentId,
   })
   await updateCommentList()
 }
 
-const delComment = async (commentId: number) => {
+const delComment = async ({ commentId }: OnDeleteProps) => {
   await deleteArticleComment({
     commentIdList: [commentId],
   })
 }
 
-const likeComment = async (commentId: number) => {
+const likeComment = async ({ commentId }: OnLikeProps) => {
   await likeArticleComment({
     commentId,
   })

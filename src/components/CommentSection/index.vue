@@ -3,16 +3,11 @@
     <view class="text-14px">共{{ commentData.commentCount }}条评论</view>
     <view class="flex items-center my-20px gap-col-12px">
       <up-avatar :src="commentData.userAvatarLink" :size="35" />
-      <up-input
-        :customStyle="{
-          backgroundColor: 'rgba(224, 224, 224, .5)',
-          padding: '5px 15px',
-        }"
-        fontSize="14px"
-        color="rgba(216, 216, 216)"
+      <input
+        class="flex-1 bg-[rgba(224,224,224,.5)] p-[8px_12px] text-14px text-[rgb(216,216,216)] rounded-full"
         placeholder="留下你的想法吧"
-        shape="circle"
         disabled
+        @click="onClickAddComment"
       />
     </view>
     <CommentItem
@@ -22,6 +17,7 @@
       v-bind="pCom"
       @delete="deleteComment"
       @like="likeComment"
+      @reply="onClickReplyComment"
     >
       <CommentItem
         v-for="(sCom, sComIndex) in pCom.children"
@@ -30,6 +26,7 @@
         :avatarSize="20"
         @delete="deleteComment"
         @like="likeComment"
+        @reply="onClickReplyComment"
       />
     </CommentItem>
     <view v-else>
@@ -40,6 +37,7 @@
         </view>
       </slot>
     </view>
+    <CommmentEditor ref="editorRef" @send="onSend" />
   </view>
 </template>
 
@@ -47,7 +45,10 @@
 import { transformListToTree } from '@/utils'
 import type { CommentItemProps } from './components/CommentItem.vue'
 import CommentItem from './components/CommentItem.vue'
-import { computed } from 'vue'
+import CommmentEditor, {
+  type EditorRefType,
+} from './components/CommentEditor.vue'
+import { computed, ref, watch } from 'vue'
 
 export type OnLikeProps = {
   value: boolean
@@ -62,6 +63,15 @@ export type OnDeleteProps = {
   parentCommentId?: number
   /** 该属性为响应式对象 */
   comment: CommentItemProps
+}
+
+export type OnAddCommentProps = {
+  /** 回复的评论id */
+  toCommentId?: number
+  /** 回复的评论父级id */
+  toParentCommentId?: number
+  /** 评论内容 */
+  conmentContent: string
 }
 
 export type CmSecProps = {
@@ -81,6 +91,10 @@ export type CmSecProps = {
   onDelete?: (
     params: OnDeleteProps
   ) => boolean | undefined | void | Promise<boolean | undefined | void>
+  /** 新增事件回调, 返回true则继续执行后续逻辑 */
+  onAdd?: (
+    params: OnAddCommentProps
+  ) => boolean | undefined | void | Promise<boolean | undefined | void>
 }
 
 export type CommentDataModelProps = {
@@ -97,6 +111,7 @@ const props = withDefaults(defineProps<CmSecProps>(), {
   commentParentIdKey: 'parentId',
   onLike: () => {},
   onDelete: () => {},
+  onAdd: () => {},
 })
 
 const commentData = defineModel<CommentDataModelProps>('commentData', {
@@ -123,6 +138,25 @@ const treeCommentList = computed(() => {
     props.commentParentIdKey
   )
 })
+
+const editorRef = ref<EditorRefType>()
+/** 新增评论信息 */
+const addCommentInfo = ref<{
+  /** 回复的评论id */
+  toCommentId?: number
+  /** 被回复评论的父级id */
+  toCommentParentId?: number
+}>()
+
+/** 当弹窗收缩时，重置相关数据 */
+watch(
+  () => editorRef.value?.isShowPopup,
+  (val) => {
+    if (!val) {
+      addCommentInfo.value = {}
+    }
+  }
+)
 
 const deleteComment = async (commentId: number, parentCommentId?: number) => {
   const comment = commentData.value.commentList.find(
@@ -159,9 +193,32 @@ const likeComment = async (
   comment.hasLike = comment.hasLike ? false : true
 }
 
-const replyComment = async (
+const onClickReplyComment = async (
   nickname: string,
   commentId: number,
   parentCommentId?: number
-) => {}
+) => {
+  editorRef.value!.isShowPopup = true
+  editorRef.value!.inputContent.placeholder = `回复 ${nickname}：`
+  addCommentInfo.value = {
+    toCommentId: commentId,
+    toCommentParentId: parentCommentId,
+  }
+}
+
+const onClickAddComment = async () => {
+  editorRef.value!.isShowPopup = true
+}
+
+const onSend = async () => {
+  const success = await props.onAdd({
+    conmentContent:
+      editorRef.value!.inputContent.placeholder +
+      editorRef.value!.inputContent.content,
+    ...addCommentInfo.value,
+  })
+  if (success === false) return
+  commentData.value.commentCount += 1
+  editorRef.value!.isShowPopup = false
+}
 </script>
