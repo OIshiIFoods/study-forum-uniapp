@@ -40,6 +40,14 @@ import type { CommentItemProps } from './components/CommentItem.vue'
 import CommentItem from './components/CommentItem.vue'
 import { computed } from 'vue'
 
+export type OnLikeProps = {
+  value: boolean
+  commentId: number
+  parentCommentId?: number
+  /** 该属性为响应式对象 */
+  comment: CommentItemProps
+}
+
 export type CmSecProps = {
   /** 评论唯一标识字段 */
   commentIdKey?: string
@@ -51,9 +59,7 @@ export type CmSecProps = {
   ) => boolean | undefined | void | Promise<boolean | undefined | void>
   /** 点赞事件回调, 返回true则继续执行后续逻辑 */
   onLike?: (
-    value: boolean,
-    commentId: number,
-    parentCommentId?: number
+    params: OnLikeProps
   ) => boolean | undefined | void | Promise<boolean | undefined | void>
   /** 删除事件回调, 返回true则继续执行后续逻辑 */
   onDelete?: (
@@ -74,6 +80,7 @@ export type CommentDataModelProps = {
 const props = withDefaults(defineProps<CmSecProps>(), {
   commentIdKey: 'id',
   commentParentIdKey: 'parentId',
+  onLike: () => {},
 })
 
 const commentData = defineModel<CommentDataModelProps>('commentData', {
@@ -107,7 +114,22 @@ const likeComment = async (
   value: boolean,
   commentId: number,
   parentCommentId?: number
-) => {}
+) => {
+  const comment = commentData.value.commentList.find(
+    (item) => item.id === commentId
+  )!
+  const success = await props.onLike({
+    value,
+    commentId,
+    parentCommentId,
+    comment,
+  })
+  if (success === false) {
+    return
+  }
+  comment.likeCount = comment.likeCount! + (comment.hasLike ? -1 : 1)
+  comment.hasLike = comment.hasLike ? false : true
+}
 
 const replyComment = async (
   nickname: string,
