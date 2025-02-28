@@ -140,6 +140,18 @@ watch(
 )
 
 const deleteComment = async (commentId: number, parentCommentId?: number) => {
+  const isDelte = await new Promise((resolve) => {
+    uni.showModal({
+      content: '确认删除这条评论？',
+      success: () => {
+        resolve(true)
+      },
+      fail: (fail) => {
+        resolve(false)
+      },
+    })
+  })
+  if (isDelte === false) return
   const comment = commentData.value.commentList.find(
     (item) => item.id === commentId
   )!
