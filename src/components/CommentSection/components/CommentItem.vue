@@ -11,7 +11,7 @@
             {{ nickname ?? '未知' }}
           </view>
           <view
-            class="p-3px rounded-1px text-10px text-[var(--primary-color)] bg-[var(--shallow-primary-color)]"
+            class="p-3px rounded-4px text-10px text-[var(--primary-color)] bg-[var(--shallow-primary-color)]"
             v-if="isAuthor"
           >
             作者

@@ -152,6 +152,7 @@ const formatCommentData = (
       owner: item.userId === userStore.id,
       hasLike: JSON.parse(item.likedUserList)?.includes(userStore.id),
       likeCount: JSON.parse(item.likedUserList)?.length,
+      isAuthor: item.userId === userInfo.value?.userId,
     })),
   }
 }
