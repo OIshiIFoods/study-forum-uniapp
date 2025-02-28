@@ -212,4 +212,12 @@ const onSend = async () => {
   if (success === false) return
   editorRef.value!.isShowPopup = false
 }
+
+export type CommentSectionRefType = {
+  showCommentInputSection: () => true
+}
+
+defineExpose({
+  showCommentInputSection: () => (editorRef.value!.isShowPopup = true),
+})
 </script>
