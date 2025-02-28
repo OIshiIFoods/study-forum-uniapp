@@ -1,5 +1,5 @@
 <template>
-  <view class="p-10rpx">
+  <view class="p-[16px_8px]">
     <view class="text-14px">共{{ commentData.commentCount }}条评论</view>
     <view class="flex items-center my-20px gap-col-12px">
       <up-avatar :src="commentData.userAvatarLink" :size="35" />

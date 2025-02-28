@@ -24,16 +24,16 @@
         :text="'关注'"
       />
     </view>
-    <view class="my-15px">
+    <view class="mt-15px">
       <view class="text-[#333] text-[20px] font-700">
         {{ articleInfo?.title }}
       </view>
       <up-line />
-      <view class="my-10px">
+      <view class="mt-10px">
         <up-parse :content="articleInfo?.content" />
       </view>
-      <view class="py-5px text-[#999] text-[12px]">
-        {{ dayjs(articleInfo?.updateTime).format('YYYY-MM-DD HH:mm:ss') }}
+      <view class="my-15px text-[#999] text-[12px]">
+        {{ dayjs(articleInfo?.updateTime).format('YYYY-MM-DD') }}
       </view>
       <up-line />
     </view>
