@@ -48,6 +48,13 @@ export type OnLikeProps = {
   comment: CommentItemProps
 }
 
+export type OnDeleteProps = {
+  commentId: number
+  parentCommentId?: number
+  /** 该属性为响应式对象 */
+  comment: CommentItemProps
+}
+
 export type CmSecProps = {
   /** 评论唯一标识字段 */
   commentIdKey?: string
@@ -63,8 +70,7 @@ export type CmSecProps = {
   ) => boolean | undefined | void | Promise<boolean | undefined | void>
   /** 删除事件回调, 返回true则继续执行后续逻辑 */
   onDelete?: (
-    commentId: number,
-    parentCommentId?: number
+    params: OnDeleteProps
   ) => boolean | undefined | void | Promise<boolean | undefined | void>
 }
 
@@ -81,6 +87,7 @@ const props = withDefaults(defineProps<CmSecProps>(), {
   commentIdKey: 'id',
   commentParentIdKey: 'parentId',
   onLike: () => {},
+  onDelete: () => {},
 })
 
 const commentData = defineModel<CommentDataModelProps>('commentData', {
@@ -108,7 +115,19 @@ const treeCommentList = computed(() => {
   )
 })
 
-const deleteComment = async (commentId: number, parentCommentId?: number) => {}
+const deleteComment = async (commentId: number, parentCommentId?: number) => {
+  const comment = commentData.value.commentList.find(
+    (item) => item.id === commentId
+  )!
+  const success = await props.onDelete({ commentId, parentCommentId, comment })
+  if (success === false) {
+    return
+  }
+  commentData.value.commentList = commentData.value.commentList.filter(
+    (item) => item.id !== commentId
+  )
+  commentData.value.commentCount -= 1
+}
 
 const likeComment = async (
   value: boolean,
