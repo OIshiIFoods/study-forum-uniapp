@@ -122,6 +122,7 @@ const delComment = async ({ commentId }: OnDeleteProps) => {
   await deleteArticleComment({
     commentIdList: [commentId],
   })
+  commentData.value.commentCount--
 }
 
 const likeComment = async ({ commentId }: OnLikeProps) => {

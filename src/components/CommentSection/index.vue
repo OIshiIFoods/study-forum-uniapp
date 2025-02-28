@@ -150,7 +150,6 @@ const deleteComment = async (commentId: number, parentCommentId?: number) => {
   commentData.value.commentList = commentData.value.commentList.filter(
     (item) => item.id !== commentId
   )
-  commentData.value.commentCount -= 1
 }
 
 const likeComment = async (
@@ -199,7 +198,6 @@ const onSend = async () => {
     ...addCommentInfo.value,
   })
   if (success === false) return
-  commentData.value.commentCount += 1
   editorRef.value!.isShowPopup = false
 }
 </script>
