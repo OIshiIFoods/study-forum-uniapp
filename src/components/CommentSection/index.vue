@@ -69,16 +69,12 @@ export type OnAddCommentProps = {
   /** 回复的评论id */
   toCommentId?: number
   /** 回复的评论父级id */
-  toParentCommentId?: number
+  toCommentParentId?: number
   /** 评论内容 */
   conmentContent: string
 }
 
 export type CmSecProps = {
-  /** 评论唯一标识字段 */
-  commentIdKey?: string
-  /** 评论父级标识字段 */
-  commentParentIdKey?: string
   /** 点击头像事件回调, 返回true则继续执行后续逻辑 */
   onAvatarClick?: (
     userId: number
@@ -107,8 +103,6 @@ export type CommentDataModelProps = {
 }
 
 const props = withDefaults(defineProps<CmSecProps>(), {
-  commentIdKey: 'id',
-  commentParentIdKey: 'parentId',
   onLike: () => {},
   onDelete: () => {},
   onAdd: () => {},
@@ -123,20 +117,7 @@ const commentData = defineModel<CommentDataModelProps>('commentData', {
 })
 
 const treeCommentList = computed(() => {
-  console.log(
-    transformListToTree(
-      commentData.value.commentList,
-      props.commentIdKey,
-      props.commentParentIdKey
-    ),
-    props.commentIdKey,
-    props.commentParentIdKey
-  )
-  return transformListToTree(
-    commentData.value.commentList,
-    props.commentIdKey,
-    props.commentParentIdKey
-  )
+  return transformListToTree(commentData.value.commentList, 'id', 'parentId')
 })
 
 const editorRef = ref<EditorRefType>()

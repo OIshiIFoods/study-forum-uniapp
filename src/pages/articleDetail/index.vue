@@ -39,7 +39,6 @@
     </view>
     <CommentSection
       v-model:comment-data="commentData"
-      :commentParentIdKey="'parentCommentId'"
       :onLike="likeComment"
       :onDelete="delComment"
       :onAdd="addComment"
@@ -107,13 +106,13 @@ const commentData = ref<CommentDataModelProps>({
 const addComment = async ({
   conmentContent,
   toCommentId,
-  toParentCommentId,
+  toCommentParentId,
 }: OnAddCommentProps) => {
   await addArticleComment({
     articleId: articleInfo.value!.id,
     content: conmentContent,
     // 若回复一级评论，则parentCommentId为该评论id
-    parentCommentId: toParentCommentId ?? toCommentId,
+    parentCommentId: toCommentParentId ?? toCommentId,
     toCommentId: toCommentId,
   })
   await updateCommentList()
@@ -144,8 +143,9 @@ const formatCommentData = (
   return {
     userAvatarLink: baseURL + '' + userStore.avatarLink,
     commentCount: commentList.length,
-    commentList: commentList.map((item) => ({
+    commentList: commentList.map(({ parentCommentId, ...item }) => ({
       ...item,
+      parentId: parentCommentId ?? undefined,
       createTime: dayjs(item.createTime).format('YYYY-MM-DD HH:mm:ss'),
       avatarLink: baseURL + item.avatarLink,
       owner: item.userId === userStore.id,
