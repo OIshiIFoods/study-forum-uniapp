@@ -159,7 +159,10 @@ const navbarMode = ref<'light' | 'dark'>('dark')
 const articleList = ref<GetArticleList.Response['data']['articleList']>([])
 
 onMounted(async () => {
-  const { data } = await getArticleList({ userId: userStore.id })
+  const { data } = await getArticleList({
+    userId: userStore.id,
+    orderBy: [{ field: 'createTime', direction: 'DESC' }],
+  })
   articleList.value = data.articleList
 })
 </script>

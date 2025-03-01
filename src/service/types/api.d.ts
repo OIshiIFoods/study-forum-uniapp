@@ -1,4 +1,3 @@
-import { OrderByOption } from '@/utils/buildDBQuery'
 import {
   ArticleCommentProps,
   ArticleProps,
@@ -7,6 +6,14 @@ import {
   UserFileProps,
   UserProps,
 } from './db'
+
+/** 排序条件 */
+export type OrderByOption<FieldnameType extends string = string> = {
+  /** 字段名称 */
+  field: FieldnameType
+  /** 排序方向 */
+  direction: 'ASC' | 'DESC'
+}
 
 /** 用户登录 */
 export namespace PostUserLogin {
