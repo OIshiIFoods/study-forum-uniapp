@@ -25,7 +25,10 @@ export const getArticleList = async (data: GetArticleList.Request) => {
   return request<GetArticleList.Response>({
     method: 'GET',
     url: '/api/v1/article/list',
-    data,
+    data: {
+      ...data,
+      orderBy: JSON.stringify(data.orderBy),
+    },
   })
 }
 
