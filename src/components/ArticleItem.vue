@@ -41,7 +41,7 @@ const props = defineProps<{ articleItem: ArticleItemProps }>()
 const statusList = computed(() => [
   {
     title: '浏览',
-    value: props.articleItem.collectionCount,
+    value: props.articleItem.viewCount,
     iconname: 'eye',
   },
   {
