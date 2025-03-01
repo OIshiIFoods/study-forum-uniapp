@@ -25,9 +25,9 @@ export const transformListToTree = <T extends Array<Record<string, any>>>(
 ) => {
   const roots = [] as (T[0] & { children: T })[]
   list.forEach((item: any) => {
-    item.children = []
     const parent = list.find((i) => i[keyField] === item[pField]) as any
     if (parent) {
+      parent.children = parent.children ?? []
       parent.children.push(item)
     } else {
       roots.push(item)
@@ -63,4 +63,20 @@ export const getEleFromTree = <T extends Array<Record<string, any>>>(
     }
   }
   return false
+}
+
+export const transformTreeToList = <T extends Array<any>>(
+  tree: T,
+  childField: string
+) => {
+  const list = []
+  const stack = [...tree]
+  while (stack.length) {
+    const node = stack.pop()!
+    list.push(node)
+    if (node[childField]) {
+      stack.push(...node[childField])
+    }
+  }
+  return list as T
 }

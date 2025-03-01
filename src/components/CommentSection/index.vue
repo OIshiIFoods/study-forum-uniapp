@@ -42,7 +42,11 @@
 </template>
 
 <script setup lang="ts">
-import { transformListToTree } from '@/utils'
+import {
+  getEleFromTree,
+  transformListToTree,
+  transformTreeToList,
+} from '@/utils'
 import type { CommentItemProps } from './components/CommentItem.vue'
 import CommentItem from './components/CommentItem.vue'
 import CommmentEditor, {
@@ -63,6 +67,8 @@ export type OnDeleteProps = {
   parentCommentId?: number
   /** 该属性为响应式对象 */
   comment: CommentItemProps
+  /** 删除时影响到的评论数量 */
+  affectCount: number
 }
 
 export type OnAddCommentProps = {
@@ -117,7 +123,11 @@ const commentData = defineModel<CommentDataModelProps>('commentData', {
 })
 
 const treeCommentList = computed(() => {
-  return transformListToTree(commentData.value.commentList, 'id', 'parentId')
+  return transformListToTree(
+    JSON.parse(JSON.stringify(commentData.value.commentList)),
+    'id',
+    'parentId'
+  )
 })
 
 const editorRef = ref<EditorRefType>()
@@ -152,15 +162,29 @@ const deleteComment = async (commentId: number, parentCommentId?: number) => {
     })
   })
   if (isDelte === false) return
-  const comment = commentData.value.commentList.find(
-    (item) => item.id === commentId
-  )!
-  const success = await props.onDelete({ commentId, parentCommentId, comment })
+  // 从评论的树结构中获取评论信息
+  const commentInfo = getEleFromTree(
+    treeCommentList.value,
+    commentId,
+    'id',
+    'children'
+  )
+  if (!commentInfo) return
+  const { path: index, value: comment } = commentInfo
+  const toDeleteComments = transformTreeToList([comment], 'children').map(
+    (item) => item.id
+  )
+  const success = await props.onDelete({
+    commentId,
+    parentCommentId,
+    comment,
+    affectCount: toDeleteComments.length,
+  })
   if (success === false) {
     return
   }
   commentData.value.commentList = commentData.value.commentList.filter(
-    (item) => item.id !== commentId
+    (item) => !toDeleteComments.includes(item.id)
   )
 }
 

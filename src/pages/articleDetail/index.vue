@@ -189,11 +189,11 @@ const addComment = async ({
   await updateCommentList()
 }
 
-const delComment = async ({ commentId }: OnDeleteProps) => {
+const delComment = async ({ commentId, affectCount }: OnDeleteProps) => {
   await deleteArticleComment({
     commentIdList: [commentId],
   })
-  commentData.value.commentCount--
+  commentData.value.commentCount -= affectCount
 }
 
 const likeComment = async ({ commentId }: OnLikeProps) => {
