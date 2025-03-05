@@ -7,7 +7,8 @@
         "title": "本地",
         "env": {
           "UNI_PLATFORM": "mp-weixin",
-          "BASE_URL": "http://localhost:3000"
+          "BASE_URL": "http://localhost:3000",
+          "Official_USER_ID":39
         }
       },
       "dev": {
