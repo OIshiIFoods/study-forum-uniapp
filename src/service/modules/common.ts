@@ -1,4 +1,4 @@
-import { request } from '@/api/http'
+import { baseURL, request } from '@/api/http'
 
 /** 获取文件图标配置 */
 export const getFileIconConfig = async () => {
@@ -6,4 +6,16 @@ export const getFileIconConfig = async () => {
     url: '/api/v1/public/json/fileIconConfig.json',
     method: 'GET',
   })
+}
+
+/** 获取轮播图列表 */
+export const getSwiperList = async () => {
+  const data = await request<{ id: number; url: string }[]>({
+    url: '/api/v1/public/json/swiperConfig.json',
+    method: 'GET',
+  })
+  return data.map(({ id, url }) => ({
+    id,
+    url: baseURL! + url,
+  }))
 }
