@@ -123,11 +123,25 @@ const commentData = defineModel<CommentDataModelProps>('commentData', {
 })
 
 const treeCommentList = computed(() => {
-  return transformListToTree(
-    JSON.parse(JSON.stringify(commentData.value.commentList)),
+  const newCommentList = transformListToTree(
+    JSON.parse(
+      JSON.stringify(commentData.value.commentList)
+    ) as CommentItemProps[],
     'id',
     'parentId'
   )
+  const sortComment = (comments: any) => {
+    comments.forEach((commentItem: any) => {
+      if (commentItem.children?.length) {
+        commentItem.children.sort((a: any, b: any) => {
+          return +new Date(a.createTime) - +new Date(b.createTime)
+        })
+        sortComment(commentItem.children)
+      }
+    })
+  }
+  sortComment(newCommentList)
+  return newCommentList
 })
 
 const editorRef = ref<EditorRefType>()
