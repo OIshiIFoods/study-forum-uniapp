@@ -229,7 +229,9 @@ const onClickReplyComment = async (
   parentCommentId?: number
 ) => {
   editorRef.value!.isShowPopup = true
-  editorRef.value!.inputContent.placeholder = `回复 ${nickname}：`
+  editorRef.value!.inputContent.placeholder = parentCommentId
+    ? `回复 ${nickname}：`
+    : ''
   addCommentInfo.value = {
     toCommentId: commentId,
     toCommentParentId: parentCommentId,
