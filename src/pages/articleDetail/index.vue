@@ -54,10 +54,18 @@
     />
     <view class="flex items-center gap-10px ml-20px">
       <up-icon
-        :name="articleInfo?.isCollected ? 'star-fill' : 'star'"
-        :color="articleInfo?.isCollected ? '#FFA500' : ''"
+        :name="
+          articleInfo?.collectedUsers.includes(userStore.id ?? 0)
+            ? 'star-fill'
+            : 'star'
+        "
+        :color="
+          articleInfo?.collectedUsers.includes(userStore.id ?? 0)
+            ? '#FFA500'
+            : ''
+        "
         :size="30"
-        :label="articleInfo?.collectionCount"
+        :label="articleInfo?.collectedUsers.length ?? 0"
         @click="
           async () => {
             if (!articleInfo?.id) {
@@ -67,25 +75,35 @@
               })
               return
             }
+            const isCollected = articleInfo?.collectedUsers.includes(
+              userStore.id ?? 0
+            )
             await collectArticle({
               articleId: articleInfo?.id,
-              isCollected: articleInfo.isCollected ? 0 : 1,
+              isCollected: isCollected ? 0 : 1,
             })
-            if (articleInfo?.isCollected) {
-              articleInfo.isCollected = 0
-              articleInfo.collectionCount--
+            if (isCollected) {
+              articleInfo.collectedUsers.splice(
+                articleInfo.collectedUsers.indexOf(userStore.id!),
+                1
+              )
             } else {
-              articleInfo.isCollected = 1
-              articleInfo.collectionCount++
+              articleInfo.collectedUsers.push(userStore.id!)
             }
           }
         "
       />
       <up-icon
-        :name="articleInfo?.isLiked ? 'thumb-up-fill' : 'thumb-up'"
-        :color="articleInfo?.isLiked ? '#59a3f4' : ''"
+        :name="
+          articleInfo?.likedUsers.includes(userStore.id ?? 0)
+            ? 'thumb-up-fill'
+            : 'thumb-up'
+        "
+        :color="
+          articleInfo?.likedUsers.includes(userStore.id ?? 0) ? '#59a3f4' : ''
+        "
         :size="30"
-        :label="articleInfo?.likeCount"
+        :label="articleInfo?.likedUsers.length ?? 0"
         @click="
           async () => {
             if (!articleInfo?.id) {
@@ -95,16 +113,18 @@
               })
               return
             }
+            const isLiked = articleInfo?.likedUsers.includes(userStore.id ?? 0)
             await likeArticle({
               articleId: articleInfo?.id,
-              isLiked: articleInfo.isLiked ? 0 : 1,
+              isLiked: isLiked ? 0 : 1,
             })
-            if (articleInfo?.isLiked) {
-              articleInfo.isLiked = 0
-              articleInfo.likeCount--
+            if (isLiked) {
+              articleInfo.likedUsers.splice(
+                articleInfo.likedUsers.indexOf(userStore.id!),
+                1
+              )
             } else {
-              articleInfo.isLiked = 1
-              articleInfo.likeCount++
+              articleInfo.likedUsers.push(userStore.id!)
             }
           }
         "

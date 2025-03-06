@@ -380,8 +380,8 @@ export namespace GetArticleDetailInfo {
     data: {
       /** 文章信息 */
       articleInfo: Omit<ArticleProps, 'userId'> & {
-        isLiked: 1 | 0
-        isCollected: 1 | 0
+        likedUsers: number[]
+        collectedUsers: number[]
       }
       /** 用户信息 */
       userInfo: Pick<ArticleProps, 'userId'> &
