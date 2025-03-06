@@ -1,40 +1,42 @@
 <template>
   <view
-    class="bg-[var(--bg-primary-color)] h-100vh grid grid-rows-[auto_auto_1fr]"
+    class="bg-[var(--bg-primary-color)] min-h-100vh grid grid-rows-[auto_auto_1fr]"
   >
     <up-navbar
       title="研友坛"
       leftIcon=""
       :autoBack="false"
-      :bgColor="'rgba(0,0,0,0)'"
+      :bgColor="'var(--bg-primary-color)'"
       placeholder
     />
     <up-swiper :list="swiperList" />
-    <view class="bg-white overflow-auto rounded-20px box-border p-10px mt-15px">
+    <view id="content" class="bg-white rounded-20px box-border p-10px mt-15px">
       <view class="my-15px font-600">最新资讯</view>
-      <up-search
-        placeholder="搜索资讯"
-        v-model="searchValue"
-        :height="35"
-        :bgColor="'#f8f9fd'"
-        :actionStyle="{
-          display: 'flex',
-          justifyContent: 'center',
-          alignItems: 'center',
-          alignSelf: 'stretch',
-          color: '#59a3f4',
-          marginLeft: 0,
-          backgroundColor: '#f8f9fd',
-        }"
-        :placeholderColor="'#a3a8af'"
-        :inputStyle="{
-          color: '#a3a8af',
-        }"
-        :shape="'square'"
-        @search="searchAction"
-        @custom="searchAction"
-        @clear="searchValue = undefined"
-      />
+      <view @click="scrollToTargetPos('#content', 'top')">
+        <up-search
+          placeholder="搜索资讯"
+          v-model="searchValue"
+          :height="35"
+          :bgColor="'#f8f9fd'"
+          :actionStyle="{
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            alignSelf: 'stretch',
+            color: '#59a3f4',
+            marginLeft: 0,
+            backgroundColor: '#f8f9fd',
+          }"
+          :placeholderColor="'#a3a8af'"
+          :inputStyle="{
+            color: '#a3a8af',
+          }"
+          :shape="'square'"
+          @search="searchAction"
+          @custom="searchAction"
+          @clear="searchValue = undefined"
+        />
+      </view>
       <ArticleItem
         v-for="item in articleList"
         :articleItem="item"
@@ -72,6 +74,24 @@ const searchAction = async () => {
     title: searchValue.value || undefined,
   })
   articleList.value = data.articleList
+}
+
+const scrollToTargetPos = (cssSelector: string, pos: 'top' = 'top') => {
+  uni
+    .createSelectorQuery()
+    .select(cssSelector)
+    .boundingClientRect((res) => {
+      const nodeInfo = Array.isArray(res) ? res[0] : res
+      uni.pageScrollTo(
+        {
+          top: {
+            duration: 200, // 过渡时间
+            scrollTop: nodeInfo.top! - 64, // 滚动的实际距离
+          },
+        }[pos]
+      )
+    })
+    .exec()
 }
 </script>
 
