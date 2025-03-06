@@ -1,7 +1,7 @@
 <template>
   <view>
     <up-navbar title="论坛" leftIcon="" :autoBack="false" placeholder />
-    <view class="bg-white rounded-20px box-border p-10px mt-15px">
+    <view class="bg-white box-border p-10px">
       <up-search
         placeholder="搜索资讯"
         v-model="searchValue"
