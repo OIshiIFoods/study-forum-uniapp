@@ -23,7 +23,8 @@ export const transformListToTree = <T extends Array<Record<string, any>>>(
   keyField: string,
   pField: string
 ) => {
-  const roots = [] as (T[0] & { children: T })[]
+  type TreeType = (T[0] & { children: TreeType })[]
+  const roots = [] as TreeType
   list.forEach((item: any) => {
     const parent = list.find((i) => i[keyField] === item[pField]) as any
     if (parent) {
