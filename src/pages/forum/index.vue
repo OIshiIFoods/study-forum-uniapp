@@ -3,7 +3,7 @@
     <up-navbar title="论坛" leftIcon="" :autoBack="false" placeholder />
     <view class="bg-white box-border p-10px">
       <up-search
-        placeholder="搜索资讯"
+        placeholder="搜索文章"
         v-model="searchValue"
         :height="35"
         :bgColor="'#f8f9fd'"
