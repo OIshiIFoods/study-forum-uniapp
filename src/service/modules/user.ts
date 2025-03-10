@@ -1,5 +1,10 @@
 import { request } from '@/api/http'
-import type { GetUserInfo, PostUserLogin, PutUserInfo } from '../types/api'
+import type {
+  GetFollowUserList,
+  GetUserInfo,
+  PostUserLogin,
+  PutUserInfo,
+} from '../types/api'
 
 /** 登录 */
 export const login = async (data: PostUserLogin.Request) => {
@@ -10,6 +15,7 @@ export const login = async (data: PostUserLogin.Request) => {
   })
 }
 
+/** 获取用户基本信息 */
 export const getUserInfo = async (params?: GetUserInfo.Request) => {
   return request<GetUserInfo.Response>({
     method: 'GET',
@@ -23,5 +29,13 @@ export const putUserInfo = async (params?: PutUserInfo.Request) => {
     method: 'PUT',
     url: '/api/v1/user',
     data: params,
+  })
+}
+
+/** 获取用户关注列表 */
+export const getFollowUserList = async (params?: GetFollowUserList.Request) => {
+  return request<GetFollowUserList.Response>({
+    method: 'GET',
+    url: '/api/v1/user/follow',
   })
 }

@@ -21,6 +21,7 @@ export const useUserStore = defineStore('user', {
       fansCount: 0,
       likeCount: 0,
       collectionCount: 0,
+      followList: [],
     } as Partial<UserProps>
   },
   getters: {},

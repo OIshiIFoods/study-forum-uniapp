@@ -46,7 +46,9 @@ export namespace GetUserInfo {
     status: number
     /** 响应信息 */
     message: string
-    data: UserProps
+    data: UserProps & {
+      followList: GetFollowUserList.Response['data']['followList']
+    }
   }
 }
 
