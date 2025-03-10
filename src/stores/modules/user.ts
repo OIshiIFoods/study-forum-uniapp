@@ -1,5 +1,5 @@
 import { getUserInfo } from '@/service'
-import type { UserProps } from '@/service/types/db'
+import type { GetUserInfo } from '@/service/types/api'
 import { defineStore } from 'pinia'
 
 export const useUserStore = defineStore('user', {
@@ -22,7 +22,7 @@ export const useUserStore = defineStore('user', {
       likeCount: 0,
       collectionCount: 0,
       followList: [],
-    } as Partial<UserProps>
+    } as Partial<GetUserInfo.Response['data']>
   },
   getters: {},
   actions: {

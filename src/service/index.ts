@@ -12,6 +12,7 @@ import {
 import { getFileIconConfig } from './modules/common'
 import { getCaptcha } from './modules/ouath'
 import {
+  followUser,
   getFollowUserList,
   getUserInfo,
   login,
@@ -48,4 +49,5 @@ export {
   likeArticle,
   collectArticle,
   getFollowUserList,
+  followUser,
 }

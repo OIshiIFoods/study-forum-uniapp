@@ -13,6 +13,7 @@
         </view>
       </view>
       <up-button
+        v-if="userInfo?.userId !== userStore.id"
         :custom-style="{
           borderColor: 'var(--primary-color)',
           width: 'auto',
@@ -21,7 +22,23 @@
         :color="'var(--primary-color)'"
         :size="'small'"
         :shape="'circle'"
-        :text="'关注'"
+        :icon="isFollow ? 'checkmark' : ''"
+        :iconColor="'white'"
+        :text="isFollow ? '已关注' : '关注'"
+        @click="
+          async () => {
+            const hasFollow = isFollow
+            await followUser({
+              followedUserId: userInfo!.userId,
+              isFollow: !hasFollow,
+            })
+            await userStore.syncUserInfo()
+            mV.uni.showToast({
+              title: hasFollow ? '取消关注成功' : '关注成功',
+              icon: 'none',
+            })
+          }
+        "
       />
     </view>
     <view class="mt-15px">
@@ -69,7 +86,7 @@
         @click="
           async () => {
             if (!articleInfo?.id) {
-              showToast({
+              mV.uni.showToast({
                 title: '文章不存在',
                 icon: 'none',
               })
@@ -107,7 +124,7 @@
         @click="
           async () => {
             if (!articleInfo?.id) {
-              showToast({
+              mV.uni.showToast({
                 title: '文章不存在',
                 icon: 'none',
               })
@@ -136,13 +153,14 @@
 <script setup lang="ts">
 import { onLoad } from '@dcloudio/uni-app'
 import dayjs from 'dayjs'
-import { ref } from 'vue'
+import { computed, ref } from 'vue'
 import { baseURL } from '@/api/http'
 import { useUserStore } from '@/stores'
 import {
   addArticleComment,
   collectArticle,
   deleteArticleComment,
+  followUser,
   getArticleCommentList,
   getArticleDetailInfo,
   likeArticle,
@@ -192,6 +210,13 @@ const commentData = ref<CommentDataModelProps>({
   userAvatarLink: '',
   commentCount: 0,
   commentList: [],
+})
+const isFollow = computed(() => {
+  return userStore.followList?.find(
+    (item) => item.followedUserId === userInfo.value?.userId
+  )
+    ? true
+    : false
 })
 
 const addComment = async ({
@@ -248,7 +273,7 @@ const formatCommentData = (
   }
 }
 
-const showToast = (options: UniNamespace.ShowToastOptions) => {
-  uni.showToast(options)
+const mV = {
+  uni,
 }
 </script>

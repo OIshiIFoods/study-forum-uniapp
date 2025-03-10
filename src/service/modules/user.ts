@@ -2,6 +2,7 @@ import { request } from '@/api/http'
 import type {
   GetFollowUserList,
   GetUserInfo,
+  PostFollowUser,
   PostUserLogin,
   PutUserInfo,
 } from '../types/api'
@@ -24,10 +25,19 @@ export const getUserInfo = async (params?: GetUserInfo.Request) => {
 }
 
 /** 修改用户信息 */
-export const putUserInfo = async (params?: PutUserInfo.Request) => {
+export const putUserInfo = async (params: PutUserInfo.Request) => {
   return request<PutUserInfo.Response>({
     method: 'PUT',
     url: '/api/v1/user',
+    data: params,
+  })
+}
+
+/** 关注用户 */
+export const followUser = async (params: PostFollowUser.Request) => {
+  return request<PostFollowUser.Response>({
+    method: 'POST',
+    url: '/api/v1/user/follow',
     data: params,
   })
 }
