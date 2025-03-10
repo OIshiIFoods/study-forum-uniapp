@@ -32,6 +32,7 @@
           <up-button
             :size="'small'"
             type="primary"
+            :disabled="!articleInfo.title || !articleInfo.content"
             @click="
               async () => {
                 if (!articleInfo.title || !articleInfo.content) {
