@@ -102,9 +102,11 @@
           height="8"
           activeColor="#59a3f4"
           :percentage="
-            ((userStore.usedSpaceSize ?? 0) /
-              (userStore.availableSpaceSize ?? 1)) *
-            100
+            (
+              ((userStore.usedSpaceSize ?? 0) /
+                (userStore.availableSpaceSize ?? 1)) *
+              100
+            ).toFixed(2)
           "
         />
         <view class="flex flex-wrap m-t-10px">
@@ -154,8 +156,13 @@
 import { baseURL } from '@/api/http'
 import router from '@/router'
 import { useUserStore } from '@/stores'
+import { onShow } from '@dcloudio/uni-app'
 import { computed } from 'vue'
 const userStore = useUserStore()
+
+onShow(async () => {
+  await userStore.syncUserInfo()
+})
 
 const accountStatusInfoList = computed(() => [
   {
