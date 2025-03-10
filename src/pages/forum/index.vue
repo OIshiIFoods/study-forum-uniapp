@@ -38,12 +38,13 @@
 import ArticleItem from '@/components/ArticleItem.vue'
 import { getArticleList } from '@/service'
 import type { GetArticleList } from '@/service/types/api'
-import { onMounted, ref, watch } from 'vue'
+import { onShow } from '@dcloudio/uni-app'
+import { ref, watch } from 'vue'
 
 const searchValue = ref<string | undefined>('')
 const articleList = ref<GetArticleList.Response['data']['articleList']>([])
 
-onMounted(async () => {
+onShow(async () => {
   await searchAction()
 })
 
