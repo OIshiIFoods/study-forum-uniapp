@@ -35,17 +35,23 @@
             @click="
               async () => {
                 if (!articleInfo.title || !articleInfo.content) {
-                  showToast({
+                  await mV.uni.showToast({
                     title: '请填写标题和内容',
                     icon: 'none',
                   })
                   return
                 }
-                await publishArticle(articleInfo)
-                showToast({
+                const { data } = await publishArticle(articleInfo)
+                await mV.uni.showToast({
                   title: '发布成功',
                   icon: 'none',
                 })
+                mV.setTimeout(() => {
+                  router.replace({
+                    name: 'articleDetail',
+                    params: { articleId: String(data.id) },
+                  })
+                }, 1000)
               }
             "
           >
@@ -71,6 +77,7 @@ import {
 } from '@/plugins/sv-editor/components/common/utils'
 import { publishArticle } from '@/service'
 import { uploadFile } from '@/api/http'
+import router from '@/router'
 
 const editorCtx = ref<any>(null)
 const toolbarRef = ref<any>(null)
@@ -84,8 +91,10 @@ const ready = (e: any) => {
   editorCtx.value = e
 }
 
-const showToast = (options: UniNamespace.ShowToastOptions) => {
-  uni.showToast(options)
+/** 中间变量 */
+const mV = {
+  uni,
+  setTimeout,
 }
 
 const moreItemConfirm = async (e: any) => {

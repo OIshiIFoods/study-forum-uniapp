@@ -325,7 +325,10 @@ export namespace PostPublishArticle {
     status: number
     /** 响应信息 */
     message: string
-    data: any
+    data: {
+      /** 文章id */
+      id: number
+    }
   }
 }
 
