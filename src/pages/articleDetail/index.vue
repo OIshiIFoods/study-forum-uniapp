@@ -69,7 +69,7 @@
       disabled
       @click="commentSecRef?.showCommentInputSection"
     />
-    <view class="flex items-center gap-10px ml-20px">
+    <view class="flex items-center gap-15px ml-20px">
       <up-icon
         :name="
           articleInfo?.collectedUsers.includes(userStore.id ?? 0)
@@ -146,6 +146,31 @@
           }
         "
       />
+      <view class="pos-relative" v-if="userInfo?.userId === userStore.id">
+        <up-icon
+          name="more-dot-fill"
+          @click="showMoreOperation = !showMoreOperation"
+        />
+        <view
+          class="pos-absolute pos-bottom-[200%] pos-right-50% flex flex-col justify-between items-center transition-all bg-white overflow-hidden shadow-2xl rounded-[4px] box-border"
+          :class="[showMoreOperation ? 'h-60px p-8px' : 'h-0 p-0']"
+        >
+          <up-icon
+            class="whitespace-nowrap"
+            name="edit-pen"
+            label="编辑"
+            color="#59a3f4"
+            :labelSize="16"
+          />
+          <up-icon
+            class="whitespace-nowrap"
+            name="trash"
+            label="删除"
+            color="#ff0000"
+            :labelSize="16"
+          />
+        </view>
+      </view>
     </view>
   </view>
 </template>
@@ -218,6 +243,7 @@ const isFollow = computed(() => {
     ? true
     : false
 })
+const showMoreOperation = ref(false)
 
 const addComment = async ({
   conmentContent,
