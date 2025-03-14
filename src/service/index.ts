@@ -1,6 +1,7 @@
 import {
   addArticleComment,
   collectArticle,
+  deleteArticle,
   deleteArticleComment,
   getArticleCommentList,
   getArticleDetailInfo,
@@ -50,6 +51,7 @@ export {
   likeArticle,
   updateArticle,
   collectArticle,
+  deleteArticle,
   getFollowUserList,
   followUser,
 }

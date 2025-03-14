@@ -1,5 +1,6 @@
 import { request } from '@/api/http'
 import type {
+  DeleteArticle,
   DeleteArticleComment,
   GetArticleCommentList,
   GetArticleDetailInfo,
@@ -48,6 +49,15 @@ export const getArticleDetailInfo = async (
 export const updateArticle = async (data: PutArticle.Request) => {
   return request<PutArticle.Response>({
     method: 'PUT',
+    url: '/api/v1/article',
+    data,
+  })
+}
+
+/** 删除文章 */
+export const deleteArticle = async (data: DeleteArticle.Request) => {
+  return request<DeleteArticle.Response>({
+    method: 'DELETE',
     url: '/api/v1/article',
     data,
   })

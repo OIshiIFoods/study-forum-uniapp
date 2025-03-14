@@ -178,6 +178,24 @@
             label="删除"
             color="#ff0000"
             :labelSize="16"
+            @click="
+              async () => {
+                const confirmRes = await mV.uni.showModal({
+                  content: '确定删除吗？',
+                })
+                if (!confirmRes.confirm) {
+                  return
+                }
+                await deleteArticle({
+                  articleIdList: [articleInfo!.id],
+                })
+                await mV.uni.showToast({
+                  title: '删除成功',
+                  icon: 'none',
+                })
+                router.back()
+              }
+            "
           />
         </view>
       </view>
@@ -194,6 +212,7 @@ import { useUserStore } from '@/stores'
 import {
   addArticleComment,
   collectArticle,
+  deleteArticle,
   deleteArticleComment,
   followUser,
   getArticleCommentList,
