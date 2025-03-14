@@ -120,6 +120,7 @@ import router from '@/router'
 import { getArticleList } from '@/service'
 import type { GetArticleList } from '@/service/types/api'
 import { useUserStore } from '@/stores'
+import { onShow } from '@dcloudio/uni-app'
 import { computed, onMounted, reactive, ref } from 'vue'
 
 const userStore = useUserStore()
@@ -158,7 +159,7 @@ const navbarMode = ref<'light' | 'dark'>('dark')
 
 const articleList = ref<GetArticleList.Response['data']['articleList']>([])
 
-onMounted(async () => {
+onShow(async () => {
   const { data } = await getArticleList({
     userId: userStore.id,
     orderBy: [{ field: 'createTime', direction: 'DESC' }],

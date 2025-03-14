@@ -51,6 +51,7 @@ import ArticleItem from '@/components/ArticleItem.vue'
 import { getArticleList } from '@/service'
 import { getSwiperList } from '@/service/modules/common'
 import type { GetArticleList } from '@/service/types/api'
+import { onShow } from '@dcloudio/uni-app'
 import { onMounted, ref, watch } from 'vue'
 
 const swiperList = ref<{ id: number; url: string }[]>([])
@@ -58,7 +59,7 @@ const searchValue = ref<string | undefined>('')
 const articleList = ref<GetArticleList.Response['data']['articleList']>([])
 const officialUSERID = +(process.env.Official_USER_ID ?? 0)
 
-onMounted(async () => {
+onShow(async () => {
   swiperList.value = await getSwiperList()
   await searchAction()
 })
