@@ -42,7 +42,10 @@
                   })
                   return
                 }
-                const { data } = await publishArticle(articleInfo)
+                const { data } = articleInfo.articleId
+                  ? await updateArticle(articleInfo as any)
+                  : await publishArticle(articleInfo)
+                const articleId = articleInfo.articleId ?? data.id
                 await mV.uni.showToast({
                   title: '发布成功',
                   icon: 'none',
@@ -50,7 +53,7 @@
                 mV.setTimeout(() => {
                   router.replace({
                     name: 'articleDetail',
-                    params: { articleId: String(data.id) },
+                    params: { articleId: String(articleId) },
                   })
                 }, 1000)
               }
@@ -65,7 +68,7 @@
 </template>
 
 <script setup lang="ts">
-import { reactive, ref } from 'vue'
+import { onMounted, reactive, ref } from 'vue'
 import SvEditor from '@/plugins/sv-editor/components/sv-editor/sv-editor.vue'
 import SvEditorToolbar from '@/plugins/sv-editor/components/sv-editor/sv-editor-toolbar.vue'
 import {
@@ -76,20 +79,33 @@ import {
   addLink,
   addVideo,
 } from '@/plugins/sv-editor/components/common/utils'
-import { publishArticle } from '@/service'
+import { publishArticle, updateArticle } from '@/service'
 import { uploadFile } from '@/api/http'
 import router from '@/router'
+import { onLoad } from '@dcloudio/uni-app'
+
+onLoad(async (options) => {
+  if (options?.editedArticleId) {
+    articleInfo.articleId = Number(options.editedArticleId)
+    articleInfo.title = options?.title
+    articleInfo.content = options?.content
+  }
+})
 
 const editorCtx = ref<any>(null)
 const toolbarRef = ref<any>(null)
 
 const articleInfo = reactive({
+  articleId: undefined as number | undefined,
   title: '',
   content: '',
 })
 
 const ready = (e: any) => {
   editorCtx.value = e
+  editorCtx.value.setContents({
+    html: articleInfo.content,
+  })
 }
 
 /** 中间变量 */

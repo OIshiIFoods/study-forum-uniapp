@@ -161,6 +161,16 @@
             label="编辑"
             color="#59a3f4"
             :labelSize="16"
+            @click="
+              router.replace({
+                name: 'publishArticle',
+                params: {
+                  editedArticleId: String(articleInfo?.id),
+                  title: String(articleInfo?.title),
+                  content: String(articleInfo?.content),
+                },
+              })
+            "
           />
           <up-icon
             class="whitespace-nowrap"
@@ -203,6 +213,7 @@ import type {
   OnDeleteProps,
   OnLikeProps,
 } from '@/components/CommentSection/index.vue'
+import router from '@/router'
 
 type OnloadParamType =
   | {

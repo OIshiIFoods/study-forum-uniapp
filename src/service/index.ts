@@ -8,6 +8,7 @@ import {
   likeArticle,
   likeArticleComment,
   publishArticle,
+  updateArticle,
 } from './modules/article'
 import { getFileIconConfig } from './modules/common'
 import { getCaptcha } from './modules/ouath'
@@ -47,6 +48,7 @@ export {
   deleteArticleComment,
   likeArticleComment,
   likeArticle,
+  updateArticle,
   collectArticle,
   getFollowUserList,
   followUser,

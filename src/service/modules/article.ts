@@ -9,6 +9,7 @@ import type {
   PostLikeArticle,
   PostLikeArticleComment,
   PostPublishArticle,
+  PutArticle,
 } from '../types/api'
 
 /** 发布文章 */
@@ -39,6 +40,15 @@ export const getArticleDetailInfo = async (
   return request<GetArticleDetailInfo.Response>({
     method: 'GET',
     url: '/api/v1/article/detail',
+    data,
+  })
+}
+
+/** 编辑文章 */
+export const updateArticle = async (data: PutArticle.Request) => {
+  return request<PutArticle.Response>({
+    method: 'PUT',
+    url: '/api/v1/article',
     data,
   })
 }
