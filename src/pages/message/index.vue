@@ -5,6 +5,7 @@
       <view
         class="flex flex-col items-center justify-center gap-row-8px"
         v-for="msgCategory in msgCategories"
+        :key="msgCategory.label"
       >
         <up-icon
           :class="['p-6px', 'rounded-10px']"
@@ -16,34 +17,23 @@
         <view class="text-12px">{{ msgCategory.label }}</view>
       </view>
     </view>
+    <view v-for="chatedUser in chatedUserList" :key="chatedUser.userId">
+      {{ chatedUser.nickname }}
+    </view>
   </view>
 </template>
 
 <script setup lang="ts">
-import {
-  getChatedUserInfoList,
-  getMessageList,
-} from '@/service/modules/message'
-import { GetchatedUsersInfo } from '@/service/types/api'
-import type { UserMessageProps } from '@/service/types/db'
+import { useUserMessage } from '@/hooks/useUserMessage'
+import { getMessageList } from '@/service/modules/message'
 import { useUserStore } from '@/stores'
-import { computed, onMounted, reactive, watch } from 'vue'
+import dayjs from 'dayjs'
+import { computed, onMounted } from 'vue'
 
-onMounted(async () => {
-  // 获取未读聊天列表
-  const getMsgListRes = await getMessageList({ isRead: '0' })
-  messagelist.push(...getMsgListRes.data.messages)
-})
+const { messages, userInfos, addMessage, updateReadStatus } = useUserMessage()
 
+onMounted(async () => {})
 const userStore = useUserStore()
-
-const messagelist = reactive<UserMessageProps[]>(
-  JSON.parse(uni.getStorageSync(userStore.id + 'message') ?? '[]')
-)
-const userInfoList = reactive<
-  GetchatedUsersInfo.Response['data']['userInfoList']
->([] as any)
-
 const msgCategories = [
   {
     icon: 'heart-fill',
@@ -64,18 +54,19 @@ const msgCategories = [
     label: '评论和@',
   },
 ]
-
-// 监听消息列表的变化更新用户信息列表
-watch(messagelist, async (newVal) => {
-  const hasInfoUserIds = userInfoList.map(({ id }) => id)
-  const userIds = [
-    userStore.id!,
-    ...new Set(newVal.map(({ receiverId }) => receiverId)),
-  ]
-  const getUserInfoListRes = await getChatedUserInfoList({
-    userIdList: userIds.filter((item) => !hasInfoUserIds.includes(item)),
-  })
-  userInfoList.push(...getUserInfoListRes.data.userInfoList)
+const chatedUserList = computed(() => {
+  return Object.values(userInfos)
+    .filter((value) => value.id !== userStore.id)
+    .map(({ id, ...item }) => {
+      const latestMessage = messages[id].at(-1)
+      return {
+        userId: id,
+        latestMessage: latestMessage?.content,
+        time: dayjs(latestMessage?.createTime).format('YYYY-MM-DD'),
+        unReadCount: messages[id].filter((item) => !item.isRead).length,
+        ...item,
+      }
+    })
 })
 </script>
 

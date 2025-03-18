@@ -2,7 +2,8 @@
 import { onLaunch, onShow, onHide } from '@dcloudio/uni-app'
 import router from '@/router'
 import { useUserStore } from './stores'
-onLaunch(() => {
+import { useUserMessage } from './hooks/useUserMessage'
+onLaunch(async () => {
   // 判断用户是否已登录
   if (!uni.getStorageSync('token')) {
     uni.showModal({
@@ -20,7 +21,9 @@ onLaunch(() => {
     })
   } else {
     const userStore = useUserStore()
-    userStore.syncUserInfo()
+    await userStore.syncUserInfo()
+    const { initData } = useUserMessage()
+    await initData()
   }
   console.log('App Launch')
 })
