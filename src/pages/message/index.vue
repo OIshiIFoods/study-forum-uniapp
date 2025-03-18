@@ -20,6 +20,30 @@
 </template>
 
 <script setup lang="ts">
+import {
+  getChatedUserInfoList,
+  getMessageList,
+} from '@/service/modules/message'
+import { GetchatedUsersInfo } from '@/service/types/api'
+import type { UserMessageProps } from '@/service/types/db'
+import { useUserStore } from '@/stores'
+import { computed, onMounted, reactive, watch } from 'vue'
+
+onMounted(async () => {
+  // 获取未读聊天列表
+  const getMsgListRes = await getMessageList({ isRead: '0' })
+  messagelist.push(...getMsgListRes.data.messages)
+})
+
+const userStore = useUserStore()
+
+const messagelist = reactive<UserMessageProps[]>(
+  JSON.parse(uni.getStorageSync(userStore.id + 'message') ?? '[]')
+)
+const userInfoList = reactive<
+  GetchatedUsersInfo.Response['data']['userInfoList']
+>([] as any)
+
 const msgCategories = [
   {
     icon: 'heart-fill',
@@ -40,6 +64,19 @@ const msgCategories = [
     label: '评论和@',
   },
 ]
+
+// 监听消息列表的变化更新用户信息列表
+watch(messagelist, async (newVal) => {
+  const hasInfoUserIds = userInfoList.map(({ id }) => id)
+  const userIds = [
+    userStore.id!,
+    ...new Set(newVal.map(({ receiverId }) => receiverId)),
+  ]
+  const getUserInfoListRes = await getChatedUserInfoList({
+    userIdList: userIds.filter((item) => !hasInfoUserIds.includes(item)),
+  })
+  userInfoList.push(...getUserInfoListRes.data.userInfoList)
+})
 </script>
 
 <style></style>
