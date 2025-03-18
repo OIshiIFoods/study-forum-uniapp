@@ -17,13 +17,45 @@
         <view class="text-12px">{{ msgCategory.label }}</view>
       </view>
     </view>
-    <view v-for="chatedUser in chatedUserList" :key="chatedUser.userId">
-      {{ chatedUser.nickname }}
+    <view>
+      <up-list-item
+        v-for="chatedUser in chatedUserList"
+        :key="chatedUser.userId"
+      >
+        <up-cell
+          :title="chatedUser.nickname"
+          :border="false"
+          :label="chatedUser.latestMessage"
+        >
+          <template #icon>
+            <up-avatar
+              shape="square"
+              :size="35"
+              :src="baseURL + '' + chatedUser.avatarLink"
+              customStyle="margin: -3px 5px -3px 0"
+            />
+          </template>
+          <template #value>
+            <view
+              class="self-stretch flex flex-col justify-between items-end text-13px"
+            >
+              <view class="text-#A9A9A9">{{ chatedUser.time }}</view>
+              <view
+                class="flex justify-center items-center w-15px h-15px bg-[red] text-white rounded-half"
+                v-if="chatedUser.unReadCount"
+              >
+                {{ chatedUser.unReadCount }}
+              </view>
+            </view>
+          </template>
+        </up-cell>
+      </up-list-item>
     </view>
   </view>
 </template>
 
 <script setup lang="ts">
+import { baseURL } from '@/api/http'
 import { useUserMessage } from '@/hooks/useUserMessage'
 import { getMessageList } from '@/service/modules/message'
 import { useUserStore } from '@/stores'
