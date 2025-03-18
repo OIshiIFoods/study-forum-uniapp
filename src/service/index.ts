@@ -12,6 +12,12 @@ import {
   updateArticle,
 } from './modules/article'
 import { getFileIconConfig } from './modules/common'
+import {
+  deleteMsgs,
+  getChatedUserInfoList,
+  getMessageList,
+  sendMsg,
+} from './modules/message'
 import { getCaptcha } from './modules/ouath'
 import {
   followUser,
@@ -54,4 +60,8 @@ export {
   deleteArticle,
   getFollowUserList,
   followUser,
+  getMessageList,
+  getChatedUserInfoList,
+  sendMsg,
+  deleteMsgs,
 }

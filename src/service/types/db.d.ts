@@ -219,3 +219,23 @@ export interface ArticleCommentProps {
   /** 点赞的用户列表 */
   likedUserList: string
 }
+
+/** 数据库用户消息表的属性 */
+export interface UserMessageProps {
+  /** 消息的唯一标识符 */
+  id: number
+  /** 发送者id */
+  senderId: number
+  /** 接收者id */
+  receiverId: number
+  /** 消息内容 */
+  content: string
+  /** 消息创建时间 */
+  createTime: string
+  /** 消息更新时间 */
+  updateTime: string
+  /** 消息删除时间 */
+  deleteTime?: string
+  /** 是否已读 */
+  isRead: 1 | 0
+}

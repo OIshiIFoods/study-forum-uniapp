@@ -5,6 +5,7 @@ import {
   FollowProps,
   UserFileProps,
   UserProps,
+  UserMessageProps,
 } from './db'
 
 /** 排序条件 */
@@ -529,6 +530,76 @@ namespace PostLikeArticleComment {
   }
 
   export type Response = {
+    /** 状态码 */
+    status: number
+    /** 响应信息 */
+    message: string
+    data: any
+  }
+}
+
+/** 获取消息列表 */
+export namespace GetMessageList {
+  type Request = {
+    /** 是否已读 */
+    isRead: '0' | '1'
+  }
+
+  type Response = {
+    /** 状态码 */
+    status: number
+    /** 响应信息 */
+    message: string
+    data: {
+      /** 消息列表 */
+      messages: UserMessageProps[]
+    }
+  }
+}
+
+/** 获取交流的的用户信息列表 */
+export namespace GetchatedUsersInfo {
+  type Request = {
+    userIdList: number[]
+  }
+
+  type Response = {
+    /** 状态码 */
+    status: number
+    /** 响应信息 */
+    message: string
+    data: {
+      userInfoList: Pick<UserProps, 'id' | 'nickname' | 'avatarLink'>[]
+    }
+  }
+}
+
+/** 发送消息 */
+export namespace PostSendMessage {
+  type Request = {
+    /** 接收者ID */
+    receiverId: number
+    /** 消息内容 */
+    content: string
+  }
+
+  type Response = {
+    /** 状态码 */
+    status: number
+    /** 响应信息 */
+    message: string
+    data: { sendMsg: UserMessageProps }
+  }
+}
+
+/** 删除消息 */
+export namespace DeleteMessages {
+  type Request = {
+    /** 消息ID列表 */
+    messageIdList: number[]
+  }
+
+  type Response = {
     /** 状态码 */
     status: number
     /** 响应信息 */
