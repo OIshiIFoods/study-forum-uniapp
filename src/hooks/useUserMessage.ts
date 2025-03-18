@@ -36,10 +36,6 @@ export const useUserMessage = () => {
     const getMsgListRes = await getMessageList({ isRead: '0' })
     const msgList = getMsgListRes.data.messages
     await addMessage(msgList)
-    await updateReadStatus(
-      msgList[0]?.senderId,
-      msgList.map(({ id }) => id)
-    )
   }
 
   /** 发送信息 */
@@ -84,7 +80,6 @@ export const useUserMessage = () => {
     if (!messageIdList.length) {
       return
     }
-    await deleteMsgs({ messageIdList })
     messages[senderId].forEach((item) => {
       messageIdList.includes(item.id) && (item.isRead = 1)
     })

@@ -8,11 +8,18 @@ import type {
 
 /** 获取消息列表 */
 export const getMessageList = async (params: GetMessageList.Request) => {
-  return await request<GetMessageList.Response>({
+  const res = await request<GetMessageList.Response>({
     url: '/api/v1/message/list',
     method: 'GET',
     data: params,
   })
+  // 如果是要获取未读消息，则删除远程存储的未读消息
+  if (params.isRead === '0') {
+    await deleteMsgs({
+      messageIdList: res.data.messages.map((item) => item.id),
+    })
+  }
+  return res
 }
 
 /** 获取交流的的用户信息列表 */
