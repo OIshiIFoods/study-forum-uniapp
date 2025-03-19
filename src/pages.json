@@ -23,6 +23,13 @@
 			}
 		},
 		{
+			"name": "chat",
+			"path": "pages/chat/index",
+			"style": {
+				"navigationStyle": "custom"
+			}
+		},
+		{
 			"name": "my",
 			"path": "pages/my/index",
 			"style": {

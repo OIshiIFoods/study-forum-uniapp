@@ -18,14 +18,17 @@
       </view>
     </view>
     <view>
-      <up-list-item
-        v-for="chatedUser in chatedUserList"
-        :key="chatedUser.userId"
-      >
+      <view v-for="chatedUser in chatedUserList" :key="chatedUser.userId">
         <up-cell
           :title="chatedUser.nickname"
           :border="false"
           :label="chatedUser.latestMessage"
+          @click="
+            router.push({
+              name: 'chat',
+              params: { chatUserId: String(chatedUser.userId) },
+            })
+          "
         >
           <template #icon>
             <up-avatar
@@ -49,7 +52,7 @@
             </view>
           </template>
         </up-cell>
-      </up-list-item>
+      </view>
     </view>
   </view>
 </template>
@@ -57,6 +60,7 @@
 <script setup lang="ts">
 import { baseURL } from '@/api/http'
 import { useUserMessage } from '@/hooks/useUserMessage'
+import router from '@/router'
 import { getMessageList } from '@/service/modules/message'
 import { useUserStore } from '@/stores'
 import dayjs from 'dayjs'
