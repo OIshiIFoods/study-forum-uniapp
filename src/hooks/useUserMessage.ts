@@ -61,6 +61,9 @@ export const useUserMessage = () => {
       if (!userInfos[userId]) {
         unknowUserIds.push(userId)
       }
+      if (item.senderId === userStore.id) {
+        item.isRead = 1
+      }
     })
     // 排序消息列表
     Object.values(messages).forEach((item) => {
