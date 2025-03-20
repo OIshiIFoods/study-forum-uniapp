@@ -3,7 +3,7 @@
     <up-navbar placeholder>
       <template #left>
         <view class="flex items-center">
-          <up-icon :name="'arrow-left'" :size="20" />
+          <up-icon :name="'arrow-left'" :size="20" @click="router.back()" />
           <view class="flex items-center gap-col-5px ml-12px">
             <up-avatar
               shape="circle"
@@ -117,10 +117,14 @@ onLoad(async (params: any) => {
     return
   }
   chatUserId.value = Number(params.chatUserId)
+  await updateReadStatus(
+    chatUserId.value,
+    messages[chatUserId.value].map((item) => item.id)
+  )
   initialScrollContainer()
 })
 
-const { messages, userInfos, sendMessage } = useUserMessage()
+const { messages, userInfos, sendMessage, updateReadStatus } = useUserMessage()
 const userStore = useUserStore()
 const inputMessage = ref('')
 const chatUserId = ref(0)
