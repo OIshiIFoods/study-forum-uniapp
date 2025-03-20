@@ -27,8 +27,8 @@
         <view
           v-if="
             index === 0 ||
-            +messageItem.createTime -
-              +messages[chatUserId][index - 1].createTime >
+            +dayjs(messageItem.createTime) -
+              +dayjs(messages[chatUserId][index - 1].createTime) >
               1000 * 60 * 3
           "
           class="flex justify-center text-#A9A9A9 text-12px my-5px"
