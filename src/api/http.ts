@@ -135,6 +135,6 @@ export const uploadFile = async (
   )
 }
 
-const messageSocket = new MySocket({
+export const messageSocket = new MySocket({
   url: baseURL?.replace(/(http)|(https)/, 'ws') + '/message',
 })
