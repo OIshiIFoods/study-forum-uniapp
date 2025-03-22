@@ -1,4 +1,6 @@
-type MessageEventType = (params: UniApp.OnSocketMessageCallbackResult) => void
+type MessageEventType = (
+  params: UniApp.OnSocketMessageCallbackResult<{ type: 'getUnreadMessage' }>
+) => void
 
 class MySocket {
   private socket: UniNamespace.SocketTask | undefined
