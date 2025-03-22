@@ -1,11 +1,20 @@
+type MessageEventType = (params: UniApp.OnSocketMessageCallbackResult) => void
+
 class MySocket {
   private socket: UniNamespace.SocketTask | undefined
-  private messageEvents: Record<
-    string,
-    ((result: UniApp.OnSocketMessageCallbackResult) => void)[]
-  > = {}
+  private messageEvents: Record<string, MessageEventType[]> = {}
+  private config: UniNamespace.ConnectSocketOption | undefined
 
   constructor(params: UniNamespace.ConnectSocketOption) {
+    this.config = params
+  }
+
+  initial() {
+    if (!this.config) {
+      console.log('初始化失败')
+      return
+    }
+    const params = this.config
     this.socket = uni.connectSocket({
       success: () => {
         console.log('socket连接成功:', params.url)
@@ -50,22 +59,28 @@ class MySocket {
   close(params: UniApp.CloseSocketOptions) {
     if (this.socket) {
       this.socket.close(params)
+      this.socket = undefined
       this.messageEvents = {}
     }
   }
 
-  registerMessageEvent(
-    key: string,
-    callback: (result: UniApp.OnSocketMessageCallbackResult) => void
-  ) {
+  registerMessageEvent(key: string, callback: MessageEventType) {
     if (this.messageEvents[key]) {
       this.messageEvents[key] = []
     }
     this.messageEvents[key].push(callback)
   }
 
-  offNessageEvent(key: string) {
-    delete this.messageEvents[key]
+  offNessageEvent(key: string, cb?: MessageEventType) {
+    if (cb) {
+      const events = this.messageEvents[key]
+      events.splice(
+        events.findIndex((item) => item === cb),
+        1
+      )
+    } else {
+      delete this.messageEvents[key]
+    }
   }
 }
 
