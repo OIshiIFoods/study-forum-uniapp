@@ -20,19 +20,26 @@ export const useUserMessage = () => {
   const userStore = useUserStore()
 
   const initData = async () => {
+    await syncLocalData()
+    await syncUnreadMessages()
+  }
+
+  /** 同步本地存储信息 */
+  const syncLocalData = async () => {
+    const userMessageData = JSON.parse(
+      uni.getStorageSync(userStore.id + 'message') || '{}'
+    )
     // 补充本地存储的聊天记录对应的用户信息
     await addUserInfo([
-      ...Object.keys(
-        JSON.parse(uni.getStorageSync(userStore.id + 'message') || '{}')
-      ).map(Number),
+      ...Object.keys(userMessageData).map(Number),
       userStore.id!,
     ])
     // 同步本地聊天信息
-    Object.assign(
-      messages,
-      JSON.parse(uni.getStorageSync(userStore.id + 'message') || '{}')
-    )
-    // 同步未读聊天信息
+    Object.assign(messages, userMessageData)
+  }
+
+  /** 同步未读聊天信息 */
+  const syncUnreadMessages = async () => {
     const getMsgListRes = await getMessageList({ isRead: '0' })
     const msgList = getMsgListRes.data.messages
     await addMessage(msgList)
@@ -114,5 +121,7 @@ export const useUserMessage = () => {
     addUserInfo,
     sendMessage,
     updateReadStatus,
+    syncUnreadMessages,
+    syncLocalData,
   }
 }
