@@ -74,10 +74,8 @@ class MySocket {
   offNessageEvent(key: string, cb?: MessageEventType) {
     if (cb) {
       const events = this.messageEvents[key]
-      events.splice(
-        events.findIndex((item) => item === cb),
-        1
-      )
+      const cbIndex = events.findIndex((item) => item === cb)
+      cbIndex !== -1 && events.splice(cbIndex, 1)
     } else {
       delete this.messageEvents[key]
     }
