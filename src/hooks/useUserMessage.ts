@@ -97,7 +97,6 @@ export const useUserMessage = () => {
 
   /** 添加沟通的用户信息 */
   const addUserInfo = async (userIds: number[]) => {
-    console.log(userIds)
     if (!userIds.length) {
       return
     }
