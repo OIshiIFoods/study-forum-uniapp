@@ -1,5 +1,4 @@
 import type { PostUploadFile } from '@/service/types/api'
-import MySocket from './modules/socket'
 
 export const baseURL = process.env.BASE_URL
 
@@ -134,7 +133,3 @@ export const uploadFile = async (
     }
   )
 }
-
-export const messageSocket = new MySocket({
-  url: baseURL?.replace(/(http)|(https)/, 'ws') + '/message',
-})

@@ -85,6 +85,7 @@
 </template>
 
 <script setup lang="ts">
+import messageSocket from '@/api/messageSocket'
 import router from '@/router'
 import { getCaptcha, login } from '@/service'
 import { useUserStore } from '@/stores'
@@ -149,7 +150,8 @@ const handleLoginClick = async () => {
       icon: 'success',
     })
     const userStore = useUserStore()
-    userStore.syncUserInfo()
+    await userStore.syncUserInfo()
+    messageSocket.initial()
     router.back({
       delta: 1,
       animationType: 'slide-out-right',

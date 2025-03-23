@@ -16,6 +16,9 @@ class MySocket {
       console.log('初始化失败')
       return
     }
+    if (this.socket) {
+      this.close({ code: 1002, reason: '准备重连' })
+    }
     const params = this.config
     this.socket = uni.connectSocket({
       success: () => {

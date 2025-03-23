@@ -3,7 +3,6 @@ import { onLaunch, onShow, onHide } from '@dcloudio/uni-app'
 import router from '@/router'
 import { useUserStore } from './stores'
 import { useUserMessage } from './hooks/useUserMessage'
-import { messageSocket } from './api/http'
 onLaunch(async () => {
   // 判断用户是否已登录
   if (!uni.getStorageSync('token')) {
@@ -25,13 +24,8 @@ onLaunch(async () => {
     const userStore = useUserStore()
     await userStore.syncUserInfo()
     // 初始化消息信息
-    const { initData, syncUnreadMessages } = useUserMessage()
+    const { initData } = useUserMessage()
     await initData()
-    messageSocket.registerMessageEvent('message', async (params) => {
-      if (params.data.type === 'getUnreadMessage') {
-        await syncUnreadMessages()
-      }
-    })
   }
   console.log('App Launch')
 })
