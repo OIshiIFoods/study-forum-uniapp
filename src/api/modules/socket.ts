@@ -1,5 +1,5 @@
 type MessageEventType = (
-  params: UniApp.OnSocketMessageCallbackResult<{ type: 'getUnreadMessage' }>
+  params: UniApp.OnSocketMessageCallbackResult<{ type: 'syncRemoteMessages' }>
 ) => void
 
 class MySocket {

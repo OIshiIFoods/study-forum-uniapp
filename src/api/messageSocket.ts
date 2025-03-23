@@ -9,7 +9,7 @@ const messageSocket = new MySocket({
 const { syncRemoteMessages } = useUserMessage()
 
 messageSocket.registerMessageEvent('message', async (params) => {
-  if (params.data.type === 'getUnreadMessage') {
+  if (params.data.type === 'syncRemoteMessages') {
     await syncRemoteMessages()
   }
 })
