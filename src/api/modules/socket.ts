@@ -1,6 +1,4 @@
-type MessageEventType = (
-  params: UniApp.OnSocketMessageCallbackResult<{ type: 'syncRemoteMessages' }>
-) => void
+type MessageEventType = (params: UniApp.OnSocketMessageCallbackResult) => void
 
 class MySocket {
   private socket: UniNamespace.SocketTask | undefined
@@ -9,6 +7,7 @@ class MySocket {
 
   constructor(params: UniNamespace.ConnectSocketOption) {
     this.config = params
+    this.initial()
   }
 
   initial() {
@@ -65,12 +64,11 @@ class MySocket {
     if (this.socket) {
       this.socket.close(params)
       this.socket = undefined
-      this.messageEvents = {}
     }
   }
 
   registerMessageEvent(key: string, callback: MessageEventType) {
-    if (this.messageEvents[key]) {
+    if (!this.messageEvents[key]) {
       this.messageEvents[key] = []
     }
     this.messageEvents[key].push(callback)
