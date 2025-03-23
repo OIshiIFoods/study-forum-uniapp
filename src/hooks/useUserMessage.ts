@@ -21,7 +21,7 @@ export const useUserMessage = () => {
 
   const initData = async () => {
     await syncLocalData()
-    await syncUnreadMessages()
+    await syncRemoteMessages()
   }
 
   /** 同步本地存储信息 */
@@ -39,7 +39,7 @@ export const useUserMessage = () => {
   }
 
   /** 同步未读聊天信息 */
-  const syncUnreadMessages = async () => {
+  const syncRemoteMessages = async () => {
     const getMsgListRes = await getMessageList({ isRead: '0' })
     const msgList = getMsgListRes.data.messages
     await addMessage(msgList)
@@ -121,7 +121,7 @@ export const useUserMessage = () => {
     addUserInfo,
     sendMessage,
     updateReadStatus,
-    syncUnreadMessages,
+    syncRemoteMessages,
     syncLocalData,
   }
 }
