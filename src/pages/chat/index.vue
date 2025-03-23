@@ -23,8 +23,8 @@
         id="scroll-container"
         :style="{ height: scrollContainerProps.height + 'px' }"
         :scroll-into-view="scrollContainerProps.scrollIntoView"
+        :scrollWithAnimation="scrollContainerProps.scrollWithAnimation"
         scroll-y
-        scrollWithAnimation
       >
         <view
           class="px-10px"
@@ -131,6 +131,7 @@ const chatUserId = ref(0)
 const scrollContainerProps = reactive({
   height: 0,
   scrollIntoView: '',
+  scrollWithAnimation: false,
 })
 
 const initialScrollContainer = () => {
@@ -139,9 +140,11 @@ const initialScrollContainer = () => {
     .select('#scroll-wrapper')
     .boundingClientRect((res) => {
       const nodeInfo = Array.isArray(res) ? res[0] : res
-      scrollContainerProps.height = nodeInfo.height!
-      scrollContainerProps.scrollIntoView =
-        'message' + messages[chatUserId.value].length
+      Object.assign(scrollContainerProps, {
+        height: nodeInfo.height!,
+        scrollIntoView: 'message' + messages[chatUserId.value].length,
+        scrollWithAnimation: true,
+      })
     })
     .exec()
 }
