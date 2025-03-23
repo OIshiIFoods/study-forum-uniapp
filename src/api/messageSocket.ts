@@ -4,12 +4,16 @@ import MySocket from './modules/socket'
 
 const messageSocket = new MySocket({
   url: baseURL?.replace(/(http)|(https)/, 'ws') + '/message',
+  header: {
+    Authorization: `Bearer ${uni.getStorageSync('token')}`,
+  },
 })
 
 const { syncRemoteMessages } = useUserMessage()
 
 messageSocket.registerMessageEvent('message', async (params) => {
-  if (params.data.type === 'syncRemoteMessages') {
+  const resData = JSON.parse(params.data)
+  if (resData.type === 'syncRemoteMessages') {
     await syncRemoteMessages()
   }
 })
