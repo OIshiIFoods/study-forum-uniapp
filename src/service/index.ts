@@ -18,6 +18,7 @@ import {
   getMessageList,
   sendMsg,
 } from './modules/message'
+import { deleteNotices, getNoticeList, updateNotice } from './modules/notice'
 import { getCaptcha } from './modules/ouath'
 import {
   followUser,
@@ -64,4 +65,7 @@ export {
   getChatedUserInfoList,
   sendMsg,
   deleteMsgs,
+  getNoticeList,
+  deleteNotices,
+  updateNotice,
 }

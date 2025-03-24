@@ -607,3 +607,54 @@ export namespace DeleteMessages {
     data: any
   }
 }
+
+/** 获取通知列表 */
+export namespace GetNoticeList {
+  type Request = {
+    isRead: '0' | '1'
+  }
+
+  type Response = {
+    /** 状态码 */
+    status: number
+    /** 响应信息 */
+    message: string
+    data: {
+      noticeList: NoticeProps[]
+    }
+  }
+}
+
+/** 更新通知信息 */
+export namespace UpdateNoticeInfo {
+  type Request = {
+    /** 通知id */
+    noticeId: number
+    /** 是否已读 */
+    isRead: boolean
+  }[]
+
+  type Response = {
+    /** 状态码 */
+    status: number
+    /** 响应信息 */
+    message: string
+    data: any
+  }
+}
+
+/** 删除通知消息 */
+export namespace DeleteNotices {
+  type Request = {
+    /** 通知id列表 */
+    noticeIdList: number[]
+  }
+
+  type Response = {
+    /** 状态码 */
+    status: number
+    /** 响应信息 */
+    message: string
+    data: any
+  }
+}

@@ -16,6 +16,22 @@ export enum FileAccessPermissionsEnum {
   Public = 1,
 }
 
+/** 通知类型枚举 */
+export const enum NoticeTypeEnum {
+  /** 文章被点赞通知 */
+  ArticleLiked = 1,
+  /** 文章被收藏通知 */
+  ArticleCollected = 2,
+  /** 评论被点赞通知 */
+  CommentLiked = 3,
+  /** 评论被回复通知 */
+  CommentReplied = 4,
+  /** 评论被@通知 */
+  CommentMentioned = 5,
+  /** 被关注通知 */
+  Followed = 6,
+}
+
 /** 执行增删改mysql语句后返回的对象 */
 export interface MysqlOkPacket {
   /** 结果集中字段的数量 */
@@ -238,4 +254,26 @@ export interface UserMessageProps {
   deleteTime?: string
   /** 是否已读 */
   isRead: 1 | 0
+}
+
+/** 数据库通知表的属性 */
+export interface NoticeProps {
+  /** 通知id */
+  id: number
+  /** 发送通知的用户id */
+  senderId: number
+  /** 接收通知的用户id */
+  receiverId: number
+  /** 通知内容 */
+  content: string
+  /** 通知类型 */
+  noticeType: NoticeTypeEnum
+  /** 是否已读 */
+  isRead: boolean
+  /** 创建时间 */
+  createTime: string
+  /** 更新时间 */
+  updateTime: string
+  /** 删除时间 */
+  deleteTime?: string | null
 }
