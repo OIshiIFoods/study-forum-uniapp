@@ -3,6 +3,7 @@ import { onLaunch, onShow, onHide } from '@dcloudio/uni-app'
 import router from '@/router'
 import { useUserStore } from './stores'
 import { useUserMessage } from './hooks/useUserMessage'
+import { useNotice } from './hooks/useNotice'
 onLaunch(async () => {
   // 判断用户是否已登录
   if (!uni.getStorageSync('token')) {
@@ -26,6 +27,9 @@ onLaunch(async () => {
     // 初始化消息信息
     const { initData } = useUserMessage()
     await initData()
+    // 初始化通知信息
+    const { syncRemoteNotices } = useNotice()
+    await syncRemoteNotices()
   }
   console.log('App Launch')
 })

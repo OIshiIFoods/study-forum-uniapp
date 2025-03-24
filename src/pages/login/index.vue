@@ -85,7 +85,9 @@
 </template>
 
 <script setup lang="ts">
-import messageSocket from '@/api/messageSocket'
+import socket from '@/api/socket'
+import { useNotice } from '@/hooks/useNotice'
+import { useUserMessage } from '@/hooks/useUserMessage'
 import router from '@/router'
 import { getCaptcha, login } from '@/service'
 import { useUserStore } from '@/stores'
@@ -151,7 +153,13 @@ const handleLoginClick = async () => {
     })
     const userStore = useUserStore()
     await userStore.syncUserInfo()
-    messageSocket.initial()
+    socket.initial()
+    // 初始化消息信息
+    const { initData } = useUserMessage()
+    await initData()
+    // 初始化通知信息
+    const { syncRemoteNotices } = useNotice()
+    await syncRemoteNotices()
     router.back({
       delta: 1,
       animationType: 'slide-out-right',
