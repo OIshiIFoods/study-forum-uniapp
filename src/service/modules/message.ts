@@ -13,12 +13,6 @@ export const getMessageList = async (params: GetMessageList.Request) => {
     method: 'GET',
     data: params,
   })
-  // 如果是要获取未读消息，则删除远程存储的未读消息
-  if (params.isRead === '0' && res.data.messages.length) {
-    await deleteMsgs({
-      messageIdList: res.data.messages.map((item) => item.id),
-    })
-  }
   return res
 }
 

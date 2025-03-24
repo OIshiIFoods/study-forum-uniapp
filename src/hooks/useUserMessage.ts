@@ -42,6 +42,12 @@ export const useUserMessage = () => {
   const syncRemoteMessages = async () => {
     const getMsgListRes = await getMessageList({ isRead: '0' })
     const msgList = getMsgListRes.data.messages
+    // 删除远程存储的未读消息
+    if (msgList.length) {
+      await deleteMsgs({
+        messageIdList: msgList.map((item) => item.id),
+      })
+    }
     await addMessage(msgList)
   }
 
@@ -79,7 +85,7 @@ export const useUserMessage = () => {
       })
     })
     // 更新用户信息列表
-    addUserInfo(unknowUserIds)
+    await addUserInfo(unknowUserIds)
   }
 
   /** 更改已读状态 */
