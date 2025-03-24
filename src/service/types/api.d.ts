@@ -611,7 +611,7 @@ export namespace DeleteMessages {
 /** 获取通知列表 */
 export namespace GetNoticeList {
   type Request = {
-    isRead: '0' | '1'
+    isRead?: '0' | '1'
   }
 
   type Response = {

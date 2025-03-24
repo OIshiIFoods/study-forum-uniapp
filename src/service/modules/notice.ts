@@ -6,7 +6,7 @@ import type {
 } from '../types/api'
 
 /** 获取消息列表 */
-export const getNoticeList = async (params: GetNoticeList.Request) => {
+export const getNoticeList = async (params?: GetNoticeList.Request) => {
   const res = await request<GetNoticeList.Response>({
     url: '/api/v1/notice/list',
     method: 'GET',
