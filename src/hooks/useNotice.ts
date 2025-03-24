@@ -1,5 +1,5 @@
 import { getNoticeList } from '@/service'
-import { NoticeProps } from '@/service/types/db'
+import type { NoticeProps } from '@/service/types/db'
 import { ref } from 'vue'
 
 const notices = ref<NoticeProps[]>([])
