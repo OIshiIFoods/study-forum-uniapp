@@ -19,6 +19,7 @@ const userInfos = reactive<{
 export const useUserMessage = () => {
   const userStore = useUserStore()
 
+  /** 初始化数据 */
   const initData = async () => {
     await syncLocalData()
     await syncRemoteMessages()
@@ -38,7 +39,7 @@ export const useUserMessage = () => {
     Object.assign(messages, userMessageData)
   }
 
-  /** 同步未读聊天信息 */
+  /** 同步远程聊天信息 */
   const syncRemoteMessages = async () => {
     const getMsgListRes = await getMessageList({ isRead: '0' })
     const msgList = getMsgListRes.data.messages
