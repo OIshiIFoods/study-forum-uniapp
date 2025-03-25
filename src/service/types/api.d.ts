@@ -658,3 +658,19 @@ export namespace DeleteNotices {
     data: any
   }
 }
+
+export namespace GetUsersInfoInNotice {
+  type Request = {
+    userIdList: number[]
+  }
+
+  type Response = {
+    /** 状态码 */
+    status: number
+    /** 响应信息 */
+    message: string
+    data: {
+      userInfoList: Pick<UserProps, 'id' | 'nickname' | 'avatarLink'>[]
+    }
+  }
+}

@@ -18,7 +18,12 @@ import {
   getMessageList,
   sendMsg,
 } from './modules/message'
-import { deleteNotices, getNoticeList, updateNotice } from './modules/notice'
+import {
+  deleteNotices,
+  getNoticeList,
+  getUsersInfoInNotice,
+  updateNotice,
+} from './modules/notice'
 import { getCaptcha } from './modules/ouath'
 import {
   followUser,
@@ -68,4 +73,5 @@ export {
   getNoticeList,
   deleteNotices,
   updateNotice,
+  getUsersInfoInNotice,
 }
