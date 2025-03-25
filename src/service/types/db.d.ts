@@ -17,7 +17,7 @@ export enum FileAccessPermissionsEnum {
 }
 
 /** 通知类型枚举 */
-export const enum NoticeTypeEnum {
+export enum NoticeTypeEnum {
   /** 文章被点赞通知 */
   ArticleLiked = 1,
   /** 文章被收藏通知 */

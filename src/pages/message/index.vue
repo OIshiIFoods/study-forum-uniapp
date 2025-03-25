@@ -6,6 +6,7 @@
         class="flex flex-col items-center justify-center gap-row-8px"
         v-for="msgCategory in msgCategories"
         :key="msgCategory.label"
+        @click="msgCategory.clickAction()"
       >
         <up-icon
           :class="['p-6px', 'rounded-10px']"
@@ -65,6 +66,7 @@ import { getMessageList } from '@/service/modules/message'
 import { useUserStore } from '@/stores'
 import dayjs from 'dayjs'
 import { computed, onMounted } from 'vue'
+import { NoticeTypeEnum } from '@/service/types/db.d'
 
 const { messages, userInfos, addMessage, updateReadStatus } = useUserMessage()
 
@@ -76,18 +78,33 @@ const msgCategories = [
     color: '#fe5957',
     bgColor: '#fddbd8',
     label: '赞和收藏',
+    clickAction: () => {
+      router.push({
+        name: 'notice',
+        params: {
+          title: '收到的赞和收藏',
+          noticeType: JSON.stringify([
+            NoticeTypeEnum.ArticleLiked,
+            NoticeTypeEnum.ArticleLiked,
+            NoticeTypeEnum.CommentLiked,
+          ]),
+        },
+      })
+    },
   },
   {
     icon: 'account-fill',
     color: '#2d8bff',
     bgColor: '#e2eefe',
     label: '新增关注',
+    clickAction: () => {},
   },
   {
     icon: 'chat-fill',
     color: '#1cdf96',
     bgColor: '#d8f8ed',
     label: '评论和@',
+    clickAction: () => {},
   },
 ]
 const chatedUserList = computed(() => {
