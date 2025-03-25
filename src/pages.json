@@ -105,6 +105,13 @@
 			"style": {
 				"navigationStyle": "custom"
 			}
+		},
+		{
+			"name": "notice",
+			"path": "pages/notice/index",
+			"style": {
+				"navigationStyle": "custom"
+			}
 		}
 	],
 	"tabBar": {
