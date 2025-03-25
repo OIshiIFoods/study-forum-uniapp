@@ -23,7 +23,7 @@ socket.registerMessageEvent('message', async (params) => {
 socket.registerMessageEvent('notice', async (params) => {
   const resData = JSON.parse(params.data)
   if (resData.type === 'newNotice') {
-    addNotice(resData.data?.noticeInfo)
+    addNotice([resData.data?.noticeInfo])
   }
 })
 
