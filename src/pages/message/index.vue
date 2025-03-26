@@ -3,7 +3,7 @@
     <up-navbar title="消息" leftIcon="" :autoBack="false" placeholder />
     <view class="flex justify-around py-10px">
       <view
-        class="flex flex-col items-center justify-center gap-row-8px"
+        class="pos-relative flex flex-col items-center justify-center gap-row-8px"
         v-for="msgCategory in msgCategories"
         :key="msgCategory.label"
         @click="msgCategory.clickAction()"
@@ -16,6 +16,12 @@
           :color="msgCategory.color"
         />
         <view class="text-12px">{{ msgCategory.label }}</view>
+        <view
+          class="pos-absolute pos-right-[-5px] pos-top-[-5px] flex items-center justify-center w-15px h-15px bg-[red] text-white rounded-half text-12px"
+          v-if="msgCategory.unReadCount()"
+        >
+          {{ msgCategory.unReadCount() }}
+        </view>
       </view>
     </view>
     <view>
@@ -67,8 +73,10 @@ import { useUserStore } from '@/stores'
 import dayjs from 'dayjs'
 import { computed, onMounted } from 'vue'
 import { NoticeTypeEnum } from '@/service/types/db.d'
+import { useNotice } from '@/hooks/useNotice'
 
 const { messages, userInfos, addMessage, updateReadStatus } = useUserMessage()
+const { notices } = useNotice()
 
 onMounted(async () => {})
 const userStore = useUserStore()
@@ -78,6 +86,16 @@ const msgCategories = [
     color: '#fe5957',
     bgColor: '#fddbd8',
     label: '赞和收藏',
+    unReadCount: () =>
+      notices.filter(
+        (item) =>
+          !item.isRead &&
+          [
+            NoticeTypeEnum.ArticleLiked,
+            NoticeTypeEnum.ArticleLiked,
+            NoticeTypeEnum.CommentLiked,
+          ].includes(item.noticeType)
+      ).length,
     clickAction: () => {
       router.push({
         name: 'notice',
@@ -97,13 +115,24 @@ const msgCategories = [
     color: '#2d8bff',
     bgColor: '#e2eefe',
     label: '新增关注',
+    unReadCount: () =>
+      notices.filter(
+        (item) =>
+          !item.isRead && [NoticeTypeEnum.Followed].includes(item.noticeType)
+      ).length,
     clickAction: () => {},
   },
   {
     icon: 'chat-fill',
     color: '#1cdf96',
     bgColor: '#d8f8ed',
-    label: '评论和@',
+    label: '回复',
+    unReadCount: () =>
+      notices.filter(
+        (item) =>
+          !item.isRead &&
+          [NoticeTypeEnum.CommentReplied].includes(item.noticeType)
+      ).length,
     clickAction: () => {},
   },
 ]
