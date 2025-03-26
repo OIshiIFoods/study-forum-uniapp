@@ -120,7 +120,15 @@ const msgCategories = [
         (item) =>
           !item.isRead && [NoticeTypeEnum.Followed].includes(item.noticeType)
       ).length,
-    clickAction: () => {},
+    clickAction: () => {
+      router.push({
+        name: 'notice',
+        params: {
+          title: '新增关注',
+          noticeType: JSON.stringify([NoticeTypeEnum.Followed]),
+        },
+      })
+    },
   },
   {
     icon: 'chat-fill',

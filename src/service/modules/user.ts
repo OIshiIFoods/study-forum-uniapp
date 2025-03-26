@@ -47,5 +47,6 @@ export const getFollowUserList = async (params?: GetFollowUserList.Request) => {
   return request<GetFollowUserList.Response>({
     method: 'GET',
     url: '/api/v1/user/follow',
+    data: params,
   })
 }
