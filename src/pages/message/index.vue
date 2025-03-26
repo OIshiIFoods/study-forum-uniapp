@@ -133,7 +133,15 @@ const msgCategories = [
           !item.isRead &&
           [NoticeTypeEnum.CommentReplied].includes(item.noticeType)
       ).length,
-    clickAction: () => {},
+    clickAction: () => {
+      router.push({
+        name: 'notice',
+        params: {
+          title: '收到的评论',
+          noticeType: JSON.stringify([NoticeTypeEnum.CommentReplied]),
+        },
+      })
+    },
   },
 ]
 const chatedUserList = computed(() => {
