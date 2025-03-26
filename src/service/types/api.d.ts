@@ -99,7 +99,9 @@ export namespace PostFollowUser {
 
 /** 获取用户关注列表 */
 export namespace GetFollowUserList {
-  type Request = {}
+  type Request = {
+    type: 'follow' | 'fans' | 'mutual'
+  }
   type Response = {
     /** 状态码 */
     status: number
@@ -107,13 +109,14 @@ export namespace GetFollowUserList {
     message: string
     data: {
       /** 用户列表 */
-      followList: (Omit<FollowProps, 'userId'> & {
+      followList: (Pick<FollowProps, 'id' | 'createTime'> & {
+        userId: number
         /** 是否互关 */
         isMutual: 0 | 1
         /** 被关注用户昵称 */
-        followedUserAvatarLink: string
+        userNickname: string
         /** 被关注用户头像链接 */
-        followedUserAvatarLink: string
+        userAvatarLink: string
       })[]
     }
   }
