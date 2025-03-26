@@ -13,6 +13,7 @@
             NoticeTypeEnum.ArticleLiked,
             NoticeTypeEnum.ArticleLiked,
             NoticeTypeEnum.CommentLiked,
+            NoticeTypeEnum.CommentReplied,
           ].includes(notice.noticeType)
         ) {
           router.push({
@@ -26,7 +27,7 @@
     <view class="flex">
       <up-avatar
         class="mx-8px"
-        :src="baseURL + '' + usersInfoInNotice[notice.senderId]"
+        :src="baseURL + '' + usersInfoInNotice[notice.senderId].avatarLink"
         :size="40"
       />
     </view>
