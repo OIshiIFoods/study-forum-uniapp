@@ -8,7 +8,7 @@
     @scrolltolower="() => (navbarMode = 'light')"
   >
     <up-transition :show="navbarMode === 'light'">
-      <up-navbar :title="userStore.nickname" auto-back />
+      <up-navbar :title="userInfo.nickname" auto-back />
     </up-transition>
     <up-transition :show="navbarMode === 'dark'">
       <up-navbar :bgColor="'rgba(0,0,0,0)'" auto-back>
@@ -36,7 +36,7 @@
         <view class="relative flex justify-between">
           <up-image
             class="relative top-[-25px] left-[20px]"
-            :src="baseURL + '' + userStore.avatarLink"
+            :src="baseURL + '' + userInfo.avatarLink"
             :shape="'circle'"
             width="80px"
             height="80px"
@@ -69,8 +69,8 @@
           </view>
         </view>
         <view>
-          <view class="line-height-30px">{{ userStore.nickname }}</view>
-          <view class="text-12px text-[#999]">{{ userStore.signature }}</view>
+          <view class="line-height-30px">{{ userInfo.nickname }}</view>
+          <view class="text-12px text-[#999]">{{ userInfo.signature }}</view>
         </view>
       </view>
     </view>
@@ -117,29 +117,50 @@
 import { baseURL } from '@/api/http'
 import ArticleItem from '@/components/ArticleItem.vue'
 import router from '@/router'
-import { getArticleList } from '@/service'
-import type { GetArticleList } from '@/service/types/api'
+import { getArticleList, getUserInfo } from '@/service'
+import type { GetArticleList, GetUserInfo } from '@/service/types/api'
 import { useUserStore } from '@/stores'
-import { onShow } from '@dcloudio/uni-app'
+import { onLoad, onShow } from '@dcloudio/uni-app'
 import { computed, onMounted, reactive, ref } from 'vue'
 
-const userStore = useUserStore()
+type OnloadOptionsType = {
+  userId: string
+}
+
+onLoad(async (options) => {
+  const params = options as OnloadOptionsType
+  if (!params.userId) {
+    uni.showToast({
+      title: '用户不存在',
+      icon: 'none',
+      duration: 2000,
+    })
+    setTimeout(() => {
+      router.back()
+    }, 2000)
+  }
+  userInfo.id = +params.userId
+  const getUserInfoRes = await getUserInfo({ userId: Number(params.userId) })
+  Object.assign(userInfo, getUserInfoRes.data)
+})
+
+const userInfo = reactive<Partial<GetUserInfo.Response['data']>>({})
 
 const statusInfoList = computed(() => [
   {
     code: 'followCount',
     desc: '关注',
-    value: userStore.followCount,
+    value: userInfo.followCount,
   },
   {
     code: 'fansCount',
     desc: '粉丝',
-    value: userStore.fansCount,
+    value: userInfo.fansCount,
   },
   {
     code: 'likeCount',
     desc: '获赞',
-    value: userStore.likeCount,
+    value: userInfo.likeCount,
   },
 ])
 
@@ -160,8 +181,11 @@ const navbarMode = ref<'light' | 'dark'>('dark')
 const articleList = ref<GetArticleList.Response['data']['articleList']>([])
 
 onShow(async () => {
+  if (!userInfo.id) {
+    return
+  }
   const { data } = await getArticleList({
-    userId: userStore.id,
+    userId: userInfo.id,
     orderBy: [{ field: 'createTime', direction: 'DESC' }],
   })
   articleList.value = data.articleList
