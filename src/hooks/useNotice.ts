@@ -1,5 +1,8 @@
-import { getNoticeList, getUsersInfoInNotice } from '@/service'
-import type { GetUsersInfoInNotice } from '@/service/types/api'
+import { getNoticeList, getUsersInfoInNotice, updateNotice } from '@/service'
+import type {
+  GetUsersInfoInNotice,
+  UpdateNoticeInfo,
+} from '@/service/types/api'
 import type { NoticeProps, UserProps } from '@/service/types/db'
 import { reactive } from 'vue'
 
@@ -20,6 +23,15 @@ export const useNotice = () => {
     await addNotice(getMsgListRes.data.noticeList)
   }
 
+  /** 更新通知信息 */
+  const updateNoticeInfo = async (params: UpdateNoticeInfo.Request) => {
+    await updateNotice(params)
+    params.forEach((item) => {
+      const noticeItem = notices.find((n) => n.id === item.noticeId)!
+      noticeItem.isRead = item.isRead
+    })
+  }
+
   /** 添加通知 */
   const addNotice = async (newNotices: NoticeProps[]) => {
     const unknownUserIds: number[] = []
@@ -36,7 +48,6 @@ export const useNotice = () => {
     await addUserInfoInNotice(unknownUserIds)
   }
 
-  /** 添加通知关联用户的信息 */
   /** 添加通知中的用户信息 */
   const addUserInfoInNotice = async (userIds: number[]) => {
     if (!userIds.length) {
@@ -55,6 +66,7 @@ export const useNotice = () => {
     usersInfoInNotice,
     init,
     syncRemoteNotices,
+    updateNoticeInfo,
     addNotice,
     addUserInfoInNotice,
   }

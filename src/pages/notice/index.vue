@@ -2,7 +2,7 @@
   <up-navbar :title="pageTitle" auto-back placeholder />
   <view
     class="grid grid-cols-[auto_1fr_auto] p-[18px_15px] b-b b-b-solid b-b-#f2f2f2"
-    v-for="notice in notices.filter((notice) =>
+    v-for="notice in noticeList.filter((notice) =>
       noticeTypeList.includes(notice.noticeType)
     )"
     :key="notice.id"
@@ -63,7 +63,7 @@ import { useNotice } from '@/hooks/useNotice'
 import router from '@/router'
 import { onLoad } from '@dcloudio/uni-app'
 import dayjs from 'dayjs'
-import { ref } from 'vue'
+import { computed, ref, watch } from 'vue'
 import { NoticeTypeEnum } from '@/service/types/db.d'
 
 type OnloadOptionsType = {
@@ -73,7 +73,26 @@ type OnloadOptionsType = {
 
 const pageTitle = ref('消息')
 const noticeTypeList = ref<number[]>([])
-const { notices, usersInfoInNotice } = useNotice()
+const { notices, usersInfoInNotice, updateNoticeInfo } = useNotice()
+const noticeList = computed(() => {
+  return notices.filter((notice) =>
+    noticeTypeList.value.includes(notice.noticeType)
+  )
+})
+watch(
+  noticeList,
+  async (newVal) => {
+    const unreadList = newVal.filter((item) => !item.isRead)
+    if (unreadList.length) {
+      await updateNoticeInfo(
+        unreadList.map((item) => ({ noticeId: item.id, isRead: true }))
+      )
+    }
+  },
+  {
+    immediate: true,
+  }
+)
 const noticeTypeMap = {
   1: { desc: '赞了你的文章' },
   2: { desc: '收藏了你的文章' },
