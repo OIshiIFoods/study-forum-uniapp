@@ -268,7 +268,7 @@ const commentData = ref<CommentDataModelProps>({
 })
 const isFollow = computed(() => {
   return userStore.followList?.find(
-    (item) => item.followedUserId === userInfo.value?.userId
+    (item) => item.userId === userInfo.value?.userId
   )
     ? true
     : false
