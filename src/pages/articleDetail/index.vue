@@ -7,6 +7,14 @@
           class="mx-[10px]"
           :src="baseURL + '' + userInfo?.avatarLink"
           :size="40"
+          @click="
+            () => {
+              router.push({
+                name: 'userSpace',
+                params: { userId: String(userInfo?.userId) },
+              })
+            }
+          "
         />
         <view class="text-[#333] text-[16px]">
           {{ userInfo?.nickname }}

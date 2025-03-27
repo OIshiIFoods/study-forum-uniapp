@@ -125,10 +125,11 @@ onLoad(async (option: any) => {
     fileIconConfig.value = res
   })
   const { data: shareFileData } = await getUserFiles({
+    userId: options.sharedUserId ? +options.sharedUserId : undefined,
     fileIds: options.sharedFileIds
       ? options.sharedFileIds.split(',').map((id: string) => +id)
       : undefined,
-    parentPath: options.parentPath,
+    parentPath: options.parentPath ?? '/',
   })
   curDirInfo.value.sharedFiles = shareFileData.fileInfoList
 })

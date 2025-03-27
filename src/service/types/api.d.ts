@@ -240,6 +240,8 @@ export namespace GetFileList {
     orderBy?: string
     /** 文件id列表 */
     fileIds?: number[]
+    /** 用户 id */
+    userId?: number
   }
 
   type Response = {

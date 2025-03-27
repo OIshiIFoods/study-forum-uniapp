@@ -41,7 +41,7 @@
             width="80px"
             height="80px"
           />
-          <view>
+          <view class="w-350rpx">
             <!-- 账户状态信息列表 -->
             <view class="flex my-[20rpx]">
               <view
@@ -61,10 +61,30 @@
             </view>
             <!-- 编辑资料控件 -->
             <view
-              class="w-350rpx line-height-30px text-12px text-center text-[var(--primary-color)] b b-solid b-[var(--primary-color)]"
+              v-if="userInfo.id === userStore.id"
+              class="line-height-30px text-12px text-center text-[var(--primary-color)] b b-solid b-[var(--primary-color)]"
               @click="router.push({ name: 'accountInfo' })"
             >
               编辑资料
+            </view>
+            <view v-else class="flex justify-center">
+              <up-button
+                plain
+                :customStyle="{ width: '50%' }"
+                :size="'small'"
+                :shape="'circle'"
+                color="var(--primary-color)"
+                @click="
+                  async () => {
+                    router.push({
+                      name: 'chat',
+                      params: { chatUserId: String(userInfo.id) },
+                    })
+                  }
+                "
+              >
+                发消息
+              </up-button>
             </view>
           </view>
         </view>
@@ -102,7 +122,14 @@
         <view class="h-full" v-if="activeTab === 'file'">
           <view
             class="flex flex-col justify-center items-center h-full"
-            @click="router.push({ name: 'fileManagement' })"
+            @click="
+              userStore.id === userInfo.id
+                ? router.push({ name: 'fileManagement' })
+                : router.push({
+                    name: 'fileShare',
+                    params: { sharedUserId: String(userInfo.id) },
+                  })
+            "
           >
             <view class="text-[50px] iconfont icon-no-file" />
             <view class="text-15px p-[10px_0]">前往文件仓库 ></view>
@@ -145,6 +172,7 @@ onLoad(async (options) => {
 })
 
 const userInfo = reactive<Partial<GetUserInfo.Response['data']>>({})
+const userStore = useUserStore()
 
 const statusInfoList = computed(() => [
   {

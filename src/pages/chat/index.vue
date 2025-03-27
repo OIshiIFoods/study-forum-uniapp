@@ -119,7 +119,7 @@ onLoad(async (params: any) => {
   chatUserId.value = Number(params.chatUserId)
   await updateReadStatus(
     chatUserId.value,
-    messages[chatUserId.value].map((item) => item.id)
+    messages[chatUserId.value]?.map((item) => item.id) ?? []
   )
   initialScrollContainer()
 })
@@ -142,7 +142,7 @@ const initialScrollContainer = () => {
       const nodeInfo = Array.isArray(res) ? res[0] : res
       Object.assign(scrollContainerProps, {
         height: nodeInfo.height!,
-        scrollIntoView: 'message' + messages[chatUserId.value].length,
+        scrollIntoView: 'message' + messages[chatUserId.value]?.length,
         scrollWithAnimation: true,
       })
     })
