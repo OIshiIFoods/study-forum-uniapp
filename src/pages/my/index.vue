@@ -43,6 +43,7 @@
           class="pos-relative flex-1 flex flex-col items-center"
           v-for="(item, index) in accountStatusInfoList"
           :key="item.title"
+          @click.stop="() => item.clickAction()"
         >
           <view class="text-[14px] mb-[3px]">{{ item.value }}</view>
           <view class="text-[10px] text-[var(--text-color-grey)]">
@@ -173,18 +174,30 @@ const accountStatusInfoList = computed(() => [
   {
     title: '点赞',
     value: userStore.likeCount,
+    clickAction: () => {
+      router.push({
+        name: 'myArticle',
+      })
+    },
   },
   {
     title: '收藏',
     value: userStore.collectionCount,
+    clickAction: () => {
+      router.push({
+        name: 'myArticle',
+      })
+    },
   },
   {
     title: '关注',
     value: userStore.followCount,
+    clickAction: () => {},
   },
   {
     title: '粉丝',
     value: userStore.fansCount,
+    clickAction: () => {},
   },
 ])
 

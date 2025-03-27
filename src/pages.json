@@ -112,6 +112,13 @@
 			"style": {
 				"navigationStyle": "custom"
 			}
+		},
+		{
+			"name":"myArticle",
+			"path": "pages/myArticle/index",
+			"style": {
+				"navigationStyle": "custom"
+			}
 		}
 	],
 	"tabBar": {
