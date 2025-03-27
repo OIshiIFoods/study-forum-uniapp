@@ -114,6 +114,7 @@
           <view
             class="flex-1 flex flex-col justify-center items-center justify-end"
             v-for="item in fileOperationList"
+            :key="item.title"
             @click="item.clickAction"
           >
             <view
