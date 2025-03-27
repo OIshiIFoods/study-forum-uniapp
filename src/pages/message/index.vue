@@ -160,11 +160,13 @@ const chatedUserList = computed(() => {
       return {
         userId: id,
         latestMessage: latestMessage?.content,
+        dayjsTime: dayjs(latestMessage?.createTime),
         time: dayjs(latestMessage?.createTime).format('YYYY-MM-DD'),
         unReadCount: messages[id].filter((item) => !item.isRead).length,
         ...item,
       }
     })
+    .sort((a, b) => +b.dayjsTime - +a.dayjsTime)
 })
 </script>
 
