@@ -106,9 +106,9 @@ const noticeTypeList = ref<number[]>([])
 const userStore = useUserStore()
 const { notices, usersInfoInNotice, updateNoticeInfo } = useNotice()
 const noticeList = computed(() => {
-  return notices.filter((notice) =>
-    noticeTypeList.value.includes(notice.noticeType)
-  )
+  return notices
+    .filter((notice) => noticeTypeList.value.includes(notice.noticeType))
+    .sort((a, b) => +dayjs(b.createTime) - +dayjs(a.createTime))
 })
 const noticeTypeMap = {
   1: { desc: '赞了你的文章' },
