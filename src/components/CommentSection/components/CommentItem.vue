@@ -1,6 +1,11 @@
 <template>
   <view class="flex gap-col-5px mt-10px">
-    <up-avatar class="p-5px" :src="avatarLink" :size="avatarSize ?? 35" />
+    <up-avatar
+      class="p-5px"
+      :src="avatarLink"
+      :size="avatarSize ?? 35"
+      @click="emit('clickAvatar', userId)"
+    />
     <view class="flex-1">
       <view class="flex justify-between">
         <view class="flex items-center gap-col-5px">
@@ -68,5 +73,5 @@ export type CommentItemProps = {
 
 const props = defineProps<CommentItemProps>()
 
-const emit = defineEmits(['like', 'delete', 'reply'])
+const emit = defineEmits(['like', 'delete', 'reply', 'clickAvatar'])
 </script>

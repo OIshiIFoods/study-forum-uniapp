@@ -18,6 +18,7 @@
       @delete="deleteComment"
       @like="likeComment"
       @reply="onClickReplyComment"
+      @clickAvatar="onClickAvatar"
     >
       <CommentItem
         v-for="(sCom, sComIndex) in pCom.children"
@@ -27,6 +28,7 @@
         @delete="deleteComment"
         @like="likeComment"
         @reply="onClickReplyComment"
+        @clickAvatar="onClickAvatar"
       />
     </CommentItem>
     <view v-else>
@@ -80,10 +82,15 @@ export type OnAddCommentProps = {
   conmentContent: string
 }
 
+export type OnClickAvatarProps = {
+  /** 用户id */
+  userId: number
+}
+
 export type CmSecProps = {
   /** 点击头像事件回调, 返回true则继续执行后续逻辑 */
   onAvatarClick?: (
-    userId: number
+    params: OnClickAvatarProps
   ) => boolean | undefined | void | Promise<boolean | undefined | void>
   /** 点赞事件回调, 返回true则继续执行后续逻辑 */
   onLike?: (
@@ -112,6 +119,7 @@ const props = withDefaults(defineProps<CmSecProps>(), {
   onLike: () => {},
   onDelete: () => {},
   onAdd: () => {},
+  onAvatarClick: () => {},
 })
 
 const commentData = defineModel<CommentDataModelProps>('commentData', {
@@ -240,6 +248,10 @@ const onClickReplyComment = async (
 
 const onClickAddComment = async () => {
   editorRef.value!.isShowPopup = true
+}
+
+const onClickAvatar = async (userId: number) => {
+  await props.onAvatarClick({ userId })
 }
 
 const onSend = async () => {
