@@ -9,10 +9,7 @@
           :size="40"
           @click="
             () => {
-              router.push({
-                name: 'userSpace',
-                params: { userId: String(userInfo?.userId) },
-              })
+              clickAvatar({ userId: userInfo!.userId })
             }
           "
         />
@@ -68,6 +65,7 @@
       :onLike="likeComment"
       :onDelete="delComment"
       :onAdd="addComment"
+      :onAvatarClick="clickAvatar"
     />
   </view>
   <view class="flex sticky bottom-0 bg-white p-10px b-t b-t-solid b-t-#ebeced">
@@ -237,6 +235,7 @@ import type {
   CommentDataModelProps,
   CommentSectionRefType,
   OnAddCommentProps,
+  OnClickAvatarProps,
   OnDeleteProps,
   OnLikeProps,
 } from '@/components/CommentSection/index.vue'
@@ -308,6 +307,13 @@ const delComment = async ({ commentId, affectCount }: OnDeleteProps) => {
 const likeComment = async ({ commentId }: OnLikeProps) => {
   await likeArticleComment({
     commentId,
+  })
+}
+
+const clickAvatar = async ({ userId }: OnClickAvatarProps) => {
+  router.push({
+    name: 'userSpace',
+    params: { userId: String(userId) },
   })
 }
 
