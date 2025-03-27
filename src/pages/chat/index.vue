@@ -10,6 +10,12 @@
               :size="40"
               :src="baseURL + '' + userInfos[chatUserId]?.avatarLink"
               customStyle="margin: -3px 5px -3px 0"
+              @click.stop="
+                router.push({
+                  name: 'userSpace',
+                  params: { userId: String(chatUserId) },
+                })
+              "
             />
             <view class="text-15px">
               {{ userInfos[chatUserId]?.nickname }}
@@ -54,6 +60,12 @@
               :size="40"
               :src="baseURL + '' + userInfos[messageItem.senderId]?.avatarLink"
               customStyle="margin: -3px 5px -3px 0"
+              @click.stop="
+                router.push({
+                  name: 'userSpace',
+                  params: { userId: String(messageItem.senderId) },
+                })
+              "
             />
             <view
               class="p-8px bg-[var(--primary-color)] text-white text-14px rounded-5px max-w-full break-all"

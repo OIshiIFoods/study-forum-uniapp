@@ -29,6 +29,12 @@
         class="mx-8px"
         :src="baseURL + '' + usersInfoInNotice[notice.senderId].avatarLink"
         :size="40"
+        @click.stop="
+          router.push({
+            name: 'userSpace',
+            params: { userId: String(notice.senderId) },
+          })
+        "
       />
     </view>
     <view class="grid gap-row-5px">
@@ -64,7 +70,7 @@
           :size="'small'"
           :shape="'circle'"
           :color="followStatusMap[getFollowInfo(notice.senderId).status].color"
-          @click="
+          @click.stop="
             async () => {
               followStatusMap[
                 getFollowInfo(notice.senderId).status
