@@ -24,18 +24,43 @@
         <view>{{ dayjs(props.createTime).format('YYYY-MM-DD') }}</view>
       </view>
     </view>
-    <view class="flex items-center">
+    <view class="flex items-center gap-col-12px">
       <up-button
         plain
         :size="'small'"
         :shape="'circle'"
         :color="rightBtnTypeMap[props.buttonType].color"
+        customStyle="border-color:#ededed;"
         @click="rightBtnTypeMap[props.buttonType].clickAction"
       >
         {{ rightBtnTypeMap[props.buttonType].label }}
       </up-button>
+      <up-icon
+        v-if="
+          ['hasFollow', 'mutualFollow', 'sendMsg'].includes(props.buttonType)
+        "
+        name="more-dot-fill"
+        @click="operationPopupConfig.show = true"
+      />
     </view>
   </view>
+  <up-popup
+    :show="operationPopupConfig.show"
+    :mode="'bottom'"
+    :onClose="() => (operationPopupConfig.show = false)"
+  >
+    <view class="p-[15px_10px] bg-#f5f5f5">
+      <view
+        class="rounded-4px p-10px bg-#fff"
+        v-for="(item, index) in operationPopupConfig.operationList"
+        :key="item.label"
+        :style="{ color: item.color }"
+        @click="item.clickAction"
+      >
+        {{ item.label }}
+      </view>
+    </view>
+  </up-popup>
 </template>
 
 <script setup lang="ts">
@@ -44,6 +69,7 @@ import router from '@/router'
 import { followUser } from '@/service'
 import type { FollowProps } from '@/service/types/db'
 import dayjs from 'dayjs'
+import { reactive } from 'vue'
 
 export type FollowItemProps = Pick<FollowProps, 'id' | 'createTime'> & {
   userId: number
@@ -58,7 +84,7 @@ export type FollowItemProps = Pick<FollowProps, 'id' | 'createTime'> & {
 }
 
 const props = defineProps<FollowItemProps>()
-const emit = defineEmits(['updateFollowItem'])
+const emit = defineEmits(['updateFollowItem', 'deleteFollowItem'])
 
 const rightBtnTypeMap = {
   hasFollow: {
@@ -99,4 +125,32 @@ const rightBtnTypeMap = {
     },
   },
 }
+
+const operationPopupConfig = reactive({
+  show: false,
+  operationList: [
+    {
+      label: '取消关注',
+      color: 'red',
+      clickAction: async () => {
+        await followUser({
+          followedUserId: props.userId,
+          isFollow: false,
+        })
+        uni.showToast({
+          title: '取消关注成功',
+          icon: 'none',
+        })
+        if (['sendMsg', 'hasFollow'].includes(props.buttonType)) {
+          emit('deleteFollowItem', props.id)
+        } else if (props.buttonType === 'mutualFollow') {
+          emit('updateFollowItem', props.id, {
+            buttonType: 'returnFollow',
+          })
+        }
+        operationPopupConfig.show = false
+      },
+    },
+  ],
+})
 </script>

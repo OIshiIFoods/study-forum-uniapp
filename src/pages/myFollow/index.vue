@@ -30,6 +30,10 @@
             }
           }
         "
+        @delete-follow-item="(itemId: number)=>{
+          followList = followList.filter((item) => item.id !== itemId)
+        }"
+        "
       />
     </view>
   </view>
