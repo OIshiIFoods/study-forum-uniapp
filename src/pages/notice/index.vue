@@ -6,6 +6,12 @@
       noticeTypeList.includes(notice.noticeType)
     )"
     :key="notice.id"
+    @longpress="
+      () => {
+        curSelectNotice = notice
+        operationPopupConfig.show = true
+      }
+    "
     @click="
       () => {
         if (
@@ -83,6 +89,23 @@
       </view>
     </view>
   </view>
+  <up-popup
+    :show="operationPopupConfig.show"
+    :mode="'bottom'"
+    :onClose="() => (operationPopupConfig.show = false)"
+  >
+    <view class="p-[15px_10px] bg-#f5f5f5">
+      <view
+        class="rounded-4px p-10px bg-#fff text-center"
+        v-for="(item, index) in operationPopupConfig.operationList"
+        :key="item.label"
+        :style="{ color: item.color }"
+        @click="item.clickAction"
+      >
+        {{ item.label }}
+      </view>
+    </view>
+  </up-popup>
 </template>
 
 <script setup lang="ts">
@@ -92,9 +115,9 @@ import router from '@/router'
 import { onLoad } from '@dcloudio/uni-app'
 import dayjs from 'dayjs'
 import { computed, reactive, ref, watch } from 'vue'
-import { NoticeTypeEnum } from '@/service/types/db.d'
+import { type NoticeProps, NoticeTypeEnum } from '@/service/types/db.d'
 import { useUserStore } from '@/stores'
-import { followUser } from '@/service'
+import { deleteNotices, followUser } from '@/service'
 
 type OnloadOptionsType = {
   title?: string
@@ -104,7 +127,8 @@ type OnloadOptionsType = {
 const pageTitle = ref('消息')
 const noticeTypeList = ref<number[]>([])
 const userStore = useUserStore()
-const { notices, usersInfoInNotice, updateNoticeInfo } = useNotice()
+const { notices, usersInfoInNotice, updateNoticeInfo, deleteNotice } =
+  useNotice()
 const noticeList = computed(() => {
   return notices
     .filter((notice) => noticeTypeList.value.includes(notice.noticeType))
@@ -142,6 +166,29 @@ const followStatusMap = {
     },
   },
 }
+
+const curSelectNotice = ref<
+  Omit<NoticeProps, 'content'> & { content: Record<string, any> }
+>()
+const operationPopupConfig = reactive({
+  show: false,
+  operationList: [
+    {
+      label: '删除',
+      color: 'red',
+      clickAction: async () => {
+        await deleteNotice({
+          noticeIdList: [curSelectNotice.value!.id],
+        })
+        uni.showToast({
+          title: '删除成功',
+          icon: 'none',
+        })
+        operationPopupConfig.show = false
+      },
+    },
+  ],
+})
 
 watch(
   noticeList,

@@ -1,5 +1,11 @@
-import { getNoticeList, getUsersInfoInNotice, updateNotice } from '@/service'
+import {
+  deleteNotices,
+  getNoticeList,
+  getUsersInfoInNotice,
+  updateNotice,
+} from '@/service'
 import type {
+  DeleteNotices,
   GetUsersInfoInNotice,
   UpdateNoticeInfo,
 } from '@/service/types/api'
@@ -61,6 +67,15 @@ export const useNotice = () => {
     })
   }
 
+  /** 删除通知信息 */
+  const deleteNotice = async (params: DeleteNotices.Request) => {
+    await deleteNotices(params)
+    params.noticeIdList.forEach((item) => {
+      const index = notices.findIndex((noticeItem) => item === noticeItem.id)
+      index !== -1 && notices.splice(index, 1)
+    })
+  }
+
   return {
     notices,
     usersInfoInNotice,
@@ -69,5 +84,6 @@ export const useNotice = () => {
     updateNoticeInfo,
     addNotice,
     addUserInfoInNotice,
+    deleteNotice,
   }
 }
