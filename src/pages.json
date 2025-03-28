@@ -119,6 +119,13 @@
 			"style": {
 				"navigationStyle": "custom"
 			}
+		},
+		{
+			"name":"myFollow",
+			"path": "pages/myFollow/index",
+			"style": {
+				"navigationStyle": "custom"
+			}
 		}
 	],
 	"tabBar": {

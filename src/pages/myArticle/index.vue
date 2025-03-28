@@ -19,7 +19,7 @@
     </up-navbar>
     <view class="bg-white rounded-20px box-border p-10px">
       <up-search
-        placeholder="搜索资讯"
+        placeholder="搜索文章"
         v-model="searchValue"
         :height="35"
         :bgColor="'#f8f9fd'"
@@ -114,5 +114,3 @@ const searchAction = async () => {
   articleList.value = data.articleList
 }
 </script>
-
-<style scoped></style>

@@ -192,12 +192,20 @@ const accountStatusInfoList = computed(() => [
   {
     title: '关注',
     value: userStore.followCount,
-    clickAction: () => {},
+    clickAction: () => {
+      router.push({
+        name: 'myFollow',
+      })
+    },
   },
   {
     title: '粉丝',
     value: userStore.fansCount,
-    clickAction: () => {},
+    clickAction: () => {
+      router.push({
+        name: 'myFollow',
+      })
+    },
   },
 ])
 
