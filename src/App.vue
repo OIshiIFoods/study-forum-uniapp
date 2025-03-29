@@ -52,4 +52,11 @@ page {
   --text-color-grey: #999;
   --bg-color-grey: #f1f2f4;
 }
+
+// 处理uview-plus的tooltip文本换行问题
+.u-tooltip__wrapper__text {
+  word-wrap: break-word; /* 允许长单词或 URL 地址换行到下一行 */
+  word-break: break-all; /* 在单词内断行 */
+  white-space: pre-wrap; /* 保留空白符序列并允许换行 */
+}
 </style>

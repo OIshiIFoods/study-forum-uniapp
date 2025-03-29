@@ -68,9 +68,26 @@
               "
             />
             <view
-              class="p-8px bg-[var(--primary-color)] text-white text-14px rounded-5px max-w-full break-all"
+              class="p-8px bg-[var(--primary-color)] rounded-5px max-w-full"
             >
-              {{ messageItem.content }}
+              <up-tooltip
+                :text="messageItem.content"
+                :color="'white'"
+                :buttons="['删除']"
+                @click="
+                  (btnIndex) => {
+                    const btnEventMap: Record<string, any> = {
+                      '1': async () => {
+                        deleteMessage({
+                          userId: chatUserId,
+                          messageIdList: [messageItem.id],
+                        })
+                      },
+                    }
+                    btnEventMap[btnIndex]?.()
+                  }
+                "
+              />
             </view>
           </view>
         </view>
@@ -136,7 +153,8 @@ onLoad(async (params: any) => {
   initialScrollContainer()
 })
 
-const { messages, userInfos, sendMessage, updateReadStatus } = useUserMessage()
+const { messages, userInfos, sendMessage, updateReadStatus, deleteMessage } =
+  useUserMessage()
 const userStore = useUserStore()
 const inputMessage = ref('')
 const chatUserId = ref(0)

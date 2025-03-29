@@ -30,6 +30,12 @@
           :title="chatedUser.nickname"
           :border="false"
           :label="chatedUser.latestMessage"
+          @longpress="
+            () => {
+              selectUser = chatedUser.userId
+              operationPopupConfig.show = true
+            }
+          "
           @click="
             router.push({
               name: 'chat',
@@ -62,6 +68,23 @@
       </view>
     </view>
   </view>
+  <up-popup
+    :show="operationPopupConfig.show"
+    :mode="'bottom'"
+    :onClose="() => (operationPopupConfig.show = false)"
+  >
+    <view class="p-[15px_10px] bg-#f5f5f5">
+      <view
+        class="rounded-4px p-10px bg-#fff text-center"
+        v-for="(item, index) in operationPopupConfig.operationList"
+        :key="item.label"
+        :style="{ color: item.color }"
+        @click="item.clickAction"
+      >
+        {{ item.label }}
+      </view>
+    </view>
+  </up-popup>
 </template>
 
 <script setup lang="ts">
@@ -71,11 +94,11 @@ import router from '@/router'
 import { getMessageList } from '@/service/modules/message'
 import { useUserStore } from '@/stores'
 import dayjs from 'dayjs'
-import { computed, onMounted } from 'vue'
+import { computed, onMounted, reactive, ref } from 'vue'
 import { NoticeTypeEnum } from '@/service/types/db.d'
 import { useNotice } from '@/hooks/useNotice'
 
-const { messages, userInfos, addMessage, updateReadStatus } = useUserMessage()
+const { messages, userInfos, addMessage, deleteMessage } = useUserMessage()
 const { notices } = useNotice()
 
 onMounted(async () => {})
@@ -154,7 +177,7 @@ const msgCategories = [
 ]
 const chatedUserList = computed(() => {
   return Object.values(userInfos)
-    .filter((value) => value.id !== userStore.id)
+    .filter((value) => value.id !== userStore.id && messages[value.id])
     .map(({ id, ...item }) => {
       const latestMessage = messages[id].at(-1)
       return {
@@ -167,6 +190,22 @@ const chatedUserList = computed(() => {
       }
     })
     .sort((a, b) => +b.dayjsTime - +a.dayjsTime)
+})
+const selectUser = ref<number>()
+const operationPopupConfig = reactive({
+  show: false,
+  operationList: [
+    {
+      label: '删除',
+      color: 'red',
+      clickAction: async () => {
+        deleteMessage({
+          userId: selectUser.value ?? -1,
+        })
+        operationPopupConfig.show = false
+      },
+    },
+  ],
 })
 </script>
 

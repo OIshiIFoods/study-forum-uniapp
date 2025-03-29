@@ -115,6 +115,23 @@ export const useUserMessage = () => {
     })
   }
 
+  /** 删除聊天记录 */
+  const deleteMessage = (params: {
+    userId: number
+    messageIdList?: number[]
+  }) => {
+    if (!params.userId) {
+      return
+    }
+    if (params.messageIdList) {
+      messages[params.userId] = messages[params.userId].filter(
+        (item) => !params.messageIdList?.includes(item.id)
+      )
+    } else {
+      delete messages[params.userId]
+    }
+  }
+
   watch(messages, (newVal) => {
     uni.setStorageSync(userStore.id + 'message', JSON.stringify(newVal))
   })
@@ -129,5 +146,6 @@ export const useUserMessage = () => {
     updateReadStatus,
     syncRemoteMessages,
     syncLocalData,
+    deleteMessage,
   }
 }
