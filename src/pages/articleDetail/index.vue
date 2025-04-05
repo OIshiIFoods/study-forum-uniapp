@@ -1,6 +1,31 @@
 <template>
   <view class="px-10px min-h-100vh">
-    <up-navbar placeholder auto-back :title="'坛友动态'" />
+    <up-navbar :title="'坛友动态'" placeholder>
+      <template #left>
+        <view
+          class="flex items-center justify-between b-0.5px b-solid b-#efeff1 rounded-100px p-[3px_7px] opacity-80"
+        >
+          <up-icon
+            v-if="!isFirstPage"
+            name="arrow-left"
+            size="19"
+            @click="router.back()"
+          />
+          <up-line
+            v-if="!isFirstPage"
+            direction="col"
+            :hairline="false"
+            length="16"
+            margin="0 8px"
+          />
+          <up-icon
+            name="home"
+            size="20"
+            @click="router.pushTab({ name: 'index' })"
+          />
+        </view>
+      </template>
+    </up-navbar>
     <view class="flex items-center justify-between">
       <view class="flex items-center">
         <up-avatar
@@ -162,19 +187,28 @@
         />
         <view
           class="pos-absolute pos-bottom-[200%] pos-right-50% flex flex-col justify-between items-center transition-all bg-white overflow-hidden shadow-2xl rounded-[4px] box-border"
-          :class="[showMoreOperation ? 'h-60px p-8px' : 'h-0 p-0']"
+          :class="[showMoreOperation ? 'h-80px p-8px' : 'h-0 p-0']"
         >
-          <up-icon
+          <view
+            class="relative"
             v-for="(item, index) in moreActions"
             :key="index"
             v-show="!item.hidden"
-            class="whitespace-nowrap"
-            :name="item.icon"
-            :label="item.name"
-            :color="item.color"
-            :labelSize="16"
-            @click="item.clickAction"
-          />
+          >
+            <up-icon
+              class="whitespace-nowrap"
+              :name="item.icon"
+              :label="item.label"
+              :color="item.color"
+              :labelSize="16"
+              @click="item.clickAction"
+            />
+            <button
+              class="absolute pos-top-0 w-[100%] h-[100%] bg-[rgba(0,0,0,0)] after:b-0"
+              v-if="item.name === 'share'"
+              open-type="share"
+            />
+          </view>
         </view>
       </view>
     </view>
@@ -182,7 +216,7 @@
 </template>
 
 <script setup lang="ts">
-import { onLoad } from '@dcloudio/uni-app'
+import { onLoad, onShareAppMessage } from '@dcloudio/uni-app'
 import dayjs from 'dayjs'
 import { computed, reactive, ref } from 'vue'
 import { baseURL } from '@/api/http'
@@ -236,6 +270,35 @@ onLoad(async (param) => {
   commentData.value = formatCommentData(articleData.commentList)
 })
 
+onShareAppMessage(({ from, target }) => {
+  if (from === 'button') {
+    return {
+      title: '文章分享',
+      path: `/pages/articleDetail/index?${Object.entries({
+        articleId: articleInfo.value?.id,
+      })
+        .map(([field, value]) => field + '=' + value)
+        .join('&')}`,
+      success(...arg) {
+        console.log('arg', arg)
+        uni.showToast({
+          title: '分享成功',
+          icon: 'none',
+        })
+      },
+      fail(...arg) {
+        console.log('arg', arg)
+        uni.showToast({
+          title: '分享失败',
+          icon: 'none',
+        })
+      },
+    }
+  } else {
+    return {}
+  }
+})
+const isFirstPage = getCurrentPages().length === 1
 const userStore = useUserStore()
 const userInfo = ref<GetArticleDetailInfo.Response['data']['userInfo']>()
 const articleInfo = ref<GetArticleDetailInfo.Response['data']['articleInfo']>()
@@ -256,7 +319,8 @@ const showMoreOperation = ref(false)
 const moreActions = computed(() => [
   {
     hidden: userInfo.value?.userId !== userStore.id,
-    name: '编辑',
+    name: 'edit',
+    label: '编辑',
     icon: 'edit-pen',
     color: '#59a3f4',
     clickAction: () => {
@@ -272,7 +336,8 @@ const moreActions = computed(() => [
   },
   {
     hidden: userInfo.value?.userId !== userStore.id,
-    name: '删除',
+    name: 'delete',
+    label: '删除',
     icon: 'trash',
     color: '#ff0000',
     clickAction: async () => {
@@ -291,6 +356,14 @@ const moreActions = computed(() => [
       })
       router.back()
     },
+  },
+  {
+    hidden: false,
+    name: 'share',
+    label: '分享',
+    icon: 'share',
+    color: 'var(--primary-color)',
+    clickAction: async () => {},
   },
 ])
 
