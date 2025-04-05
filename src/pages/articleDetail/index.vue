@@ -152,7 +152,10 @@
           }
         "
       />
-      <view class="pos-relative" v-if="userInfo?.userId === userStore.id">
+      <view
+        class="pos-relative"
+        v-if="moreActions.find((item) => !item.hidden)"
+      >
         <up-icon
           name="more-dot-fill"
           @click="showMoreOperation = !showMoreOperation"
@@ -162,46 +165,15 @@
           :class="[showMoreOperation ? 'h-60px p-8px' : 'h-0 p-0']"
         >
           <up-icon
+            v-for="(item, index) in moreActions"
+            :key="index"
+            v-show="!item.hidden"
             class="whitespace-nowrap"
-            name="edit-pen"
-            label="编辑"
-            color="#59a3f4"
+            :name="item.icon"
+            :label="item.name"
+            :color="item.color"
             :labelSize="16"
-            @click="
-              router.replace({
-                name: 'publishArticle',
-                params: {
-                  editedArticleId: String(articleInfo?.id),
-                  title: String(articleInfo?.title),
-                  content: String(articleInfo?.content),
-                },
-              })
-            "
-          />
-          <up-icon
-            class="whitespace-nowrap"
-            name="trash"
-            label="删除"
-            color="#ff0000"
-            :labelSize="16"
-            @click="
-              async () => {
-                const confirmRes = await mV.uni.showModal({
-                  content: '确定删除吗？',
-                })
-                if (!confirmRes.confirm) {
-                  return
-                }
-                await deleteArticle({
-                  articleIdList: [articleInfo!.id],
-                })
-                await mV.uni.showToast({
-                  title: '删除成功',
-                  icon: 'none',
-                })
-                router.back()
-              }
-            "
+            @click="item.clickAction"
           />
         </view>
       </view>
@@ -212,7 +184,7 @@
 <script setup lang="ts">
 import { onLoad } from '@dcloudio/uni-app'
 import dayjs from 'dayjs'
-import { computed, ref } from 'vue'
+import { computed, reactive, ref } from 'vue'
 import { baseURL } from '@/api/http'
 import { useUserStore } from '@/stores'
 import {
@@ -281,6 +253,46 @@ const isFollow = computed(() => {
     : false
 })
 const showMoreOperation = ref(false)
+const moreActions = computed(() => [
+  {
+    hidden: userInfo.value?.userId !== userStore.id,
+    name: '编辑',
+    icon: 'edit-pen',
+    color: '#59a3f4',
+    clickAction: () => {
+      router.replace({
+        name: 'publishArticle',
+        params: {
+          editedArticleId: String(articleInfo.value?.id),
+          title: String(articleInfo.value?.title),
+          content: String(articleInfo.value?.content),
+        },
+      })
+    },
+  },
+  {
+    hidden: userInfo.value?.userId !== userStore.id,
+    name: '删除',
+    icon: 'trash',
+    color: '#ff0000',
+    clickAction: async () => {
+      const confirmRes = await uni.showModal({
+        content: '确定删除吗？',
+      })
+      if (!confirmRes.confirm) {
+        return
+      }
+      await deleteArticle({
+        articleIdList: [articleInfo.value!.id],
+      })
+      await uni.showToast({
+        title: '删除成功',
+        icon: 'none',
+      })
+      router.back()
+    },
+  },
+])
 
 const addComment = async ({
   conmentContent,
