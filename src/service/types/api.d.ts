@@ -412,9 +412,9 @@ export namespace GetArticleList {
     isLiked?: 1 | 0
     isCollected?: 1 | 0
     limit?: number
-    deleteTime?: [string, string]
-    updateTime?: [string, string]
-    createTime?: [string, string]
+    deleteTime?: [string | number, string | number]
+    updateTime?: [string | number, string | number]
+    createTime?: [string | number, string | number]
     orderBy?: OrderByOption<keyof ArticleProps>[]
   }
   type Response = {
