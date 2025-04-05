@@ -3,7 +3,7 @@
     <view class="bg-white box-border p-10px">
       <view>
         <textarea
-          class="rounded-8px bg-[rgba(224,224,224,.5)] text-13px w-full box-border p-10px min-h-100rpx"
+          class="rounded-8px bg-[rgba(224,224,224,.5)] text-13px w-full box-border p-10px max-h-200rpx"
           v-model="inputContent.content"
           :placeholder="inputContent.placeholder || '留下你的想法吧'"
         />
