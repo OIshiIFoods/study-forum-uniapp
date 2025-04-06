@@ -1,5 +1,20 @@
 <template>
-  <view>
+  <scroll-view
+    class="bg-[var(--bg-primary-color)]"
+    style="height: 100vh"
+    scroll-y
+    scrollWithAnimation
+    :scroll-top="scrollViewRelatedProps.scrollTop"
+    @scroll="(e) => (scrollViewRelatedProps.old.scrollTop = e.detail.scrollTop)"
+    @scrolltolower="
+      async () => {
+        if (scrollViewRelatedProps.isLower) return
+        scrollViewRelatedProps.isLower = true
+        await searchAction()
+        scrollViewRelatedProps.isLower = false
+      }
+    "
+  >
     <up-navbar title="论坛" leftIcon="" :autoBack="false" placeholder />
     <view class="bg-white box-border p-10px">
       <up-search
@@ -30,8 +45,13 @@
         :articleItem="item"
         :key="item.id"
       />
+      <up-loadmore
+        height="50"
+        icon
+        :status="scrollViewRelatedProps.isLower ? 'loading' : 'nomore'"
+      />
     </view>
-  </view>
+  </scroll-view>
 </template>
 
 <script setup lang="ts">
@@ -43,30 +63,35 @@ import { ref, watch } from 'vue'
 
 const searchValue = ref<string | undefined>('')
 const articleList = ref<GetArticleList.Response['data']['articleList']>([])
+const scrollViewRelatedProps = ref({
+  /** 滚动区域滚动条位置 */
+  scrollTop: 0,
+  /** 是否触底 */
+  isLower: false,
+  /** 旧数据 */
+  old: {
+    scrollTop: 0,
+  },
+})
 
 onShow(async () => {
   await searchAction()
 })
 
 watch(searchValue, async (newVal) => {
-  newVal === '' && (await searchAction())
+  if (newVal === '') {
+    articleList.value = []
+    await searchAction()
+  }
 })
 
 const searchAction = async () => {
   const { data } = await getArticleList({
-    orderBy: [
-      { field: 'createTime', direction: 'DESC' },
-      {
-        field: 'likeCount',
-        direction: 'DESC',
-      },
-      {
-        field: 'collectionCount',
-        direction: 'DESC',
-      },
-    ],
+    orderBy: [{ field: 'createTime', direction: 'DESC' }],
     title: searchValue.value || undefined,
+    createTime: ['', articleList.value.at(-1)?.createTime ?? ''],
+    limit: 6,
   })
-  articleList.value = data.articleList
+  articleList.value.push(...data.articleList)
 }
 </script>
