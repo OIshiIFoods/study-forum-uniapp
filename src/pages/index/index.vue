@@ -55,8 +55,18 @@
             color: '#a3a8af',
           }"
           :shape="'square'"
-          @search="searchAction"
-          @custom="searchAction"
+          @search="
+            async () => {
+              articleList = []
+              await searchAction()
+            }
+          "
+          @custom="
+            async () => {
+              articleList = []
+              await searchAction()
+            }
+          "
           @clear="searchValue = undefined"
         />
       </view>
@@ -65,12 +75,13 @@
         :articleItem="item"
         :key="item.id"
       />
+      <up-loadmore
+        v-if="articleList.length > 0"
+        height="50"
+        icon
+        :status="scrollViewRelatedProps.isLower ? 'loading' : 'nomore'"
+      />
     </view>
-    <up-loadmore
-      height="50"
-      icon
-      :status="scrollViewRelatedProps.isLower ? 'loading' : 'nomore'"
-    />
   </scroll-view>
 </template>
 

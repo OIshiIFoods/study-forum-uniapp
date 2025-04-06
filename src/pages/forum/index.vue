@@ -36,8 +36,18 @@
           color: '#a3a8af',
         }"
         :shape="'square'"
-        @search="searchAction"
-        @custom="searchAction"
+        @search="
+          async () => {
+            articleList = []
+            await searchAction()
+          }
+        "
+        @custom="
+          async () => {
+            articleList = []
+            await searchAction()
+          }
+        "
         @clear="searchValue = undefined"
       />
       <ArticleItem
