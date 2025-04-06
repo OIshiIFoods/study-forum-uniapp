@@ -2,10 +2,21 @@
   <scroll-view
     class="h-100vh"
     :scroll-y="true"
+    :scroll-top="scrollViewRelatedProps.scrollTop"
+    scrollWithAnimation
     upper-threshold="60px"
     lower-threshold="60px"
+    @scroll="(e) => (scrollViewRelatedProps.old.scrollTop = e.detail.scrollTop)"
     @scrolltoupper="() => (navbarMode = 'dark')"
-    @scrolltolower="() => (navbarMode = 'light')"
+    @scrolltolower="
+      async () => {
+        navbarMode = 'light'
+        if (scrollViewRelatedProps.isLower) return
+        scrollViewRelatedProps.isLower = true
+        await searchAction()
+        scrollViewRelatedProps.isLower = false
+      }
+    "
   >
     <up-transition :show="navbarMode === 'light'">
       <up-navbar :title="userInfo.nickname" auto-back />
@@ -94,7 +105,7 @@
         </view>
       </view>
     </view>
-    <view class="flex flex-col h-[calc(100vh-44px)]">
+    <view>
       <up-sticky offsetTop="44px">
         <up-tabs
           class="mt-15px"
@@ -111,17 +122,31 @@
           :onChange="(item: any) => (activeTab = item.code)"
         />
       </up-sticky>
-      <view class="flex-1 overflow-auto px-15px bg-[#f1f2f4]">
+      <view class="px-15px">
         <view v-if="activeTab === 'dynamics'">
-          <ArticleItem
-            v-for="item in articleList"
-            :articleItem="item"
-            :key="item.id"
-          />
-        </view>
-        <view class="h-full" v-if="activeTab === 'file'">
+          <view v-if="articleList.length">
+            <ArticleItem
+              v-for="item in articleList"
+              :articleItem="item"
+              :key="item.id"
+            />
+            <up-loadmore
+              height="50"
+              icon
+              :status="scrollViewRelatedProps.isLower ? 'loading' : 'nomore'"
+            />
+          </view>
           <view
-            class="flex flex-col justify-center items-center h-full"
+            v-else
+            class="flex flex-col justify-center items-center mt-60px"
+          >
+            <up-icon name="file-text" :size="40" />
+            <view class="text-15px p-[10px_0]">暂无动态</view>
+          </view>
+        </view>
+        <view v-if="activeTab === 'file'">
+          <view
+            class="flex flex-col justify-center items-center mt-60px"
             @click="
               userStore.id === userInfo.id
                 ? router.push({ name: 'fileManagement' })
@@ -207,15 +232,32 @@ const activeTab = ref('dynamics')
 const navbarMode = ref<'light' | 'dark'>('dark')
 
 const articleList = ref<GetArticleList.Response['data']['articleList']>([])
+const scrollViewRelatedProps = ref({
+  /** 滚动区域滚动条位置 */
+  scrollTop: 0,
+  /** 是否触底 */
+  isLower: false,
+  /** 旧数据 */
+  old: {
+    scrollTop: 0,
+  },
+})
 
 onShow(async () => {
   if (!userInfo.id) {
     return
   }
+  articleList.value = []
+  await searchAction()
+})
+
+const searchAction = async () => {
   const { data } = await getArticleList({
     userId: userInfo.id,
     orderBy: [{ field: 'createTime', direction: 'DESC' }],
+    createTime: ['', articleList.value.at(-1)?.createTime ?? ''],
+    limit: 6,
   })
-  articleList.value = data.articleList
-})
+  articleList.value.push(...data.articleList)
+}
 </script>
