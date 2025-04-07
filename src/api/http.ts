@@ -153,94 +153,92 @@ export const uploadFileChunks = async (
   const chunkSize = 8 * 1024 * 1024
   return (
     await Promise.allSettled(
-      fileInfoList.map((fileInfo) => {
-        return new Promise(async (resolve, reject) => {
-          /** 文件 md5 */
-          const fileMd5 = await calculateFileMD5({
-            filePath: fileInfo.filePath,
-          })
-          const getChunkRes = (await request({
-            method: 'GET',
-            url: `/api/v1/upload/checkChunk/${fileType}`,
-            data: {
-              fileMd5,
-            },
-          })) as GetFileChunkInfo.Response
-          /** 检查已上传的分片 */
-          const uploadedChunks = getChunkRes.data.uploadedChunks
-          /** 分片数 */
-          const totalChunks = Math.ceil(fileInfo.size / chunkSize)
-          const uploadChunk = async (uploadedChunks: number[]) => {
-            for (let i = 0; i < totalChunks; i++) {
-              // 跳过已上传的分片
-              if (uploadedChunks.includes(i)) continue
-              const start = i * chunkSize
-              const end = Math.min(start + chunkSize, fileInfo.size)
-              // 获取分片
-              const chunk = await getFileContent({
-                filePath: fileInfo.filePath,
-                position: start,
-                length: end - start,
-              })
-              const chunkTempPath = localTempPath + `/${fileMd5}`
-              await new Promise((resolve, reject) => {
-                wx.getFileSystemManager().writeFile({
-                  data: chunk,
-                  filePath: chunkTempPath,
-                  encoding: 'binary',
-                  success(params) {
-                    resolve(params)
-                  },
-                  fail(err) {
-                    reject(err)
-                  },
-                })
-              })
-
-              await new Promise((resolve, reject) => {
-                uni.uploadFile({
-                  url: '/api/v1/upload/chunks/' + fileType,
-                  name: i + '',
-                  filePath: chunkTempPath,
-                  formData: {
-                    fileMd5,
-                    chunkIndex: i,
-                  },
-                  success: (res) => {
-                    wx.getFileSystemManager().unlink({
-                      filePath: chunkTempPath,
-                    })
-                    resolve(res)
-                  },
-                  fail(res) {
-                    return Promise.reject(res)
-                  },
-                })
-              })
-            }
-          }
-          await uploadChunk(uploadedChunks)
-          const mergeChunkRes = (await request({
-            method: 'POST',
-            url: `/api/v1/upload/mergeChunks/${fileType}`,
-            data: {
-              fileMd5,
-              totalChunks,
-              filename: fileInfo.filename,
-            },
-          })) as PostMergeChunks.Response
-          if ('uploadedChunks' in mergeChunkRes.data) {
-            uploadChunk(mergeChunkRes.data.uploadedChunks)
-            setTimeout(() => {
-              // 不添加if判断会报错
-              if ('uploadedChunks' in mergeChunkRes.data) {
-                uploadChunk(mergeChunkRes.data.uploadedChunks)
-              }
-            }, 2000)
-          } else {
-            resolve(mergeChunkRes.data)
-          }
+      fileInfoList.map(async (fileInfo) => {
+        /** 文件 md5 */
+        const fileMd5 = await calculateFileMD5({
+          filePath: fileInfo.filePath,
         })
+        const getChunkRes = (await request({
+          method: 'GET',
+          url: `/api/v1/upload/checkChunk/${fileType}`,
+          data: {
+            fileMd5,
+          },
+        })) as GetFileChunkInfo.Response
+        /** 检查已上传的分片 */
+        const uploadedChunks = getChunkRes.data.uploadedChunks
+        /** 分片数 */
+        const totalChunks = Math.ceil(fileInfo.size / chunkSize)
+        const uploadChunk = async (uploadedChunks: number[]) => {
+          for (let i = 0; i < totalChunks; i++) {
+            // 跳过已上传的分片
+            if (uploadedChunks.includes(i)) continue
+            const start = i * chunkSize
+            const end = Math.min(start + chunkSize, fileInfo.size)
+            // 获取分片
+            const chunk = await getFileContent({
+              filePath: fileInfo.filePath,
+              position: start,
+              length: end - start,
+            })
+            const chunkTempPath = localTempPath + `/${fileMd5}`
+            await new Promise((resolve, reject) => {
+              wx.getFileSystemManager().writeFile({
+                data: chunk,
+                filePath: chunkTempPath,
+                encoding: 'binary',
+                success(params) {
+                  resolve(params)
+                },
+                fail(err) {
+                  reject(err)
+                },
+              })
+            })
+
+            await new Promise((resolve, reject) => {
+              uni.uploadFile({
+                url: '/api/v1/upload/chunks/' + fileType,
+                name: i + '',
+                filePath: chunkTempPath,
+                formData: {
+                  fileMd5,
+                  chunkIndex: i,
+                },
+                success: (res) => {
+                  wx.getFileSystemManager().unlink({
+                    filePath: chunkTempPath,
+                  })
+                  resolve(res)
+                },
+                fail(res) {
+                  return Promise.reject(res)
+                },
+              })
+            })
+          }
+        }
+        await uploadChunk(uploadedChunks)
+        const mergeChunkRes = (await request({
+          method: 'POST',
+          url: `/api/v1/upload/mergeChunks/${fileType}`,
+          data: {
+            fileMd5,
+            totalChunks,
+            filename: fileInfo.filename,
+          },
+        })) as PostMergeChunks.Response
+        if ('uploadedChunks' in mergeChunkRes.data) {
+          uploadChunk(mergeChunkRes.data.uploadedChunks)
+          setTimeout(() => {
+            // 不添加if判断会报错
+            if ('uploadedChunks' in mergeChunkRes.data) {
+              uploadChunk(mergeChunkRes.data.uploadedChunks)
+            }
+          }, 2000)
+        } else {
+          return mergeChunkRes.data
+        }
       })
     )
   ).reduce(
