@@ -70,7 +70,7 @@
 </template>
 
 <script setup lang="ts">
-import { uploadFile } from '@/api/http'
+import { uploadFile, uploadFileChunks } from '@/api/http'
 import { createFile, getUserFiles } from '@/service'
 import { CurDirInfoType } from '../index.vue'
 import { reactive, ref } from 'vue'
@@ -98,11 +98,13 @@ const filePopupConfig = reactive({
             uni.chooseMessageFile({
               count: 5,
               success: async (res) => {
-                const uploadFileRes = await uploadFile(
+                const uploadFileRes = await uploadFileChunks(
                   'file',
-                  res.tempFiles.map(({ name, path }) => ({
+                  res.tempFiles.map(({ name, path, size }) => ({
                     name,
                     filePath: path,
+                    filename: name,
+                    size,
                   }))
                 )
                 const createRes = await createFile(
@@ -111,9 +113,7 @@ const filePopupConfig = reactive({
                       parentPath: curDirInfo.value.path,
                       accessPermissions: 1,
                       isDir: 0,
-                      originalname: res.tempFiles
-                        .find(({ path }) => path.includes(originalname))
-                        ?.name.split('.')[0],
+                      originalname,
                       ...otherInfo,
                     })
                   )
