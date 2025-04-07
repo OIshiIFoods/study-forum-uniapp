@@ -1,9 +1,30 @@
 <template>
+  <up-navbar
+    title="研友坛"
+    leftIcon=""
+    :autoBack="false"
+    :bgColor="'var(--bg-primary-color)'"
+    placeholder
+  />
   <scroll-view
     class="bg-[var(--bg-primary-color)]"
     style="height: 100vh"
     scroll-y
     scrollWithAnimation
+    refresherEnabled
+    :refresherTriggered="scrollViewRelatedProps.refresherTriggered"
+    @refresherrefresh="
+      async () => {
+        scrollViewRelatedProps.refresherTriggered = true
+        await initalData()
+        mV.uni.showToast({
+          title: '更新成功',
+          icon: 'none',
+        })
+        scrollViewRelatedProps.refresherTriggered = false
+      }
+    "
+    :refresherThreshold="30"
     :scroll-top="scrollViewRelatedProps.scrollTop"
     @scroll="(e) => (scrollViewRelatedProps.old.scrollTop = e.detail.scrollTop)"
     @scrolltolower="
@@ -15,13 +36,6 @@
       }
     "
   >
-    <up-navbar
-      title="研友坛"
-      leftIcon=""
-      :autoBack="false"
-      :bgColor="'var(--bg-primary-color)'"
-      placeholder
-    />
     <up-swiper :list="swiperList" />
     <view id="content" class="bg-white rounded-20px box-border p-10px mt-15px">
       <view class="my-15px font-600">最新资讯</view>
@@ -90,7 +104,6 @@ import ArticleItem from '@/components/ArticleItem.vue'
 import { getArticleList } from '@/service'
 import { getSwiperList } from '@/service/modules/common'
 import type { GetArticleList } from '@/service/types/api'
-import { onShow } from '@dcloudio/uni-app'
 import { nextTick, onMounted, ref, watch } from 'vue'
 
 const swiperList = ref<{ id: number; url: string }[]>([])
@@ -102,15 +115,20 @@ const scrollViewRelatedProps = ref({
   scrollTop: 0,
   /** 是否触底 */
   isLower: false,
+  /** 设置当前下拉刷新状态 */
+  refresherTriggered: false,
   /** 旧数据 */
   old: {
     scrollTop: 0,
   },
 })
 
-onShow(async () => {
-  swiperList.value = await getSwiperList()
-  await searchAction()
+const mV = {
+  uni,
+}
+
+onMounted(async () => {
+  await initalData()
 })
 
 watch(searchValue, async (newVal) => {
@@ -119,6 +137,12 @@ watch(searchValue, async (newVal) => {
     await searchAction()
   }
 })
+
+const initalData = async () => {
+  swiperList.value = await getSwiperList()
+  articleList.value = []
+  await searchAction()
+}
 
 const searchAction = async () => {
   const { data } = await getArticleList({
