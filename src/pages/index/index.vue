@@ -31,7 +31,12 @@
       async () => {
         if (scrollViewRelatedProps.isLower) return
         scrollViewRelatedProps.isLower = true
-        await searchAction()
+        const { data } = await getArticleList({
+          title: searchValue || undefined,
+          createTime: ['', articleList.at(-1)?.createTime ?? ''],
+          ...baseSearchParams,
+        })
+        articleList.push(...data.articleList)
         scrollViewRelatedProps.isLower = false
       }
     "
@@ -71,14 +76,20 @@
           :shape="'square'"
           @search="
             async () => {
-              articleList = []
-              await searchAction()
+              const { data } = await getArticleList({
+                title: searchValue || undefined,
+                ...baseSearchParams,
+              })
+              articleList = data.articleList
             }
           "
           @custom="
             async () => {
-              articleList = []
-              await searchAction()
+              const { data } = await getArticleList({
+                title: searchValue || undefined,
+                ...baseSearchParams,
+              })
+              articleList = data.articleList
             }
           "
           @clear="searchValue = undefined"
@@ -122,6 +133,11 @@ const scrollViewRelatedProps = ref({
     scrollTop: 0,
   },
 })
+const baseSearchParams: GetArticleList.Request = {
+  userId: officialUSERID,
+  orderBy: [{ field: 'createTime', direction: 'DESC' }],
+  limit: 6,
+}
 
 const mV = {
   uni,
@@ -133,26 +149,17 @@ onMounted(async () => {
 
 watch(searchValue, async (newVal) => {
   if (newVal === '') {
-    articleList.value = []
-    await searchAction()
+    await initalData()
   }
 })
 
 const initalData = async () => {
   swiperList.value = await getSwiperList()
-  articleList.value = []
-  await searchAction()
-}
-
-const searchAction = async () => {
+  searchValue.value = ''
   const { data } = await getArticleList({
-    userId: officialUSERID,
-    orderBy: [{ field: 'createTime', direction: 'DESC' }],
-    title: searchValue.value || undefined,
-    createTime: ['', articleList.value.at(-1)?.createTime ?? ''],
-    limit: 3,
+    ...baseSearchParams,
   })
-  articleList.value.push(...data.articleList)
+  articleList.value = data.articleList
 }
 
 // const scrollToTargetPos = (cssSelector: string, pos: 'top' = 'top') => {
