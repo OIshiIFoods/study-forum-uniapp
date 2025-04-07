@@ -100,7 +100,7 @@ export const uploadFile = async (
       fileInfoList.map((fileInfo) => {
         return new Promise((resolve, reject) => {
           uni.uploadFile({
-            url: '/api/v1/upload/' + fileType,
+            url: '/api/v1/upload/file/' + fileType,
             ...fileInfo,
             success: (res) => {
               const uploadRes = res.data as unknown as PostUploadFile.Response
