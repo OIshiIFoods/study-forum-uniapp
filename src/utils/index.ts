@@ -81,3 +81,20 @@ export const transformTreeToList = <T extends Array<any>>(
   }
   return list as T
 }
+
+export const getFileContent = async (
+  fileInfo: UniApp.ReadFileOption
+): Promise<string | ArrayBuffer> => {
+  return new Promise((resolve, reject) => {
+    uni.getFileSystemManager().readFile({
+      ...fileInfo,
+      success(res) {
+        console.log(res)
+        resolve(res.data)
+      },
+      fail(err) {
+        reject(err)
+      },
+    })
+  })
+}

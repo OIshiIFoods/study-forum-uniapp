@@ -679,3 +679,50 @@ export namespace GetUsersInfoInNotice {
     }
   }
 }
+
+export namespace GetFileChunkInfo {
+  type Request = {
+    fileMd5: string
+  }
+  type Response = {
+    /** 状态码 */
+    status: number
+    /** 响应信息 */
+    message: string
+    data: {
+      uploadedChunks: number[]
+    }
+  }
+}
+
+export namespace PostMergeChunks {
+  type Request = {
+    fileMd5: string
+    filename: string
+    totalChunks: number
+  }
+  type Response = {
+    /** 状态码 */
+    status: number
+    /** 响应信息 */
+    message: string
+    data:
+      | {
+          uploadedChunks: number[]
+        }
+      | {
+          /** 文件保存的文件名 */
+          filename: string
+          /** 原始文件名 */
+          originalname: string
+          /** 编码方式 */
+          encoding: string
+          /** MIME 类型 */
+          mimetype: string
+          /** 文件大小（字节） */
+          size: number
+          /** 文件链接 */
+          url: string
+        }
+  }
+}
