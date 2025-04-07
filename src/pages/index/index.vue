@@ -76,20 +76,28 @@
           :shape="'square'"
           @search="
             async () => {
+              mV.uni.showLoading({
+                title: '加载中',
+              })
               const { data } = await getArticleList({
                 title: searchValue || undefined,
                 ...baseSearchParams,
               })
               articleList = data.articleList
+              mV.uni.hideLoading()
             }
           "
           @custom="
             async () => {
+              mV.uni.showLoading({
+                title: '加载中',
+              })
               const { data } = await getArticleList({
                 title: searchValue || undefined,
                 ...baseSearchParams,
               })
               articleList = data.articleList
+              mV.uni.hideLoading()
             }
           "
           @clear="searchValue = undefined"
@@ -154,12 +162,16 @@ watch(searchValue, async (newVal) => {
 })
 
 const initalData = async () => {
-  swiperList.value = await getSwiperList()
+  uni.showLoading({
+    title: '加载中',
+  })
   searchValue.value = ''
+  swiperList.value = await getSwiperList()
   const { data } = await getArticleList({
     ...baseSearchParams,
   })
   articleList.value = data.articleList
+  uni.hideLoading()
 }
 
 // const scrollToTargetPos = (cssSelector: string, pos: 'top' = 'top') => {
