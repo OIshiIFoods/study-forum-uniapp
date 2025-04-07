@@ -1,7 +1,24 @@
 <template>
+  <up-navbar title="论坛" leftIcon="" :autoBack="false" placeholder />
   <scroll-view
     class="bg-[var(--bg-primary-color)]"
     style="height: 100vh"
+    refresherEnabled
+    :refresherTriggered="scrollViewRelatedProps.refresherTriggered"
+    @refresherrefresh="
+      async () => {
+        scrollViewRelatedProps.refresherTriggered = true
+        searchValue = ''
+        articleList = []
+        await searchAction()
+        mV.uni.showToast({
+          title: '更新成功',
+          icon: 'none',
+        })
+        scrollViewRelatedProps.refresherTriggered = false
+      }
+    "
+    :refresherThreshold="30"
     scroll-y
     scrollWithAnimation
     :scroll-top="scrollViewRelatedProps.scrollTop"
@@ -15,7 +32,6 @@
       }
     "
   >
-    <up-navbar title="论坛" leftIcon="" :autoBack="false" placeholder />
     <view class="bg-white box-border p-10px">
       <up-search
         placeholder="搜索文章"
@@ -78,11 +94,16 @@ const scrollViewRelatedProps = ref({
   scrollTop: 0,
   /** 是否触底 */
   isLower: false,
+  /** 设置当前下拉刷新状态 */
+  refresherTriggered: false,
   /** 旧数据 */
   old: {
     scrollTop: 0,
   },
 })
+const mV = {
+  uni,
+}
 
 onShow(async () => {
   await searchAction()
