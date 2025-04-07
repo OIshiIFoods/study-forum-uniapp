@@ -259,7 +259,6 @@ export const uploadFileChunks = async (
   )
   async function calculateFileMD5(fileInfo: { filePath: string }) {
     const fileArrayBuffer = await getFileContent({
-      encoding: 'binary',
       ...fileInfo,
     })
     const spark = new SparkMD5.ArrayBuffer()
