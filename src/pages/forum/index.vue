@@ -8,11 +8,15 @@
     @refresherrefresh="
       async () => {
         scrollViewRelatedProps.refresherTriggered = true
+        mV.uni.showLoading({
+          title: '加载中',
+        })
         searchValue = ''
         const { data } = await getArticleList({
           ...baseSearchParams,
         })
         articleList = data.articleList
+        mV.uni.hideLoading()
         mV.uni.showToast({
           title: '更新成功',
           icon: 'none',
@@ -61,20 +65,28 @@
         :shape="'square'"
         @search="
           async () => {
+            mV.uni.showLoading({
+              title: '加载中',
+            })
             const { data } = await getArticleList({
               title: searchValue || undefined,
               ...baseSearchParams,
             })
             articleList = data.articleList
+            mV.uni.hideLoading()
           }
         "
         @custom="
           async () => {
+            mV.uni.showLoading({
+              title: '加载中',
+            })
             const { data } = await getArticleList({
               title: searchValue || undefined,
               ...baseSearchParams,
             })
             articleList = data.articleList
+            mV.uni.hideLoading()
           }
         "
         @clear="searchValue = undefined"
@@ -122,18 +134,26 @@ const baseSearchParams: GetArticleList.Request = {
 }
 
 onMounted(async () => {
+  uni.showLoading({
+    title: '加载中',
+  })
   const { data } = await getArticleList({
     ...baseSearchParams,
   })
   articleList.value = data.articleList
+  uni.hideLoading()
 })
 
 watch(searchValue, async (newVal) => {
   if (newVal === '') {
+    uni.showLoading({
+      title: '加载中',
+    })
     const { data } = await getArticleList({
       ...baseSearchParams,
     })
     articleList.value = data.articleList
+    uni.hideLoading()
   }
 })
 </script>
