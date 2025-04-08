@@ -1,39 +1,30 @@
 <template>
+  <!-- 导航条 -->
+  <up-transition :show="navbarMode === 'light'">
+    <up-navbar :title="userInfo.nickname" auto-back />
+  </up-transition>
+  <up-transition :show="navbarMode === 'dark'">
+    <up-navbar :bgColor="'rgba(0,0,0,0)'" auto-back>
+      <template #left>
+        <up-icon
+          class="bg-[rgba(0,0,0,.4)] rounded-full p-[5px]"
+          name="arrow-left"
+          size="20"
+          color="#fff"
+        />
+      </template>
+    </up-navbar>
+  </up-transition>
   <scroll-view
     v-if="userInfo.spaceOpenStatus"
     class="h-100vh"
     :scroll-y="true"
-    :scroll-top="scrollViewRelatedProps.scrollTop"
     scrollWithAnimation
     upper-threshold="60px"
     lower-threshold="60px"
-    @scroll="(e) => (scrollViewRelatedProps.old.scrollTop = e.detail.scrollTop)"
     @scrolltoupper="() => (navbarMode = 'dark')"
-    @scrolltolower="
-      async () => {
-        navbarMode = 'light'
-        if (scrollViewRelatedProps.isLower) return
-        scrollViewRelatedProps.isLower = true
-        await searchAction()
-        scrollViewRelatedProps.isLower = false
-      }
-    "
+    @scrolltolower="() => (navbarMode = 'light')"
   >
-    <up-transition :show="navbarMode === 'light'">
-      <up-navbar :title="userInfo.nickname" auto-back />
-    </up-transition>
-    <up-transition :show="navbarMode === 'dark'">
-      <up-navbar :bgColor="'rgba(0,0,0,0)'" auto-back>
-        <template #left>
-          <up-icon
-            class="bg-[rgba(0,0,0,.4)] rounded-full p-[5px]"
-            name="arrow-left"
-            size="20"
-            color="#fff"
-          />
-        </template>
-      </up-navbar>
-    </up-transition>
     <view
       class="transition-all transition-duration-300"
       :class="[navbarMode === 'light' ? 'opacity-0' : '']"
@@ -106,10 +97,10 @@
         </view>
       </view>
     </view>
-    <view>
-      <up-sticky offsetTop="44px">
+    <up-sticky :offsetTop="positionInfo.safeTop + positionInfo.navbarHeight">
+      <view id="tab-bar">
         <up-tabs
-          class="mt-15px"
+          class="mt-15px bg-white"
           :list="tabbarItemList"
           :duration="200"
           lineHeight="2"
@@ -122,7 +113,25 @@
           itemStyle="flex:1; fontSize:14px; padding:10px 15px; borderBottom:1px solid #e4e4e4; borderTop:1px solid #e4e4e4"
           :onChange="(item: any) => (activeTab = item.code)"
         />
-      </up-sticky>
+      </view>
+    </up-sticky>
+    <scroll-view
+      class="h-[calc(100vh-44px-42px)]"
+      :scroll-y="true"
+      :scroll-top="scrollViewRelatedProps.scrollTop"
+      scrollWithAnimation
+      @scroll="
+        (e) => (scrollViewRelatedProps.old.scrollTop = e.detail.scrollTop)
+      "
+      @scrolltolower="
+        async () => {
+          if (scrollViewRelatedProps.isLower) return
+          scrollViewRelatedProps.isLower = true
+          await searchAction()
+          scrollViewRelatedProps.isLower = false
+        }
+      "
+    >
       <view class="px-15px">
         <view v-if="activeTab === 'dynamics'">
           <view v-if="articleList.length">
@@ -162,7 +171,7 @@
           </view>
         </view>
       </view>
-    </view>
+    </scroll-view>
   </scroll-view>
 </template>
 
@@ -192,9 +201,11 @@ onLoad(async (options) => {
       router.back()
     }, 2000)
   }
+  // 初始化用户信息
   userInfo.id = +params.userId
   const getUserInfoRes = await getUserInfo({ userId: Number(params.userId) })
   Object.assign(userInfo, getUserInfoRes.data)
+  // 权限校验
   if (!userInfo.spaceOpenStatus) {
     uni.showModal({
       content: '该用户未开放空间',
@@ -206,8 +217,32 @@ onLoad(async (options) => {
   }
 })
 
+onMounted(async () => {
+  // 设置滚动区域的高度
+  uni
+    .createSelectorQuery()
+    .select('#tab-bar')
+    .boundingClientRect((data) => {
+      const node = Array.isArray(data) ? data[0] : data
+      positionInfo.tabarHeight = node.height!
+      console.log('tabbar', node)
+    })
+    .exec()
+  scrollViewRelatedProps.value.height =
+    positionInfo.windowHeight -
+    positionInfo.navbarHeight -
+    positionInfo.tabarHeight -
+    positionInfo.safeTop
+})
+
 const userInfo = reactive<Partial<GetUserInfo.Response['data']>>({})
 const userStore = useUserStore()
+const positionInfo = reactive({
+  safeTop: uni.getSystemInfoSync().safeArea?.top ?? 0,
+  windowHeight: uni.getSystemInfoSync().windowHeight,
+  navbarHeight: 44,
+  tabarHeight: 0,
+})
 
 const statusInfoList = computed(() => [
   {
@@ -247,6 +282,8 @@ const scrollViewRelatedProps = ref({
   scrollTop: 0,
   /** 是否触底 */
   isLower: false,
+  /** 滚动区域高度 */
+  height: 0,
   /** 旧数据 */
   old: {
     scrollTop: 0,
