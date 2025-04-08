@@ -138,15 +138,19 @@ const treeCommentList = computed(() => {
     'id',
     'parentId'
   )
-  const sortComment = (comments: any) => {
-    comments.forEach((commentItem: any) => {
-      if (commentItem.children?.length) {
-        commentItem.children.sort((a: any, b: any) => {
-          return +new Date(a.createTime) - +new Date(b.createTime)
-        })
-        sortComment(commentItem.children)
-      }
-    })
+  const sortComment = (comments: any, direction: 'asc' | 'desc' = 'desc') => {
+    if (comments?.length) {
+      comments.sort((a: any, b: any) => {
+        return direction === 'asc'
+          ? +new Date(a.createTime) - +new Date(b.createTime)
+          : +new Date(b.createTime) - +new Date(a.createTime)
+      })
+      comments.forEach((commentItem: any) => {
+        if (commentItem.children?.length) {
+          sortComment(commentItem.children, 'asc')
+        }
+      })
+    }
   }
   sortComment(newCommentList)
   return newCommentList
