@@ -59,4 +59,9 @@ page {
   word-break: break-all; /* 在单词内断行 */
   white-space: pre-wrap; /* 保留空白符序列并允许换行 */
 }
+
+// 修复悬浮按钮加号未居中问题
+.u-float-button__main {
+  display: flex;
+}
 </style>
