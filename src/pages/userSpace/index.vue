@@ -1,5 +1,6 @@
 <template>
   <scroll-view
+    v-if="userInfo.spaceOpenStatus"
     class="h-100vh"
     :scroll-y="true"
     :scroll-top="scrollViewRelatedProps.scrollTop"
@@ -194,6 +195,15 @@ onLoad(async (options) => {
   userInfo.id = +params.userId
   const getUserInfoRes = await getUserInfo({ userId: Number(params.userId) })
   Object.assign(userInfo, getUserInfoRes.data)
+  if (!userInfo.spaceOpenStatus) {
+    uni.showModal({
+      content: '该用户未开放空间',
+      showCancel: false,
+      success: () => {
+        router.back()
+      },
+    })
+  }
 })
 
 const userInfo = reactive<Partial<GetUserInfo.Response['data']>>({})
