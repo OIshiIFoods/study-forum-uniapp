@@ -246,6 +246,7 @@ import type {
   OnLikeProps,
 } from '@/components/CommentSection/index.vue'
 import router from '@/router'
+import type { ArticleCommentProps, UserProps } from '@/service/types/db'
 
 type OnloadParamType =
   | {
@@ -267,7 +268,11 @@ onLoad(async (param) => {
   })
   userInfo.value = articleData.userInfo
   articleInfo.value = articleData.articleInfo
-  commentData.value = formatCommentData(articleData.commentList)
+  commentData.value = {
+    userAvatarLink: baseURL + '' + userStore.avatarLink,
+    commentCount: articleData.commentList.length,
+    commentList: articleData.commentList.map(formatCommentItem),
+  }
 })
 
 onShareAppMessage(({ from, target }) => {
@@ -372,14 +377,15 @@ const addComment = async ({
   toCommentId,
   toCommentParentId,
 }: OnAddCommentProps) => {
-  await addArticleComment({
+  const { data } = await addArticleComment({
     articleId: articleInfo.value!.id,
     content: conmentContent,
     // 若回复一级评论，则parentCommentId为该评论id
     parentCommentId: toCommentParentId ?? toCommentId,
     toCommentId: toCommentId,
   })
-  await updateCommentList()
+  commentData.value.commentCount += 1
+  commentData.value.commentList.push(formatCommentItem(data))
 }
 
 const delComment = async ({ commentId, affectCount }: OnDeleteProps) => {
@@ -402,29 +408,19 @@ const clickAvatar = async ({ userId }: OnClickAvatarProps) => {
   })
 }
 
-const updateCommentList = async () => {
-  const { data } = await getArticleCommentList({
-    articleId: articleInfo.value?.id,
-  })
-  commentData.value = formatCommentData(data.commentList)
-}
-
-const formatCommentData = (
-  commentList: GetArticleCommentList.Response['data']['commentList']
+const formatCommentItem = (
+  commentInfo: ArticleCommentProps & Pick<UserProps, 'nickname' | 'avatarLink'>
 ) => {
+  const { parentCommentId, ...item } = commentInfo
   return {
-    userAvatarLink: baseURL + '' + userStore.avatarLink,
-    commentCount: commentList.length,
-    commentList: commentList.map(({ parentCommentId, ...item }) => ({
-      ...item,
-      parentId: parentCommentId ?? undefined,
-      createTime: dayjs(item.createTime).format('YYYY-MM-DD HH:mm:ss'),
-      avatarLink: baseURL + item.avatarLink,
-      owner: item.userId === userStore.id,
-      hasLike: JSON.parse(item.likedUserList)?.includes(userStore.id),
-      likeCount: JSON.parse(item.likedUserList)?.length,
-      isAuthor: item.userId === userInfo.value?.userId,
-    })),
+    ...item,
+    parentId: parentCommentId ?? undefined,
+    createTime: dayjs(item.createTime).format('YYYY-MM-DD HH:mm:ss'),
+    avatarLink: baseURL + item.avatarLink,
+    owner: item.userId === userStore.id,
+    hasLike: JSON.parse(item.likedUserList)?.includes(userStore.id),
+    likeCount: JSON.parse(item.likedUserList)?.length,
+    isAuthor: item.userId === userInfo.value?.userId,
   }
 }
 

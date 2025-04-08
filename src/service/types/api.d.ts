@@ -483,7 +483,7 @@ export namespace PostCommentArticle {
     status: number
     /** 响应信息 */
     message: string
-    data: any
+    data: ArticleCommentProps & Pick<UserProps, 'nickname' | 'avatarLink'>
   }
 }
 
