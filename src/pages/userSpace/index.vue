@@ -114,7 +114,7 @@
           :onChange="(item: any) => (activeTab = item.code)"
         />
         <up-tabs
-          v-if="activeTab === 'dynamics'"
+          v-if="activeTab === 'dynamics' && userInfo.id === userStore.id"
           class="bg-white b-b b-b-solid b-b-#e4e4e4"
           :list="articleStatusList"
           :duration="200"
