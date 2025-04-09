@@ -109,6 +109,7 @@
 import ArticleItem from '@/components/ArticleItem.vue'
 import { getArticleList } from '@/service'
 import type { GetArticleList } from '@/service/types/api'
+import { ArticleStatusEnum } from '@/service/types/db.d'
 import { onMounted, ref, watch } from 'vue'
 
 const searchValue = ref<string | undefined>('')
@@ -131,6 +132,7 @@ const mV = {
 const baseSearchParams: GetArticleList.Request = {
   orderBy: [{ field: 'createTime', direction: 'DESC' }],
   limit: 6,
+  status: ArticleStatusEnum.Public,
 }
 
 onMounted(async () => {

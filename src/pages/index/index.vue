@@ -123,6 +123,7 @@ import ArticleItem from '@/components/ArticleItem.vue'
 import { getArticleList } from '@/service'
 import { getSwiperList } from '@/service/modules/common'
 import type { GetArticleList } from '@/service/types/api'
+import { ArticleStatusEnum } from '@/service/types/db.d'
 import { nextTick, onMounted, ref, watch } from 'vue'
 
 const swiperList = ref<{ id: number; url: string }[]>([])
@@ -145,6 +146,7 @@ const baseSearchParams: GetArticleList.Request = {
   userId: officialUSERID,
   orderBy: [{ field: 'createTime', direction: 'DESC' }],
   limit: 6,
+  status: ArticleStatusEnum.Public,
 }
 
 const mV = {

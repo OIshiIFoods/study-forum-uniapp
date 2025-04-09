@@ -57,6 +57,7 @@ import { useUserStore } from '@/stores'
 import { onLoad, onShow } from '@dcloudio/uni-app'
 import { ref, watch } from 'vue'
 import ArticleItem from '@/components/ArticleItem.vue'
+import { ArticleStatusEnum } from '@/service/types/db.d'
 
 // type OnLoadOptionsType = {
 //   articleType?: string
@@ -109,6 +110,7 @@ const searchAction = async () => {
     userId: userStore.id,
     orderBy: [{ field: 'createTime', direction: 'DESC' }],
     title: searchValue.value || undefined,
+    status: ArticleStatusEnum.Public,
     ...params,
   })
   articleList.value = data.articleList
