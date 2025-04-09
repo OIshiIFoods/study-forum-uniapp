@@ -127,14 +127,66 @@
         async () => {
           if (scrollViewRelatedProps.isLower) return
           scrollViewRelatedProps.isLower = true
-          await searchAction()
+          const { data } = await getArticleList({
+            createTime: ['', articleList.at(-1)?.createTime ?? ''],
+            ...baseSearchParams,
+          })
+          articleList.push(...data.articleList)
           scrollViewRelatedProps.isLower = false
         }
       "
     >
       <view class="px-15px">
         <view v-if="activeTab === 'dynamics'">
-          <view v-if="articleList.length">
+          <view class="mt-15px" v-if="articleList.length">
+            <up-search
+              placeholder="搜索文章"
+              v-model="searchValue"
+              :height="35"
+              :bgColor="'#f8f9fd'"
+              :actionStyle="{
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+                alignSelf: 'stretch',
+                color: '#59a3f4',
+                marginLeft: 0,
+                backgroundColor: '#f8f9fd',
+              }"
+              :placeholderColor="'#a3a8af'"
+              :inputStyle="{
+                color: '#a3a8af',
+              }"
+              :shape="'square'"
+              @search="
+                async () => {
+                  mV.uni.showLoading({
+                    title: '加载中',
+                  })
+                  console.log(baseSearchParams)
+                  const { data } = await getArticleList({
+                    title: searchValue || undefined,
+                    ...baseSearchParams,
+                  })
+                  articleList = data.articleList
+                  mV.uni.hideLoading()
+                }
+              "
+              @custom="
+                async () => {
+                  mV.uni.showLoading({
+                    title: '加载中',
+                  })
+                  const { data } = await getArticleList({
+                    title: searchValue || undefined,
+                    ...baseSearchParams,
+                  })
+                  articleList = data.articleList
+                  mV.uni.hideLoading()
+                }
+              "
+              @clear="searchValue = undefined"
+            />
             <ArticleItem
               v-for="item in articleList"
               :articleItem="item"
@@ -183,7 +235,7 @@ import { getArticleList, getUserInfo } from '@/service'
 import type { GetArticleList, GetUserInfo } from '@/service/types/api'
 import { useUserStore } from '@/stores'
 import { onLoad, onShow } from '@dcloudio/uni-app'
-import { computed, onMounted, reactive, ref } from 'vue'
+import { computed, onMounted, reactive, ref, watch } from 'vue'
 
 type OnloadOptionsType = {
   userId: string
@@ -289,22 +341,35 @@ const scrollViewRelatedProps = ref({
     scrollTop: 0,
   },
 })
+const searchValue = ref<string | undefined>('')
+const baseSearchParams = computed<GetArticleList.Request>(() => ({
+  userId: userInfo.id,
+  orderBy: [{ field: 'createTime', direction: 'DESC' }],
+  limit: 6,
+}))
+const mV = {
+  uni,
+}
+watch(searchValue, async (newVal) => {
+  if (newVal === '') {
+    uni.showLoading({
+      title: '加载中',
+    })
+    const { data } = await getArticleList({
+      ...baseSearchParams.value,
+    })
+    articleList.value = data.articleList
+    uni.hideLoading()
+  }
+})
 
 onShow(async () => {
   if (!userInfo.id) {
     return
   }
-  articleList.value = []
-  await searchAction()
-})
-
-const searchAction = async () => {
   const { data } = await getArticleList({
-    userId: userInfo.id,
-    orderBy: [{ field: 'createTime', direction: 'DESC' }],
-    createTime: ['', articleList.value.at(-1)?.createTime ?? ''],
-    limit: 6,
+    ...baseSearchParams.value,
   })
-  articleList.value.push(...data.articleList)
-}
+  articleList.value = [...data.articleList]
+})
 </script>
