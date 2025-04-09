@@ -6,6 +6,7 @@ import {
   UserFileProps,
   UserProps,
   UserMessageProps,
+  ArticleStatusEnum,
 } from './db'
 
 /** 排序条件 */
@@ -365,6 +366,8 @@ export namespace PutArticle {
     title: string
     /** 内容 */
     content: string
+    /** 文章状态 */
+    status?: ArticleStatusEnum
   }
 
   type Response = {

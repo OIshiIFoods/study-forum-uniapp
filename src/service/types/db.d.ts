@@ -32,6 +32,16 @@ export enum NoticeTypeEnum {
   Followed = 6,
 }
 
+/** 文章状态枚举 */
+export enum ArticleStatusEnum {
+  /** 草稿 */
+  Draft = 0,
+  /** 仅自己可见 */
+  OnlyMe = 1,
+  /** 公开 */
+  Public = 2,
+}
+
 /** 执行增删改mysql语句后返回的对象 */
 export interface MysqlOkPacket {
   /** 结果集中字段的数量 */
@@ -176,6 +186,8 @@ export interface ArticleProps {
   updateTime: string
   /** 删除时间（为空时代表未删除） */
   deleteTime?: string
+  /** 文章状态 */
+  status?: ArticleStatusEnum
 }
 
 /** 数据库 article_like 表字段信息 */
