@@ -28,36 +28,20 @@
       @moreItemConfirm="moreItemConfirm"
     >
       <template #toolbarRight>
-        <view class="mr-10px">
+        <view class="flex gap-10px mr-10px">
+          <up-button
+            :size="'small'"
+            :disabled="!articleInfo.title || !articleInfo.content"
+            :type="'warning'"
+            @click="saveAsDraft"
+          >
+            保存为草稿
+          </up-button>
           <up-button
             :size="'small'"
             type="primary"
             :disabled="!articleInfo.title || !articleInfo.content"
-            @click="
-              async () => {
-                if (!articleInfo.title || !articleInfo.content) {
-                  await mV.uni.showToast({
-                    title: '请填写标题和内容',
-                    icon: 'none',
-                  })
-                  return
-                }
-                const { data } = articleInfo.articleId
-                  ? await updateArticle(articleInfo as any)
-                  : await publishArticle(articleInfo)
-                const articleId = articleInfo.articleId ?? data.id
-                await mV.uni.showToast({
-                  title: '发布成功',
-                  icon: 'none',
-                })
-                mV.setTimeout(() => {
-                  router.replace({
-                    name: 'articleDetail',
-                    params: { articleId: String(articleId) },
-                  })
-                }, 1000)
-              }
-            "
+            @click="onPublishArticle"
           >
             发布
           </up-button>
@@ -83,6 +67,7 @@ import { publishArticle, updateArticle } from '@/service'
 import { uploadFile } from '@/api/http'
 import router from '@/router'
 import { onLoad } from '@dcloudio/uni-app'
+import { ArticleStatusEnum } from '@/service/types/db.d'
 
 onLoad(async (options) => {
   if (options?.editedArticleId) {
@@ -148,5 +133,55 @@ const moreItemConfirm = async (e: any) => {
   }
   // 关闭弹窗
   toolbarRef.value.closeMorePop()
+}
+
+const onPublishArticle = async () => {
+  const articleStatus = await new Promise<ArticleStatusEnum>(
+    (resolve, reject) => {
+      uni.showModal({
+        content: '是否仅自己可见',
+        success: (res) => {
+          resolve(
+            res.confirm ? ArticleStatusEnum.OnlyMe : ArticleStatusEnum.Public
+          )
+        },
+        fail: (err) => {
+          reject(err)
+        },
+      })
+    }
+  )
+  const { data } = articleInfo.articleId
+    ? await updateArticle({ articleInfo, status: articleStatus } as any)
+    : await publishArticle({ ...articleInfo, status: articleStatus })
+  const articleId = articleInfo.articleId ?? data.id
+  await uni.showToast({
+    title: '发布成功',
+    icon: 'none',
+  })
+  setTimeout(() => {
+    router.replace({
+      name: 'articleDetail',
+      params: { articleId: String(articleId) },
+    })
+  }, 1000)
+}
+
+/** 保存文章为草稿 */
+const saveAsDraft = async () => {
+  const { data } = await publishArticle({
+    ...articleInfo,
+    status: ArticleStatusEnum.Draft,
+  })
+  await uni.showToast({
+    title: '保存成功',
+    icon: 'none',
+  })
+  setTimeout(() => {
+    router.replace({
+      name: 'articleDetail',
+      params: { articleId: String(data.id) },
+    })
+  }, 1000)
 }
 </script>

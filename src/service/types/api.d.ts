@@ -327,6 +327,8 @@ export namespace PostPublishArticle {
     title: string
     /** 内容 */
     content: string
+    /** 文章状态 */
+    status: ArticleStatusEnum
   }
 
   type Response = {
