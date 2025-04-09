@@ -114,6 +114,7 @@
           :onChange="(item: any) => (activeTab = item.code)"
         />
         <up-tabs
+          v-if="activeTab === 'dynamics'"
           class="bg-white b-b b-b-solid b-b-#e4e4e4"
           :list="articleTabbarItemList"
           :duration="200"
@@ -142,6 +143,7 @@
       "
       @scrolltolower="
         async () => {
+          if (activeTab !== 'dynamics' || !articleList.length) return
           if (scrollViewRelatedProps.isLower) return
           scrollViewRelatedProps.isLower = true
           const { data } = await getArticleList({
