@@ -219,6 +219,7 @@
                 () => {
                   if (userInfo.id !== userStore.id) return
                   seletedArticleId.push(item.id)
+                  articleOperPopupConf.params.status = ArticleStatusEnum.Public
                   articleOperPopupConf.show = true
                 }
               "
@@ -292,7 +293,10 @@
               status: articleOperPopupConf.params.status,
             })
             articleList = articleList.filter(
-              (item) => item.id !== seletedArticleId[0]
+              (item) =>
+                item.id !== seletedArticleId[0] ||
+                (item.id === seletedArticleId[0] &&
+                  item.status === articleOperPopupConf.params.status)
             )
             articleOperPopupConf.show = false
             seletedArticleId = []
