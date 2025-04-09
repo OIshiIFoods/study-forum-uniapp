@@ -1,12 +1,15 @@
 <template>
   <view
     class="p-10px m-5px rounded-8px bg-[white]"
+    :class="props.customeClass"
+    :style="props.customeStyle"
     @click="
       router.push({
         name: 'articleDetail',
         params: { articleId: String(articleItem.id) },
       })
     "
+    @longpress="() => definedEmit('longpress')"
   >
     <up-text :lines="1" :text="articleItem.title" bold />
     <view class="flex items-center my-8px gap-col-5px">
@@ -36,7 +39,12 @@ import { computed } from 'vue'
 
 type ArticleItemProps = GetArticleList.Response['data']['articleList'][0]
 
-const props = defineProps<{ articleItem: ArticleItemProps }>()
+const props = defineProps<{
+  articleItem: ArticleItemProps
+  customeClass?: any
+  customeStyle?: any
+}>()
+const definedEmit = defineEmits(['longpress'])
 
 const statusList = computed(() => [
   {
