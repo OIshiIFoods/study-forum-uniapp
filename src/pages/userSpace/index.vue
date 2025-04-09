@@ -113,6 +113,23 @@
           itemStyle="flex:1; fontSize:14px; padding:10px 15px; borderBottom:1px solid #e4e4e4; borderTop:1px solid #e4e4e4"
           :onChange="(item: any) => (activeTab = item.code)"
         />
+        <up-tabs
+          class="bg-white b-b b-b-solid b-b-#e4e4e4"
+          :list="articleTabbarItemList"
+          :duration="200"
+          lineHeight="0"
+          lineWidth="0"
+          :activeStyle="{
+            fontSize: '13px',
+            color: 'black',
+          }"
+          :inactiveStyle="{
+            fontSize: '13px',
+            color: '#A9A9A9',
+          }"
+          itemStyle="padding:8px 13px;"
+          :onChange="(item: any) => (activeArticleTab = item.code)"
+        />
       </view>
     </up-sticky>
     <scroll-view
@@ -203,7 +220,7 @@
             class="flex flex-col justify-center items-center mt-60px"
           >
             <up-icon name="file-text" :size="40" />
-            <view class="text-15px p-[10px_0]">暂无动态</view>
+            <view class="text-15px p-[10px_0]">暂无文章</view>
           </view>
         </view>
         <view v-if="activeTab === 'file'">
@@ -233,6 +250,7 @@ import ArticleItem from '@/components/ArticleItem.vue'
 import router from '@/router'
 import { getArticleList, getUserInfo } from '@/service'
 import type { GetArticleList, GetUserInfo } from '@/service/types/api'
+import { ArticleStatusEnum } from '@/service/types/db.d'
 import { useUserStore } from '@/stores'
 import { onLoad, onShow } from '@dcloudio/uni-app'
 import { computed, onMounted, reactive, ref, watch } from 'vue'
@@ -287,15 +305,27 @@ onMounted(async () => {
     positionInfo.safeTop
 })
 
-const userInfo = reactive<Partial<GetUserInfo.Response['data']>>({})
-const userStore = useUserStore()
+onShow(async () => {
+  if (!userInfo.id) {
+    return
+  }
+  const { data } = await getArticleList({
+    ...baseSearchParams.value,
+  })
+  articleList.value = [...data.articleList]
+})
+
+const mV = {
+  uni,
+}
 const positionInfo = reactive({
   safeTop: uni.getSystemInfoSync().safeArea?.top ?? 0,
   windowHeight: uni.getSystemInfoSync().windowHeight,
   navbarHeight: 44,
   tabarHeight: 0,
 })
-
+const userInfo = reactive<Partial<GetUserInfo.Response['data']>>({})
+const userStore = useUserStore()
 const statusInfoList = computed(() => [
   {
     code: 'followCount',
@@ -314,6 +344,8 @@ const statusInfoList = computed(() => [
   },
 ])
 
+const navbarMode = ref<'light' | 'dark'>('dark')
+const activeTab = ref('dynamics')
 const tabbarItemList = [
   {
     code: 'dynamics',
@@ -324,9 +356,21 @@ const tabbarItemList = [
     name: '文件',
   },
 ]
-
-const activeTab = ref('dynamics')
-const navbarMode = ref<'light' | 'dark'>('dark')
+const activeArticleTab = ref<ArticleStatusEnum>(ArticleStatusEnum.Public)
+const articleTabbarItemList = [
+  {
+    code: ArticleStatusEnum.Public,
+    name: '公开',
+  },
+  {
+    code: ArticleStatusEnum.OnlyMe,
+    name: '私密',
+  },
+  {
+    code: ArticleStatusEnum.Draft,
+    name: '草稿',
+  },
+]
 
 const articleList = ref<GetArticleList.Response['data']['articleList']>([])
 const scrollViewRelatedProps = ref({
@@ -346,10 +390,9 @@ const baseSearchParams = computed<GetArticleList.Request>(() => ({
   userId: userInfo.id,
   orderBy: [{ field: 'createTime', direction: 'DESC' }],
   limit: 6,
+  status: activeArticleTab.value,
 }))
-const mV = {
-  uni,
-}
+
 watch(searchValue, async (newVal) => {
   if (newVal === '') {
     uni.showLoading({
@@ -362,14 +405,14 @@ watch(searchValue, async (newVal) => {
     uni.hideLoading()
   }
 })
-
-onShow(async () => {
-  if (!userInfo.id) {
-    return
-  }
+watch(activeArticleTab, async (newVal) => {
+  uni.showLoading({
+    title: '加载中',
+  })
   const { data } = await getArticleList({
     ...baseSearchParams.value,
   })
-  articleList.value = [...data.articleList]
+  articleList.value = data.articleList
+  uni.hideLoading()
 })
 </script>
