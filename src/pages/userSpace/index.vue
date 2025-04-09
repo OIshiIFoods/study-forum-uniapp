@@ -116,7 +116,7 @@
         <up-tabs
           v-if="activeTab === 'dynamics'"
           class="bg-white b-b b-b-solid b-b-#e4e4e4"
-          :list="articleTabbarItemList"
+          :list="articleStatusList"
           :duration="200"
           lineHeight="0"
           lineWidth="0"
@@ -210,6 +210,18 @@
               v-for="item in articleList"
               :articleItem="item"
               :key="item.id"
+              :customeStyle="
+                seletedArticleId.includes(item.id)
+                  ? 'background-color:#dff0ff;'
+                  : ''
+              "
+              @longpress="
+                () => {
+                  if (userInfo.id !== userStore.id) return
+                  seletedArticleId.push(item.id)
+                  articleOperPopupConf.show = true
+                }
+              "
             />
             <up-loadmore
               height="50"
@@ -244,13 +256,65 @@
       </view>
     </scroll-view>
   </scroll-view>
+  <up-popup
+    :show="articleOperPopupConf.show"
+    :duration="articleOperPopupConf.duration"
+    :mode="'bottom'"
+    :onClose="
+      () => {
+        seletedArticleId = []
+        articleOperPopupConf.show = false
+      }
+    "
+  >
+    <view class="p-[15px_10px] bg-#f5f5f5">
+      <view class="font-700 my-10px">设置</view>
+      <view class="flex items-center">
+        <view class="text-14px mr-10px">文章可见性</view>
+        <up-radio-group v-model="articleOperPopupConf.params.status">
+          <up-radio
+            v-for="item in articleStatusList"
+            :key="item.code"
+            :name="item.code"
+            :label="item.name"
+            shape="circle"
+            :icon-size="13"
+            :label-size="15"
+          />
+        </up-radio-group>
+      </view>
+      <view
+        class="mt-15px rounded-4px p-8px bg-#fff text-center text-14px"
+        @click="
+          async () => {
+            await updateArticle({
+              articleId: seletedArticleId[0],
+              status: articleOperPopupConf.params.status,
+            })
+            articleList = articleList.filter(
+              (item) => item.id !== seletedArticleId[0]
+            )
+            articleOperPopupConf.show = false
+            seletedArticleId = []
+            mV.uni.showToast({
+              title: '保存成功',
+              icon: 'none',
+              duration: 2000,
+            })
+          }
+        "
+      >
+        保存设置
+      </view>
+    </view>
+  </up-popup>
 </template>
 
 <script setup lang="ts">
 import { baseURL } from '@/api/http'
 import ArticleItem from '@/components/ArticleItem.vue'
 import router from '@/router'
-import { getArticleList, getUserInfo } from '@/service'
+import { getArticleList, getUserInfo, updateArticle } from '@/service'
 import type { GetArticleList, GetUserInfo } from '@/service/types/api'
 import { ArticleStatusEnum } from '@/service/types/db.d'
 import { useUserStore } from '@/stores'
@@ -359,7 +423,7 @@ const tabbarItemList = [
   },
 ]
 const activeArticleTab = ref<ArticleStatusEnum>(ArticleStatusEnum.Public)
-const articleTabbarItemList = [
+const articleStatusList = [
   {
     code: ArticleStatusEnum.Public,
     name: '公开',
@@ -416,5 +480,14 @@ watch(activeArticleTab, async (newVal) => {
   })
   articleList.value = data.articleList
   uni.hideLoading()
+})
+
+const seletedArticleId = ref<number[]>([])
+const articleOperPopupConf = reactive({
+  show: false,
+  duration: 300,
+  params: {
+    status: 0,
+  },
 })
 </script>

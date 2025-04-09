@@ -363,9 +363,9 @@ export namespace PutArticle {
     /** 文章id */
     articleId: number
     /** 标题 */
-    title: string
+    title?: string
     /** 内容 */
-    content: string
+    content?: string
     /** 文章状态 */
     status?: ArticleStatusEnum
   }
