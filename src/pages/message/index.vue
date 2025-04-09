@@ -31,8 +31,11 @@
           :border="false"
           :label="chatedUser.latestMessage"
           @longpress="
-            () => {
+            async () => {
               selectUser = chatedUser.userId
+              await mV.uni.hideTabBar({
+                animation: true,
+              })
               operationPopupConfig.show = true
             }
           "
@@ -70,8 +73,18 @@
   </view>
   <up-popup
     :show="operationPopupConfig.show"
+    :duration="operationPopupConfig.duration"
     :mode="'bottom'"
-    :onClose="() => (operationPopupConfig.show = false)"
+    :onClose="
+      () => {
+        operationPopupConfig.show = false
+        mV.setTimeout(() => {
+          mV.uni.showTabBar({
+            animation: true,
+          })
+        }, operationPopupConfig.duration)
+      }
+    "
   >
     <view class="p-[15px_10px] bg-#f5f5f5">
       <view
@@ -194,6 +207,7 @@ const chatedUserList = computed(() => {
 const selectUser = ref<number>()
 const operationPopupConfig = reactive({
   show: false,
+  duration: 300,
   operationList: [
     {
       label: '删除',
@@ -207,6 +221,10 @@ const operationPopupConfig = reactive({
     },
   ],
 })
+const mV = {
+  uni,
+  setTimeout,
+}
 </script>
 
 <style></style>
