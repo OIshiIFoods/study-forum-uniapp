@@ -731,3 +731,43 @@ export namespace PostMergeChunks {
         }
   }
 }
+
+/** 拉黑用户 */
+export namespace PostBlacklistUser {
+  export type Request = {
+    blockedUserId: number
+    reason?: string
+  }
+
+  export type Response = {
+    status: number
+    message: string
+    data: any
+  }
+}
+
+/** 取消拉黑用户 */
+export namespace DeleteBlacklistUser {
+  export type Request = {
+    blockedUserId: number
+  }
+
+  export type Response = {
+    status: number
+    message: string
+    data: any
+  }
+}
+
+/** 获取拉黑用户列表 */
+export namespace GetBlacklist {
+  export type Request = {}
+
+  export type Response = {
+    status: number
+    message: string
+    data: {
+      blacklist: Array<Pick<UserProps, 'id' | 'nickname' | 'avatarLink'>>
+    }
+  }
+}

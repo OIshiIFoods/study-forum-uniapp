@@ -26,11 +26,14 @@ import {
 } from './modules/notice'
 import { getCaptcha } from './modules/ouath'
 import {
+  blockUser,
   followUser,
+  getBlacklist,
   getFollowUserList,
   getUserInfo,
   login,
   putUserInfo,
+  unblockUser,
 } from './modules/user'
 import {
   copyUserFile,
@@ -74,4 +77,7 @@ export {
   deleteNotices,
   updateNotice,
   getUsersInfoInNotice,
+  blockUser,
+  unblockUser,
+  getBlacklist,
 }

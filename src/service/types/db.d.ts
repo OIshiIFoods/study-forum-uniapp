@@ -289,3 +289,21 @@ export interface NoticeProps {
   /** 删除时间 */
   deleteTime?: string | null
 }
+
+/** 数据库用户黑名单表的属性 */
+export interface UserBlacklistProps {
+  /** 主键ID */
+  id: number
+  /** 用户ID(执行屏蔽的用户) */
+  userId: number
+  /** 被屏蔽用户ID */
+  blockedUserId: number
+  /** 屏蔽原因 */
+  reason?: string
+  /** 创建时间 */
+  createdAt: string
+  /** 更新时间 */
+  updatedAt: string
+  /** 删除时间 */
+  deletedAt?: string | null
+}

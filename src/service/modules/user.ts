@@ -5,6 +5,9 @@ import type {
   PostFollowUser,
   PostUserLogin,
   PutUserInfo,
+  PostBlacklistUser,
+  DeleteBlacklistUser,
+  GetBlacklist,
 } from '../types/api'
 
 /** 登录 */
@@ -49,5 +52,31 @@ export const getFollowUserList = async (params?: GetFollowUserList.Request) => {
     method: 'GET',
     url: '/api/v1/user/follow',
     data: params,
+  })
+}
+
+/** 拉黑用户 */
+export const blockUser = async (data: PostBlacklistUser.Request) => {
+  return request<PostBlacklistUser.Response>({
+    method: 'POST',
+    url: '/api/v1/user/blacklist',
+    data,
+  })
+}
+
+/** 取消拉黑用户 */
+export const unblockUser = async (data: DeleteBlacklistUser.Request) => {
+  return request<DeleteBlacklistUser.Response>({
+    method: 'DELETE',
+    url: '/api/v1/user/blacklist',
+    data,
+  })
+}
+
+/** 获取拉黑的用户列表 */
+export const getBlacklist = async () => {
+  return request<GetBlacklist.Response>({
+    method: 'GET',
+    url: '/api/v1/user/blacklist',
   })
 }
