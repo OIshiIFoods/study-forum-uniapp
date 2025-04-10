@@ -10,12 +10,15 @@ export const getFileIconConfig = async () => {
 
 /** 获取轮播图列表 */
 export const getSwiperList = async () => {
-  const data = await request<{ id: number; url: string }[]>({
-    url: '/api/v1/public/json/swiperConfig.json',
-    method: 'GET',
-  })
-  return data.map(({ id, url }) => ({
+  const data = await request<{ id: number; url: string; articleId?: number }[]>(
+    {
+      url: '/api/v1/public/json/swiperConfig.json',
+      method: 'GET',
+    }
+  )
+  return data.map(({ id, url, articleId }) => ({
     id,
     url: baseURL! + url,
+    articleId,
   }))
 }

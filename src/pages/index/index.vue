@@ -41,7 +41,22 @@
       }
     "
   >
-    <up-swiper :list="swiperList" />
+    <up-swiper
+      :list="swiperList"
+      @click="
+        (index) => {
+          console.log(index, swiperList[index].articleId)
+          if (swiperList[index].articleId) {
+            router.push({
+              name: 'articleDetail',
+              params: {
+                articleId: String(swiperList[index].articleId),
+              },
+            })
+          }
+        }
+      "
+    />
     <view id="content" class="bg-white rounded-20px box-border p-10px mt-15px">
       <view class="my-15px font-600">最新资讯</view>
       <view
@@ -120,13 +135,14 @@
 
 <script setup lang="ts">
 import ArticleItem from '@/components/ArticleItem.vue'
+import router from '@/router'
 import { getArticleList } from '@/service'
 import { getSwiperList } from '@/service/modules/common'
 import type { GetArticleList } from '@/service/types/api'
 import { ArticleStatusEnum } from '@/service/types/db.d'
 import { nextTick, onMounted, ref, watch } from 'vue'
 
-const swiperList = ref<{ id: number; url: string }[]>([])
+const swiperList = ref<{ id: number; url: string; articleId?: number }[]>([])
 const searchValue = ref<string | undefined>('')
 const articleList = ref<GetArticleList.Response['data']['articleList']>([])
 const officialUSERID = +(process.env.Official_USER_ID ?? 0)
