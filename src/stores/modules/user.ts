@@ -22,6 +22,7 @@ export const useUserStore = defineStore('user', {
       likeCount: 0,
       collectionCount: 0,
       followList: [],
+      blacklist: [],
     } as Partial<GetUserInfo.Response['data']>
   },
   getters: {},

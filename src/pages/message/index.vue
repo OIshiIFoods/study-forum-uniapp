@@ -88,13 +88,17 @@
   >
     <view class="p-[15px_10px] bg-#f5f5f5">
       <view
-        class="rounded-4px p-10px bg-#fff text-center"
         v-for="(item, index) in operationPopupConfig.operationList"
         :key="item.label"
-        :style="{ color: item.color }"
-        @click="item.clickAction"
       >
-        {{ item.label }}
+        <view
+          class="rounded-4px p-10px bg-#fff text-center mb-6px"
+          v-if="!item.hidden()"
+          :style="{ color: item.color }"
+          @click="item.clickAction"
+        >
+          {{ item.label }}
+        </view>
       </view>
     </view>
   </up-popup>
@@ -110,6 +114,7 @@ import dayjs from 'dayjs'
 import { computed, onMounted, reactive, ref } from 'vue'
 import { NoticeTypeEnum } from '@/service/types/db.d'
 import { useNotice } from '@/hooks/useNotice'
+import { blockUser, unblockUser } from '@/service'
 
 const { messages, userInfos, addMessage, deleteMessage } = useUserMessage()
 const { notices } = useNotice()
@@ -212,11 +217,56 @@ const operationPopupConfig = reactive({
     {
       label: '删除',
       color: 'red',
+      hidden: () => false,
       clickAction: async () => {
         deleteMessage({
           userId: selectUser.value ?? -1,
         })
         operationPopupConfig.show = false
+      },
+    },
+    {
+      label: '解除拉黑',
+      color: 'red',
+      hidden: () => {
+        return !userStore.blacklist?.includes(selectUser.value!)
+      },
+      clickAction: async () => {
+        if (!selectUser.value!) {
+          return
+        }
+        await unblockUser({
+          blockedUserId: selectUser.value!,
+        })
+        userStore.blacklist = userStore.blacklist?.filter(
+          (item) => item !== selectUser.value!
+        )
+        operationPopupConfig.show = false
+        uni.showToast({
+          title: '解除拉黑成功',
+          icon: 'none',
+        })
+      },
+    },
+    {
+      label: '拉黑',
+      color: 'red',
+      hidden: () => {
+        return userStore.blacklist?.includes(selectUser.value!)
+      },
+      clickAction: async () => {
+        if (!selectUser.value!) {
+          return
+        }
+        await blockUser({
+          blockedUserId: selectUser.value!,
+        })
+        userStore.blacklist?.push(selectUser.value!)
+        operationPopupConfig.show = false
+        uni.showToast({
+          title: '拉黑成功',
+          icon: 'none',
+        })
       },
     },
   ],

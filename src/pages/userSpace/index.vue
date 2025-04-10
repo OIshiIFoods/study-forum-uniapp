@@ -65,15 +65,21 @@
             <!-- 编辑资料控件 -->
             <view
               v-if="userInfo.id === userStore.id"
-              class="line-height-30px text-12px text-center text-[var(--primary-color)] b b-solid b-[var(--primary-color)]"
+              class="flex-1 line-height-30px text-12px text-center text-[var(--primary-color)] b b-solid b-[var(--primary-color)]"
               @click="router.push({ name: 'accountInfo' })"
             >
               编辑资料
             </view>
-            <view v-else class="flex justify-center">
+            <view v-else class="flex items-center justify-center flex-1">
+              <view
+                v-if="userInfo.id !== userStore.id"
+                class="text-[var(--primary-color)] text-22px iconfont mr-10px"
+                :class="'icon-setting'"
+                @click="operPopupConf.show = true"
+              />
               <up-button
                 plain
-                :customStyle="{ width: '50%' }"
+                :customStyle="{ width: '50%', margin: '0' }"
                 :size="'small'"
                 :shape="'circle'"
                 color="var(--primary-color)"
@@ -312,13 +318,41 @@
       </view>
     </view>
   </up-popup>
+  <up-popup
+    :show="operPopupConf.show"
+    :duration="operPopupConf.duration"
+    :mode="'bottom'"
+    :onClose="() => (operPopupConf.show = false)"
+  >
+    <view class="p-[15px_10px] bg-#f5f5f5">
+      <view
+        v-for="(item, index) in operPopupConf.operationList"
+        :key="item.label"
+      >
+        <view
+          class="rounded-4px p-10px bg-#fff text-center"
+          :style="{ color: item.color }"
+          v-if="!item.hidden()"
+          @click="item.clickAction"
+        >
+          {{ item.label }}
+        </view>
+      </view>
+    </view>
+  </up-popup>
 </template>
 
 <script setup lang="ts">
 import { baseURL } from '@/api/http'
 import ArticleItem from '@/components/ArticleItem.vue'
 import router from '@/router'
-import { getArticleList, getUserInfo, updateArticle } from '@/service'
+import {
+  blockUser,
+  getArticleList,
+  getUserInfo,
+  unblockUser,
+  updateArticle,
+} from '@/service'
 import type { GetArticleList, GetUserInfo } from '@/service/types/api'
 import { ArticleStatusEnum } from '@/service/types/db.d'
 import { useUserStore } from '@/stores'
@@ -493,5 +527,56 @@ const articleOperPopupConf = reactive({
   params: {
     status: 0,
   },
+})
+
+const operPopupConf = reactive({
+  show: false,
+  duration: 300,
+  operationList: [
+    {
+      label: '解除拉黑',
+      color: 'red',
+      hidden: () => {
+        return !userStore.blacklist?.includes(userInfo.id!)
+      },
+      clickAction: async () => {
+        if (!userInfo.id) {
+          return
+        }
+        await unblockUser({
+          blockedUserId: userInfo.id,
+        })
+        userStore.blacklist = userStore.blacklist?.filter(
+          (item) => item !== userInfo.id
+        )
+        operPopupConf.show = false
+        uni.showToast({
+          title: '解除拉黑成功',
+          icon: 'none',
+        })
+      },
+    },
+    {
+      label: '拉黑',
+      color: 'red',
+      hidden: () => {
+        return userStore.blacklist?.includes(userInfo.id!)
+      },
+      clickAction: async () => {
+        if (!userInfo.id) {
+          return
+        }
+        await blockUser({
+          blockedUserId: userInfo.id,
+        })
+        userStore.blacklist?.push(userInfo.id)
+        operPopupConf.show = false
+        uni.showToast({
+          title: '拉黑成功',
+          icon: 'none',
+        })
+      },
+    },
+  ],
 })
 </script>

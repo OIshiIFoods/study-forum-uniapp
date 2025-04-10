@@ -126,6 +126,20 @@
 			"style": {
 				"navigationStyle": "custom"
 			}
+		},
+		{
+			"name":"privacySettings",
+			"path": "pages/privacySettings/index",
+			"style": {
+				"navigationStyle": "custom"
+			}
+		},
+		{
+			"name":"blackList",
+			"path": "pages/blackList/index",
+			"style": {
+				"navigationStyle": "custom"
+			}
 		}
 	],
 	"tabBar": {

@@ -7,6 +7,7 @@ import {
   UserProps,
   UserMessageProps,
   ArticleStatusEnum,
+  SpaceOpenStatusEnum,
 } from './db'
 
 /** 排序条件 */
@@ -50,6 +51,7 @@ export namespace GetUserInfo {
     message: string
     data: UserProps & {
       followList: GetFollowUserList.Response['data']['followList']
+      blacklist: number[]
     }
   }
 }
@@ -67,6 +69,8 @@ export namespace PutUserInfo {
     sex?: number
     /** 签名 */
     signature?: string
+    /** 空间状态 */
+    spaceOpenStatus?: SpaceOpenStatusEnum
   }
 
   type Response = {

@@ -1,7 +1,22 @@
 <template>
   <view class="min-h-screen bg-[var(--bg-color-grey)]">
     <up-navbar title="设置" placeholder auto-back />
-    <up-cell-group class="bg-white">
+    <up-cell-group class="bg-white mt-15px">
+      <up-cell
+        v-if="userStore.id"
+        title="隐私设置"
+        :titleStyle="{ fontSize: '13px' }"
+        isLink
+        @click="
+          () => {
+            router.push({
+              name: 'privacySettings',
+            })
+          }
+        "
+      />
+    </up-cell-group>
+    <up-cell-group class="bg-white mt-15px">
       <up-cell
         v-if="userStore.id"
         title="退出登录"
