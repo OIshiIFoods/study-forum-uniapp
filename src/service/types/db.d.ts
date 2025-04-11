@@ -307,3 +307,19 @@ export interface UserBlacklistProps {
   /** 删除时间 */
   deletedTime?: string | null
 }
+
+/** 数据库文章分类表的属性 */
+export interface ArticleCategoryProps {
+  /** 分类ID */
+  id: number
+  /** 分类名称 */
+  name: string
+  /** 分类描述 */
+  description?: string
+  /** 创建时间 */
+  createdTime: string
+  /** 更新时间 */
+  updatedTime: string
+  /** 删除时间 */
+  deletedTime?: string | null
+}

@@ -3,6 +3,7 @@ import {
   collectArticle,
   deleteArticle,
   deleteArticleComment,
+  getArticleCategoryList,
   getArticleCommentList,
   getArticleDetailInfo,
   getArticleList,
@@ -80,4 +81,5 @@ export {
   blockUser,
   unblockUser,
   getBlacklist,
+  getArticleCategoryList,
 }

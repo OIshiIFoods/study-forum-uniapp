@@ -8,6 +8,7 @@ import {
   UserMessageProps,
   ArticleStatusEnum,
   SpaceOpenStatusEnum,
+  ArticleCategoryProps,
 } from './db'
 
 /** 排序条件 */
@@ -773,5 +774,19 @@ export namespace GetBlacklist {
     data: {
       blacklist: Array<Pick<UserProps, 'id' | 'nickname' | 'avatarLink'>>
     }
+  }
+}
+
+/** 获取文章分类列表 */
+export namespace GetArticleCategories {
+  type Request = {}
+
+  type Response = {
+    /** 状态码 */
+    status: number
+    /** 响应信息 */
+    message: string
+    /** 分类列表 */
+    data: ArticleCategoryProps[]
   }
 }

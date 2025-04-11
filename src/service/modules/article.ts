@@ -2,6 +2,7 @@ import { request } from '@/api/http'
 import type {
   DeleteArticle,
   DeleteArticleComment,
+  GetArticleCategories,
   GetArticleCommentList,
   GetArticleDetailInfo,
   GetArticleList,
@@ -119,6 +120,17 @@ export const likeArticleComment = async (
   return request<PostLikeArticleComment.Response>({
     method: 'POST',
     url: '/api/v1/article/comment/like',
+    data,
+  })
+}
+
+/** 获取文章类目列表 */
+export const getArticleCategoryList = async (
+  data: GetArticleCategories.Request
+) => {
+  return request<GetArticleCategories.Response>({
+    method: 'GET',
+    url: '/api/v1/article/category',
     data,
   })
 }
