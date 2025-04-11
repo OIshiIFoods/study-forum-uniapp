@@ -820,3 +820,19 @@ export namespace PostReportRecord {
     data: any // 可以根据需要进一步定义
   }
 }
+
+
+/** 获取举报记录数量 */
+export namespace GetReportRecordCount {
+  export type Request = Pick<ReportRecordProps, 'targetId' | 'targetType'>
+
+  export type Response = {
+    /** 状态码 */
+    status: number
+    /** 响应信息 */
+    message: string
+    data: {
+      count: number
+    }
+  }
+}

@@ -9,6 +9,7 @@ import type {
   DeleteBlacklistUser,
   GetBlacklist,
   PostReportRecord,
+  GetReportRecordCount,
 } from '../types/api'
 
 /** 登录 */
@@ -88,5 +89,14 @@ export const report = async (data: PostReportRecord.Request) => {
     method: 'POST',
     url: '/api/v1/user/reportRecord',
     data,
+  })
+}
+
+/** 获取投诉举报数量 */
+export const getReportReordCount = async (data:GetReportRecordCount.Request) => {
+  return request<GetReportRecordCount.Response>({
+    method: 'GET',
+    url: '/api/v1/user/reportCount',
+    data
   })
 }

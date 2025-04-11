@@ -42,6 +42,12 @@ export enum ArticleStatusEnum {
   Public = 2,
 }
 
+/** 投诉举报目标类型 */
+export  enum ReportTargetType {
+  Article = 'article',
+  File = 'file',
+}
+
 /** 执行增删改mysql语句后返回的对象 */
 export interface MysqlOkPacket {
   /** 结果集中字段的数量 */
@@ -335,7 +341,7 @@ export interface ReportRecordProps {
   /** 被举报的文章或文件ID */
   targetId: number
   /** 举报目标类型（文章或文件） */
-  targetType: 'article' | 'file'
+  targetType: ReportTargetType
   /** 举报原因 */
   reason: string
   /** 举报时间 */
