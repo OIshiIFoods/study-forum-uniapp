@@ -7,7 +7,32 @@
       )
     "
   >
-    <view class="px-10px min-h-100vh">
+    <scroll-view
+      class="px-10px h-100vh"
+      scroll-y
+      @scrolltolower="
+        async () => {
+          if (scrollViewRelatedProps.isLower) return
+          scrollViewRelatedProps.isLower = true
+          const lastComment = commentData.commentList
+            .filter((item) => !item.parentId)
+            .sort((a: any, b: any) => {
+              return +new Date(b.createTime) - +new Date(a.createTime)
+            })
+            .at(-1)
+          const { data: commentInfos } = await getArticleCommentList({
+            parentCommentId: -1,
+            createTime: ['', lastComment?.createTime ?? ''],
+            orderBy: [{ field: 'createTime', direction: 'DESC' }],
+            limit: 5,
+          })
+          commentData.commentList.push(
+            ...commentInfos.commentList.map(formatCommentItem)
+          )
+          scrollViewRelatedProps.isLower = false
+        }
+      "
+    >
       <up-navbar :title="'坛友动态'" placeholder>
         <template #left>
           <view
@@ -101,7 +126,12 @@
         :onAvatarClick="clickAvatar"
         :onLoadComment="loadComment"
       />
-    </view>
+      <up-loadmore
+        height="50"
+        icon
+        :status="scrollViewRelatedProps.isLower ? 'loading' : 'nomore'"
+      />
+    </scroll-view>
     <view
       class="flex sticky bottom-0 bg-white p-10px b-t b-t-solid b-t-#ebeced"
     >
@@ -404,6 +434,10 @@ const moreActions = computed(() => [
     clickAction: async () => {},
   },
 ])
+const scrollViewRelatedProps = ref({
+  /** 是否触底 */
+  isLower: false,
+})
 
 const addComment = async ({
   conmentContent,
