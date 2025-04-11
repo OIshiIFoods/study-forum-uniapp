@@ -301,9 +301,9 @@ export interface UserBlacklistProps {
   /** 屏蔽原因 */
   reason?: string
   /** 创建时间 */
-  createdAt: string
+  createdTime: string
   /** 更新时间 */
-  updatedAt: string
+  updatedTime: string
   /** 删除时间 */
-  deletedAt?: string | null
+  deletedTime?: string | null
 }
