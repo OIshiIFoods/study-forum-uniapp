@@ -21,6 +21,7 @@
             })
             .at(-1)
           const { data: commentInfos } = await getArticleCommentList({
+            articleId: articleInfo?.id,
             parentCommentId: -1,
             createTime: ['', lastComment?.createTime ?? ''],
             orderBy: [{ field: 'createTime', direction: 'DESC' }],
@@ -477,6 +478,7 @@ const clickAvatar = async ({ userId }: OnClickAvatarProps) => {
 
 const loadComment = async ({ comment }: OnLoadCommentProps) => {
   const { data: commentInfos } = await getArticleCommentList({
+    articleId: articleInfo.value!.id,
     parentCommentId: comment.id,
     createTime: [comment.children?.at(-1)?.createTime ?? '', ''],
     orderBy: [{ field: 'createTime', direction: 'ASC' }],
