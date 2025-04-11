@@ -126,7 +126,7 @@ export const likeArticleComment = async (
 
 /** 获取文章类目列表 */
 export const getArticleCategoryList = async (
-  data: GetArticleCategories.Request
+  data?: GetArticleCategories.Request
 ) => {
   return request<GetArticleCategories.Response>({
     method: 'GET',

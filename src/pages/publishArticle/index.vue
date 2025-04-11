@@ -1,7 +1,7 @@
 <template>
   <view class="grid grid-rows-[auto_1fr_auto] h-100vh">
     <up-navbar :title="'写文章'" placeholder auto-back />
-    <view class="grid grid-rows-[auto_1fr] p-[0_15px] overflow-auto">
+    <view class="grid grid-rows-[auto_1fr_auto] p-[0_15px] overflow-auto">
       <textarea
         class="w-full my-10px py-5px font-700 text-18px b-b b-b-solid b-b-#dadbde"
         placeholder="请输入标题"
@@ -17,6 +17,47 @@
         @ready="ready"
         @input="({ text = '', html = '' }) => (articleInfo.content = html)"
       />
+      <view class="p-[10px_0px]">
+        <view class="flex items-center gap-col-8px">
+          <view class="text-14px text-#A9A9A9">选择文章类型</view>
+          <view class="flex items-end flex-wrap gap-col-8px">
+            <up-tag
+              v-if="articleInfo.articleCategoryId"
+              :text="
+                articleCatygoryPicker.list[0]?.find(
+                  (item) => item.id === articleInfo.articleCategoryId
+                )?.name
+              "
+              :size="'medium'"
+              plain
+              closable
+              @close="articleInfo.articleCategoryId = undefined"
+            />
+            <up-tag
+              text="选择"
+              :size="'medium'"
+              :color="'#A9A9A9'"
+              :borderColor="'#CCC'"
+              plain
+              @click="articleCatygoryPicker.show = true"
+            />
+            <up-picker
+              :show="articleCatygoryPicker.show"
+              :columns="articleCatygoryPicker.list"
+              keyName="name"
+              closeOnClickOverlay
+              @cancel="articleCatygoryPicker.show = false"
+              @close="articleCatygoryPicker.show = false"
+              @confirm="
+                (item: any) => {
+                  articleInfo.articleCategoryId = item.value[0].id
+                  articleCatygoryPicker.show = false
+                }
+              "
+            />
+          </view>
+        </view>
+      </view>
     </view>
     <SvEditorToolbar
       ref="toolbarRef"
@@ -63,18 +104,29 @@ import {
   addLink,
   addVideo,
 } from '@/plugins/sv-editor/components/common/utils'
-import { publishArticle, updateArticle } from '@/service'
+import {
+  getArticleCategoryList,
+  publishArticle,
+  updateArticle,
+} from '@/service'
 import { uploadFile } from '@/api/http'
 import router from '@/router'
 import { onLoad } from '@dcloudio/uni-app'
 import { ArticleStatusEnum } from '@/service/types/db.d'
+import type { GetArticleCategories } from '@/service/types/api'
 
 onLoad(async (options) => {
   if (options?.editedArticleId) {
     articleInfo.articleId = Number(options.editedArticleId)
     articleInfo.title = options?.title
     articleInfo.content = options?.content
+    articleInfo.articleCategoryId = +options?.categoryId || undefined
   }
+})
+
+onMounted(async () => {
+  const { data } = await getArticleCategoryList()
+  articleCatygoryPicker.list = [data]
 })
 
 const editorCtx = ref<any>(null)
@@ -84,6 +136,7 @@ const articleInfo = reactive({
   articleId: undefined as number | undefined,
   title: '',
   content: '',
+  articleCategoryId: undefined as number | undefined,
 })
 
 const ready = (e: any) => {
@@ -152,7 +205,7 @@ const onPublishArticle = async () => {
     }
   )
   const { data } = articleInfo.articleId
-    ? await updateArticle({ articleInfo, status: articleStatus } as any)
+    ? await updateArticle({ ...articleInfo, status: articleStatus } as any)
     : await publishArticle({ ...articleInfo, status: articleStatus })
   const articleId = articleInfo.articleId ?? data.id
   await uni.showToast({
@@ -184,4 +237,9 @@ const saveAsDraft = async () => {
     })
   }, 1000)
 }
+
+const articleCatygoryPicker = reactive({
+  show: false,
+  list: [] as GetArticleCategories.Response['data'][],
+})
 </script>

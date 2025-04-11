@@ -365,6 +365,7 @@ const moreActions = computed(() => [
           editedArticleId: String(articleInfo.value?.id),
           title: String(articleInfo.value?.title),
           content: String(articleInfo.value?.content),
+          categoryId: String(articleInfo.value?.categoryId ?? ''),
         },
       })
     },

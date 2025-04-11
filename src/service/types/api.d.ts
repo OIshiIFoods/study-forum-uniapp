@@ -334,6 +334,8 @@ export namespace PostPublishArticle {
     content: string
     /** 文章状态 */
     status: ArticleStatusEnum
+    /** 文章类型 */
+    articleCategoryId?: number
   }
 
   type Response = {
@@ -375,6 +377,8 @@ export namespace PutArticle {
     content?: string
     /** 文章状态 */
     status?: ArticleStatusEnum
+    /** 文章类型 */
+    articleCategoryId?: number
   }
 
   type Response = {

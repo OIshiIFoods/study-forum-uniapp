@@ -188,6 +188,8 @@ export interface ArticleProps {
   deleteTime?: string
   /** 文章状态 */
   status?: ArticleStatusEnum
+  /** 分类ID */
+  categoryId?: number
 }
 
 /** 数据库 article_like 表字段信息 */
