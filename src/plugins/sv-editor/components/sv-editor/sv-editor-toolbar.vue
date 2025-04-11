@@ -1,6 +1,6 @@
 <template>
   <view class="sv-editor-toolbar">
-    <view :style="{display:'flex', alignItems:'center', justifyContent:'space-between', borderTop:'1rpx solid var(--editor-toolbar-bordercolor)', borderTop:'1rpx solid var(--editor-toolbar-bordercolor)'}">
+    <view :style="{display:'flex', alignItems:'center', justifyContent:'space-between', borderTop:'1rpx solid var(--editor-toolbar-bordercolor)', borderTop:'1rpx solid var(--editor-toolbar-bordercolor)',...customeStyle}">
       <view class="editor-tools" :style="{flex:1, ...toolbarStyle}" @tap="onTool">
         <text
           v-for="item in allTools"
@@ -153,6 +153,10 @@ export default {
     SvEditorColorpicker
   },
   props: {
+    customeStyle:{
+      type: Object,
+      default: {}
+    },
     toolbarStyle:{
       type: Object,
       default: {}
