@@ -325,3 +325,23 @@ export interface ArticleCategoryProps {
   /** 删除时间 */
   deletedTime?: string | null
 }
+
+/** 举报投诉表字段信息 */
+export interface ReportRecordProps {
+  /** 举报ID */
+  id: number
+  /** 举报用户ID */
+  userId: number
+  /** 被举报的文章或文件ID */
+  targetId: number
+  /** 举报目标类型（文章或文件） */
+  targetType: 'article' | 'file'
+  /** 举报原因 */
+  reason: string
+  /** 举报时间 */
+  createTime: string
+  /** 更新时间 */
+  updateTime: string
+  /** 删除时间 */
+  deleteTime?: string
+}

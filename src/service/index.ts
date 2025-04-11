@@ -34,6 +34,7 @@ import {
   getUserInfo,
   login,
   putUserInfo,
+  report,
   unblockUser,
 } from './modules/user'
 import {
@@ -82,4 +83,5 @@ export {
   unblockUser,
   getBlacklist,
   getArticleCategoryList,
+  report
 }

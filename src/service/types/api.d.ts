@@ -9,6 +9,7 @@ import {
   ArticleStatusEnum,
   SpaceOpenStatusEnum,
   ArticleCategoryProps,
+  ReportRecordProps,
 } from './db'
 
 /** 排序条件 */
@@ -801,5 +802,21 @@ export namespace GetArticleCategories {
     message: string
     /** 分类列表 */
     data: ArticleCategoryProps[]
+  }
+}
+
+/** 添加举报记录 */
+export namespace PostReportRecord {
+  export type Request = Pick<
+    ReportRecordProps,
+    'targetId' | 'targetType' | 'reason'
+  >
+
+  export type Response = {
+    /** 状态码 */
+    status: number
+    /** 响应信息 */
+    message: string
+    data: any // 可以根据需要进一步定义
   }
 }
