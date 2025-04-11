@@ -46,7 +46,6 @@
       :list="swiperList"
       @click="
         (index) => {
-          console.log(index, swiperList[index].articleId)
           if (swiperList[index].articleId) {
             router.push({
               name: 'articleDetail',
@@ -124,7 +123,7 @@
       <up-scroll-list :indicator="false" indicatorStyle="">
         <view
           v-for="(item, index) in articleCatygoryList"
-          class="text-#CCC text-13px p-[8px_10px]"
+          class="text-#CCC text-13px p-[8px_10px] flex-[1_0_auto]"
           :class="activeArticleCatygory === item.id ? 'text-black' : ''"
           :key="index"
           @click="

@@ -8,7 +8,7 @@
     "
   >
     <scroll-view
-      class="px-10px h-100vh"
+      class="px-10px h-100vh box-border"
       scroll-y
       @scrolltolower="
         async () => {

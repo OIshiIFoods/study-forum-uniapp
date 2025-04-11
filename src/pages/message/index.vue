@@ -223,6 +223,11 @@ const operationPopupConfig = reactive({
           userId: selectUser.value ?? -1,
         })
         operationPopupConfig.show = false
+        setTimeout(() => {
+          mV.uni.showTabBar({
+            animation: true,
+          })
+        }, operationPopupConfig.duration)
       },
     },
     {
@@ -242,6 +247,11 @@ const operationPopupConfig = reactive({
           (item) => item !== selectUser.value!
         )
         operationPopupConfig.show = false
+        setTimeout(() => {
+          mV.uni.showTabBar({
+            animation: true,
+          })
+        }, operationPopupConfig.duration)
         uni.showToast({
           title: '解除拉黑成功',
           icon: 'none',
