@@ -39,11 +39,32 @@
         <view v-if="owner" @click="emit('delete', id, parentId)">删除</view>
       </view>
       <slot></slot>
+      <view
+        v-show="childCommentCount"
+        class="flex items-center gap-col-6px mt-8px"
+        @click="cComStatusMap.clickAction"
+      >
+        <up-line length="15px" />
+        <view class="text-11px text-#A9A9A9">{{ cComStatusMap.desc }}</view>
+        <up-icon
+          v-if="cComStatusMap.code === 'expand'"
+          name="arrow-down"
+          :size="12"
+        />
+        <up-icon
+          v-if="cComStatusMap.code === 'collapse'"
+          name="arrow-up"
+          :size="12"
+        />
+        <up-loading-icon v-if="cComStatusMap.code === 'loading'" :size="12" />
+      </view>
     </view>
   </view>
 </template>
 
 <script setup lang="ts">
+import { computed, ref } from 'vue'
+
 export type CommentItemProps = {
   /** 评论 id */
   id: number
@@ -69,9 +90,47 @@ export type CommentItemProps = {
   createTime: string
   /** 是否是作者的评论 */
   isAuthor?: boolean
+  /** 子评论数量 */
+  childCommentCount?: number
 }
+
+export type ChildCommentStaus = 'expand' | 'collapse' | 'loading'
 
 const props = defineProps<CommentItemProps>()
 
-const emit = defineEmits(['like', 'delete', 'reply', 'clickAvatar'])
+const emit = defineEmits([
+  'like',
+  'delete',
+  'reply',
+  'clickAvatar',
+  'loadComment',
+  'collapseComment',
+])
+
+const cComStatus = ref<ChildCommentStaus>('expand')
+const cComStatusMap = computed(() => {
+  if (cComStatus.value === 'expand') {
+    return {
+      desc: '展开更多回复',
+      code: 'expand',
+      clickAction: () => {
+        emit('loadComment', cComStatus, JSON.parse(JSON.stringify(props)))
+      },
+    }
+  } else if (cComStatus.value === 'collapse') {
+    return {
+      desc: '收起回复',
+      code: 'collapse',
+      clickAction: async () => {
+        emit('collapseComment', cComStatus, JSON.parse(JSON.stringify(props)))
+      },
+    }
+  } else {
+    return {
+      desc: '加载中',
+      code: 'loading',
+      clickAction: () => {},
+    }
+  }
+})
 </script>

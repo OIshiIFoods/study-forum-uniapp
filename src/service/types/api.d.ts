@@ -528,6 +528,11 @@ export namespace GetArticleCommentList {
     commentId?: number
     /** 父级评论的 ID */
     parentCommentId?: number
+    limit?: number
+    deleteTime?: [string | number, string | number]
+    updateTime?: [string | number, string | number]
+    createTime?: [string | number, string | number]
+    orderBy?: OrderByOption<keyof ArticleCommentProps>[]
   }
 
   type Response = {

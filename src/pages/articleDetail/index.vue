@@ -99,6 +99,7 @@
         :onDelete="delComment"
         :onAdd="addComment"
         :onAvatarClick="clickAvatar"
+        :onLoadComment="loadComment"
       />
     </view>
     <view
@@ -257,6 +258,7 @@ import type {
   OnClickAvatarProps,
   OnDeleteProps,
   OnLikeProps,
+  OnLoadCommentProps,
 } from '@/components/CommentSection/index.vue'
 import router from '@/router'
 import {
@@ -437,6 +439,18 @@ const clickAvatar = async ({ userId }: OnClickAvatarProps) => {
     name: 'userSpace',
     params: { userId: String(userId) },
   })
+}
+
+const loadComment = async ({ comment }: OnLoadCommentProps) => {
+  const { data: commentInfos } = await getArticleCommentList({
+    parentCommentId: comment.id,
+    createTime: [comment.children?.at(-1)?.createTime ?? '', ''],
+    orderBy: [{ field: 'createTime', direction: 'ASC' }],
+    limit: 3,
+  })
+  commentData.value.commentList.push(
+    ...commentInfos.commentList.map(formatCommentItem)
+  )
 }
 
 const formatCommentItem = (

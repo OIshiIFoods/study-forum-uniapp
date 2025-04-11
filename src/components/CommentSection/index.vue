@@ -19,17 +19,23 @@
       @like="likeComment"
       @reply="onClickReplyComment"
       @clickAvatar="onClickAvatar"
+      @loadComment="onClickLoadComment"
+      @collapseComment="onCollapseComment"
     >
-      <CommentItem
-        v-for="(sCom, sComIndex) in pCom.children"
-        :key="sCom.id"
-        v-bind="sCom"
-        :avatarSize="20"
-        @delete="deleteComment"
-        @like="likeComment"
-        @reply="onClickReplyComment"
-        @clickAvatar="onClickAvatar"
-      />
+      <view v-if="!pCom.isFold">
+        <CommentItem
+          v-for="(sCom, sComIndex) in pCom.children"
+          :key="sCom.id"
+          v-bind="sCom"
+          :avatarSize="20"
+          @delete="deleteComment"
+          @like="likeComment"
+          @reply="onClickReplyComment"
+          @clickAvatar="onClickAvatar"
+          @loadComment="onClickLoadComment"
+          @collapseComment="onCollapseComment"
+        />
+      </view>
     </CommentItem>
     <view v-else>
       <slot name="empty">
@@ -49,12 +55,15 @@ import {
   transformListToTree,
   transformTreeToList,
 } from '@/utils'
-import type { CommentItemProps } from './components/CommentItem.vue'
+import type {
+  ChildCommentStaus,
+  CommentItemProps,
+} from './components/CommentItem.vue'
 import CommentItem from './components/CommentItem.vue'
 import CommmentEditor, {
   type EditorRefType,
 } from './components/CommentEditor.vue'
-import { computed, ref, watch } from 'vue'
+import { computed, nextTick, type Ref, ref, watch, watchEffect } from 'vue'
 
 export type OnLikeProps = {
   value: boolean
@@ -87,6 +96,11 @@ export type OnClickAvatarProps = {
   userId: number
 }
 
+export type OnLoadCommentProps = {
+  /** 评论信息 */
+  comment: CommentItemProps & { children?: CommentItemProps[] }
+}
+
 export type CmSecProps = {
   /** 点击头像事件回调, 返回true则继续执行后续逻辑 */
   onAvatarClick?: (
@@ -104,6 +118,9 @@ export type CmSecProps = {
   onAdd?: (
     params: OnAddCommentProps
   ) => boolean | undefined | void | Promise<boolean | undefined | void>
+  onLoadComment?: (
+    params: OnLoadCommentProps
+  ) => boolean | undefined | void | Promise<boolean | undefined | void>
 }
 
 export type CommentDataModelProps = {
@@ -120,6 +137,7 @@ const props = withDefaults(defineProps<CmSecProps>(), {
   onDelete: () => {},
   onAdd: () => {},
   onAvatarClick: () => {},
+  onLoadComment: () => {},
 })
 
 const commentData = defineModel<CommentDataModelProps>('commentData', {
@@ -130,31 +148,16 @@ const commentData = defineModel<CommentDataModelProps>('commentData', {
   }),
 })
 
-const treeCommentList = computed(() => {
-  const newCommentList = transformListToTree(
-    JSON.parse(
-      JSON.stringify(commentData.value.commentList)
-    ) as CommentItemProps[],
-    'id',
-    'parentId'
-  )
-  const sortComment = (comments: any, direction: 'asc' | 'desc' = 'desc') => {
-    if (comments?.length) {
-      comments.sort((a: any, b: any) => {
-        return direction === 'asc'
-          ? +new Date(a.createTime) - +new Date(b.createTime)
-          : +new Date(b.createTime) - +new Date(a.createTime)
-      })
-      comments.forEach((commentItem: any) => {
-        if (commentItem.children?.length) {
-          sortComment(commentItem.children, 'asc')
-        }
-      })
-    }
+const treeCommentList = ref(formatCommentList(commentData.value.commentList))
+watch(
+  () => commentData.value.commentList,
+  () => {
+    treeCommentList.value = formatCommentList(commentData.value.commentList)
+  },
+  {
+    deep: true,
   }
-  sortComment(newCommentList)
-  return newCommentList
-})
+)
 
 const editorRef = ref<EditorRefType>()
 /** 新增评论信息 */
@@ -258,6 +261,58 @@ const onClickAvatar = async (userId: number) => {
   await props.onAvatarClick({ userId })
 }
 
+const onClickLoadComment = async (
+  cComStatus: Ref<ChildCommentStaus>,
+  comment: CommentItemProps
+) => {
+  const commentInfo = getEleFromTree(
+    treeCommentList.value,
+    comment.id,
+    'id',
+    'children'
+  )
+  if (!commentInfo) return
+  const commentData = commentInfo.value
+  /** 有数据处于折叠状态 */
+  if (commentData.children?.length && commentData.isFold) {
+    commentData.isFold = false
+  } else {
+    cComStatus.value = 'loading'
+    await props.onLoadComment({ comment })
+  }
+  nextTick(() => {
+    const commentInfo = getEleFromTree(
+      treeCommentList.value,
+      comment.id,
+      'id',
+      'children'
+    )
+    if (!commentInfo) return
+    const commentData = commentInfo.value
+    if (commentData.children.length >= Number(commentData.childCommentCount)) {
+      cComStatus.value = 'collapse'
+    } else {
+      cComStatus.value = 'expand'
+    }
+  })
+}
+
+const onCollapseComment = async (
+  cComStatus: Ref<ChildCommentStaus>,
+  comment: CommentItemProps
+) => {
+  const commentInfo = getEleFromTree(
+    treeCommentList.value,
+    comment.id,
+    'id',
+    'children'
+  )
+  if (commentInfo) {
+    commentInfo.value.isFold = true
+  }
+  cComStatus.value = 'expand'
+}
+
 const onSend = async () => {
   const success = await props.onAdd({
     conmentContent:
@@ -267,6 +322,35 @@ const onSend = async () => {
   })
   if (success === false) return
   editorRef.value!.isShowPopup = false
+}
+
+function formatCommentList(commentList: CommentItemProps[]) {
+  const newCommentList = transformListToTree(
+    (JSON.parse(JSON.stringify(commentList)) as CommentItemProps[]).map(
+      (item) => ({
+        ...item,
+        isFold: false,
+      })
+    ),
+    'id',
+    'parentId'
+  )
+  const sortComment = (comments: any, direction: 'asc' | 'desc' = 'desc') => {
+    if (comments?.length) {
+      comments.sort((a: any, b: any) => {
+        return direction === 'asc'
+          ? +new Date(a.createTime) - +new Date(b.createTime)
+          : +new Date(b.createTime) - +new Date(a.createTime)
+      })
+      comments.forEach((commentItem: any) => {
+        if (commentItem.children?.length) {
+          sortComment(commentItem.children, 'asc')
+        }
+      })
+    }
+  }
+  sortComment(newCommentList)
+  return newCommentList
 }
 
 export type CommentSectionRefType = {
