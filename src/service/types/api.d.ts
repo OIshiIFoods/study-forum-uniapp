@@ -413,7 +413,9 @@ export namespace GetArticleDetailInfo {
         Pick<UserProps, 'nickname' | 'avatarLink'>
       /** 评论列表 */
       commentList: (ArticleCommentProps &
-        Pick<UserProps, 'nickname' | 'avatarLink'>)[]
+        Pick<UserProps, 'nickname' | 'avatarLink'> & {
+          childCommentCount: number
+        })[]
     }
   }
 }
@@ -536,7 +538,9 @@ export namespace GetArticleCommentList {
     data: {
       /** 评论列表 */
       commentList: (ArticleCommentProps &
-        Pick<UserProps, 'nickname' | 'avatarLink'>)[]
+        Pick<UserProps, 'nickname' | 'avatarLink'> & {
+          childCommentCount: number
+        })[]
     }
   }
 }
