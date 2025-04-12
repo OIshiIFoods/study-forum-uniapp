@@ -408,6 +408,7 @@ export namespace GetArticleDetailInfo {
       articleInfo: Omit<ArticleProps, 'userId'> & {
         likedUsers: number[]
         collectedUsers: number[]
+        hasReport: boolean
       }
       /** 用户信息 */
       userInfo: Pick<ArticleProps, 'userId'> &
@@ -820,7 +821,6 @@ export namespace PostReportRecord {
     data: any // 可以根据需要进一步定义
   }
 }
-
 
 /** 获取举报记录数量 */
 export namespace GetReportRecordCount {

@@ -230,8 +230,8 @@
             @click="showMoreOperation = !showMoreOperation"
           />
           <view
-            class="pos-absolute pos-bottom-[200%] pos-right-50% flex flex-col justify-between items-center transition-all bg-white overflow-hidden shadow-2xl rounded-[4px] box-border"
-            :class="[showMoreOperation ? 'h-80px p-8px' : 'h-0 p-0']"
+            class="pos-absolute pos-bottom-[200%] pos-right-50% flex flex-col justify-around items-center transition-all bg-white overflow-hidden shadow-2xl rounded-[4px] box-border"
+            :class="[showMoreOperation ? 'h-103px p-8px' : 'h-0 p-0']"
           >
             <view
               class="relative"
@@ -258,6 +258,17 @@
       </view>
     </view>
   </view>
+  <ReportModal
+    ref="reportModal"
+    :target-id="articleInfo?.id ?? -1"
+    :target-type="ReportTargetType.Article"
+    @success="
+      () => {
+        showMoreOperation = false
+        articleInfo && (articleInfo.hasReport = true)
+      }
+    "
+  />
 </template>
 
 <script setup lang="ts">
@@ -294,9 +305,11 @@ import type {
 import router from '@/router'
 import {
   ArticleStatusEnum,
+  ReportTargetType,
   type ArticleCommentProps,
   type UserProps,
 } from '@/service/types/db.d'
+import ReportModal, { ReportRefType } from '@/components/ReportModal.vue'
 
 type OnloadParamType =
   | {
@@ -384,6 +397,7 @@ const isFollow = computed(() => {
     : false
 })
 const showMoreOperation = ref(false)
+const reportModal = ref<ReportRefType>()
 const moreActions = computed(() => [
   {
     hidden: userInfo.value?.userId !== userStore.id,
@@ -433,6 +447,19 @@ const moreActions = computed(() => [
     icon: 'share',
     color: 'var(--primary-color)',
     clickAction: async () => {},
+  },
+  {
+    hidden: userInfo.value?.userId === userStore.id,
+    name: 'report',
+    label: articleInfo.value?.hasReport ? '已举报' : '举报',
+    icon: 'warning',
+    color: '#f9ae3d',
+    clickAction: async () => {
+      if (!reportModal.value || (articleInfo.value?.hasReport ?? true)) {
+        return
+      }
+      reportModal.value.reportPopup.show = true
+    },
   },
 ])
 const scrollViewRelatedProps = ref({
