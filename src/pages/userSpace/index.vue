@@ -16,7 +16,6 @@
     </up-navbar>
   </up-transition>
   <scroll-view
-    v-if="userInfo.spaceOpenStatus"
     class="h-100vh"
     :scroll-y="true"
     scrollWithAnimation
@@ -103,7 +102,10 @@
         </view>
       </view>
     </view>
-    <up-sticky :offsetTop="positionInfo.safeTop + positionInfo.navbarHeight">
+    <up-sticky
+      v-if="permmisions.canAccessSpace"
+      :offsetTop="positionInfo.safeTop + positionInfo.navbarHeight"
+    >
       <view id="tab-bar">
         <up-tabs
           class="mt-15px bg-white"
@@ -140,6 +142,7 @@
       </view>
     </up-sticky>
     <scroll-view
+      v-if="permmisions.canAccessSpace"
       class="h-[calc(100vh-44px-42px)]"
       :scroll-y="true"
       :scroll-top="scrollViewRelatedProps.scrollTop"
@@ -262,6 +265,9 @@
         </view>
       </view>
     </scroll-view>
+    <view v-if="!permmisions.canAccessSpace" class="text-center mt-80px">
+      该用户未开放空间！
+    </view>
   </scroll-view>
   <up-popup
     :show="articleOperPopupConf.show"
@@ -354,7 +360,7 @@ import {
   updateArticle,
 } from '@/service'
 import type { GetArticleList, GetUserInfo } from '@/service/types/api'
-import { ArticleStatusEnum } from '@/service/types/db.d'
+import { ArticleStatusEnum, SpaceOpenStatusEnum } from '@/service/types/db.d'
 import { useUserStore } from '@/stores'
 import { onLoad, onShow } from '@dcloudio/uni-app'
 import { computed, onMounted, reactive, ref, watch } from 'vue'
@@ -379,16 +385,6 @@ onLoad(async (options) => {
   userInfo.id = +params.userId
   const getUserInfoRes = await getUserInfo({ userId: Number(params.userId) })
   Object.assign(userInfo, getUserInfoRes.data)
-  // 权限校验
-  if (!userInfo.spaceOpenStatus) {
-    uni.showModal({
-      content: '该用户未开放空间',
-      showCancel: false,
-      success: () => {
-        router.back()
-      },
-    })
-  }
 })
 
 onMounted(async () => {
@@ -447,6 +443,13 @@ const statusInfoList = computed(() => [
     value: userInfo.likeCount,
   },
 ])
+const permmisions = computed(() => {
+  return {
+    canAccessSpace:
+      userInfo.spaceOpenStatus === SpaceOpenStatusEnum.Open ||
+      userStore.id === userInfo.id,
+  }
+})
 
 const navbarMode = ref<'light' | 'dark'>('dark')
 const activeTab = ref('dynamics')
