@@ -229,15 +229,15 @@ const fileManageFuncList = [
 
 const otherServiceList = [
   {
-    title: '设置',
-    code: 'setting',
-    icon: 'setting',
-    clickAction: () => router.push({ name: 'setting' }),
-  },
-  {
     title: '联系客服',
     code: 'kefu',
     icon: 'kefu',
+    clickAction: () => router.push({ name: 'setting' }),
+  },
+  {
+    title: '设置',
+    code: 'setting',
+    icon: 'setting',
     clickAction: () => router.push({ name: 'setting' }),
   },
 ]
