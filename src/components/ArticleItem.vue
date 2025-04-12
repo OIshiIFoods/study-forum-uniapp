@@ -4,10 +4,51 @@
     :class="props.customeClass"
     :style="props.customeStyle"
     @click="
-      router.push({
-        name: 'articleDetail',
-        params: { articleId: String(articleItem.id) },
-      })
+      async () => {
+        const reportRes = await getReportReordCount({
+          targetId: articleItem.id,
+          targetType: ReportTargetType.Article,
+        })
+        // 非本人创建的文章
+        if (articleItem.userId !== userStore.id) {
+          if (reportRes.data.count >= 5) {
+            mV.uni.showModal({
+              title: '是否继续访问',
+              content:
+                '当前文章已被多次举报，若继续访问，请认真辨别里面的内容！',
+              success(res) {
+                if (res.confirm) {
+                  router.push({
+                    name: 'articleDetail',
+                    params: { articleId: String(articleItem.id) },
+                  })
+                }
+              },
+            })
+          } else if (reportRes.data.count >= 20) {
+            mV.uni.showModal({
+              title: '无法访问',
+              content: '当前文章已被多次举报，无法访问！',
+            })
+          }
+        } else {
+          if (reportRes.data.count >= 10) {
+            mV.uni.showModal({
+              title: '文章已被多次举报',
+              content: '当前文章已被多次举报，请仔细审查文章内容！',
+              success(res) {
+                if (res.confirm) {
+                  router.push({
+                    name: 'articleDetail',
+                    params: { articleId: String(articleItem.id) },
+                  })
+                }
+              },
+              showCancel: false,
+            })
+          }
+        }
+      }
     "
     @longpress="() => definedEmit('longpress')"
   >
@@ -33,7 +74,10 @@
 <script setup lang="ts">
 import { baseURL } from '@/api/http'
 import router from '@/router'
+import { getReportReordCount } from '@/service'
 import type { GetArticleList } from '@/service/types/api'
+import { ReportTargetType } from '@/service/types/db.d'
+import { useUserStore } from '@/stores'
 import { parseHtmlString } from '@/utils'
 import { computed } from 'vue'
 
@@ -46,6 +90,10 @@ const props = defineProps<{
 }>()
 const definedEmit = defineEmits(['longpress'])
 
+const mV = {
+  uni,
+}
+const userStore = useUserStore()
 const statusList = computed(() => [
   {
     title: '浏览',
