@@ -1,6 +1,6 @@
 <template>
   <up-popup
-    :show="reportPopup.show"
+    :show="reportPopup.show && !hasReported"
     mode="center"
     closeable
     @close="reportPopup.show = false"
@@ -36,6 +36,7 @@ import { getReportStatus } from '../service'
 const props = defineProps<Pick<ReportRecordProps, 'targetId' | 'targetType'>>()
 const emit = defineEmits(['success'])
 
+const hasReported = ref(true)
 const reportFormRef = ref<_FormRef>()
 const reportPopup = reactive({
   show: false,
@@ -71,8 +72,8 @@ const reportPopup = reactive({
 watch(
   () => reportPopup.show,
   async (val) => {
+    hasReported.value = true
     if (val) {
-      reportPopup.show = false
       uni.showLoading({
         title: '加载中',
       })
@@ -82,11 +83,11 @@ watch(
       uni.hideLoading()
       if (data.isReported) {
         uni.showToast({
-          title: '您已举报过该用户',
+          title: '您已举报过该文件',
           icon: 'none',
         })
       } else {
-        reportPopup.show = false
+        hasReported.value = false
       }
     }
   }

@@ -100,6 +100,28 @@
       />
     </view>
   </view>
+  <up-icon
+    class="pos-fixed pos-right-[-100px] pos-bottom-20% transition-all"
+    :class="
+      curDirInfo.selectedFiles.length === 1 &&
+      !curDirInfo.selectedFiles[0].isDir &&
+      'pos-right-10px'
+    "
+    @click="
+      () => {
+        reportModal && (reportModal.reportPopup.show = true)
+      }
+    "
+    name="warning"
+    color="#cc9554"
+    :size="35"
+  />
+  <ReportModal
+    ref="reportModal"
+    :target-id="curDirInfo.selectedFiles[0]?.id ?? -1"
+    :target-type="ReportTargetType.File"
+    @success="() => {}"
+  />
 </template>
 
 <script setup lang="ts">
@@ -111,6 +133,8 @@ import { onBeforeMount, onMounted, ref } from 'vue'
 import { onLoad, onShow } from '@dcloudio/uni-app'
 import { getFileIconConfig, getUserFiles } from '@/service'
 import mime from 'mime'
+import ReportModal, { type ReportRefType } from '@/components/ReportModal.vue'
+import { ReportTargetType } from '@/service/types/db.d'
 
 const curDirInfo = defineModel<CurDirInfoType>('curDirInfo', {
   required: true,
@@ -133,6 +157,8 @@ onLoad(async (option: any) => {
   })
   curDirInfo.value.sharedFiles = shareFileData.fileInfoList
 })
+
+const reportModal = ref<ReportRefType>()
 
 const handleFileClick = (fileInfo: CurDirInfoType['sharedFiles'][0]) => {
   // 当处于多选状态时，点击文件选中或取消选中
