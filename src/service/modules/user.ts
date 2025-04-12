@@ -10,6 +10,7 @@ import type {
   GetBlacklist,
   PostReportRecord,
   GetReportRecordCount,
+  IsReported,
 } from '../types/api'
 
 /** 登录 */
@@ -93,10 +94,21 @@ export const report = async (data: PostReportRecord.Request) => {
 }
 
 /** 获取投诉举报数量 */
-export const getReportReordCount = async (data:GetReportRecordCount.Request) => {
+export const getReportReordCount = async (
+  data: GetReportRecordCount.Request
+) => {
   return request<GetReportRecordCount.Response>({
     method: 'GET',
     url: '/api/v1/user/reportCount',
-    data
+    data,
+  })
+}
+
+/** 获取投诉举报状态 */
+export const getReportStatus = async (params?: IsReported.Request) => {
+  return request<IsReported.Response>({
+    method: 'GET',
+    url: '/api/v1/user/isReported',
+    data: params,
   })
 }

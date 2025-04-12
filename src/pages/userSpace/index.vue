@@ -343,14 +343,27 @@
         >
           {{ item.label }}
         </view>
+        <up-line v-if="!item.hidden()" />
       </view>
     </view>
   </up-popup>
+  <ReportModal
+    ref="reportModal"
+    :target-id="userInfo.id ?? -1"
+    :target-type="ReportTargetType.User"
+    @success="
+      () => {
+        operPopupConf.show = false
+      }
+    "
+  />
 </template>
 
 <script setup lang="ts">
 import { baseURL } from '@/api/http'
 import ArticleItem from '@/components/ArticleItem.vue'
+import type { ReportRefType } from '@/components/ReportModal.vue'
+import ReportModal from '@/components/ReportModal.vue'
 import router from '@/router'
 import {
   blockUser,
@@ -360,7 +373,11 @@ import {
   updateArticle,
 } from '@/service'
 import type { GetArticleList, GetUserInfo } from '@/service/types/api'
-import { ArticleStatusEnum, SpaceOpenStatusEnum } from '@/service/types/db.d'
+import {
+  ArticleStatusEnum,
+  ReportTargetType,
+  SpaceOpenStatusEnum,
+} from '@/service/types/db.d'
 import { useUserStore } from '@/stores'
 import { onLoad, onShow } from '@dcloudio/uni-app'
 import { computed, onMounted, reactive, ref, watch } from 'vue'
@@ -532,6 +549,7 @@ const articleOperPopupConf = reactive({
   },
 })
 
+const reportModal = ref<ReportRefType>()
 const operPopupConf = reactive({
   show: false,
   duration: 300,
@@ -578,6 +596,19 @@ const operPopupConf = reactive({
           title: '拉黑成功',
           icon: 'none',
         })
+      },
+    },
+    {
+      label: '举报',
+      color: 'black',
+      hidden: () => {
+        return false
+      },
+      clickAction: async () => {
+        if (!reportModal.value || !userInfo.id) {
+          return
+        }
+        reportModal.value.reportPopup.show = true
       },
     },
   ],

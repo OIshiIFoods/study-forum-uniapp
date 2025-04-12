@@ -836,3 +836,20 @@ export namespace GetReportRecordCount {
     }
   }
 }
+
+/** 是否被投诉请求 */
+export namespace IsReported {
+  export interface Request {
+    /** 目标id */
+    targetId: number
+    targetType: ReportTargetType
+  }
+
+  export interface Response {
+    status: number // 响应状态
+    message: string // 响应消息
+    data: {
+      isReported: boolean // 是否被投诉
+    }
+  }
+}

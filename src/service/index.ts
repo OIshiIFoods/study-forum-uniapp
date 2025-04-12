@@ -32,6 +32,7 @@ import {
   getBlacklist,
   getFollowUserList,
   getReportReordCount,
+  getReportStatus,
   getUserInfo,
   login,
   putUserInfo,
@@ -85,5 +86,6 @@ export {
   getBlacklist,
   getArticleCategoryList,
   report,
-  getReportReordCount
+  getReportReordCount,
+  getReportStatus,
 }

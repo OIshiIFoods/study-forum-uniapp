@@ -30,10 +30,13 @@
 import { report } from '@/service'
 import type { ReportRecordProps } from '@/service/types/db'
 import type { _FormRef } from 'uview-plus/types/comps/form'
-import { reactive, ref } from 'vue'
+import { reactive, ref, watch } from 'vue'
+import { getReportStatus } from '../service'
 
 const props = defineProps<Pick<ReportRecordProps, 'targetId' | 'targetType'>>()
 const emit = defineEmits(['success'])
+
+const reportFormRef = ref<_FormRef>()
 const reportPopup = reactive({
   show: false,
   formInfo: {
@@ -64,7 +67,30 @@ const reportPopup = reactive({
     },
   },
 })
-const reportFormRef = ref<_FormRef>()
+
+watch(
+  () => reportPopup.show,
+  async (val) => {
+    if (val) {
+      reportPopup.show = false
+      uni.showLoading({
+        title: '加载中',
+      })
+      const { data } = await getReportStatus({
+        ...props,
+      })
+      uni.hideLoading()
+      if (data.isReported) {
+        uni.showToast({
+          title: '您已举报过该用户',
+          icon: 'none',
+        })
+      } else {
+        reportPopup.show = false
+      }
+    }
+  }
+)
 
 export type ReportRefType = {
   reportPopup: typeof reportPopup

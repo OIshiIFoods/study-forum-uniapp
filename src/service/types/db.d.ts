@@ -43,9 +43,10 @@ export enum ArticleStatusEnum {
 }
 
 /** 投诉举报目标类型 */
-export  enum ReportTargetType {
+export enum ReportTargetType {
   Article = 'article',
   File = 'file',
+  User = 'user',
 }
 
 /** 执行增删改mysql语句后返回的对象 */
