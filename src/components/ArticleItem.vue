@@ -51,6 +51,11 @@
               },
               showCancel: false,
             })
+          } else {
+            router.push({
+              name: 'articleDetail',
+              params: { articleId: String(articleItem.id) },
+            })
           }
         }
       }
