@@ -92,13 +92,14 @@
         :key="item.label"
       >
         <view
-          class="rounded-4px p-10px bg-#fff text-center mb-6px"
+          class="rounded-4px p-10px bg-#fff text-center"
           v-if="!item.hidden()"
           :style="{ color: item.color }"
           @click="item.clickAction"
         >
           {{ item.label }}
         </view>
+        <up-line v-if="!item.hidden()" />
       </view>
     </view>
   </up-popup>
@@ -232,7 +233,7 @@ const operationPopupConfig = reactive({
     },
     {
       label: '解除拉黑',
-      color: 'red',
+      color: 'black',
       hidden: () => {
         return !userStore.blacklist?.includes(selectUser.value!)
       },
@@ -260,7 +261,7 @@ const operationPopupConfig = reactive({
     },
     {
       label: '拉黑',
-      color: 'red',
+      color: 'black',
       hidden: () => {
         return userStore.blacklist?.includes(selectUser.value!)
       },
@@ -273,6 +274,11 @@ const operationPopupConfig = reactive({
         })
         userStore.blacklist?.push(selectUser.value!)
         operationPopupConfig.show = false
+        setTimeout(() => {
+          mV.uni.showTabBar({
+            animation: true,
+          })
+        }, operationPopupConfig.duration)
         uni.showToast({
           title: '拉黑成功',
           icon: 'none',
