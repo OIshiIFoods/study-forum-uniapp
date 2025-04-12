@@ -118,7 +118,7 @@
   />
   <ReportModal
     ref="reportModal"
-    :target-id="curDirInfo.selectedFiles[0]?.id ?? -1"
+    :target-id="curDirInfo.selectedFiles[0]?.originFileId ?? -1"
     :target-type="ReportTargetType.File"
     @success="() => {}"
   />
