@@ -136,23 +136,32 @@
     <view class="m-[15px_0]">
       <view class="text-14px font-600 p-[5px_0]">更多服务</view>
       <up-cell-group :border="false">
-        <up-cell
+        <view
           v-for="item in otherServiceList"
-          :title="item.title"
-          :title-style="{ fontSize: '14px' }"
-          @click="item.clickAction"
           :key="item.title"
-          :border="false"
-          is-link
-          clickable
+          class="pos-relative"
         >
-          <template #icon>
-            <view
-              class="text-[var(--primary-color)] text-22px iconfont"
-              :class="'icon-' + item.icon"
-            />
-          </template>
-        </up-cell>
+          <up-cell
+            :title="item.title"
+            :title-style="{ fontSize: '14px' }"
+            @click="item.clickAction"
+            :border="false"
+            is-link
+            clickable
+          >
+            <template #icon>
+              <view
+                class="text-[var(--primary-color)] text-22px iconfont"
+                :class="'icon-' + item.icon"
+              />
+            </template>
+          </up-cell>
+          <button
+            v-if="item.icon === 'kefu'"
+            class="absolute pos-left-0 pos-top-0 w-[100%] h-[100%] bg-[rgba(0,0,0,0)] after:b-0"
+            open-type="contact"
+          />
+        </view>
       </up-cell-group>
     </view>
   </view>
@@ -221,7 +230,14 @@ const fileManageFuncList = [
 const otherServiceList = [
   {
     title: '设置',
+    code: 'setting',
     icon: 'setting',
+    clickAction: () => router.push({ name: 'setting' }),
+  },
+  {
+    title: '联系客服',
+    code: 'kefu',
+    icon: 'kefu',
     clickAction: () => router.push({ name: 'setting' }),
   },
 ]
