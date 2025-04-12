@@ -25,7 +25,10 @@
       </template>
     </up-navbar>
     <view class="flex flex-col flex-1">
-      <view id="scroll-wrapper" class="flex flex-col flex-1 min-h-0 overflow-hidden">
+      <view
+        id="scroll-wrapper"
+        class="flex flex-col flex-1 min-h-0 overflow-hidden"
+      >
         <scroll-view
           id="scroll-container"
           :style="{ height: scrollContainerProps.height + 'px' }"
@@ -127,7 +130,7 @@
         <SvEditorToolbar
           ref="toolbarRef"
           :tools="['emoji']"
-          :customeStyle="{borderTop:0}"
+          :customeStyle="{ borderTop: 0 }"
           :toolbarStyle="{
             flex: 'none',
             width: 'auto',
@@ -139,8 +142,8 @@
             background: 'rgba(0,0,0,0)',
           }"
           :activeToolStyle="{ color: 'var(--primary-color)' }"
-          @tapTool="()=>initialScrollContainer()"
-          @keyboardChange="()=>initialScrollContainer()"
+          @tapTool="() => initialScrollContainer()"
+          @keyboardChange="() => initialScrollContainer()"
         >
           <template #toolbarRight>
             <view class="flex gap-10px mr-10px">
@@ -152,6 +155,9 @@
                 @click="
                   async () => {
                     await sendMessage(chatUserId, inputMessage)
+                    editorCtx.setContents({
+                      html: '',
+                    })
                     inputMessage = ''
                     scrollContainerProps.scrollIntoView =
                       'message' + messages[chatUserId].length
@@ -219,18 +225,22 @@ const positionInfo = reactive({
 const initialScrollContainer = () => {
   setTimeout(() => {
     uni
-    .createSelectorQuery()
-    .select('#footer')
-    .boundingClientRect((res) => {
-      const nodeInfo = Array.isArray(res) ? res[0] : res
-      console.log(nodeInfo)
-      Object.assign(scrollContainerProps, {
-        height:positionInfo.windowHeight-positionInfo.safeTop-positionInfo.navbarHeight- nodeInfo.height!,
-        scrollIntoView: 'message' + messages[chatUserId.value]?.length,
-        scrollWithAnimation: true,
+      .createSelectorQuery()
+      .select('#footer')
+      .boundingClientRect((res) => {
+        const nodeInfo = Array.isArray(res) ? res[0] : res
+        console.log(nodeInfo)
+        Object.assign(scrollContainerProps, {
+          height:
+            positionInfo.windowHeight -
+            positionInfo.safeTop -
+            positionInfo.navbarHeight -
+            nodeInfo.height!,
+          scrollIntoView: 'message' + messages[chatUserId.value]?.length,
+          scrollWithAnimation: true,
+        })
       })
-    })
-    .exec()
-  },301)
+      .exec()
+  }, 301)
 }
 </script>
