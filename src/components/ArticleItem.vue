@@ -11,7 +11,12 @@
         })
         // 非本人创建的文章
         if (articleItem.userId !== userStore.id) {
-          if (reportRes.data.count >= 5) {
+          if (reportRes.data.count >= 20) {
+            mV.uni.showModal({
+              title: '无法访问',
+              content: '当前文章已被多次举报，无法访问！',
+            })
+          } else if (reportRes.data.count >= 5) {
             mV.uni.showModal({
               title: '是否继续访问',
               content:
@@ -25,10 +30,10 @@
                 }
               },
             })
-          } else if (reportRes.data.count >= 20) {
-            mV.uni.showModal({
-              title: '无法访问',
-              content: '当前文章已被多次举报，无法访问！',
+          } else {
+            router.push({
+              name: 'articleDetail',
+              params: { articleId: String(articleItem.id) },
             })
           }
         } else {
