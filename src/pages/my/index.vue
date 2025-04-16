@@ -101,7 +101,7 @@
             class="text-12px text-[#ccc]"
             @click="router.push({ name: 'fileManagement' })"
           >
-            管理文件 >
+            查看文件 >
           </view>
         </view>
         <up-line-progress
