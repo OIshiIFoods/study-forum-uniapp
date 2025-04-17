@@ -134,7 +134,7 @@ import { onLoad, onShow } from '@dcloudio/uni-app'
 import { getFileIconConfig, getUserFiles } from '@/service'
 import mime from 'mime'
 import ReportModal, { type ReportRefType } from '@/components/ReportModal.vue'
-import { ReportTargetType } from '@/service/types/db.d'
+import { FileStatusEnum, ReportTargetType } from '@/service/types/db.d'
 
 const curDirInfo = defineModel<CurDirInfoType>('curDirInfo', {
   required: true,
@@ -154,6 +154,7 @@ onLoad(async (option: any) => {
       ? options.sharedFileIds.split(',').map((id: string) => +id)
       : undefined,
     parentPath: options.parentPath ?? '/',
+    status: FileStatusEnum.Normal,
   })
   curDirInfo.value.sharedFiles = shareFileData.fileInfoList
 })

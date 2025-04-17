@@ -17,7 +17,7 @@
         @ready="ready"
         @input="({ text = '', html = '' }) => (articleInfo.content = html)"
       />
-      <view class="p-[10px_0px]">
+      <view class="p-[10px_0px] pos-sticky pos-bottom-0 bg-white">
         <view class="flex items-center gap-col-8px">
           <view class="text-14px text-#A9A9A9">选择文章类型</view>
           <view class="flex items-end flex-wrap gap-col-8px">

@@ -157,6 +157,7 @@ const filePopupConfig = reactive({
           iconName: 'simple-folder',
           style: {},
           clickAction: () => {
+            createFolderPopupConfig.formInfo.model.filename = ''
             filePopupConfig.show = false
             createFolderPopupConfig.show = true
           },

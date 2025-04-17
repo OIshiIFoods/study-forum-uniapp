@@ -107,7 +107,6 @@ const searchAction = async () => {
     params.isCollected = 1
   }
   const { data } = await getArticleList({
-    userId: userStore.id,
     orderBy: [{ field: 'createTime', direction: 'DESC' }],
     title: searchValue.value || undefined,
     status: ArticleStatusEnum.Public,
