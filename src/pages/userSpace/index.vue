@@ -38,7 +38,7 @@
         <view class="relative flex justify-between">
           <up-image
             class="relative top-[-25px] left-[20px]"
-            :src="baseURL + '' + userInfo.avatarLink"
+            :src="[baseURL, userInfo.avatarLink].join('')"
             :shape="'circle'"
             width="80px"
             height="80px"
