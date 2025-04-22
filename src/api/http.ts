@@ -57,9 +57,9 @@ const httpInterceptor: UniApp.InterceptorOptions = {
       uni.removeStorageSync('token')
     }
   },
-  fail() {},
-  complete() {},
-  returnValue(res) {},
+  fail() { },
+  complete() { },
+  returnValue(res) { },
 }
 
 uni.addInterceptor('request', httpInterceptor)
@@ -74,7 +74,7 @@ export const request = <T>(options: UniApp.RequestOptions) => {
         // 请求失败
         if (data.failed) {
           uni.showToast({
-            title: data.message,
+            title: data.status === 401 ? '请先登录！' : data.message,
             icon: 'none',
             duration: 2000,
           })

@@ -11,7 +11,7 @@ const router = createRouter({
 })
 router.beforeEach(async (to, from, next) => {
   // 登录凭证校验
-  if (to.name !== 'login' && !uni.getStorageSync('token')) {
+  if (!uni.getStorageSync('token') && !['login', 'articleDetail'].includes(String(to.name))) {
     const userStore = useUserStore()
     userStore.$reset()
     await new Promise((resolve) => {
