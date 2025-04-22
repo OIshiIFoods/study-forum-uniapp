@@ -85,7 +85,7 @@
       </view>
     </view>
     <!-- 文件管理 -->
-    <view class="m-[15px_0]">
+    <view class="m-[15px_0]" v-if="userStore.id">
       <view class="text-14px font-600 p-[5px_0]">文件管理</view>
       <view>
         <view class="flex justify-between items-center">
@@ -133,7 +133,7 @@
     </view>
 
     <!-- 更多服务 -->
-    <view class="m-[15px_0]">
+    <view class="m-[15px_0]" v-if="userStore.id">
       <view class="text-14px font-600 p-[5px_0]">更多服务</view>
       <up-cell-group :border="false">
         <view
@@ -176,7 +176,9 @@ import { computed } from 'vue'
 const userStore = useUserStore()
 
 onShow(async () => {
-  await userStore.syncUserInfo()
+  if (userStore.id) {
+    await userStore.syncUserInfo()
+  }
 })
 
 const accountStatusInfoList = computed(() => [

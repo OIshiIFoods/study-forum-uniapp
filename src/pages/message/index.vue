@@ -6,7 +6,13 @@
         class="pos-relative flex flex-col items-center justify-center gap-row-8px"
         v-for="msgCategory in msgCategories"
         :key="msgCategory.label"
-        @click="msgCategory.clickAction()"
+        @click="
+          () => {
+            if (userStore.id) {
+              msgCategory.clickAction()
+            }
+          }
+        "
       >
         <up-icon
           :class="['p-6px', 'rounded-10px']"
